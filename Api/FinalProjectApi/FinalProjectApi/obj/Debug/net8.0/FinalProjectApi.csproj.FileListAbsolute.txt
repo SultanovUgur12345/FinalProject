@@ -159,3 +159,4 @@ C:\Users\G713RM\Desktop\C# Projects\FinalProject\Api\FinalProjectApi\FinalProjec
 C:\Users\G713RM\Desktop\C# Projects\FinalProject\Api\FinalProjectApi\FinalProjectApi\bin\Debug\net8.0\MimeKit.dll
 C:\Users\G713RM\Desktop\C# Projects\FinalProject\Api\FinalProjectApi\FinalProjectApi\bin\Debug\net8.0\System.Security.Cryptography.Pkcs.dll
 C:\Users\G713RM\Desktop\C# Projects\FinalProject\Api\FinalProjectApi\FinalProjectApi\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Security.Cryptography.Pkcs.dll
+C:\Users\G713RM\Desktop\C# Projects\FinalProject\Api\FinalProjectApi\FinalProjectApi\obj\Debug\net8.0\FinalProjectApi.sourcelink.json

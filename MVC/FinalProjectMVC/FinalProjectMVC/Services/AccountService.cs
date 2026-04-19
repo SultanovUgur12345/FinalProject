@@ -76,12 +76,6 @@ namespace FinalProjectMVC.Services
         }
 
 
-
-
-
-
-
-
         public async Task<(bool success, string message)> ForgotPasswordAsync(ForgotPasswordVM model)
         {
             var response = await _httpClient.PostAsJsonAsync("api/account/forgot-password", model);
@@ -146,6 +140,6 @@ namespace FinalProjectMVC.Services
             return (false, content);
         }
 
-
+      
     }
 }

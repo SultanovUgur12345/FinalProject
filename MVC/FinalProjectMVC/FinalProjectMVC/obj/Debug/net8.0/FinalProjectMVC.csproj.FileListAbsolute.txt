@@ -227,3 +227,4 @@ C:\Users\G713RM\Desktop\C# Projects\FinalProject\MVC\FinalProjectMVC\FinalProjec
 C:\Users\G713RM\Desktop\C# Projects\FinalProject\MVC\FinalProjectMVC\FinalProjectMVC\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\G713RM\Desktop\C# Projects\FinalProject\MVC\FinalProjectMVC\FinalProjectMVC\obj\Debug\net8.0\FinalProjectMVC.csproj.AssemblyReference.cache
 C:\Users\G713RM\Desktop\C# Projects\FinalProject\MVC\FinalProjectMVC\FinalProjectMVC\obj\Debug\net8.0\FinalPro.533CE649.Up2Date
+C:\Users\G713RM\Desktop\C# Projects\FinalProject\MVC\FinalProjectMVC\FinalProjectMVC\obj\Debug\net8.0\FinalProjectMVC.sourcelink.json

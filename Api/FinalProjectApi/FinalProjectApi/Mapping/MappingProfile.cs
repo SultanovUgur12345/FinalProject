@@ -22,8 +22,8 @@ namespace FinalProjectApi.Mapping
             CreateMap<Worker, WorkerDetailDto>();
 
             CreateMap<RegisterDto, AppUser>();
-            CreateMap<UpdateProfileDto, AppUser>();
-
+            CreateMap<UpdateProfileDto, AppUser>()
+                .ForMember(x => x.Id, opt => opt.Ignore());
 
         }
     }

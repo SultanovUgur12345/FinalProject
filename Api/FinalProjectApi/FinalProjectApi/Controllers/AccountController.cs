@@ -1,5 +1,7 @@
 ﻿using FinalProjectApi.DTOs.Account;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -68,6 +70,23 @@ public class AccountController : ControllerBase
             return BadRequest(ModelState);
 
         var result = await _accountService.ResetPasswordAsync(dto);
+
+        if (!result.IsSuccess)
+            return BadRequest(result);
+
+        return Ok(result);
+    }
+
+    [Authorize]
+    [HttpPut("update-profile")]
+    public async Task<IActionResult> UpdateProfile(UpdateProfileDto dto)
+    {
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        var result = await _accountService.UpdateProfileAsync(userId, dto);
 
         if (!result.IsSuccess)
             return BadRequest(result);

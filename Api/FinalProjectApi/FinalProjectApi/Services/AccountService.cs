@@ -235,5 +235,82 @@ namespace FinalProjectApi.Services
                 Message = "Sifre ugurla yenilendi"
             };
         }
+
+        public async Task<ResponceDto> UpdateProfileAsync(string userId, UpdateProfileDto dto)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+
+            if (user == null)
+            {
+                return new ResponceDto
+                {
+                    IsSuccess = false,
+                    Message = "Istifadeci tapilmadi"
+                };
+            }
+
+
+            var existUser = await _userManager.FindByNameAsync(dto.UserName);
+
+            if (existUser != null && existUser.Id != userId)
+            {
+                return new ResponceDto
+                {
+                    IsSuccess = false,
+                    Message = "Bu username artiq movcuddur"
+                };
+            }
+
+
+            _mapper.Map(dto, user);
+
+            var updateResult = await _userManager.UpdateAsync(user);
+
+            if (!updateResult.Succeeded)
+            {
+                return new ResponceDto
+                {
+                    IsSuccess = false,
+                    Message = string.Join(" | ",
+                        updateResult.Errors.Select(x => x.Description))
+                };
+            }
+
+
+            if (!string.IsNullOrWhiteSpace(dto.NewPassword))
+            {
+                if (string.IsNullOrWhiteSpace(dto.CurrentPassword))
+                {
+                    return new ResponceDto
+                    {
+                        IsSuccess = false,
+                        Message = "Current password yazilmalidir"
+                    };
+                }
+
+                var passwordResult =
+                    await _userManager.ChangePasswordAsync(
+                        user,
+                        dto.CurrentPassword,
+                        dto.NewPassword
+                    );
+
+                if (!passwordResult.Succeeded)
+                {
+                    return new ResponceDto
+                    {
+                        IsSuccess = false,
+                        Message = string.Join(" | ",
+                            passwordResult.Errors.Select(x => x.Description))
+                    };
+                }
+            }
+
+            return new ResponceDto
+            {
+                IsSuccess = true,
+                Message = "Profil ugurla yenilendi"
+            };
+        }
     }
 }

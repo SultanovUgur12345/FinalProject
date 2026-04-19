@@ -17,3 +17,4 @@ wwwroot\uploads\workers\6a7cff90-d23a-4eca-be8d-edb646b0c1fd_Ekran görüntüsü
 wwwroot\uploads\workers\983c1909-0bec-4dde-ba0d-ee9d509f0bee_Ekran görüntüsü 2025-02-25 191641.png
 wwwroot\uploads\workers\32fa232e-a6fb-4adb-a60b-0dac4086a2b4_Ekran görüntüsü 2025-02-25 191641.png
 wwwroot\uploads\workers\6dfda7d3-8589-4e41-bf7c-2bf2c61ff0e8_Ekran görüntüsü 2025-05-16 162506.png
+wwwroot\uploads\workers\ab340a8b-75d2-4338-8162-e34db38eb8ae_Ekran görüntüsü 2025-05-21 081205.png

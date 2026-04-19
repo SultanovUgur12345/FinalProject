@@ -79,14 +79,6 @@ namespace FinalProjectMVC.Controllers
             return RedirectToAction(nameof(Login));
         }
 
-
-
-
-
-
-
-
-
         public IActionResult ForgotPassword()
         {
             return View();
@@ -112,6 +104,15 @@ namespace FinalProjectMVC.Controllers
 
             return View();
         }
+
+
+
+
+
+
+
+
+
 
         public IActionResult ResetPassword(string email, string token)
         {

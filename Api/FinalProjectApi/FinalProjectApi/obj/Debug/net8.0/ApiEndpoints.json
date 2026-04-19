@@ -85,6 +85,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "AccountController",
+    "Method": "UpdateProfile",
+    "RelativePath": "api/Account/update-profile",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "FinalProjectApi.DTOs.Account.UpdateProfileDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "FinalProjectApi.Controllers.WorkerController",
     "Method": "Create",
     "RelativePath": "api/Worker/Create",

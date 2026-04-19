@@ -11,5 +11,14 @@ namespace FinalProjectApi.DTOs.Account
         [Required(ErrorMessage = "Username bos ola bilmez")]
         [StringLength(50, MinimumLength = 3, ErrorMessage = "Username 3-50 simvol arasynda olmalidir")]
         public string UserName { get; set; }
+
+        [DataType(DataType.Password)]
+        public string? CurrentPassword { get; set; }
+
+        [DataType(DataType.Password)]
+        public string? NewPassword { get; set; }
+
+        [Compare(nameof(NewPassword), ErrorMessage = "Passwordler eyni deyil")]
+        public string? ConfirmPassword { get; set; }
     }
 }
