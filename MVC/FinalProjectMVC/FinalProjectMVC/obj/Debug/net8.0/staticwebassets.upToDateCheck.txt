@@ -1,0 +1,20 @@
+wwwroot\client\assets\js\about.js
+wwwroot\client\assets\js\book.js
+wwwroot\client\assets\js\contact.js
+wwwroot\client\assets\js\forgot-password.js
+wwwroot\client\assets\js\home.js
+wwwroot\client\assets\js\login.js
+wwwroot\client\assets\js\register.js
+wwwroot\client\assets\js\restorans.js
+wwwroot\client\assets\js\Türkiyə .js
+wwwroot\client\assets\js\workers.js
+wwwroot\client\assets\style\about.css
+wwwroot\client\assets\style\book.css
+wwwroot\client\assets\style\contact.css
+wwwroot\client\assets\style\forgotPassword.css
+wwwroot\client\assets\style\home.css
+wwwroot\client\assets\style\login.css
+wwwroot\client\assets\style\register.css
+wwwroot\client\assets\style\restorans.css
+wwwroot\client\assets\style\Türkiyə .css
+wwwroot\client\assets\style\workers.css

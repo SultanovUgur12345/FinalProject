@@ -1,0 +1,116 @@
+﻿@model FinalProjectMVC.ViewModels.Account.LoginVM
+
+<link rel="stylesheet" href="~/client/assets/style/login.css">
+
+    <section id="account">
+        <div class="account-container">
+            <div class="account-card">
+
+                <div class="account-tabs">
+                    <button type="button" class="tab-btn active">
+                        LOGIN
+                    </button>
+                </div>
+
+                <form asp-controller="Account"
+                      asp-action="Login"
+                      method="post"
+                      class="account-form active"
+                      id="loginForm">
+
+                    @Html.AntiForgeryToken()
+
+                    <div asp-validation-summary="All"
+                         class="text-danger">
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="UserNameOrEmail"
+                               class="form-label">
+                            EMAIL ADDRESS
+                        </label>
+
+                        <input asp-for="UserNameOrEmail"
+                               id="loginEmail"
+                               class="form-input"
+                               placeholder="Enter your email or UserName" />
+
+                        <span asp-validation-for="UserNameOrEmail"
+                              class="text-danger">
+                        </span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Password"
+                               class="form-label">
+                            PASSWORD
+                        </label>
+
+                        <div class="password-wrapper">
+
+                            <input asp-for="Password"
+                                   type="password"
+                                   id="loginPassword"
+                                   class="form-input"
+                                   placeholder="Enter your password" />
+
+                            <span class="password-toggle"
+                                  onclick="togglePassword('loginPassword', this)">
+                                <i class="far fa-eye"></i>
+                            </span>
+
+                        </div>
+
+                        <span asp-validation-for="Password"
+                              class="text-danger">
+                        </span>
+                    </div>
+
+                    <div class="forgot-link">
+                        <a asp-controller="Account"
+                               asp-action="ForgotPassword">
+                            Forgot Password?
+                        </a>
+                    </div>
+
+                    <button type="submit"
+                            class="submit-btn">
+
+                        <span>LOGIN</span>
+                        <i class="fas fa-arrow-right"></i>
+
+                    </button>
+
+                    <div id="loginMessage"
+                         class="form-message">
+
+                        @if (TempData["Success"] != null)
+                        {
+                            <span style="color:green">
+                                @TempData["Success"]
+                            </span>
+                        }
+
+                    </div>
+
+                    <div class="forgot-link"
+                         style="margin-top:16px;text-align:center;">
+
+                        <a asp-controller="Account"
+                               asp-action="Register">
+
+                            Don't have an account? Register
+
+                        </a>
+
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </section>
+
+    <script src="~/client/assets/js/login.js"></script>
+
+ 

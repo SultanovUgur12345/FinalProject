@@ -1,0 +1,59 @@
+﻿
+using FinalProjectMVC.ViewModels;
+using Microsoft.AspNetCore.Mvc;
+using static IWorkerService;
+
+public class WorkerController : Controller
+{
+    private readonly IWorkerApiService _service;
+
+    public WorkerController(IWorkerApiService service)
+    {
+        _service = service;
+    }
+
+    public async Task<IActionResult> Index()
+    {
+        var data = await _service.GetAllAsync();
+        return View(data);
+    }
+
+    public async Task<IActionResult> Detail(int id)
+    {
+        var data = await _service.GetByIdAsync(id);
+        if (data == null) return NotFound();
+
+        return View(data);
+    }
+
+    public IActionResult Create()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Create(WorkerVM dto)
+    {
+        await _service.CreateAsync(dto);
+        return RedirectToAction(nameof(Index));
+    }
+
+    public async Task<IActionResult> Edit(int id)
+    {
+        var data = await _service.GetByIdAsync(id);
+        return View(data);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Edit(int id, WorkerVM dto)
+    {
+        await _service.UpdateAsync(id, dto);
+        return RedirectToAction(nameof(Index));
+    }
+
+    public async Task<IActionResult> Delete(int id)
+    {
+        await _service.DeleteAsync(id);
+        return RedirectToAction(nameof(Index));
+    }
+}

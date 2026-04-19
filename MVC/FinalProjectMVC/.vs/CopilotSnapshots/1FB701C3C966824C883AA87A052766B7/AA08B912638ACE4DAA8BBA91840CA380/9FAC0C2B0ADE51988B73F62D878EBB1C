@@ -1,0 +1,178 @@
+﻿@model IEnumerable<WorkerVM>
+
+@{
+    ViewData["Title"] = "Workers - GetAll";
+}
+
+<section class="admin-workers">
+    <div class="admin-workers__container">
+        <div class="admin-workers__head">
+            <div>
+                <p class="admin-workers__subtitle">ADMIN PANEL</p>
+                <h1>Workers List</h1>
+            </div>
+
+            <a asp-action="Create" class="admin-btn admin-btn--primary">+ Create Worker</a>
+        </div>
+
+        <div class="admin-workers__table-wrap">
+            <table class="admin-workers__table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Image</th>
+                        <th>Full Name</th>
+                        <th>Role</th>
+                        <th>Experience</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Id</td>
+                                <td>
+                                    <img class="admin-avatar" src="@item.Image" alt="@item.FullName" />
+                                </td>
+                                <td>@item.FullName</td>
+                                <td>@item.Position</td>
+                                <td>@item.ExperienceYears year</td>
+                                <td>
+                                    <div class="admin-actions">
+                                        <a asp-action="Edit" asp-route-id="@item.Id" class="admin-btn">Edit</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="6" style="text-align:center; color:#bfa888;">No workers found</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<style>
+    .admin-workers {
+        width: 80%;
+        margin: 150px auto 70px;
+        color: #fff;
+    }
+
+    .admin-workers__container {
+        background: rgba(2, 21, 39, 0.86);
+        border: 1px solid rgba(191, 168, 136, 0.3);
+        padding: 30px;
+        backdrop-filter: blur(10px);
+    }
+
+    .admin-workers__head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 25px;
+    }
+
+    .admin-workers__subtitle {
+        color: #bfa888;
+        letter-spacing: 2px;
+        font-size: 12px;
+        margin-bottom: 6px;
+    }
+
+    .admin-workers__head h1 {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 38px;
+        margin: 0;
+    }
+
+    .admin-workers__table-wrap {
+        overflow-x: auto;
+    }
+
+    .admin-workers__table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .admin-workers__table th,
+    .admin-workers__table td {
+        border-bottom: 1px solid rgba(191, 168, 136, 0.2);
+        padding: 14px 10px;
+        text-align: left;
+        vertical-align: middle;
+    }
+
+    .admin-workers__table th {
+        font-size: 12px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #bfa888;
+    }
+
+    .admin-avatar {
+        width: 56px;
+        height: 56px;
+        object-fit: cover;
+        border: 1px solid rgba(191, 168, 136, 0.5);
+    }
+
+    .admin-actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .admin-btn {
+        display: inline-block;
+        text-decoration: none;
+        background: transparent;
+        color: #fff;
+        border: 1px solid rgba(191, 168, 136, 0.5);
+        padding: 10px 16px;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .admin-btn:hover {
+        color: #bfa888;
+        border-color: #bfa888;
+    }
+
+    .admin-btn--primary {
+        background: linear-gradient(135deg, #bfa888 0%, #a68b6a 100%);
+        color: #021527;
+        border-color: transparent;
+        font-weight: 600;
+    }
+
+    .admin-btn--primary:hover {
+        color: #021527;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(191, 168, 136, 0.35);
+    }
+
+    @@media (max-width: 768px) {
+        .admin-workers {
+            width: 92%;
+            margin-top: 165px;
+        }
+
+        .admin-workers__head {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    }
+</style>

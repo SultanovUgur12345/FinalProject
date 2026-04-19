@@ -1,0 +1,146 @@
+﻿using FinalProjectMVC.ViewModels;
+using Microsoft.AspNetCore.Mvc;
+using System.Net.Http;
+
+namespace FinalProjectMVC.Areas.Admin.Controllers;
+
+[Area("Admin")]
+public class WorkersController : Controller
+{
+    private readonly WorkerApiService _service;
+
+    public WorkersController(WorkerApiService service)
+    {
+        _service = service;
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Index()
+    {
+        try
+        {
+            var data = await _service.GetAllAsync();
+            return View(data);
+        }
+        catch (HttpRequestException)
+        {
+            TempData["WorkerError"] = "Worker API ilə bağlantı qurulmadı. API-ni başladın və BaseUrl portunu yoxlayın.";
+            return View(new List<WorkerVM>());
+        }
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Detail(int id)
+    {
+        try
+        {
+            var data = await _service.GetByIdAsync(id);
+            if (data is null)
+            {
+                TempData["WorkerError"] = "Worker tapılmadı.";
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View(data);
+        }
+        catch (HttpRequestException)
+        {
+            TempData["WorkerError"] = "Worker API ilə bağlantı qurulmadı.";
+            return RedirectToAction(nameof(Index));
+        }
+    }
+
+    [HttpGet]
+    public IActionResult Create()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Create(WorkerVM dto)
+    {
+        if (!ModelState.IsValid)
+        {
+            return View(dto);
+        }
+
+        try
+        {
+            await _service.CreateAsync(dto);
+            return RedirectToAction(nameof(Index));
+        }
+        catch (HttpRequestException)
+        {
+            ModelState.AddModelError(string.Empty, "Worker API ilə bağlantı qurulmadı.");
+            return View(dto);
+        }
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Edit(int id)
+    {
+        try
+        {
+            var data = await _service.GetByIdAsync(id);
+            if (data is null)
+            {
+                TempData["WorkerError"] = "Worker tapılmadı.";
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View(data);
+        }
+        catch (HttpRequestException)
+        {
+            TempData["WorkerError"] = "Worker API ilə bağlantı qurulmadı.";
+            return RedirectToAction(nameof(Index));
+        }
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Edit(WorkerVM dto)
+    {
+        if (!ModelState.IsValid)
+        {
+            return View(dto);
+        }
+
+        try
+        {
+            var updated = await _service.UpdateAsync(dto.Id, dto);
+            if (!updated)
+            {
+                TempData["WorkerError"] = "Worker tapılmadı.";
+                return RedirectToAction(nameof(Index));
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+        catch (HttpRequestException)
+        {
+            ModelState.AddModelError(string.Empty, "Worker API ilə bağlantı qurulmadı.");
+            return View(dto);
+        }
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Delete(int id)
+    {
+        try
+        {
+            var deleted = await _service.DeleteAsync(id);
+            if (!deleted)
+            {
+                TempData["WorkerError"] = "Worker tapılmadı.";
+            }
+        }
+        catch (HttpRequestException)
+        {
+            TempData["WorkerError"] = "Worker API ilə bağlantı qurulmadı.";
+        }
+
+        return RedirectToAction(nameof(Index));
+    }
+}

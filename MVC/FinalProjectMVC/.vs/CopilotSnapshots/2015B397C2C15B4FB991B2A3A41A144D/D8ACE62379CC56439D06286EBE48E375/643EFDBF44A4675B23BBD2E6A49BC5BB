@@ -1,0 +1,38 @@
+﻿@using FinalProjectMVC.ViewModels.Worker
+@inject IConfiguration Configuration
+@model IEnumerable<WorkerGetVM>
+
+@{
+    string apiBaseUrl = (Configuration["ApiSettings:BaseUrl"] ?? "http://localhost:5147/").TrimEnd('/');
+}
+
+<section id="teamSection">
+    <div class="section-title">
+        <div class="section-subtitle">MEET OUR EXPERTS</div>
+        <h2 class="section-main-title">Professional Crew</h2>
+    </div>
+
+    <div class="team-grid">
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <div class="team-card">
+                    <span class="border-top"></span>
+                    <span class="border-bottom"></span>
+                    <div class="team-image">
+                        <img src="@(string.IsNullOrWhiteSpace(item.Image) ? "" : $"{apiBaseUrl}{item.Image}")" alt="@item.FullName">
+                    </div>
+                    <div class="team-info">
+                        <h3 class="team-name">@item.FullName</h3>
+                        <p class="team-role">@item.Position</p>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p style="grid-column: 1 / -1; text-align: center; color: #bfa888;">No workers found</p>
+        }
+    </div>
+</section>

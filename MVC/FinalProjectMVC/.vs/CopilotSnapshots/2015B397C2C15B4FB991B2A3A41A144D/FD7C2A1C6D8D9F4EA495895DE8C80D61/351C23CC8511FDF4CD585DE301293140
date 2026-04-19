@@ -1,0 +1,88 @@
+﻿@using FinalProjectMVC.ViewModels.Worker
+@inject IConfiguration Configuration
+@model IEnumerable<WorkerGetVM>
+
+@{
+    string apiBaseUrl = (Configuration["ApiSettings:BaseUrl"] ?? "http://localhost:5147/").TrimEnd('/');
+}
+
+<section id="teamSection">
+    <div class="section-title">
+        <div class="section-subtitle">MEET OUR EXPERTS</div>
+        <h2 class="section-main-title">Professional Crew</h2>
+    </div>
+    <div class="team-grid">
+
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <div class="team-card"
+                     data-name="@item.FullName"
+                     data-position="@item.Position"
+                     data-description="@item.Description"
+                     data-experience="@item.ExperienceYears"
+                     data-languages="@item.Languages"
+                     data-certificates="@item.Certificates"
+                     data-image="@(string.IsNullOrWhiteSpace(item.Image) ? "" : $"{apiBaseUrl}{item.Image}")">
+                    <span class="border-top"></span>
+                    <span class="border-bottom"></span>
+                    <div class="team-image">
+                        <img src="@(string.IsNullOrWhiteSpace(item.Image) ? "" : $"{apiBaseUrl}{item.Image}")" alt="@item.FullName">
+                    </div>
+                    <div class="team-info">
+                        <h3 class="team-name">@item.FullName</h3>
+                        <p class="team-role">@item.Position</p>
+                        <div class="team-social">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p style="grid-column: 1 / -1; text-align: center; color: #bfa888;">No workers found</p>
+        }
+
+    </div>
+</section>
+
+<!-- Modal Popup -->
+<section id="modalOverlay">
+    <div class="modal-container">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <div class="modal-content">
+            <div class="modal-image">
+                <img id="modalImage" src="" alt="Worker">
+            </div>
+            <div class="modal-info">
+                <h2 class="modal-name" id="modalName"></h2>
+                <p class="modal-role" id="modalRole"></p>
+                <p class="modal-bio" id="modalBio"></p>
+                <div class="modal-details">
+                    <div class="modal-detail-item">
+                        <i class="fas fa-ship"></i>
+                        <span>Experience: <span id="modalExperience"></span> year</span>
+                    </div>
+                    <div class="modal-detail-item">
+                        <i class="fas fa-globe"></i>
+                        <span>Languages: <span id="modalLanguages"></span></span>
+                    </div>
+                    <div class="modal-detail-item">
+                        <i class="fas fa-certificate"></i>
+                        <span>Certificates: <span id="modalCertificates"></span></span>
+                    </div>
+                </div>
+                <div class="modal-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

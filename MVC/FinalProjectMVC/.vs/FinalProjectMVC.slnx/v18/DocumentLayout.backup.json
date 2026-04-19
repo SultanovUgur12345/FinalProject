@@ -1,0 +1,444 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{BB28F418-E6CB-8853-DC54-AFF48252BE6D}|FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\services\\interfaces\\iaccountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BB28F418-E6CB-8853-DC54-AFF48252BE6D}|FinalProjectMVC\\FinalProjectMVC.csproj|solutionrelative:finalprojectmvc\\services\\interfaces\\iaccountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB28F418-E6CB-8853-DC54-AFF48252BE6D}|FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\views\\account\\resetpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BB28F418-E6CB-8853-DC54-AFF48252BE6D}|FinalProjectMVC\\FinalProjectMVC.csproj|solutionrelative:finalprojectmvc\\views\\account\\resetpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB28F418-E6CB-8853-DC54-AFF48252BE6D}|FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\views\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BB28F418-E6CB-8853-DC54-AFF48252BE6D}|FinalProjectMVC\\FinalProjectMVC.csproj|solutionrelative:finalprojectmvc\\views\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB28F418-E6CB-8853-DC54-AFF48252BE6D}|FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BB28F418-E6CB-8853-DC54-AFF48252BE6D}|FinalProjectMVC\\FinalProjectMVC.csproj|solutionrelative:finalprojectmvc\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB28F418-E6CB-8853-DC54-AFF48252BE6D}|FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\views\\account\\forgotpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BB28F418-E6CB-8853-DC54-AFF48252BE6D}|FinalProjectMVC\\FinalProjectMVC.csproj|solutionrelative:finalprojectmvc\\views\\account\\forgotpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB28F418-E6CB-8853-DC54-AFF48252BE6D}|FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\services\\accountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BB28F418-E6CB-8853-DC54-AFF48252BE6D}|FinalProjectMVC\\FinalProjectMVC.csproj|solutionrelative:finalprojectmvc\\services\\accountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB28F418-E6CB-8853-DC54-AFF48252BE6D}|FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\viewmodels\\account\\resetpasswordvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BB28F418-E6CB-8853-DC54-AFF48252BE6D}|FinalProjectMVC\\FinalProjectMVC.csproj|solutionrelative:finalprojectmvc\\viewmodels\\account\\resetpasswordvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB28F418-E6CB-8853-DC54-AFF48252BE6D}|FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\viewmodels\\account\\forgotpasswordvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BB28F418-E6CB-8853-DC54-AFF48252BE6D}|FinalProjectMVC\\FinalProjectMVC.csproj|solutionrelative:finalprojectmvc\\viewmodels\\account\\forgotpasswordvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB28F418-E6CB-8853-DC54-AFF48252BE6D}|FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\views\\shared\\components\\header\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BB28F418-E6CB-8853-DC54-AFF48252BE6D}|FinalProjectMVC\\FinalProjectMVC.csproj|solutionrelative:finalprojectmvc\\views\\shared\\components\\header\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB28F418-E6CB-8853-DC54-AFF48252BE6D}|FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BB28F418-E6CB-8853-DC54-AFF48252BE6D}|FinalProjectMVC\\FinalProjectMVC.csproj|solutionrelative:finalprojectmvc\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB28F418-E6CB-8853-DC54-AFF48252BE6D}|FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BB28F418-E6CB-8853-DC54-AFF48252BE6D}|FinalProjectMVC\\FinalProjectMVC.csproj|solutionrelative:finalprojectmvc\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB28F418-E6CB-8853-DC54-AFF48252BE6D}|FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\viewmodels\\account\\loginvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BB28F418-E6CB-8853-DC54-AFF48252BE6D}|FinalProjectMVC\\FinalProjectMVC.csproj|solutionrelative:finalprojectmvc\\viewmodels\\account\\loginvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB28F418-E6CB-8853-DC54-AFF48252BE6D}|FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\viewmodels\\account\\registervm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BB28F418-E6CB-8853-DC54-AFF48252BE6D}|FinalProjectMVC\\FinalProjectMVC.csproj|solutionrelative:finalprojectmvc\\viewmodels\\account\\registervm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB28F418-E6CB-8853-DC54-AFF48252BE6D}|FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\views\\about\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BB28F418-E6CB-8853-DC54-AFF48252BE6D}|FinalProjectMVC\\FinalProjectMVC.csproj|solutionrelative:finalprojectmvc\\views\\about\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB28F418-E6CB-8853-DC54-AFF48252BE6D}|FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\controllers\\aboutcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BB28F418-E6CB-8853-DC54-AFF48252BE6D}|FinalProjectMVC\\FinalProjectMVC.csproj|solutionrelative:finalprojectmvc\\controllers\\aboutcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB28F418-E6CB-8853-DC54-AFF48252BE6D}|FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\wwwroot\\client\\assets\\js\\workers.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{BB28F418-E6CB-8853-DC54-AFF48252BE6D}|FinalProjectMVC\\FinalProjectMVC.csproj|solutionrelative:finalprojectmvc\\wwwroot\\client\\assets\\js\\workers.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB28F418-E6CB-8853-DC54-AFF48252BE6D}|FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\areas\\admin\\views\\workers\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BB28F418-E6CB-8853-DC54-AFF48252BE6D}|FinalProjectMVC\\FinalProjectMVC.csproj|solutionrelative:finalprojectmvc\\areas\\admin\\views\\workers\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB28F418-E6CB-8853-DC54-AFF48252BE6D}|FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\views\\workers\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BB28F418-E6CB-8853-DC54-AFF48252BE6D}|FinalProjectMVC\\FinalProjectMVC.csproj|solutionrelative:finalprojectmvc\\views\\workers\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB28F418-E6CB-8853-DC54-AFF48252BE6D}|FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\controllers\\workerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BB28F418-E6CB-8853-DC54-AFF48252BE6D}|FinalProjectMVC\\FinalProjectMVC.csproj|solutionrelative:finalprojectmvc\\controllers\\workerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB28F418-E6CB-8853-DC54-AFF48252BE6D}|FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\services\\workerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BB28F418-E6CB-8853-DC54-AFF48252BE6D}|FinalProjectMVC\\FinalProjectMVC.csproj|solutionrelative:finalprojectmvc\\services\\workerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB28F418-E6CB-8853-DC54-AFF48252BE6D}|FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\areas\\admin\\controllers\\workerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BB28F418-E6CB-8853-DC54-AFF48252BE6D}|FinalProjectMVC\\FinalProjectMVC.csproj|solutionrelative:finalprojectmvc\\areas\\admin\\controllers\\workerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB28F418-E6CB-8853-DC54-AFF48252BE6D}|FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\viewmodels\\worker\\workergetvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BB28F418-E6CB-8853-DC54-AFF48252BE6D}|FinalProjectMVC\\FinalProjectMVC.csproj|solutionrelative:finalprojectmvc\\viewmodels\\worker\\workergetvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB28F418-E6CB-8853-DC54-AFF48252BE6D}|FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\areas\\admin\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BB28F418-E6CB-8853-DC54-AFF48252BE6D}|FinalProjectMVC\\FinalProjectMVC.csproj|solutionrelative:finalprojectmvc\\areas\\admin\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB28F418-E6CB-8853-DC54-AFF48252BE6D}|FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\viewmodels\\worker\\workervm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BB28F418-E6CB-8853-DC54-AFF48252BE6D}|FinalProjectMVC\\FinalProjectMVC.csproj|solutionrelative:finalprojectmvc\\viewmodels\\worker\\workervm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 200,
+          "SelectedChildIndex": 9,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "WorkersController.cs",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Controllers\\WorkersController.cs",
+              "RelativeDocumentMoniker": "FinalProjectMVC\\Areas\\Admin\\Controllers\\WorkersController.cs",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Controllers\\WorkersController.cs",
+              "RelativeToolTip": "FinalProjectMVC\\Areas\\Admin\\Controllers\\WorkersController.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAowCkAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-17T14:30:48.666Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ForgotPassword.cshtml",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Views\\Account\\ForgotPassword.cshtml",
+              "RelativeDocumentMoniker": "FinalProjectMVC\\Views\\Account\\ForgotPassword.cshtml",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Views\\Account\\ForgotPassword.cshtml",
+              "RelativeToolTip": "FinalProjectMVC\\Views\\Account\\ForgotPassword.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-19T09:18:02.278Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ResetPasswordVM.cs",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewModels\\Account\\ResetPasswordVM.cs",
+              "RelativeDocumentMoniker": "FinalProjectMVC\\ViewModels\\Account\\ResetPasswordVM.cs",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewModels\\Account\\ResetPasswordVM.cs",
+              "RelativeToolTip": "FinalProjectMVC\\ViewModels\\Account\\ResetPasswordVM.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-19T09:16:31.243Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ForgotPasswordVM.cs",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewModels\\Account\\ForgotPasswordVM.cs",
+              "RelativeDocumentMoniker": "FinalProjectMVC\\ViewModels\\Account\\ForgotPasswordVM.cs",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewModels\\Account\\ForgotPasswordVM.cs",
+              "RelativeToolTip": "FinalProjectMVC\\ViewModels\\Account\\ForgotPasswordVM.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-19T09:16:09.094Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ResetPassword.cshtml",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Views\\Account\\ResetPassword.cshtml",
+              "RelativeDocumentMoniker": "FinalProjectMVC\\Views\\Account\\ResetPassword.cshtml",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Views\\Account\\ResetPassword.cshtml",
+              "RelativeToolTip": "FinalProjectMVC\\Views\\Account\\ResetPassword.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAgwK4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-19T09:08:27.937Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Default.cshtml",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Views\\Shared\\Components\\Header\\Default.cshtml",
+              "RelativeDocumentMoniker": "FinalProjectMVC\\Views\\Shared\\Components\\Header\\Default.cshtml",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Views\\Shared\\Components\\Header\\Default.cshtml",
+              "RelativeToolTip": "FinalProjectMVC\\Views\\Shared\\Components\\Header\\Default.cshtml",
+              "ViewState": "AgIAAK4AAAAAAAAAAAAgwLkAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-19T08:44:15.01Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Views\\Account\\Login.cshtml",
+              "RelativeDocumentMoniker": "FinalProjectMVC\\Views\\Account\\Login.cshtml",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Views\\Account\\Login.cshtml",
+              "RelativeToolTip": "FinalProjectMVC\\Views\\Account\\Login.cshtml",
+              "ViewState": "AgIAAGQAAAAAAAAAAAAgwHMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-19T07:31:20.691Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "FinalProjectMVC\\Controllers\\AccountController.cs",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "FinalProjectMVC\\Controllers\\AccountController.cs",
+              "ViewState": "AgIAAGYAAAAAAAAAAAAgwHsAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-19T07:26:54.669Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AccountService.cs",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\AccountService.cs",
+              "RelativeDocumentMoniker": "FinalProjectMVC\\Services\\AccountService.cs",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\AccountService.cs",
+              "RelativeToolTip": "FinalProjectMVC\\Services\\AccountService.cs",
+              "ViewState": "AgIAAEkAAAAAAAAAAAAQwJIAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-19T07:25:28.838Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "IAccountService.cs",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\Interfaces\\IAccountService.cs",
+              "RelativeDocumentMoniker": "FinalProjectMVC\\Services\\Interfaces\\IAccountService.cs",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\Interfaces\\IAccountService.cs",
+              "RelativeToolTip": "FinalProjectMVC\\Services\\Interfaces\\IAccountService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-19T07:25:02.366Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Register.cshtml",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Views\\Account\\Register.cshtml",
+              "RelativeDocumentMoniker": "FinalProjectMVC\\Views\\Account\\Register.cshtml",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Views\\Account\\Register.cshtml",
+              "RelativeToolTip": "FinalProjectMVC\\Views\\Account\\Register.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-19T06:36:49.783Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Program.cs",
+              "RelativeDocumentMoniker": "FinalProjectMVC\\Program.cs",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Program.cs",
+              "RelativeToolTip": "FinalProjectMVC\\Program.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-19T07:28:40.533Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "LoginVM.cs",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewModels\\Account\\LoginVM.cs",
+              "RelativeDocumentMoniker": "FinalProjectMVC\\ViewModels\\Account\\LoginVM.cs",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewModels\\Account\\LoginVM.cs",
+              "RelativeToolTip": "FinalProjectMVC\\ViewModels\\Account\\LoginVM.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-19T07:24:20.147Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "RegisterVM.cs",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewModels\\Account\\RegisterVM.cs",
+              "RelativeDocumentMoniker": "FinalProjectMVC\\ViewModels\\Account\\RegisterVM.cs",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewModels\\Account\\RegisterVM.cs",
+              "RelativeToolTip": "FinalProjectMVC\\ViewModels\\Account\\RegisterVM.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-19T07:24:00.036Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{6324226f-61b6-4f28-92ee-18d4b5fe1e48}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Views\\About\\Index.cshtml",
+              "RelativeDocumentMoniker": "FinalProjectMVC\\Views\\About\\Index.cshtml",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Views\\About\\Index.cshtml",
+              "RelativeToolTip": "FinalProjectMVC\\Views\\About\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-18T19:42:52.524Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "AboutController.cs",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Controllers\\AboutController.cs",
+              "RelativeDocumentMoniker": "FinalProjectMVC\\Controllers\\AboutController.cs",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Controllers\\AboutController.cs",
+              "RelativeToolTip": "FinalProjectMVC\\Controllers\\AboutController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-18T19:42:40.158Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "WorkerService.cs",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\WorkerService.cs",
+              "RelativeDocumentMoniker": "FinalProjectMVC\\Services\\WorkerService.cs",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\WorkerService.cs",
+              "RelativeToolTip": "FinalProjectMVC\\Services\\WorkerService.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAIwCMAAABHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-18T15:41:43.81Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "workers.js",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\client\\assets\\js\\workers.js",
+              "RelativeDocumentMoniker": "FinalProjectMVC\\wwwroot\\client\\assets\\js\\workers.js",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\client\\assets\\js\\workers.js",
+              "RelativeToolTip": "FinalProjectMVC\\wwwroot\\client\\assets\\js\\workers.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-04-18T15:36:35.264Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Views\\Workers\\Index.cshtml",
+              "RelativeDocumentMoniker": "FinalProjectMVC\\Views\\Workers\\Index.cshtml",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Views\\Workers\\Index.cshtml",
+              "RelativeToolTip": "FinalProjectMVC\\Views\\Workers\\Index.cshtml",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAAAAwAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-18T15:34:21.437Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "WorkersController.cs",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Controllers\\WorkersController.cs",
+              "RelativeDocumentMoniker": "FinalProjectMVC\\Controllers\\WorkersController.cs",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Controllers\\WorkersController.cs",
+              "RelativeToolTip": "FinalProjectMVC\\Controllers\\WorkersController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-18T15:32:37.529Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "WorkerGetVM.cs",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewModels\\Worker\\WorkerGetVM.cs",
+              "RelativeDocumentMoniker": "FinalProjectMVC\\ViewModels\\Worker\\WorkerGetVM.cs",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewModels\\Worker\\WorkerGetVM.cs",
+              "RelativeToolTip": "FinalProjectMVC\\ViewModels\\Worker\\WorkerGetVM.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-18T14:42:06.745Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "_ViewStart.cshtml",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\_ViewStart.cshtml",
+              "RelativeDocumentMoniker": "FinalProjectMVC\\Areas\\Admin\\Views\\_ViewStart.cshtml",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\_ViewStart.cshtml",
+              "RelativeToolTip": "FinalProjectMVC\\Areas\\Admin\\Views\\_ViewStart.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-18T14:25:52.549Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\Workers\\Index.cshtml",
+              "RelativeDocumentMoniker": "FinalProjectMVC\\Areas\\Admin\\Views\\Workers\\Index.cshtml",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\Workers\\Index.cshtml",
+              "RelativeToolTip": "FinalProjectMVC\\Areas\\Admin\\Views\\Workers\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-18T09:12:44.527Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "WorkerVM.cs",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewModels\\Worker\\WorkerVM.cs",
+              "RelativeDocumentMoniker": "FinalProjectMVC\\ViewModels\\Worker\\WorkerVM.cs",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewModels\\Worker\\WorkerVM.cs",
+              "RelativeToolTip": "FinalProjectMVC\\ViewModels\\Worker\\WorkerVM.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-18T09:12:02.056Z"
+            }
+          ]
+        },
+        {
+          "DockedHeight": 200,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

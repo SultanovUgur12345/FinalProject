@@ -1,0 +1,42 @@
+﻿using FinalProjectMVC.ViewModels;
+using System.Net.Http.Json;
+
+public class WorkerApiService
+{
+    private readonly HttpClient _httpClient;
+
+    public WorkerApiService(HttpClient httpClient, IConfiguration configuration)
+    {
+        _httpClient = httpClient;
+        var apiBaseUrl = configuration["ApiSettings:BaseUrl"] ?? "http://localhost:5147/";
+        _httpClient.BaseAddress = new Uri(new Uri(apiBaseUrl), "api/Worker/");
+    }
+
+    public async Task<List<WorkerVM>> GetAllAsync()
+    {
+        return await _httpClient.GetFromJsonAsync<List<WorkerVM>>("GetAll");
+    }
+
+    public async Task<WorkerVM> GetByIdAsync(int id)
+    {
+        return await _httpClient.GetFromJsonAsync<WorkerVM>($"Get/{id}");
+    }
+
+    public async Task CreateAsync(WorkerVM dto)
+    {
+        var response = await _httpClient.PostAsJsonAsync("Create", dto);
+        response.EnsureSuccessStatusCode();
+    }
+
+    public async Task UpdateAsync(int id, WorkerVM dto)
+    {
+        var response = await _httpClient.PutAsJsonAsync($"Update/{id}", dto);
+        response.EnsureSuccessStatusCode();
+    }
+
+    public async Task DeleteAsync(int id)
+    {
+        var response = await _httpClient.DeleteAsync($"Delete/{id}");
+        response.EnsureSuccessStatusCode();
+    }
+}

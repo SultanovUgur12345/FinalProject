@@ -1,0 +1,113 @@
+﻿@using FinalProjectMVC.ViewModels.Worker
+@inject IConfiguration Configuration
+@model IEnumerable<WorkerGetVM>
+
+@{
+    string apiBaseUrl = (Configuration["ApiSettings:BaseUrl"] ?? "http://localhost:5147/").TrimEnd('/');
+}
+
+<section id="teamSection">
+    <div class="section-title">
+        <div class="section-subtitle">MEET OUR EXPERTS</div>
+        <h2 class="section-main-title">Professional Crew</h2>
+    </div>
+
+    <div class="team-grid">
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <article class="team-card worker-card">
+                    <button type="button" class="worker-card__toggle">
+                        <span class="border-top"></span>
+                        <span class="border-bottom"></span>
+
+                        <div class="team-image">
+                            <img src="@(string.IsNullOrWhiteSpace(item.Image) ? "" : $"{apiBaseUrl}{item.Image}")" alt="@item.FullName">
+                        </div>
+
+                        <div class="team-info">
+                            <h3 class="team-name">@item.FullName</h3>
+                            <p class="team-role">@item.Position</p>
+                        </div>
+                    </button>
+
+                    <div class="worker-inline-detail">
+                        <p class="worker-inline-detail__desc">@item.Description</p>
+                        <div class="worker-inline-detail__meta">
+                            <p><strong>Experience:</strong> @item.ExperienceYears year</p>
+                            <p><strong>Languages:</strong> @(string.IsNullOrWhiteSpace(item.Languages) ? "-" : item.Languages)</p>
+                            <p><strong>Certificates:</strong> @(string.IsNullOrWhiteSpace(item.Certificates) ? "-" : item.Certificates)</p>
+                        </div>
+                    </div>
+                </article>
+            }
+        }
+        else
+        {
+            <p style="grid-column: 1 / -1; text-align: center; color: #bfa888;">No workers found</p>
+        }
+    </div>
+</section>
+
+<style>
+    .worker-card__toggle {
+        width: 100%;
+        border: 0;
+        background: transparent;
+        color: inherit;
+        text-align: inherit;
+        cursor: pointer;
+        padding: 0;
+    }
+
+    .worker-inline-detail {
+        display: none;
+        padding: 0 24px 24px;
+        color: #d8d8d8;
+        border-top: 1px solid rgba(191, 168, 136, 0.18);
+    }
+
+    .worker-card.active .worker-inline-detail {
+        display: block;
+    }
+
+    .worker-inline-detail__desc {
+        margin: 16px 0 10px;
+        line-height: 1.7;
+    }
+
+    .worker-inline-detail__meta {
+        display: grid;
+        gap: 8px;
+        font-size: 14px;
+    }
+
+        .worker-inline-detail__meta strong {
+            color: #bfa888;
+        }
+</style>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const cards = document.querySelectorAll(".worker-card");
+
+            cards.forEach(card => {
+                const toggle = card.querySelector(".worker-card__toggle");
+
+                if (!toggle) return;
+
+                toggle.addEventListener("click", function () {
+                    const isActive = card.classList.contains("active");
+
+                    cards.forEach(x => x.classList.remove("active"));
+
+                    if (!isActive) {
+                        card.classList.add("active");
+                    }
+                });
+            });
+        });
+    </script>
+}

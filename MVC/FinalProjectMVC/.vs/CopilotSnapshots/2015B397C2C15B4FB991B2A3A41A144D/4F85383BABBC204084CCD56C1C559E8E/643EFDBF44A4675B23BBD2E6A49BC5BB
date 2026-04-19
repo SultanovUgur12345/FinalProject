@@ -1,0 +1,239 @@
+﻿<section id="teamSection">
+    <div class="section-title">
+        <div class="section-subtitle">MEET OUR EXPERTS</div>
+        <h2 class="section-main-title">Professional Crew</h2>
+    </div>
+    <div class="team-grid">
+        
+        <!-- Crew 1 - Cristofer Dalas -->
+        <div id="primaryCrewCard" class="team-card" data-crew="1">
+            <span class="border-top"></span>
+            <span class="border-bottom"></span>
+            <div class="team-image">
+                <img src="https://seafarer.qodeinteractive.com/wp-content/uploads/2021/07/team-1.jpg" alt="Cristofer Dalas">
+            </div>
+            <div class="team-info">
+                <h3 class="team-name">Cristofer Dalas</h3>
+                <p class="team-role">First Captain</p>
+                <div class="team-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Crew 2 - Stephen Wilson -->
+        <div class="team-card" data-crew="2">
+            <span class="border-top"></span>
+            <span class="border-bottom"></span>
+            <div class="team-image">
+                <img src="https://seafarer.qodeinteractive.com/wp-content/uploads/2021/07/team-2.jpg" alt="Stephen Wilson">
+            </div>
+            <div class="team-info">
+                <h3 class="team-name">Stephen Wilson</h3>
+                <p class="team-role">Skipper</p>
+                <div class="team-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="team-card" data-crew="2">
+            <span class="border-top"></span>
+            <span class="border-bottom"></span>
+            <div class="team-image">
+                <img src="https://seafarer.qodeinteractive.com/wp-content/uploads/2021/07/team-2.jpg" alt="Stephen Wilson">
+            </div>
+            <div class="team-info">
+                <h3 class="team-name">Stephen Wilson</h3>
+                <p class="team-role">Skipper</p>
+                <div class="team-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="team-card" data-crew="2">
+            <span class="border-top"></span>
+            <span class="border-bottom"></span>
+            <div class="team-image">
+                <img src="https://seafarer.qodeinteractive.com/wp-content/uploads/2021/07/team-2.jpg" alt="Stephen Wilson">
+            </div>
+            <div class="team-info">
+                <h3 class="team-name">Stephen Wilson</h3>
+                <p class="team-role">Skipper</p>
+                <div class="team-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="team-card" data-crew="2">
+            <span class="border-top"></span>
+            <span class="border-bottom"></span>
+            <div class="team-image">
+                <img src="https://seafarer.qodeinteractive.com/wp-content/uploads/2021/07/team-2.jpg" alt="Stephen Wilson">
+            </div>
+            <div class="team-info">
+                <h3 class="team-name">Stephen Wilson</h3>
+                <p class="team-role">Skipper</p>
+                <div class="team-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Crew 3 - Zachary Barnett -->
+        <div class="team-card" data-crew="3">
+            <span class="border-top"></span>
+            <span class="border-bottom"></span>
+            <div class="team-image">
+                <img src="https://seafarer.qodeinteractive.com/wp-content/uploads/2021/07/team-3.jpg" alt="Zachary Barnett">
+            </div>
+            <div class="team-info">
+                <h3 class="team-name">Zachary Barnett</h3>
+                <p class="team-role">Skipper</p>
+                <div class="team-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Crew 4 - James Delgado -->
+        <div class="team-card" data-crew="4">
+            <span class="border-top"></span>
+            <span class="border-bottom"></span>
+            <div class="team-image">
+                <img src="https://seafarer.qodeinteractive.com/wp-content/uploads/2021/07/team-4.jpg" alt="James Delgado">
+            </div>
+            <div class="team-info">
+                <h3 class="team-name">James Delgado</h3>
+                <p class="team-role">First Captain</p>
+                <div class="team-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="team-card" data-crew="2">
+            <span class="border-top"></span>
+            <span class="border-bottom"></span>
+            <div class="team-image">
+                <img src="https://seafarer.qodeinteractive.com/wp-content/uploads/2021/07/team-2.jpg" alt="Stephen Wilson">
+            </div>
+            <div class="team-info">
+                <h3 class="team-name">Stephen Wilson</h3>
+                <p class="team-role">Skipper</p>
+                <div class="team-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="team-card" data-crew="2">
+            <span class="border-top"></span>
+            <span class="border-bottom"></span>
+            <div class="team-image">
+                <img src="https://seafarer.qodeinteractive.com/wp-content/uploads/2021/07/team-2.jpg" alt="Stephen Wilson">
+            </div>
+            <div class="team-info">
+                <h3 class="team-name">Stephen Wilson</h3>
+                <p class="team-role">Skipper</p>
+                <div class="team-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="team-card" data-crew="2">
+            <span class="border-top"></span>
+            <span class="border-bottom"></span>
+            <div class="team-image">
+                <img src="https://seafarer.qodeinteractive.com/wp-content/uploads/2021/07/team-2.jpg" alt="Stephen Wilson">
+            </div>
+            <div class="team-info">
+                <h3 class="team-name">Stephen Wilson</h3>
+                <p class="team-role">Skipper</p>
+                <div class="team-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="team-card" data-crew="2">
+            <span class="border-top"></span>
+            <span class="border-bottom"></span>
+            <div class="team-image">
+                <img src="https://seafarer.qodeinteractive.com/wp-content/uploads/2021/07/team-2.jpg" alt="Stephen Wilson">
+            </div>
+            <div class="team-info">
+                <h3 class="team-name">Stephen Wilson</h3>
+                <p class="team-role">Skipper</p>
+                <div class="team-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Modal Popup -->
+<section id="modalOverlay">
+    <div class="modal-container">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <div class="modal-content">
+            <div class="modal-image">
+                <img src="https://seafarer.qodeinteractive.com/wp-content/uploads/2021/07/team-1.jpg" alt="Cristofer Dalas">
+            </div>
+            <div class="modal-info">
+                <h2 class="modal-name">Cristofer Dalas</h2>
+                <p class="modal-role">First Captain</p>
+                <p class="modal-bio">Captain Cristofer has over 20 years of experience navigating the world's most beautiful waters. His leadership and navigation expertise ensure every trip is safe and memorable.</p>
+                <div class="modal-details">
+                    <div class="modal-detail-item">
+                        <i class="fas fa-ship"></i>
+                        <span>Experience: 20+ years</span>
+                    </div>
+                    <div class="modal-detail-item">
+                        <i class="fas fa-globe"></i>
+                        <span>Languages: English, Spanish, Italian</span>
+                    </div>
+                    <div class="modal-detail-item">
+                        <i class="fas fa-certificate"></i>
+                        <span>Certificates: Master Yacht, STCW, RYA Yachtmaster</span>
+                    </div>
+                </div>
+                <div class="modal-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

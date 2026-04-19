@@ -1,0 +1,64 @@
+﻿using FinalProjectMVC.ViewModels.Worker;
+using System.Globalization;
+using System.Net;
+using System.Net.Http.Json;
+using static IWorkerService;
+
+public class WorkerApiService : IWorkerApiService
+{
+    private readonly HttpClient _httpClient;
+
+    public WorkerApiService(HttpClient httpClient)
+    {
+        _httpClient = httpClient;
+    }
+
+    public async Task<List<WorkerCreateVM>> GetAllAsync()
+    {
+        return await _httpClient.GetFromJsonAsync<List<WorkerCreateVM>>("api/Worker/GetAll");
+    }
+
+    public async Task<WorkerCreateVM> GetByIdAsync(int id)
+    {
+        return await _httpClient.GetFromJsonAsync<WorkerCreateVM>($"api/Worker/Get/{id}");
+    }
+
+    public async Task CreateAsync(WorkerCreateVM dto)
+    {
+        using var formData = new MultipartFormDataContent();
+
+        formData.Add(new StringContent(dto.FullName ?? string.Empty), nameof(dto.FullName));
+        formData.Add(new StringContent(dto.Position ?? string.Empty), nameof(dto.Position));
+        formData.Add(new StringContent(dto.Description ?? string.Empty), nameof(dto.Description));
+        formData.Add(new StringContent(dto.ExperienceYears.ToString(CultureInfo.InvariantCulture)), nameof(dto.ExperienceYears));
+        formData.Add(new StringContent(dto.Languages ?? string.Empty), nameof(dto.Languages));
+        formData.Add(new StringContent(dto.Certificates ?? string.Empty), nameof(dto.Certificates));
+
+        if (dto.Image != null && dto.Image.Length > 0)
+        {
+            var imageContent = new StreamContent(dto.Image.OpenReadStream());
+            imageContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue(dto.Image.ContentType);
+            formData.Add(imageContent, nameof(dto.Image), dto.Image.FileName);
+        }
+
+        var response = await _httpClient.PostAsync("api/Worker/Create", formData);
+        if (!response.IsSuccessStatusCode)
+        {
+            var body = await response.Content.ReadAsStringAsync();
+            throw new HttpRequestException(
+                $"Create failed. Status: {(int)response.StatusCode} {response.StatusCode}. Response: {body}",
+                null,
+                response.StatusCode);
+        }
+    }
+
+    public async Task UpdateAsync(int id, WorkerCreateVM dto)
+    {
+        await _httpClient.PutAsJsonAsync($"api/Worker/Update/{id}", dto);
+    }
+
+    public async Task DeleteAsync(int id)
+    {
+        await _httpClient.DeleteAsync($"api/Worker/Delete/{id}");
+    }
+}

@@ -1,0 +1,85 @@
+﻿@model FinalProjectMVC.ViewModels.Account.RegisterVM
+
+<link rel="stylesheet" href="~/client/assets/style/register.css">
+
+    <section id="account">
+        <div class="account-container">
+            <div class="account-card">
+                <div class="account-tabs">
+                    <button type="button" class="tab-btn active">REGISTER</button>
+                </div>
+
+                @if (ViewBag.SuccessMessage != null)
+                {
+                    <div style="
+                        background:#d4edda;
+                        color:#155724;
+                        padding:12px;
+                        margin-bottom:15px;
+                        border-radius:6px;
+                        text-align:center;">
+                        @ViewBag.SuccessMessage
+                    </div>
+                }
+
+                <form asp-controller="Account" asp-action="Register" method="post" class="account-form active" id="registerForm">
+                    @Html.AntiForgeryToken()
+
+                    <div asp-validation-summary="All" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <label asp-for="FullName" class="form-label">FULL NAME</label>
+                        <input asp-for="FullName" id="regName" class="form-input" placeholder="Enter your full name" />
+                        <span asp-validation-for="FullName" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="UserName" class="form-label">USER NAME</label>
+                        <input asp-for="UserName" id="regUserName" class="form-input" placeholder="Enter your user name" />
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Email" class="form-label">EMAIL ADDRESS</label>
+                        <input asp-for="Email" id="regEmail" class="form-input" placeholder="Enter your email" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Password" class="form-label">PASSWORD</label>
+                        <div class="password-wrapper">
+                            <input asp-for="Password" type="password" id="regPassword" class="form-input" placeholder="Create a password" />
+                            <span class="password-toggle" onclick="togglePassword('regPassword', this)">
+                                <i class="far fa-eye"></i>
+                            </span>
+                        </div>
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="ConfirmPassword" class="form-label">CONFIRM PASSWORD</label>
+                        <div class="password-wrapper">
+                            <input asp-for="ConfirmPassword" type="password" id="regConfirmPassword" class="form-input" placeholder="Confirm your password" />
+                            <span class="password-toggle" onclick="togglePassword('regConfirmPassword', this)">
+                                <i class="far fa-eye"></i>
+                            </span>
+                        </div>
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <span>CREATE ACCOUNT</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+
+                    <div id="registerMessage" class="form-message"></div>
+
+                    <div class="forgot-link" style="margin-top: 16px; text-align: center;">
+                        <a asp-controller="Account" asp-action="Login">Already have an account? Login</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script src="~/client/assets/js/register.js"></script>

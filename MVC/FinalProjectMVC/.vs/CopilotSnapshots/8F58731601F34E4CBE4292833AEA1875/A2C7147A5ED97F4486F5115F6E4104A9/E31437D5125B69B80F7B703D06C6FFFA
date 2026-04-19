@@ -1,0 +1,21 @@
+﻿var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddControllersWithViews();
+builder.Services.AddHttpClient();
+builder.Services.AddScoped<WorkerApiService>();
+
+var app = builder.Build();
+
+// ✅ Middleware-lər burada
+app.UseStaticFiles();
+app.UseRouting();
+
+app.MapControllerRoute(
+    name: "areas",
+    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.Run();
