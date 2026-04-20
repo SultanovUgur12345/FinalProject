@@ -1,0 +1,194 @@
+﻿@model FinalProjectMVC.ViewModels.Account.UpdateProfileVM
+
+@{
+    ViewData["Title"] = "Edit Profile";
+}
+
+<style>
+    .edit-profile-page {
+        padding: 140px 20px 80px;
+        background: #f6f7fb;
+        min-height: 100vh;
+    }
+
+    .edit-profile-wrapper {
+        max-width: 650px;
+        margin: 0 auto;
+        background: #ffffff;
+        border-radius: 16px;
+        padding: 35px;
+        box-shadow: 0 10px 35px rgba(0,0,0,0.08);
+    }
+
+    .edit-profile-title {
+        text-align: center;
+        font-size: 32px;
+        font-weight: 700;
+        color: #1c1c1c;
+        margin-bottom: 10px;
+    }
+
+    .edit-profile-subtitle {
+        text-align: center;
+        color: #777;
+        margin-bottom: 30px;
+        font-size: 15px;
+    }
+
+    .success-message {
+        background: #d4edda;
+        color: #155724;
+        padding: 14px 16px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+
+    .error-message-box {
+        background: #f8d7da;
+        color: #842029;
+        padding: 14px 16px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+
+    .edit-profile-form .form-group {
+        margin-bottom: 18px;
+    }
+
+    .edit-profile-form label {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        color: #222;
+    }
+
+    .edit-profile-form .form-control {
+        width: 100%;
+        height: 48px;
+        border: 1px solid #d8dbe2;
+        border-radius: 10px;
+        padding: 0 14px;
+        font-size: 14px;
+        outline: none;
+        transition: 0.3s ease;
+        box-sizing: border-box;
+    }
+
+        .edit-profile-form .form-control:focus {
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 3px rgba(13,110,253,0.10);
+        }
+
+    .edit-profile-form span {
+        display: block;
+        margin-top: 6px;
+        font-size: 13px;
+        color: #dc3545;
+    }
+
+    .profile-divider {
+        margin: 28px 0 24px;
+        border: none;
+        border-top: 1px solid #ececec;
+    }
+
+    .password-title {
+        font-size: 20px;
+        font-weight: 700;
+        color: #1e1e1e;
+        margin-bottom: 8px;
+    }
+
+    .password-note {
+        font-size: 14px;
+        color: #777;
+        margin-bottom: 18px;
+    }
+
+    .edit-profile-btn {
+        width: 100%;
+        height: 50px;
+        border: none;
+        border-radius: 12px;
+        background: #0d6efd;
+        color: #fff;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.3s ease;
+        margin-top: 10px;
+    }
+
+        .edit-profile-btn:hover {
+            background: #0b5ed7;
+        }
+
+    @@media (max-width: 768px) {
+        .edit-profile-page {
+            padding: 120px 15px 60px;
+        }
+
+        .edit-profile-wrapper {
+            padding: 24px 18px;
+        }
+
+        .edit-profile-title {
+            font-size: 26px;
+        }
+    }
+</style>
+
+<section class="edit-profile-page">
+    <div class="edit-profile-wrapper">
+
+        <h2 class="edit-profile-title">Edit Profile</h2>
+        <p class="edit-profile-subtitle">Melumatlarini ve sifreni buradan yenile</p>
+
+        @if (TempData["Success"] != null)
+        {
+            <div class="success-message">
+                @TempData["Success"]
+            </div>
+        }
+
+        <div asp-validation-summary="All" class="error-message-box"></div>
+
+        <form asp-action="EditProfile" method="post" class="edit-profile-form">
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                <label asp-for="FullName">Full Name</label>
+                <input asp-for="FullName" class="form-control" placeholder="Full name daxil et" />
+                <span asp-validation-for="FullName"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="UserName">User Name</label>
+                <input asp-for="UserName" class="form-control" placeholder="User name daxil et" />
+                <span asp-validation-for="UserName"></span>
+            </div>
+
+            <hr class="profile-divider" />
+
+            <h4 class="password-title">Change Password</h4>
+            <p class="password-note">Sifre deyismek istemirse, asagidaki saheleri bos saxla.</p>
+
+            <div class="form-group">
+                <label asp-for="CurrentPassword">Current Password</label>
+                <input asp-for="CurrentPassword" type="password" class="form-control" placeholder="Kohne sifreni daxil et" />
+                <span asp-validation-for="CurrentPassword"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="NewPassword">New Password</label>
+                <input asp-for="NewPassword" type="password" class="form-control" placeholder="Yeni sifreni daxil et" />
+                <span asp-validation-for="NewPassword"></span>
+            </div>
+
+            <button type="submit" class="edit-profile-btn">Save Changes</button>
+        </form>
+
+    </div>
+</section>
+

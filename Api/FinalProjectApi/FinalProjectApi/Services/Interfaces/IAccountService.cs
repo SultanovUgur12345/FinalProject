@@ -9,7 +9,10 @@ public interface IAccountService
     Task<ResponceDto> LoginAsync(LoginDto dto);
 
     Task<ResponceDto> ForgotPasswordAsync(ForgotPasswordDto dto);
-
     Task<ResponceDto> ResetPasswordAsync(ResetPasswordDto dto);
+
+
+
+    Task<GetProfileDto?> GetProfileAsync(string userId);
     Task<ResponceDto> UpdateProfileAsync(string userId, UpdateProfileDto dto);
 }

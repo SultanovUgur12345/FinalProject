@@ -105,15 +105,6 @@ namespace FinalProjectMVC.Controllers
             return View();
         }
 
-
-
-
-
-
-
-
-
-
         public IActionResult ResetPassword(string email, string token)
         {
             var model = new ResetPasswordVM
@@ -142,6 +133,63 @@ namespace FinalProjectMVC.Controllers
 
             TempData["Success"] = "Sifre ugurla yenilendi. Indi login ede bilersiniz.";
             return RedirectToAction(nameof(Login));
+        }
+
+
+
+        [HttpGet]
+        public async Task<IActionResult> EditProfile()
+        {
+            // Read token from session first, fallback to cookie
+            var token = HttpContext.Session.GetString("token");
+
+            if (string.IsNullOrWhiteSpace(token))
+            {
+                token = Request.Cookies["jwt_token"];
+            }
+
+            if (string.IsNullOrWhiteSpace(token))
+                return RedirectToAction(nameof(Login));
+
+            var model = await _accountService.GetProfileAsync(token);
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditProfile(UpdateProfileVM model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            // Read token from session first, fallback to cookie
+            var token = HttpContext.Session.GetString("token");
+
+            if (string.IsNullOrWhiteSpace(token))
+            {
+                token = Request.Cookies["jwt_token"];
+            }
+
+            if (string.IsNullOrWhiteSpace(token))
+                return RedirectToAction(nameof(Login));
+
+            var result = await _accountService.UpdateProfileAsync(model, token);
+
+            if (!result.success)
+            {
+                ModelState.AddModelError("", result.message);
+                return View(model);
+            }
+
+            TempData["Success"] = result.message;
+
+            if (!string.IsNullOrWhiteSpace(result.userName))
+            {
+                HttpContext.Session.SetString("UserName", result.userName);
+            }
+
+            return RedirectToAction(nameof(EditProfile));
         }
     }
 }

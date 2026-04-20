@@ -77,14 +77,35 @@ public class AccountController : ControllerBase
         return Ok(result);
     }
 
+
+    [Authorize]
+    [HttpGet("get-profile")]
+    public async Task<IActionResult> GetProfile()
+    {
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        if (string.IsNullOrWhiteSpace(userId))
+            return Unauthorized();
+
+        var result = await _accountService.GetProfileAsync(userId);
+
+        if (result == null)
+            return NotFound();
+
+        return Ok(result);
+    }
+
     [Authorize]
     [HttpPut("update-profile")]
-    public async Task<IActionResult> UpdateProfile(UpdateProfileDto dto)
+    public async Task<IActionResult> UpdateProfile([FromBody] UpdateProfileDto dto)
     {
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
 
         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        if (string.IsNullOrWhiteSpace(userId))
+            return Unauthorized();
 
         var result = await _accountService.UpdateProfileAsync(userId, dto);
 
@@ -93,4 +114,5 @@ public class AccountController : ControllerBase
 
         return Ok(result);
     }
+
 }

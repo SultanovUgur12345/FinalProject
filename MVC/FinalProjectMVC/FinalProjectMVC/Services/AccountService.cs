@@ -1,5 +1,6 @@
 ﻿using FinalProjectMVC.Services.Interfaces;
 using FinalProjectMVC.ViewModels.Account;
+using System.Net.Http.Headers;
 using System.Text.Json;
 
 namespace FinalProjectMVC.Services
@@ -140,6 +141,88 @@ namespace FinalProjectMVC.Services
             return (false, content);
         }
 
-      
+
+
+
+
+
+
+
+
+        public async Task<UpdateProfileVM> GetProfileAsync(string token)
+        {
+            _httpClient.DefaultRequestHeaders.Authorization = null;
+
+            if (!string.IsNullOrWhiteSpace(token))
+            {
+                _httpClient.DefaultRequestHeaders.Authorization =
+                    new AuthenticationHeaderValue("Bearer", token);
+            }
+
+            var response = await _httpClient.GetAsync("api/account/get-profile");
+
+            if (!response.IsSuccessStatusCode)
+            {
+                return new UpdateProfileVM();
+            }
+
+            var result = await response.Content.ReadFromJsonAsync<UpdateProfileVM>(new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
+
+            return result ?? new UpdateProfileVM();
+        }
+
+        public async Task<(bool success, string message, string? userName)> UpdateProfileAsync(UpdateProfileVM model, string token)
+        {
+            _httpClient.DefaultRequestHeaders.Authorization = null;
+
+            if (!string.IsNullOrWhiteSpace(token))
+            {
+                _httpClient.DefaultRequestHeaders.Authorization =
+                    new AuthenticationHeaderValue("Bearer", token);
+            }
+
+            var response = await _httpClient.PutAsJsonAsync("api/account/update-profile", model);
+            var content = await response.Content.ReadAsStringAsync();
+
+            if (response.IsSuccessStatusCode)
+            {
+                try
+                {
+                    using var doc = JsonDocument.Parse(content);
+
+                    string message = "Profil ugurla yenilendi";
+                    string? userName = null;
+
+                    if (doc.RootElement.TryGetProperty("message", out var messageElement))
+                        message = messageElement.GetString() ?? message;
+
+                    if (doc.RootElement.TryGetProperty("userName", out var userNameElement))
+                        userName = userNameElement.GetString();
+
+                    return (true, message, userName);
+                }
+                catch
+                {
+                    return (true, "Profil ugurla yenilendi", model.UserName);
+                }
+            }
+
+            try
+            {
+                using var doc = JsonDocument.Parse(content);
+
+                if (doc.RootElement.TryGetProperty("message", out var messageElement))
+                    return (false, messageElement.GetString() ?? "Xeta bas verdi", null);
+            }
+            catch
+            {
+            }
+
+            return (false, "Xeta bas verdi", null);
+        }
+
     }
 }

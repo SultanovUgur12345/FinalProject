@@ -236,6 +236,27 @@ namespace FinalProjectApi.Services
             };
         }
 
+
+
+
+
+
+
+
+        public async Task<GetProfileDto?> GetProfileAsync(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+
+            if (user == null)
+                return null;
+
+            return new GetProfileDto
+            {
+                FullName = user.FullName ?? string.Empty,
+                UserName = user.UserName ?? string.Empty
+            };
+        }
+
         public async Task<ResponceDto> UpdateProfileAsync(string userId, UpdateProfileDto dto)
         {
             var user = await _userManager.FindByIdAsync(userId);
@@ -249,20 +270,61 @@ namespace FinalProjectApi.Services
                 };
             }
 
-
-            var existUser = await _userManager.FindByNameAsync(dto.UserName);
-
-            if (existUser != null && existUser.Id != userId)
+            if (!string.IsNullOrWhiteSpace(dto.FullName))
             {
-                return new ResponceDto
-                {
-                    IsSuccess = false,
-                    Message = "Bu username artiq movcuddur"
-                };
+                user.FullName = dto.FullName.Trim();
             }
 
+            if (!string.IsNullOrWhiteSpace(dto.UserName))
+            {
+                var newUserName = dto.UserName.Trim();
 
-            _mapper.Map(dto, user);
+                if (newUserName != user.UserName)
+                {
+                    var existUser = await _userManager.FindByNameAsync(newUserName);
+
+                    if (existUser != null && existUser.Id != user.Id)
+                    {
+                        return new ResponceDto
+                        {
+                            IsSuccess = false,
+                            Message = "Bu username artiq movcuddur"
+                        };
+                    }
+
+                    user.UserName = newUserName;
+                }
+            }
+
+            bool currentPasswordFilled = !string.IsNullOrWhiteSpace(dto.CurrentPassword);
+            bool newPasswordFilled = !string.IsNullOrWhiteSpace(dto.NewPassword);
+
+            if (currentPasswordFilled || newPasswordFilled)
+            {
+                if (!currentPasswordFilled || !newPasswordFilled)
+                {
+                    return new ResponceDto
+                    {
+                        IsSuccess = false,
+                        Message = "Sifre deyismek ucun hem kohne, hem de yeni sifre daxil edilmelidir"
+                    };
+                }
+
+                var passwordResult = await _userManager.ChangePasswordAsync(
+                    user,
+                    dto.CurrentPassword!,
+                    dto.NewPassword!
+                );
+
+                if (!passwordResult.Succeeded)
+                {
+                    return new ResponceDto
+                    {
+                        IsSuccess = false,
+                        Message = string.Join(", ", passwordResult.Errors.Select(x => x.Description))
+                    };
+                }
+            }
 
             var updateResult = await _userManager.UpdateAsync(user);
 
@@ -271,46 +333,17 @@ namespace FinalProjectApi.Services
                 return new ResponceDto
                 {
                     IsSuccess = false,
-                    Message = string.Join(" | ",
-                        updateResult.Errors.Select(x => x.Description))
+                    Message = string.Join(", ", updateResult.Errors.Select(x => x.Description))
                 };
-            }
-
-
-            if (!string.IsNullOrWhiteSpace(dto.NewPassword))
-            {
-                if (string.IsNullOrWhiteSpace(dto.CurrentPassword))
-                {
-                    return new ResponceDto
-                    {
-                        IsSuccess = false,
-                        Message = "Current password yazilmalidir"
-                    };
-                }
-
-                var passwordResult =
-                    await _userManager.ChangePasswordAsync(
-                        user,
-                        dto.CurrentPassword,
-                        dto.NewPassword
-                    );
-
-                if (!passwordResult.Succeeded)
-                {
-                    return new ResponceDto
-                    {
-                        IsSuccess = false,
-                        Message = string.Join(" | ",
-                            passwordResult.Errors.Select(x => x.Description))
-                    };
-                }
             }
 
             return new ResponceDto
             {
                 IsSuccess = true,
-                Message = "Profil ugurla yenilendi"
+                Message = "Profil ugurla yenilendi",
+                UserName = user.UserName
             };
         }
     }
 }
+

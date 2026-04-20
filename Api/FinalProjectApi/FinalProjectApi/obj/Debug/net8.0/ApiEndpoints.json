@@ -38,6 +38,16 @@
   },
   {
     "ContainingType": "AccountController",
+    "Method": "GetProfile",
+    "RelativePath": "api/Account/get-profile",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AccountController",
     "Method": "Login",
     "RelativePath": "api/Account/login",
     "HttpMethod": "POST",

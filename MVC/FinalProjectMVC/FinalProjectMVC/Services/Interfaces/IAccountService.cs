@@ -8,7 +8,11 @@ namespace FinalProjectMVC.Services.Interfaces
         Task<(bool success, string message, string token, string userName)> LoginAsync(LoginVM model);
         Task<(bool success, string message)> ForgotPasswordAsync(ForgotPasswordVM model);
         Task<(bool success, string message)> ResetPasswordAsync(ResetPasswordVM model);
-        //Task<ProfileEditVM> GetProfileAsync();
-        //Task<ResponceVM> UpdateProfileAsync(ProfileEditVM vm);
+
+
+
+
+        Task<UpdateProfileVM> GetProfileAsync(string token);
+        Task<(bool success, string message, string? userName)> UpdateProfileAsync(UpdateProfileVM model, string token);
     }
 }
