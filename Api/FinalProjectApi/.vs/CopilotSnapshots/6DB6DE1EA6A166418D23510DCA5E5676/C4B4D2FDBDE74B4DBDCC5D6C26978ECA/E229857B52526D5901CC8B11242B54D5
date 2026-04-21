@@ -1,0 +1,14 @@
+﻿using FinalProjectMVC.ViewModels.Worker;
+
+public interface IWorkerService
+{
+    public interface IWorkerApiService
+    {
+        Task<List<WorkerGetVM>> GetAllAsync();
+        Task<WorkerDetailVM> GetByIdAsync(int id);
+        Task<WorkerEditVM> GetByIdForEditAsync(int id);
+        Task CreateAsync(WorkerCreateVM dto);
+        Task UpdateAsync(int id, WorkerEditVM dto);
+        Task DeleteAsync(int id);
+    }
+}

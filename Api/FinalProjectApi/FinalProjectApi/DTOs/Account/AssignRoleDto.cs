@@ -1,0 +1,10 @@
+using FinalProjectApi.Helpers.Enums;
+
+namespace FinalProjectApi.DTOs.Account
+{
+    public class AssignRoleDto
+    {
+        public string UserId { get; set; } = null!;
+        public Roles Role { get; set; }
+    }
+}

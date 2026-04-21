@@ -26,6 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="DTOs\Common\" />
     <Folder Include="wwwroot\uploads\workers\" />
   </ItemGroup>
 

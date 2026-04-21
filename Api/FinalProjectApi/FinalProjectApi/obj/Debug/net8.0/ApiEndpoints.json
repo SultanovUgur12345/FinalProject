@@ -1,6 +1,22 @@
 [
   {
     "ContainingType": "AccountController",
+    "Method": "AssignRole",
+    "RelativePath": "api/Account/assign-role",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "FinalProjectApi.DTOs.Account.AssignRoleDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AccountController",
     "Method": "ConfirmEmail",
     "RelativePath": "api/Account/confirm-email",
     "HttpMethod": "GET",
@@ -118,11 +134,6 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [
-      {
-        "Name": "Id",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
       {
         "Name": "FullName",
         "Type": "System.String",

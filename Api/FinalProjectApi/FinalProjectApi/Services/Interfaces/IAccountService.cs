@@ -1,5 +1,4 @@
 ﻿using FinalProjectApi.DTOs.Account;
-using Org.BouncyCastle.Asn1.Ocsp;
 public interface IAccountService
 {
     Task<ResponceDto> RegisterAsync(RegisterDto dto, string scheme, string host);
@@ -15,4 +14,6 @@ public interface IAccountService
 
     Task<GetProfileDto?> GetProfileAsync(string userId);
     Task<ResponceDto> UpdateProfileAsync(string userId, UpdateProfileDto dto);
+
+    Task<ResponceDto> AssignRoleAsync(AssignRoleDto dto);
 }

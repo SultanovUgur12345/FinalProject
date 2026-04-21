@@ -200,6 +200,37 @@
         }
       }
     },
+    "/api/Account/assign-role": {
+      "post": {
+        "tags": [
+          "Account"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssignRoleDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssignRoleDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssignRoleDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Worker/GetAll": {
       "get": {
         "tags": [
@@ -240,73 +271,57 @@
         "tags": [
           "Worker"
         ],
-        "parameters": [
-          {
-            "name": "Id",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "FullName",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Position",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Description",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "ExperienceYears",
-            "in": "query",
-            "schema": {
-              "type": "number",
-              "format": "double"
-            }
-          },
-          {
-            "name": "Languages",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Certificates",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
         "requestBody": {
           "content": {
             "multipart/form-data": {
               "schema": {
                 "type": "object",
                 "properties": {
+                  "FullName": {
+                    "type": "string"
+                  },
+                  "Position": {
+                    "type": "string"
+                  },
+                  "Description": {
+                    "type": "string"
+                  },
+                  "ExperienceYears": {
+                    "type": "number",
+                    "format": "double"
+                  },
                   "Image": {
                     "type": "string",
                     "format": "binary"
+                  },
+                  "Languages": {
+                    "type": "string"
+                  },
+                  "Certificates": {
+                    "type": "string"
                   }
                 }
               },
               "encoding": {
+                "FullName": {
+                  "style": "form"
+                },
+                "Position": {
+                  "style": "form"
+                },
+                "Description": {
+                  "style": "form"
+                },
+                "ExperienceYears": {
+                  "style": "form"
+                },
                 "Image": {
+                  "style": "form"
+                },
+                "Languages": {
+                  "style": "form"
+                },
+                "Certificates": {
                   "style": "form"
                 }
               }
@@ -439,6 +454,19 @@
   },
   "components": {
     "schemas": {
+      "AssignRoleDto": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "nullable": true
+          },
+          "role": {
+            "$ref": "#/components/schemas/Roles"
+          }
+        },
+        "additionalProperties": false
+      },
       "ForgotPasswordDto": {
         "required": [
           "email"
@@ -540,6 +568,15 @@
           }
         },
         "additionalProperties": false
+      },
+      "Roles": {
+        "enum": [
+          1,
+          2,
+          3
+        ],
+        "type": "integer",
+        "format": "int32"
       },
       "UpdateProfileDto": {
         "type": "object",
