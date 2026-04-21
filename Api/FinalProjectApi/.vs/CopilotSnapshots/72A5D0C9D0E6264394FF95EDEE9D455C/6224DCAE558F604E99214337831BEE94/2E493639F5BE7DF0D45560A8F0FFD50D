@@ -1,0 +1,13 @@
+﻿using FinalProjectApi.Helpers.Enums;
+using System.Text.Json.Serialization;
+
+namespace FinalProjectApi.DTOs.Account
+{
+    public class AssignRoleDto
+    {
+        public string UserId { get; set; } = null!;
+
+        [JsonConverter(typeof(JsonStringEnumConverter))]
+        public Roles Role { get; set; }
+    }
+}

@@ -9,6 +9,7 @@
         <nav class="admin-sidebar__nav">
             <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" class="admin-sidebar__link active">Dashboard</a>
             <a asp-area="Admin" asp-controller="Workers" asp-action="Index" class="admin-sidebar__link">Workers Index</a>
+            <a asp-area="Admin" asp-controller="Users" asp-action="Index" class="admin-sidebar__link">Users</a>
         </nav>
     </aside>
 
@@ -24,12 +25,15 @@
 
 <style>
     .admin-layout {
-        width: 80%;
-        margin: 150px auto 70px;
+        width: 100%;
+        margin: 0 70px;
+        padding: 0;
         display: grid;
-        grid-template-columns: 280px 1fr;
-        gap: 22px;
+        grid-template-columns: 260px 1fr;
+        gap: 0;
         color: #fff;
+        box-sizing: border-box;
+        min-height: calc(100vh - 220px);
     }
 
     .admin-sidebar,
@@ -37,7 +41,16 @@
         background: rgba(2, 21, 39, 0.86);
         border: 1px solid rgba(191, 168, 136, 0.3);
         backdrop-filter: blur(10px);
-        padding: 24px;
+        padding: 32px 24px;
+    }
+
+    .admin-sidebar {
+        border-right: none;
+        min-height: 100%;
+    }
+
+    .admin-content {
+        border-left: 1px solid rgba(191, 168, 136, 0.3);
     }
 
     .admin-sidebar__brand {
@@ -109,9 +122,15 @@
 
     @@media (max-width: 900px) {
         .admin-layout {
-            width: 92%;
-            margin-top: 165px;
+            width: 100%;
+            margin-top: 120px;
             grid-template-columns: 1fr;
+            gap: 0;
+        }
+
+        .admin-sidebar {
+            border-right: 1px solid rgba(191, 168, 136, 0.3);
+            border-bottom: none;
         }
     }
 </style>

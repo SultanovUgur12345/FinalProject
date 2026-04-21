@@ -18,6 +18,8 @@ namespace FinalProjectApi.Controllers
             _service = service;
         }
 
+
+        [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {

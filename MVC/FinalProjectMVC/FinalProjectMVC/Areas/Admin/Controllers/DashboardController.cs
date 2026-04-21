@@ -2,8 +2,7 @@
 
 namespace FinalProjectMVC.Areas.Admin.Controllers
 {
-    [Area("Admin")]
-    public class DashboardController : Controller
+    public class DashboardController : AdminBaseController
     {
         public IActionResult Index()
         {

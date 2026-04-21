@@ -1,11 +1,12 @@
-﻿using FinalProjectMVC.ViewModels.Worker;
+using FinalProjectMVC.ViewModels.Worker;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using static IWorkerService;
 
 namespace FinalProjectMVC.Areas.Admin.Controllers;
 
-[Area("Admin")]
-public class WorkersController : Controller
+[Authorize(Roles = "SuperAdmin,Admin")]
+public class WorkersController : AdminBaseController
 {
     private readonly IWorkerApiService _service;
 
@@ -37,6 +38,9 @@ public class WorkersController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create(WorkerCreateVM dto)
     {
+        if (!ModelState.IsValid)
+            return View(dto);
+
             await _service.CreateAsync(dto);
             return RedirectToAction(nameof(Index));
     }

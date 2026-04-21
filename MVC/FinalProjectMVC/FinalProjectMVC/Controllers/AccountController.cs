@@ -1,6 +1,11 @@
-﻿using FinalProjectMVC.Services.Interfaces;
+using FinalProjectMVC.Services.Interfaces;
 using FinalProjectMVC.ViewModels.Account;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 namespace FinalProjectMVC.Controllers
 {
@@ -69,14 +74,89 @@ namespace FinalProjectMVC.Controllers
 
             HttpContext.Session.SetString("UserName", result.userName);
 
+            var handler = new JwtSecurityTokenHandler();
+            var jwtToken = handler.ReadJwtToken(result.token);
+            var claims = jwtToken.Claims.Select(c => (c.Type == "role" || c.Type == ClaimTypes.Role) ? new Claim(ClaimTypes.Role, c.Value) : c).ToList();
+
+            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            var principal = new ClaimsPrincipal(identity);
+
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal,
+                new AuthenticationProperties
+                {
+                    ExpiresUtc = DateTimeOffset.UtcNow.AddHours(1),
+                    IsPersistent = false
+                });
+
             return RedirectToAction("Index", "Home");
         }
 
-        public IActionResult Logout()
+        public async Task<IActionResult> Logout()
         {
             Response.Cookies.Delete("jwt_token");
             HttpContext.Session.Remove("UserName");
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction(nameof(Login));
+        }
+
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "SuperAdmin,Admin")]
+        public async Task<IActionResult> UserList()
+        {
+            var token = HttpContext.Session.GetString("token") ?? Request.Cookies["jwt_token"];
+            if (string.IsNullOrWhiteSpace(token))
+                return RedirectToAction(nameof(Login));
+
+            var callerRole = User.IsInRole("SuperAdmin") ? "SuperAdmin" : "Admin";
+            var users = await _accountService.GetAllUsersAsync(token, callerRole);
+            return View(users);
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "SuperAdmin")]
+        public IActionResult AssignRole(string userId, string userName, string email, string currentRole)
+        {
+            var token = HttpContext.Session.GetString("token") ?? Request.Cookies["jwt_token"];
+            if (string.IsNullOrWhiteSpace(token))
+                return RedirectToAction(nameof(Login));
+
+            var model = new AssignRoleVM
+            {
+                UserId = userId,
+                UserName = userName,
+                Email = email,
+                Role = currentRole
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "SuperAdmin")]
+        public async Task<IActionResult> AssignRole(AssignRoleVM model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            var token = HttpContext.Session.GetString("token") ?? Request.Cookies["jwt_token"];
+            if (string.IsNullOrWhiteSpace(token))
+                return RedirectToAction(nameof(Login));
+
+            var result = await _accountService.AssignRoleAsync(model, token);
+
+            if (!result.success)
+            {
+                ModelState.AddModelError("", result.message);
+                return View(model);
+            }
+
+            TempData["Success"] = result.message;
+            return RedirectToAction(nameof(UserList));
         }
 
         public IActionResult ForgotPassword()
@@ -140,7 +220,6 @@ namespace FinalProjectMVC.Controllers
         [HttpGet]
         public async Task<IActionResult> EditProfile()
         {
-            // Read token from session first, fallback to cookie
             var token = HttpContext.Session.GetString("token");
 
             if (string.IsNullOrWhiteSpace(token))

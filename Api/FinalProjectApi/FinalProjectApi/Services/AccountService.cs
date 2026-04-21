@@ -68,7 +68,7 @@ namespace FinalProjectApi.Services
                 };
             }
 
-            var superAdminRole = nameof(Roles.SuperAdmin);
+            var superAdminRole = nameof(Roles.Member);
             await EnsureRoleExistsAsync(superAdminRole);
             await _userManager.AddToRoleAsync(user, superAdminRole);
 
@@ -352,13 +352,35 @@ namespace FinalProjectApi.Services
             };
         }
 
+        public async Task<List<UserListDto>> GetAllUsersAsync()
+        {
+            var users = _userManager.Users.ToList();
+            var result = new List<UserListDto>();
+
+            foreach (var user in users)
+            {
+                var roles = await _userManager.GetRolesAsync(user);
+                result.Add(new UserListDto
+                {
+                    Id = user.Id,
+                    FullName = user.FullName ?? string.Empty,
+                    UserName = user.UserName ?? string.Empty,
+                    Email = user.Email ?? string.Empty,
+                    Role = roles.FirstOrDefault() ?? string.Empty,
+                    CanChangeRole = roles.FirstOrDefault() != nameof(Roles.SuperAdmin)
+                });
+            }
+
+            return result;
+        }
+
         private async Task EnsureRoleExistsAsync(string roleName)
         {
             if (!await _roleManager.RoleExistsAsync(roleName))
                 await _roleManager.CreateAsync(new IdentityRole(roleName));
         }
 
-        public async Task<ResponceDto> AssignRoleAsync(AssignRoleDto dto)
+        public async Task<ResponceDto> AssignRoleAsync(AssignRoleDto dto, string callerRole = "SuperAdmin")
         {
             var user = await _userManager.FindByIdAsync(dto.UserId);
 
@@ -368,6 +390,47 @@ namespace FinalProjectApi.Services
                 {
                     IsSuccess = false,
                     Message = "Istifadeci tapilmadi"
+                };
+            }
+
+            var targetRoles = await _userManager.GetRolesAsync(user);
+            var targetRole = targetRoles.FirstOrDefault() ?? string.Empty;
+
+            if (targetRole == nameof(Roles.SuperAdmin))
+            {
+                return new ResponceDto
+                {
+                    IsSuccess = false,
+                    Message = "SuperAdmin istifadecisinin rolu deyisile bilmez"
+                };
+            }
+
+            if (callerRole == nameof(Roles.Admin) &&
+                targetRole != nameof(Roles.Member))
+            {
+                return new ResponceDto
+                {
+                    IsSuccess = false,
+                    Message = "Admin yalniz Member istifadecisinin rolunu deyise biler"
+                };
+            }
+
+            if (callerRole == nameof(Roles.Admin) &&
+                dto.Role != Roles.Member)
+            {
+                return new ResponceDto
+                {
+                    IsSuccess = false,
+                    Message = "Admin yalniz Member rolu teyinleye biler"
+                };
+            }
+
+            if (dto.Role == Roles.SuperAdmin)
+            {
+                return new ResponceDto
+                {
+                    IsSuccess = false,
+                    Message = "SuperAdmin rolu teyinlenile bilmez"
                 };
             }
 

@@ -224,5 +224,68 @@ namespace FinalProjectMVC.Services
             return (false, "Xeta bas verdi", null);
         }
 
+        public async Task<List<UserListVM>> GetAllUsersAsync(string token, string callerRole)
+        {
+            _httpClient.DefaultRequestHeaders.Authorization = null;
+
+            if (!string.IsNullOrWhiteSpace(token))
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var response = await _httpClient.GetAsync("api/account/get-all-users");
+
+            if (!response.IsSuccessStatusCode)
+                return new List<UserListVM>();
+
+            var users = await response.Content.ReadFromJsonAsync<List<UserListVM>>(new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
+
+            if (users == null)
+                return new List<UserListVM>();
+
+            foreach (var user in users)
+            {
+                user.CanChangeRole = user.Role != "SuperAdmin" && callerRole == "SuperAdmin";
+            }
+
+            return users;
+        }
+
+        public async Task<(bool success, string message)> AssignRoleAsync(AssignRoleVM model, string token)
+        {
+            _httpClient.DefaultRequestHeaders.Authorization = null;
+
+            if (!string.IsNullOrWhiteSpace(token))
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var response = await _httpClient.PostAsJsonAsync("api/account/assign-role", new { model.UserId, Role = model.Role });
+            var content = await response.Content.ReadAsStringAsync();
+
+            if (response.IsSuccessStatusCode)
+            {
+                try
+                {
+                    using var doc = JsonDocument.Parse(content);
+                    var message = doc.RootElement.GetProperty("message").GetString();
+                    return (true, message ?? "Rol ugurla deyisdirildi");
+                }
+                catch
+                {
+                    return (true, "Rol ugurla deyisdirildi");
+                }
+            }
+
+            try
+            {
+                using var doc = JsonDocument.Parse(content);
+                if (doc.RootElement.TryGetProperty("message", out var msg))
+                    return (false, msg.GetString() ?? "Xeta bas verdi");
+            }
+            catch { }
+
+            return (false, content);
+        }
+
     }
 }

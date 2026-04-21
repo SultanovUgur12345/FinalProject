@@ -5,17 +5,23 @@
     ViewData["Title"] = "Workers - Create";
 }
 
-<section class="admin-workers">
-    <div class="admin-workers__container admin-workers__container--form">
-        <div class="admin-workers__head">
+<section class="admin-layout">
+    <aside class="admin-sidebar">
+        <div class="admin-sidebar__brand">ADMIN PANEL</div>
+        <nav class="admin-sidebar__nav">
+            <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" class="admin-sidebar__link">Dashboard</a>
+            <a asp-area="Admin" asp-controller="Workers" asp-action="Index" class="admin-sidebar__link active">Workers</a>
+            <a asp-area="Admin" asp-controller="Users" asp-action="Index" class="admin-sidebar__link">Users</a>
+        </nav>
+    </aside>
+
+    <div class="admin-content">
+        <div class="admin-content__header">
             <div>
-                <p class="admin-workers__subtitle">ADMIN PANEL</p>
+                <p class="admin-content__subtitle">WORKER MANAGEMENT</p>
                 <h1>Create Worker</h1>
             </div>
-
-            <a asp-area="Admin" asp-controller="Workers" asp-action="Index" class="admin-btn">
-                Back to List
-            </a>
+            <a asp-area="Admin" asp-controller="Workers" asp-action="Index" class="admin-btn">← Back to List</a>
         </div>
 
         <form method="post"
@@ -24,7 +30,7 @@
               asp-controller="Workers"
               asp-action="Create"
               class="admin-form">
-            
+
             @Html.AntiForgeryToken()
 
             <div asp-validation-summary="ModelOnly" class="admin-validation"></div>
@@ -71,7 +77,7 @@
                 <span asp-validation-for="Description" class="admin-validation"></span>
             </div>
 
-            <div class="admin-actions">
+            <div class="admin-form-actions">
                 <button type="submit" class="admin-btn admin-btn--primary">Save Worker</button>
             </div>
         </form>
@@ -79,51 +85,87 @@
 </section>
 
 <style>
-    .admin-workers {
-        width: 80%;
-        margin: 150px auto 70px;
+    .admin-layout {
+        width: 100%;
+        margin: 150px 0 70px;
+        padding: 0;
+        display: grid;
+        grid-template-columns: 260px 1fr;
+        gap: 0;
         color: #fff;
+        box-sizing: border-box;
+        min-height: calc(100vh - 220px);
     }
 
-    .admin-workers__container {
+    .admin-sidebar,
+    .admin-content {
         background: rgba(2, 21, 39, 0.86);
         border: 1px solid rgba(191, 168, 136, 0.3);
-        padding: 30px;
         backdrop-filter: blur(10px);
-        border-radius: 12px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+        padding: 32px 24px;
     }
 
-    .admin-workers__container--form {
-        max-width: 860px;
-        margin: 0 auto;
+    .admin-sidebar {
+        border-right: none;
     }
 
-    .admin-workers__head {
+    .admin-content {
+        border-left: 1px solid rgba(191, 168, 136, 0.3);
+    }
+
+    .admin-sidebar__brand {
+        color: #bfa888;
+        font-size: 12px;
+        letter-spacing: 2px;
+        margin-bottom: 20px;
+    }
+
+    .admin-sidebar__nav {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .admin-sidebar__link {
+        text-decoration: none;
+        color: #fff;
+        border: 1px solid rgba(191, 168, 136, 0.25);
+        padding: 10px 12px;
+        transition: all 0.3s ease;
+    }
+
+        .admin-sidebar__link:hover,
+        .admin-sidebar__link.active {
+            color: #bfa888;
+            border-color: #bfa888;
+        }
+
+    .admin-content__header {
         display: flex;
         justify-content: space-between;
-        align-items: center;
-        gap: 15px;
-        margin-bottom: 25px;
+        align-items: flex-start;
+        margin-bottom: 28px;
+        flex-wrap: wrap;
+        gap: 16px;
     }
 
-    .admin-workers__subtitle {
+    .admin-content__subtitle {
         color: #bfa888;
         letter-spacing: 2px;
         font-size: 12px;
-        margin-bottom: 6px;
+        margin-bottom: 8px;
     }
 
-    .admin-workers__head h1 {
+    .admin-content h1 {
         font-family: 'Cormorant Garamond', serif;
-        font-size: 38px;
+        font-size: 40px;
         margin: 0;
     }
 
     .admin-form {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 16px;
+        gap: 20px;
     }
 
     .admin-form-group {
@@ -146,23 +188,23 @@
 
     .admin-input {
         width: 100%;
-        background: rgba(255, 255, 255, 0.08);
-        border: 1px solid rgba(255, 255, 255, 0.16);
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(191, 168, 136, 0.25);
         color: #fff;
         padding: 12px 14px;
         outline: none;
-        border-radius: 8px;
         transition: 0.3s ease;
         font-size: 14px;
+        box-sizing: border-box;
     }
 
         .admin-input:focus {
             border-color: #bfa888;
-            box-shadow: 0 0 0 3px rgba(191, 168, 136, 0.15);
+            background: rgba(255, 255, 255, 0.09);
         }
 
         .admin-input::placeholder {
-            color: rgba(255, 255, 255, 0.45);
+            color: rgba(255, 255, 255, 0.35);
         }
 
     .admin-input--area {
@@ -181,21 +223,21 @@
             border: none;
             padding: 8px 14px;
             margin-right: 12px;
-            border-radius: 6px;
             cursor: pointer;
             font-weight: 600;
             transition: 0.3s ease;
         }
 
-            .admin-input--file::file-selector-button:hover {
-                opacity: 0.9;
-            }
+    .admin-validation {
+        color: #ff6b6b;
+        font-size: 13px;
+    }
 
-    .admin-actions {
+    .admin-form-actions {
         grid-column: 1 / -1;
         display: flex;
         gap: 10px;
-        margin-top: 10px;
+        margin-top: 8px;
     }
 
     .admin-btn {
@@ -204,13 +246,12 @@
         background: transparent;
         color: #fff;
         border: 1px solid rgba(191, 168, 136, 0.5);
-        padding: 10px 16px;
+        padding: 10px 18px;
         font-size: 12px;
         text-transform: uppercase;
         letter-spacing: 1px;
         cursor: pointer;
         transition: all 0.3s ease;
-        border-radius: 8px;
     }
 
         .admin-btn:hover {
@@ -222,7 +263,7 @@
         background: linear-gradient(135deg, #bfa888 0%, #a68b6a 100%);
         color: #021527;
         border-color: transparent;
-        font-weight: 700;
+        font-weight: 600;
     }
 
         .admin-btn--primary:hover {
@@ -231,24 +272,23 @@
             box-shadow: 0 8px 20px rgba(191, 168, 136, 0.35);
         }
 
-    .admin-validation {
-        color: #ffb3bd;
-        font-size: 12px;
-    }
-
-    @@media (max-width: 768px) {
-        .admin-workers {
-            width: 92%;
-            margin-top: 165px;
+    @@media (max-width: 900px) {
+        .admin-layout {
+            grid-template-columns: 1fr;
+            margin-top: 120px;
         }
 
-        .admin-workers__head {
-            flex-direction: column;
-            align-items: flex-start;
+        .admin-sidebar {
+            border-right: 1px solid rgba(191, 168, 136, 0.3);
         }
 
         .admin-form {
             grid-template-columns: 1fr;
+        }
+
+        .admin-form-group--full,
+        .admin-form-actions {
+            grid-column: 1;
         }
     }
 </style>

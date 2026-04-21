@@ -54,6 +54,16 @@
   },
   {
     "ContainingType": "AccountController",
+    "Method": "GetAllUsers",
+    "RelativePath": "api/Account/get-all-users",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AccountController",
     "Method": "GetProfile",
     "RelativePath": "api/Account/get-profile",
     "HttpMethod": "GET",

@@ -3,17 +3,7 @@
   "WorkspaceRootPath": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\Api\\FinalProjectApi\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{DF0D9306-CF46-B7C9-6000-4C5930447069}|FinalProjectApi\\FinalProjectApi.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\api\\finalprojectapi\\finalprojectapi\\controllers\\workercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DF0D9306-CF46-B7C9-6000-4C5930447069}|FinalProjectApi\\FinalProjectApi.csproj|solutionrelative:finalprojectapi\\controllers\\workercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\services\\workerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -36,15 +26,11 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{6324226f-61b6-4f28-92ee-18d4b5fe1e48}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
             }
           ]
         },
         {
-          "DockedWidth": 331,
+          "DockedWidth": 156,
           "SelectedChildIndex": 1,
           "Children": [
             {
@@ -54,51 +40,25 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "WorkerController.cs",
-              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\Api\\FinalProjectApi\\FinalProjectApi\\Controllers\\WorkerController.cs",
-              "RelativeDocumentMoniker": "FinalProjectApi\\Controllers\\WorkerController.cs",
-              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\Api\\FinalProjectApi\\FinalProjectApi\\Controllers\\WorkerController.cs",
-              "RelativeToolTip": "FinalProjectApi\\Controllers\\WorkerController.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAQwA8AAAA3AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-21T11:35:22.38Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AccountController.cs",
-              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Controllers\\AccountController.cs",
-              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Controllers\\AccountController.cs",
-              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Controllers\\AccountController.cs",
-              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Controllers\\AccountController.cs",
-              "ViewState": "AgIAAMYAAAAAAAAAAAAkwKYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-21T11:24:05.991Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "WorkerService.cs",
-              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\WorkerService.cs",
-              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\WorkerService.cs",
-              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\WorkerService.cs",
-              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\WorkerService.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAkwGcAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-21T11:18:43.483Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Program.cs",
               "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Program.cs",
               "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Program.cs",
               "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Program.cs",
-              "ViewState": "AgIAABQAAAAAAAAAAAAgwB4AAAAmAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABYAAABJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-21T10:40:47.082Z"
+              "WhenOpened": "2026-04-21T10:40:47.082Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 506,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
             }
           ]
         }

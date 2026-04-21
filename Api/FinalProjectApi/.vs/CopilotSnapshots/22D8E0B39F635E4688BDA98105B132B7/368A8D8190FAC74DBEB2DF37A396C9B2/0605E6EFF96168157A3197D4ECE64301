@@ -1,0 +1,121 @@
+﻿@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<section class="admin-layout">
+    <aside class="admin-sidebar">
+        <div class="admin-sidebar__brand">ADMIN PANEL</div>
+
+        <nav class="admin-sidebar__nav">
+            <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" class="admin-sidebar__link active">Dashboard</a>
+            <a asp-area="Admin" asp-controller="Workers" asp-action="Index" class="admin-sidebar__link">Workers Index</a>
+            <a asp-area="Admin" asp-controller="Users" asp-action="Index" class="admin-sidebar__link">Users</a>
+        </nav>
+    </aside>
+
+    <div class="admin-content">
+        <p class="admin-content__subtitle">WELCOME</p>
+        <h1>Admin Dashboard</h1>
+
+        <a asp-area="Admin" asp-controller="Workers" asp-action="Index" class="admin-btn admin-btn--primary">
+            Go to Workers Index
+        </a>
+    </div>
+</section>
+
+<style>
+    .admin-layout {
+        width: 100%;
+        max-width: 1400px;
+        margin: 150px auto 70px;
+        padding: 0 24px;
+        display: grid;
+        grid-template-columns: 260px 1fr;
+        gap: 22px;
+        color: #fff;
+        box-sizing: border-box;
+    }
+
+    .admin-sidebar,
+    .admin-content {
+        background: rgba(2, 21, 39, 0.86);
+        border: 1px solid rgba(191, 168, 136, 0.3);
+        backdrop-filter: blur(10px);
+        padding: 24px;
+    }
+
+    .admin-sidebar__brand {
+        color: #bfa888;
+        font-size: 12px;
+        letter-spacing: 2px;
+        margin-bottom: 20px;
+    }
+
+    .admin-sidebar__nav {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .admin-sidebar__link {
+        text-decoration: none;
+        color: #fff;
+        border: 1px solid rgba(191, 168, 136, 0.25);
+        padding: 10px 12px;
+        transition: all 0.3s ease;
+    }
+
+    .admin-sidebar__link:hover,
+    .admin-sidebar__link.active {
+        color: #bfa888;
+        border-color: #bfa888;
+    }
+
+    .admin-content__subtitle {
+        color: #bfa888;
+        letter-spacing: 2px;
+        font-size: 12px;
+        margin-bottom: 8px;
+    }
+
+    .admin-content h1 {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 40px;
+        margin: 0 0 20px;
+    }
+
+    .admin-btn {
+        display: inline-block;
+        text-decoration: none;
+        background: transparent;
+        color: #fff;
+        border: 1px solid rgba(191, 168, 136, 0.5);
+        padding: 10px 16px;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .admin-btn--primary {
+        background: linear-gradient(135deg, #bfa888 0%, #a68b6a 100%);
+        color: #021527;
+        border-color: transparent;
+        font-weight: 600;
+    }
+
+    .admin-btn--primary:hover {
+        color: #021527;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(191, 168, 136, 0.35);
+    }
+
+    @@media (max-width: 900px) {
+        .admin-layout {
+            width: 92%;
+            margin-top: 165px;
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

@@ -200,6 +200,18 @@
         }
       }
     },
+    "/api/Account/get-all-users": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Account/assign-role": {
       "post": {
         "tags": [

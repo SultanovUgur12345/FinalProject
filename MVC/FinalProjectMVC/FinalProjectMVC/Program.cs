@@ -1,3 +1,4 @@
+using FinalProjectMVC.Handlers;
 using FinalProjectMVC.Services;
 using FinalProjectMVC.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -9,11 +10,15 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddHttpClient();
 
+builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddTransient<JwtTokenHandler>();
+
 builder.Services.AddHttpClient<IWorkerApiService, WorkerApiService>(client =>
 {
     var apiBaseUrl = builder.Configuration["ApiSettings:BaseUrl"] ?? "http://localhost:5147/";
     client.BaseAddress = new Uri(apiBaseUrl);
-});
+}).AddHttpMessageHandler<JwtTokenHandler>();
 
 builder.Services.AddHttpClient<IAccountService, AccountService>(client =>
 {
@@ -30,14 +35,12 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
-builder.Services.AddHttpContextAccessor();
-
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
-        options.LoginPath = "/Account/Login";
-        options.LogoutPath = "/Account/Logout";
-        options.AccessDeniedPath = "/Account/AccessDenied";
+        options.LoginPath = "/Home/Index";
+            options.LogoutPath = "/Account/Logout";
+            options.AccessDeniedPath = "/Home/Index";
     });
 
 var app = builder.Build();
@@ -60,7 +63,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "areas",
-    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+    pattern: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}");
 
 app.MapControllerRoute(
     name: "default",
