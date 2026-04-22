@@ -1,0 +1,689 @@
+﻿@using FinalProjectMVC.ViewModels.Account
+@model List<UserListVM>
+
+@{
+    ViewData["Title"] = "Users";
+    string callerRole = ViewBag.CallerRole ?? "Admin";
+    bool isSuperAdmin = callerRole == "SuperAdmin";
+}
+
+<div class="admin-content__header">
+            <div>
+                <p class="admin-content__subtitle">USER MANAGEMENT</p>
+                <h1>Users List</h1>
+            </div>
+            <div class="admin-content__stats">
+                <span class="admin-stat">
+                    Total Users: <strong id="totalUsersCount">0</strong>
+                </span>
+            </div>
+        </div>
+
+        @if (TempData["UserError"] is string errorMsg)
+        {
+            <div class="admin-alert admin-alert--error">
+                <span>?</span> @errorMsg
+            </div>
+        }
+
+        @if (TempData["UserSuccess"] is string successMsg)
+        {
+            <div class="admin-alert admin-alert--success">
+                <span>?</span> @successMsg
+            </div>
+        }
+
+        <div class="admin-topbar">
+            <div class="admin-search">
+                <input type="text" id="emailSearchInput" class="admin-search__input" placeholder="Search by email..." autocomplete="off" />
+            </div>
+            <span class="admin-stat">Total: <strong id="totalUsersCount">0</strong></span>
+        </div>
+
+        <div class="admin-table-container">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Full Name</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        @if (isSuperAdmin)
+                        {
+                            <th>Actions</th>
+                        }
+                    </tr>
+                </thead>
+                <tbody id="usersTableBody">
+                    @if (Model != null && Model.Any())
+                    {
+                        int i = 1;
+                        foreach (var item in Model)
+                        {
+                            <tr class="user-row">
+                                <td>@(i++)</td>
+                                <td>@item.FullName</td>
+                                <td>@item.UserName</td>
+                                <td>@item.Email</td>
+                                <td>
+                                    <span class="admin-badge admin-badge--@(item.Role.ToLower())">
+                                        @item.Role
+                                    </span>
+                                </td>
+                                @if (isSuperAdmin)
+                                {
+                                    <td>
+                                        <div class="admin-actions">
+                                            @if (item.CanChangeRole)
+                                            {
+                                                <button type="button"
+                                                        class="admin-btn admin-btn--sm open-role-modal"
+                                                        data-id="@item.Id"
+                                                        data-name="@item.FullName"
+                                                        data-role="@item.Role">
+                                                    Change Role
+                                                </button>
+                                            }
+                                            else
+                                            {
+                                                <span class="admin-text-muted">—</span>
+                                            }
+                                        </div>
+                                    </td>
+                                }
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr id="noUsersRow">
+                            <td colspan="6" class="admin-table__empty">No users found</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="admin-pagination" id="paginationContainer">
+            <button class="admin-pagination__btn" id="prevPageBtn">? Previous</button>
+            <div class="admin-pagination__numbers" id="paginationNumbers"></div>
+            <button class="admin-pagination__btn" id="nextPageBtn">Next ?</button>
+        </div>
+
+@if (isSuperAdmin)
+{
+    <div class="admin-modal" id="roleModal">
+        <div class="admin-modal__overlay" id="roleModalOverlay"></div>
+        <div class="admin-modal__box">
+            <div class="admin-modal__header">
+                <h3 class="admin-modal__title">Change User Role</h3>
+                <button type="button" class="admin-modal__close" id="roleModalClose">×</button>
+            </div>
+
+            <div class="admin-modal__body">
+                <div class="admin-modal__info">
+                    <p><strong>User:</strong> <span id="modalUserName"></span></p>
+                    <p><strong>Current Role:</strong> <span id="modalCurrentRole" class="admin-badge"></span></p>
+                </div>
+
+                <form asp-area="Admin" asp-controller="Users" asp-action="AssignRole" method="post">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="UserId" id="modalUserId" />
+                    <input type="hidden" name="UserName" id="modalUserNameInput" />
+
+                    <div class="admin-form-group">
+                        <label class="admin-label">New Role</label>
+                        <select name="Role" id="modalRoleSelect" class="admin-select">
+                            <option value="Admin">Admin</option>
+                            <option value="Member">Member</option>
+                        </select>
+                    </div>
+
+                    <div class="admin-modal__actions">
+                        <button type="submit" class="admin-btn admin-btn--primary">Save Changes</button>
+                        <button type="button" class="admin-btn admin-btn--secondary admin-modal-cancel">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+}
+
+<style>
+    .admin-content__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 24px;
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
+    .admin-content__subtitle {
+        color: #bfa888;
+        letter-spacing: 2px;
+        font-size: 12px;
+        margin-bottom: 8px;
+    }
+
+    .admin-content h1 {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 40px;
+        margin: 0;
+    }
+
+    .admin-content__stats {
+        display: flex;
+        gap: 20px;
+    }
+
+    .admin-stat {
+        font-size: 14px;
+        color: #fff;
+        padding: 8px 16px;
+        background: rgba(191, 168, 136, 0.1);
+        border: 1px solid rgba(191, 168, 136, 0.25);
+    }
+
+        .admin-stat strong {
+            color: #bfa888;
+            margin-left: 6px;
+        }
+
+    .admin-alert {
+        padding: 12px 16px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+        .admin-alert span {
+            font-size: 16px;
+        }
+
+    .admin-alert--error {
+        background: rgba(220, 53, 69, 0.15);
+        border: 1px solid rgba(220, 53, 69, 0.4);
+        color: #ff6b6b;
+    }
+
+    .admin-alert--success {
+        background: rgba(40, 167, 69, 0.15);
+        border: 1px solid rgba(40, 167, 69, 0.4);
+        color: #51cf66;
+    }
+
+    .admin-table-container {
+        overflow-x: auto;
+        margin-bottom: 24px;
+    }
+
+    .admin-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+        .admin-table thead tr {
+            border-bottom: 2px solid rgba(191, 168, 136, 0.3);
+        }
+
+        .admin-table th {
+            text-align: left;
+            padding: 14px 12px;
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #bfa888;
+            font-weight: 600;
+        }
+
+        .admin-table td {
+            padding: 14px 12px;
+            border-bottom: 1px solid rgba(191, 168, 136, 0.15);
+            font-size: 14px;
+        }
+
+        .admin-table tbody tr {
+            transition: background 0.2s ease;
+        }
+
+            .admin-table tbody tr:hover {
+                background: rgba(191, 168, 136, 0.05);
+            }
+
+    .admin-table__empty {
+        text-align: center;
+        color: #bfa888;
+        padding: 40px 12px !important;
+        font-style: italic;
+    }
+
+    .admin-badge {
+        display: inline-block;
+        padding: 4px 12px;
+        font-size: 11px;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        border-radius: 12px;
+        font-weight: 600;
+    }
+
+    .admin-badge--admin {
+        background: rgba(191, 168, 136, 0.2);
+        color: #bfa888;
+        border: 1px solid rgba(191, 168, 136, 0.4);
+    }
+
+    .admin-badge--member {
+        background: rgba(52, 152, 219, 0.2);
+        color: #5dade2;
+        border: 1px solid rgba(52, 152, 219, 0.4);
+    }
+
+    .admin-badge--superadmin {
+        background: rgba(231, 76, 60, 0.2);
+        color: #ec7063;
+        border: 1px solid rgba(231, 76, 60, 0.4);
+    }
+
+    .admin-actions {
+        display: flex;
+        gap: 8px;
+    }
+
+    .admin-text-muted {
+        color: rgba(255, 255, 255, 0.3);
+    }
+
+    .admin-btn {
+        display: inline-block;
+        text-decoration: none;
+        background: transparent;
+        color: #fff;
+        border: 1px solid rgba(191, 168, 136, 0.5);
+        padding: 10px 16px;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+        .admin-btn:hover {
+            background: rgba(191, 168, 136, 0.1);
+            border-color: #bfa888;
+        }
+
+        .admin-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+    .admin-btn--sm {
+        padding: 6px 12px;
+        font-size: 11px;
+    }
+
+    .admin-btn--primary {
+        background: linear-gradient(135deg, #bfa888 0%, #a68b6a 100%);
+        color: #021527;
+        border-color: transparent;
+        font-weight: 600;
+    }
+
+        .admin-btn--primary:hover {
+            color: #021527;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(191, 168, 136, 0.35);
+        }
+
+    .admin-btn--secondary {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(191, 168, 136, 0.3);
+    }
+
+        .admin-btn--secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+    .admin-pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        margin-top: 24px;
+    }
+
+    .admin-pagination__btn {
+        background: transparent;
+        color: #fff;
+        border: 1px solid rgba(191, 168, 136, 0.3);
+        padding: 8px 16px;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+        .admin-pagination__btn:hover:not(:disabled) {
+            background: rgba(191, 168, 136, 0.1);
+            border-color: #bfa888;
+            color: #bfa888;
+        }
+
+        .admin-pagination__btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+    .admin-pagination__numbers {
+        display: flex;
+        gap: 4px;
+    }
+
+    .admin-pagination__number {
+        background: transparent;
+        color: #fff;
+        border: 1px solid rgba(191, 168, 136, 0.25);
+        padding: 8px 12px;
+        font-size: 12px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        min-width: 36px;
+    }
+
+        .admin-pagination__number:hover {
+            background: rgba(191, 168, 136, 0.1);
+            border-color: #bfa888;
+        }
+
+        .admin-pagination__number.active {
+            background: linear-gradient(135deg, #bfa888 0%, #a68b6a 100%);
+            color: #021527;
+            border-color: transparent;
+            font-weight: 600;
+        }
+
+    .admin-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1000;
+        display: none;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .admin-modal.active {
+            display: flex;
+        }
+
+    .admin-modal__overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(5px);
+    }
+
+    .admin-modal__box {
+        position: relative;
+        background: rgba(2, 21, 39, 0.95);
+        border: 1px solid rgba(191, 168, 136, 0.4);
+        backdrop-filter: blur(10px);
+        width: 90%;
+        max-width: 500px;
+        padding: 0;
+        z-index: 1001;
+    }
+
+    .admin-modal__header {
+        padding: 20px 24px;
+        border-bottom: 1px solid rgba(191, 168, 136, 0.2);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .admin-modal__title {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 28px;
+        margin: 0;
+        color: #bfa888;
+    }
+
+    .admin-modal__close {
+        background: transparent;
+        border: none;
+        color: #bfa888;
+        font-size: 32px;
+        cursor: pointer;
+        line-height: 1;
+        padding: 0;
+        width: 32px;
+        height: 32px;
+        transition: all 0.3s ease;
+    }
+
+        .admin-modal__close:hover {
+            color: #fff;
+            transform: rotate(90deg);
+        }
+
+    .admin-modal__body {
+        padding: 24px;
+        color: #fff;
+    }
+
+    .admin-modal__info {
+        background: rgba(191, 168, 136, 0.08);
+        border: 1px solid rgba(191, 168, 136, 0.2);
+        padding: 16px;
+        margin-bottom: 24px;
+    }
+
+        .admin-modal__info p {
+            margin: 8px 0;
+            font-size: 14px;
+        }
+
+        .admin-modal__info strong {
+            color: #bfa888;
+            margin-right: 8px;
+        }
+
+    .admin-form-group {
+        margin-bottom: 24px;
+    }
+
+    .admin-label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        font-size: 12px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: #bfa888;
+    }
+
+    .admin-select {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(191, 168, 136, 0.3);
+        color: #fff;
+        padding: 12px;
+        font-size: 14px;
+        transition: all 0.3s ease;
+    }
+
+        .admin-select:focus {
+            outline: none;
+            border-color: #bfa888;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .admin-select option {
+            background: #021527;
+            color: #fff;
+        }
+
+    .admin-modal__actions {
+        display: flex;
+        gap: 12px;
+        justify-content: flex-end;
+    }
+
+    @@media (max-width: 900px) {
+        .admin-content__header {
+            flex-direction: column;
+        }
+
+        .admin-table {
+            font-size: 12px;
+        }
+
+            .admin-table th,
+            .admin-table td {
+                padding: 10px 8px;
+            }
+
+        .admin-pagination {
+            flex-wrap: wrap;
+        }
+    }
+</style>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const rows = Array.from(document.querySelectorAll(".user-row"));
+        const paginationNumbers = document.getElementById("paginationNumbers");
+        const prevPageBtn = document.getElementById("prevPageBtn");
+        const nextPageBtn = document.getElementById("nextPageBtn");
+        const totalUsersCount = document.getElementById("totalUsersCount");
+        const paginationContainer = document.getElementById("paginationContainer");
+        const noUsersRow = document.getElementById("noUsersRow");
+        const emailSearchInput = document.getElementById("emailSearchInput");
+
+        let currentPage = 1;
+        const rowsPerPage = 10;
+
+        function getVisibleRows() {
+            const query = emailSearchInput ? emailSearchInput.value.trim().toLowerCase() : "";
+            return Array.from(rows).filter(row => {
+                if (!query) return true;
+                // Email is in the 4th <td> (index 3)
+                const emailCell = row.querySelectorAll("td")[3];
+                return emailCell && emailCell.textContent.trim().toLowerCase().includes(query);
+            });
+        }
+
+        function refreshTable() {
+            const visible = getVisibleRows();
+            totalUsersCount.textContent = visible.length;
+
+            rows.forEach(row => row.style.display = "none");
+
+            if (visible.length === 0) {
+                if (noUsersRow) noUsersRow.style.display = "";
+                if (paginationContainer) paginationContainer.style.display = "none";
+                return;
+            }
+
+            if (noUsersRow) noUsersRow.style.display = "none";
+            if (paginationContainer) paginationContainer.style.display = "";
+
+            const totalPages = Math.ceil(visible.length / rowsPerPage) || 1;
+            if (currentPage > totalPages) currentPage = totalPages;
+
+            const start = (currentPage - 1) * rowsPerPage;
+            const end = start + rowsPerPage;
+
+            visible.forEach((row, index) => {
+                row.style.display = (index >= start && index < end) ? "" : "none";
+            });
+
+            renderPaginationNumbers(totalPages);
+            updateButtons(totalPages);
+        }
+
+        function renderPaginationNumbers(totalPages) {
+            paginationNumbers.innerHTML = "";
+            for (let i = 1; i <= totalPages; i++) {
+                const btn = document.createElement("button");
+                btn.type = "button";
+                btn.className = "admin-pagination__number" + (i === currentPage ? " active" : "");
+                btn.textContent = i;
+                btn.addEventListener("click", function () { currentPage = i; refreshTable(); });
+                paginationNumbers.appendChild(btn);
+            }
+        }
+
+        function updateButtons(totalPages) {
+            prevPageBtn.disabled = currentPage === 1;
+            nextPageBtn.disabled = currentPage === totalPages || totalPages === 0;
+        }
+
+        refreshTable();
+
+        prevPageBtn?.addEventListener("click", function () {
+            if (currentPage > 1) { currentPage--; refreshTable(); }
+        });
+
+        nextPageBtn?.addEventListener("click", function () {
+            const totalPages = Math.ceil(getVisibleRows().length / rowsPerPage);
+            if (currentPage < totalPages) { currentPage++; refreshTable(); }
+        });
+
+        emailSearchInput?.addEventListener("input", function () {
+            currentPage = 1;
+            refreshTable();
+        });
+
+        const roleModal = document.getElementById("roleModal");
+        const roleModalOverlay = document.getElementById("roleModalOverlay");
+        const roleModalClose = document.getElementById("roleModalClose");
+
+        if (roleModal) {
+            document.querySelectorAll(".open-role-modal").forEach(btn => {
+                btn.addEventListener("click", function () {
+                    const userId = this.dataset.id;
+                    const userName = this.dataset.name;
+                    const currentRole = this.dataset.role;
+
+                    document.getElementById("modalUserId").value = userId;
+                    document.getElementById("modalUserNameInput").value = userName;
+                    document.getElementById("modalUserName").textContent = userName;
+                    document.getElementById("modalCurrentRole").textContent = currentRole;
+
+                    const select = document.getElementById("modalRoleSelect");
+                    Array.from(select.options).forEach(opt => {
+                        opt.selected = opt.value === currentRole;
+                    });
+
+                    roleModal.classList.add("active");
+                });
+            });
+
+            function closeRoleModal() {
+                roleModal.classList.remove("active");
+            }
+
+            roleModalClose?.addEventListener("click", closeRoleModal);
+            roleModalOverlay?.addEventListener("click", closeRoleModal);
+
+            document.querySelectorAll(".admin-modal-cancel").forEach(btn => {
+                btn.addEventListener("click", closeRoleModal);
+            });
+        }
+    });
+</script>
+

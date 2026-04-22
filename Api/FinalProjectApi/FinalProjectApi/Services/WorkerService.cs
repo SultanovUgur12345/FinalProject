@@ -27,6 +27,16 @@ namespace FinalProjectApi.Services
             return _mapper.Map<List<WorkerGetDto>>(workers);
         }
 
+        public async Task<List<WorkerGetDto>> SearchByNameAsync(string name)
+        {
+            var workers = await _context.Workers
+                .Where(w => w.FullName.ToLower().Contains(name.ToLower()))
+                .OrderByDescending(w => w.CreateDate)
+                .ToListAsync();
+
+            return _mapper.Map<List<WorkerGetDto>>(workers);
+        }
+
         public async Task<WorkerDetailDto> GetByIdAsync(int id)
         {
             var worker = await _context.Workers.FindAsync(id);

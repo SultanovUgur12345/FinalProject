@@ -18,6 +18,12 @@ public class WorkerApiService : IWorkerApiService
         return await _httpClient.GetFromJsonAsync<List<WorkerGetVM>>("api/Worker/GetAll");
     }
 
+    public async Task<List<WorkerGetVM>> SearchByNameAsync(string name)
+    {
+        return await _httpClient.GetFromJsonAsync<List<WorkerGetVM>>(
+            $"api/Worker/Search?name={Uri.EscapeDataString(name)}");
+    }
+
     public async Task<WorkerDetailVM> GetByIdAsync(int id)
     {
         return await _httpClient.GetFromJsonAsync<WorkerDetailVM>($"api/Worker/Get/{id}");

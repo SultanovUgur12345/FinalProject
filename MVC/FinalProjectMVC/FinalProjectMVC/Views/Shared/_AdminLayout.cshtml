@@ -1,3 +1,8 @@
+@using Microsoft.AspNetCore.Http
+@{
+    var adminProfileImage = Context.Session.GetString("ProfileImage");
+    var adminUserName     = Context.Session.GetString("UserName");
+}
 <!DOCTYPE html>
 <html lang="az">
 <head>
@@ -208,8 +213,15 @@
     <header id="adminTopbar">
         <span class="page-title">@ViewData["Title"]</span>
         <div class="user-info">
-            <div class="avatar">@(User.Identity?.Name?.Substring(0,1).ToUpper() ?? "A")</div>
-            <span>@User.Identity?.Name</span>
+            @if (!string.IsNullOrWhiteSpace(adminProfileImage))
+            {
+                <img src="@adminProfileImage" alt="Profile" style="width:34px;height:34px;border-radius:50%;object-fit:cover;border:2px solid var(--accent);" />
+            }
+            else
+            {
+                <div class="avatar">@((adminUserName ?? User.Identity?.Name ?? "A").Substring(0,1).ToUpper())</div>
+            }
+            <span>@(adminUserName ?? User.Identity?.Name)</span>
         </div>
     </header>
 

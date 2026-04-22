@@ -1,0 +1,8 @@
+﻿namespace FinalProjectApi.DTOs.Account
+{
+    public class GetProfileDto
+    {
+        public string FullName { get; set; } = string.Empty;
+        public string UserName { get; set; } = string.Empty;
+    }
+}

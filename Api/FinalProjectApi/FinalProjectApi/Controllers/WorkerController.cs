@@ -27,6 +27,20 @@ namespace FinalProjectApi.Controllers
             return Ok(result);
         }
 
+        [Authorize(Roles = $"{nameof(Roles.SuperAdmin)},{nameof(Roles.Admin)}")]
+        [HttpGet]
+        public async Task<IActionResult> Search([FromQuery] string name)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                var all = await _service.GetAllAsync();
+                return Ok(all);
+            }
+
+            var result = await _service.SearchByNameAsync(name);
+            return Ok(result);
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {

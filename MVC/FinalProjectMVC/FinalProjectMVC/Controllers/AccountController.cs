@@ -12,10 +12,12 @@ namespace FinalProjectMVC.Controllers
     public class AccountController : Controller
     {
         private readonly IAccountService _accountService;
+        private readonly string _apiBaseUrl;
 
-        public AccountController(IAccountService accountService)
+        public AccountController(IAccountService accountService, IConfiguration configuration)
         {
             _accountService = accountService;
+            _apiBaseUrl = (configuration["ApiSettings:BaseUrl"] ?? "http://localhost:5147").TrimEnd('/');
         }
 
         public IActionResult Register()
@@ -74,6 +76,15 @@ namespace FinalProjectMVC.Controllers
 
             HttpContext.Session.SetString("UserName", result.userName);
 
+            var profileData = await _accountService.GetProfileAsync(result.token);
+            if (!string.IsNullOrWhiteSpace(profileData?.ProfileImageUrl))
+            {
+                var imageUrl = profileData.ProfileImageUrl.StartsWith("http")
+                    ? profileData.ProfileImageUrl
+                    : $"{_apiBaseUrl}{profileData.ProfileImageUrl}";
+                HttpContext.Session.SetString("ProfileImage", imageUrl);
+            }
+
             var handler = new JwtSecurityTokenHandler();
             var jwtToken = handler.ReadJwtToken(result.token);
             var claims = jwtToken.Claims.Select(c => (c.Type == "role" || c.Type == ClaimTypes.Role) ? new Claim(ClaimTypes.Role, c.Value) : c).ToList();
@@ -95,6 +106,7 @@ namespace FinalProjectMVC.Controllers
         {
             Response.Cookies.Delete("jwt_token");
             HttpContext.Session.Remove("UserName");
+            HttpContext.Session.Remove("ProfileImage");
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction(nameof(Login));
         }
@@ -230,7 +242,24 @@ namespace FinalProjectMVC.Controllers
             if (string.IsNullOrWhiteSpace(token))
                 return RedirectToAction(nameof(Login));
 
-            var model = await _accountService.GetProfileAsync(token);
+            var profile = await _accountService.GetProfileAsync(token);
+
+            var sessionImage = HttpContext.Session.GetString("ProfileImage");
+            string? profileImageUrl = null;
+
+            if (!string.IsNullOrWhiteSpace(sessionImage))
+                profileImageUrl = sessionImage;
+            else if (!string.IsNullOrWhiteSpace(profile.ProfileImageUrl))
+                profileImageUrl = profile.ProfileImageUrl.StartsWith("http")
+                    ? profile.ProfileImageUrl
+                    : $"{_apiBaseUrl}{profile.ProfileImageUrl}";
+
+            var model = new UpdateProfileVM
+            {
+                FullName = profile.FullName,
+                UserName = profile.UserName,
+                ProfileImageUrl = profileImageUrl
+            };
 
             return View(model);
         }
@@ -242,7 +271,6 @@ namespace FinalProjectMVC.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
-            // Read token from session first, fallback to cookie
             var token = HttpContext.Session.GetString("token");
 
             if (string.IsNullOrWhiteSpace(token))
@@ -253,7 +281,7 @@ namespace FinalProjectMVC.Controllers
             if (string.IsNullOrWhiteSpace(token))
                 return RedirectToAction(nameof(Login));
 
-            var result = await _accountService.UpdateProfileAsync(model, token);
+            var result = await _accountService.UpdateProfileAsync(model, model.ProfileImage, token);
 
             if (!result.success)
             {
@@ -264,9 +292,10 @@ namespace FinalProjectMVC.Controllers
             TempData["Success"] = result.message;
 
             if (!string.IsNullOrWhiteSpace(result.userName))
-            {
                 HttpContext.Session.SetString("UserName", result.userName);
-            }
+
+            if (!string.IsNullOrWhiteSpace(result.profileImageUrl))
+                HttpContext.Session.SetString("ProfileImage", result.profileImageUrl);
 
             return RedirectToAction(nameof(EditProfile));
         }

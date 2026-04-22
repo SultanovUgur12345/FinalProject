@@ -5,6 +5,7 @@ namespace FinalProjectApi.Services.Interfaces
     public interface IWorkerService
     {
         Task<List<WorkerGetDto>> GetAllAsync();
+        Task<List<WorkerGetDto>> SearchByNameAsync(string name);
         Task<WorkerDetailDto> GetByIdAsync(int id);
 
         Task CreateAsync(WorkerCreateDto dto);

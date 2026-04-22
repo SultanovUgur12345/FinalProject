@@ -34,6 +34,30 @@ namespace FinalProjectMVC.Areas.Admin.Controllers
             return View(filtered);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Search(string email)
+        {
+            var token = HttpContext.Session.GetString("token") ?? Request.Cookies["jwt_token"];
+            if (string.IsNullOrWhiteSpace(token))
+                return RedirectToAction("Login", "Account", new { area = "" });
+
+            if (string.IsNullOrWhiteSpace(email))
+                return RedirectToAction(nameof(Index));
+
+            var callerRole = User.FindFirstValue(ClaimTypes.Role) ?? "Admin";
+
+            var users = await _accountService.SearchUsersByEmailAsync(email, token, callerRole);
+
+            var filtered = users
+                .Where(u => u.Role == "Admin" || u.Role == "Member")
+                .ToList();
+
+            ViewBag.CallerRole = callerRole;
+            ViewBag.SearchEmail = email;
+
+            return View("Index", filtered);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AssignRole(AssignRoleVM model)

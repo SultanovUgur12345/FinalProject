@@ -7,18 +7,7 @@
     string apiBaseUrl = (Configuration["ApiSettings:BaseUrl"] ?? "http://localhost:5147/").TrimEnd('/');
 }
 
-<section class="admin-layout">
-    <aside class="admin-sidebar">
-        <div class="admin-sidebar__brand">ADMIN PANEL</div>
-        <nav class="admin-sidebar__nav">
-            <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" class="admin-sidebar__link">Dashboard</a>
-            <a asp-area="Admin" asp-controller="Workers" asp-action="Index" class="admin-sidebar__link active">Workers</a>
-            <a asp-area="Admin" asp-controller="Users" asp-action="Index" class="admin-sidebar__link">Users</a>
-        </nav>
-    </aside>
-
-    <div class="admin-content">
-        <div class="admin-content__header">
+<div class="admin-content__header">
             <div>
                 <p class="admin-content__subtitle">WORKER MANAGEMENT</p>
                 <h1>Workers List</h1>
@@ -32,6 +21,9 @@
         }
 
         <div class="admin-topbar">
+            <div class="admin-search">
+                <input type="text" id="workerSearchInput" class="admin-search__input" placeholder="Search by name..." autocomplete="off" />
+            </div>
             <span class="admin-stat">Total: <strong id="totalWorkersCount">0</strong></span>
         </div>
 
@@ -95,8 +87,6 @@
             <div class="admin-pagination__numbers" id="paginationNumbers"></div>
             <button class="admin-pagination__btn" id="nextPageBtn">Next →</button>
         </div>
-    </div>
-</section>
 
 <div class="delete-modal" id="deleteModal">
     <div class="delete-modal__overlay" id="deleteModalOverlay"></div>
@@ -139,62 +129,6 @@
 </div>
 
 <style>
-    .admin-layout {
-        width: 100%;
-        margin: 150px 0 70px;
-        padding: 0;
-        display: grid;
-        grid-template-columns: 260px 1fr;
-        gap: 0;
-        color: #fff;
-        box-sizing: border-box;
-        min-height: calc(100vh - 220px);
-    }
-
-    .admin-sidebar,
-    .admin-content {
-        background: rgba(2, 21, 39, 0.86);
-        border: 1px solid rgba(191, 168, 136, 0.3);
-        backdrop-filter: blur(10px);
-        padding: 32px 24px;
-    }
-
-    .admin-sidebar {
-        border-right: none;
-        min-height: 100%;
-    }
-
-    .admin-content {
-        border-left: 1px solid rgba(191, 168, 136, 0.3);
-    }
-
-    .admin-sidebar__brand {
-        color: #bfa888;
-        font-size: 12px;
-        letter-spacing: 2px;
-        margin-bottom: 20px;
-    }
-
-    .admin-sidebar__nav {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .admin-sidebar__link {
-        text-decoration: none;
-        color: #fff;
-        border: 1px solid rgba(191, 168, 136, 0.25);
-        padding: 10px 12px;
-        transition: all 0.3s ease;
-    }
-
-        .admin-sidebar__link:hover,
-        .admin-sidebar__link.active {
-            color: #bfa888;
-            border-color: #bfa888;
-        }
-
     .admin-content__header {
         display: flex;
         justify-content: space-between;
@@ -219,7 +153,38 @@
 
     .admin-topbar {
         margin-bottom: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
     }
+
+    .admin-search {
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+
+    .admin-search__input {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(191, 168, 136, 0.35);
+        color: #fff;
+        padding: 8px 14px;
+        font-size: 13px;
+        outline: none;
+        width: 240px;
+        transition: border-color 0.3s;
+    }
+
+    .admin-search__input::placeholder {
+        color: rgba(255, 255, 255, 0.4);
+    }
+
+    .admin-search__input:focus {
+        border-color: #bfa888;
+    }
+
 
     .admin-stat {
         font-size: 14px;
@@ -528,16 +493,6 @@
     }
 
     @@media (max-width: 900px) {
-        .admin-layout {
-            grid-template-columns: 1fr;
-            margin-top: 120px;
-        }
-
-        .admin-sidebar {
-            border-right: 1px solid rgba(191, 168, 136, 0.3);
-            border-bottom: none;
-        }
-
         .admin-content__header {
             flex-direction: column;
         }
@@ -566,6 +521,69 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
+
+        // SEARCH
+        const searchInput = document.getElementById("workerSearchInput");
+        const tableBody = document.getElementById("workersTableBody");
+        const apiBaseUrl = "@apiBaseUrl";
+
+        let searchTimeout = null;
+
+        searchInput.addEventListener("input", function () {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(async function () {
+                const name = searchInput.value.trim();
+                try {
+                    const response = await fetch(`/Admin/Workers/Search?name=${encodeURIComponent(name)}`);
+                    if (!response.ok) return;
+                    const workers = await response.json();
+
+                    tableBody.innerHTML = "";
+
+                    if (workers.length === 0) {
+                        tableBody.innerHTML = `<tr id="noWorkersRow"><td colspan="6" class="admin-table__empty">No workers found</td></tr>`;
+                        document.getElementById("totalWorkersCount").textContent = "0";
+                        return;
+                    }
+
+                    document.getElementById("totalWorkersCount").textContent = workers.length;
+
+                    workers.forEach(function (item) {
+                        const imgSrc = item.image ? `${apiBaseUrl}${item.image}` : "";
+                        tableBody.innerHTML += `
+                            <tr class="worker-row">
+                                <td>${item.id}</td>
+                                <td><img class="admin-avatar" src="${imgSrc}" alt="${item.fullName}" /></td>
+                                <td>${item.fullName}</td>
+                                <td>${item.position ?? ""}</td>
+                                <td>${item.experienceYears} year</td>
+                                <td>
+                                    <div class="admin-actions">
+                                        <a href="/Admin/Workers/Detail/${item.id}" class="admin-btn admin-btn--sm">Get</a>
+                                        <a href="/Admin/Workers/Edit/${item.id}" class="admin-btn admin-btn--sm">Edit</a>
+                                        <button type="button"
+                                                class="admin-btn admin-btn--sm admin-btn--danger open-delete-modal"
+                                                data-id="${item.id}"
+                                                data-name="${item.fullName}"
+                                                data-position="${item.position ?? ""}"
+                                                data-experience="${item.experienceYears}"
+                                                data-image="${imgSrc}">
+                                            Delete
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>`;
+                    });
+
+                    document.querySelectorAll(".open-delete-modal").forEach(function (btn) {
+                        btn.addEventListener("click", function () { openDeleteModal(btn); });
+                    });
+
+                } catch (e) {
+                    console.error("Search error:", e);
+                }
+            }, 350);
+        });
 
         // DELETE MODAL
         const deleteModal = document.getElementById("deleteModal");

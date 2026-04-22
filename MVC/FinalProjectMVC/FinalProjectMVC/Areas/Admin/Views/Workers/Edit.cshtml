@@ -7,18 +7,7 @@
     string apiBaseUrl = (Configuration["ApiSettings:BaseUrl"] ?? "http://localhost:5147/").TrimEnd('/');
 }
 
-<section class="admin-layout">
-    <aside class="admin-sidebar">
-        <div class="admin-sidebar__brand">ADMIN PANEL</div>
-        <nav class="admin-sidebar__nav">
-            <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" class="admin-sidebar__link">Dashboard</a>
-            <a asp-area="Admin" asp-controller="Workers" asp-action="Index" class="admin-sidebar__link active">Workers</a>
-            <a asp-area="Admin" asp-controller="Users" asp-action="Index" class="admin-sidebar__link">Users</a>
-        </nav>
-    </aside>
-
-    <div class="admin-content">
-        <div class="admin-content__header">
+<div class="admin-content__header">
             <div>
                 <p class="admin-content__subtitle">WORKER MANAGEMENT</p>
                 <h1>Edit Worker</h1>
@@ -92,37 +81,8 @@
                 <button type="submit" class="admin-btn admin-btn--primary">Update Worker</button>
             </div>
         </form>
-    </div>
-</section>
 
 <style>
-    .admin-layout {
-        width: 100%;
-        margin: 150px 0 70px;
-        padding: 0;
-        display: grid;
-        grid-template-columns: 260px 1fr;
-        gap: 0;
-        color: #fff;
-        box-sizing: border-box;
-        min-height: calc(100vh - 220px);
-    }
-
-    .admin-sidebar, .admin-content {
-        background: rgba(2, 21, 39, 0.86);
-        border: 1px solid rgba(191, 168, 136, 0.3);
-        backdrop-filter: blur(10px);
-        padding: 32px 24px;
-    }
-
-    .admin-sidebar { border-right: none; }
-    .admin-content { border-left: 1px solid rgba(191, 168, 136, 0.3); }
-
-    .admin-sidebar__brand { color: #bfa888; font-size: 12px; letter-spacing: 2px; margin-bottom: 20px; }
-    .admin-sidebar__nav { display: flex; flex-direction: column; gap: 10px; }
-    .admin-sidebar__link { text-decoration: none; color: #fff; border: 1px solid rgba(191, 168, 136, 0.25); padding: 10px 12px; transition: all 0.3s ease; }
-    .admin-sidebar__link:hover, .admin-sidebar__link.active { color: #bfa888; border-color: #bfa888; }
-
     .admin-content__header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 28px; flex-wrap: wrap; gap: 16px; }
     .admin-content__subtitle { color: #bfa888; letter-spacing: 2px; font-size: 12px; margin-bottom: 8px; }
     .admin-content h1 { font-family: 'Cormorant Garamond', serif; font-size: 40px; margin: 0; }
@@ -150,8 +110,6 @@
     .admin-btn--primary:hover { color: #021527; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(191,168,136,0.35); }
 
     @@media (max-width: 900px) {
-        .admin-layout { grid-template-columns: 1fr; margin-top: 120px; }
-        .admin-sidebar { border-right: 1px solid rgba(191,168,136,0.3); }
         .admin-form { grid-template-columns: 1fr; }
         .admin-form-group--full, .admin-form-actions { grid-column: 1; }
     }

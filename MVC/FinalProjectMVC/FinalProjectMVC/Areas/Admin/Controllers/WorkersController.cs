@@ -21,6 +21,16 @@ public class WorkersController : AdminBaseController
         return View(data);
     }
 
+    [HttpGet]
+    public async Task<IActionResult> Search([FromQuery] string name)
+    {
+        var data = string.IsNullOrWhiteSpace(name)
+            ? await _service.GetAllAsync()
+            : await _service.SearchByNameAsync(name);
+
+        return Json(data);
+    }
+
     public async Task<IActionResult> Detail(int id)
     {
         var data = await _service.GetByIdAsync(id);

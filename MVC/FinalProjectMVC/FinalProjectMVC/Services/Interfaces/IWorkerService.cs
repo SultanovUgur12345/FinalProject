@@ -5,6 +5,7 @@ public interface IWorkerService
     public interface IWorkerApiService
     {
         Task<List<WorkerGetVM>> GetAllAsync();
+        Task<List<WorkerGetVM>> SearchByNameAsync(string name);
         Task<WorkerDetailVM> GetByIdAsync(int id);
         Task<WorkerEditVM> GetByIdForEditAsync(int id);
         Task CreateAsync(WorkerCreateVM dto);

@@ -1,0 +1,185 @@
+@using Microsoft.AspNetCore.Http
+@{
+    Layout = null;
+    var adminUser  = Context.Session.GetString("UserName");
+    var adminImage = Context.Session.GetString("ProfileImage");
+}
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] — Admin Panel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet" />
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            color: #fff;
+            display: flex;
+            min-height: 100vh;
+            background-image: url('https://seafarer.qodeinteractive.com/wp-content/uploads/2021/07/home-1-parallax-1.jpg');
+        }
+
+        /* ── Sidebar ── */
+        .a-sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 260px;
+            height: 100vh;
+            border-right: 1px solid rgba(191, 168, 136, 0.25);
+            display: flex;
+            flex-direction: column;
+            z-index: 100;
+            overflow-y: auto;
+        }
+
+        .a-sidebar__brand {
+            padding: 28px 24px 20px;
+            color: #bfa888;
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 700;
+            border-bottom: 1px solid rgba(191, 168, 136, 0.2);
+        }
+
+        .a-sidebar__nav {
+            flex: 1;
+            padding: 20px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .a-sidebar__link {
+            display: block;
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.75);
+            padding: 12px 24px;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            border-left: 3px solid transparent;
+            transition: all 0.25s ease;
+        }
+
+        .a-sidebar__link:hover,
+        .a-sidebar__link.active {
+            color: #bfa888;
+            border-left-color: #bfa888;
+            background: rgba(191, 168, 136, 0.08);
+        }
+
+        /* ── Main content ── */
+        .a-main {
+            margin-left: 260px;
+            width: calc(100% - 260px);
+            min-height: 100vh;
+            padding: 36px 40px;
+        }
+
+        @@media (max-width: 900px) {
+            .a-sidebar { width: 220px; }
+            .a-main { margin-left: 220px; width: calc(100% - 220px); padding: 24px 20px; }
+        }
+
+        @@media (max-width: 640px) {
+            .a-sidebar { width: 60px; }
+            .a-sidebar__brand, .a-sidebar__link { font-size: 0; padding: 14px 18px; }
+            .a-sidebar__link::before { font-size: 16px; }
+            .a-main { margin-left: 60px; width: calc(100% - 60px); padding: 20px 16px; }
+        }
+
+        /* ── Topbar ── */
+        .a-topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 0 28px;
+            margin-bottom: 8px;
+            border-bottom: 1px solid rgba(191,168,136,0.18);
+        }
+
+        .a-topbar__title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 22px;
+            font-weight: 600;
+            color: #fff;
+            letter-spacing: 0.5px;
+        }
+
+        .a-topbar__user {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            color: rgba(255,255,255,0.75);
+        }
+
+        .a-topbar__avatar {
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(191,168,136,0.5);
+        }
+
+        .a-topbar__avatar-placeholder {
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            background: rgba(191,168,136,0.2);
+            border: 2px solid rgba(191,168,136,0.4);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+            color: #bfa888;
+        }
+    </style>
+</head>
+<body>
+
+<aside class="a-sidebar">
+    <div class="a-sidebar__brand">Admin Panel</div>
+    <nav class="a-sidebar__nav">
+        <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index"
+           class="a-sidebar__link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Dashboard" ? "active" : "")">
+            Dashboard
+        </a>
+        <a asp-area="Admin" asp-controller="Workers" asp-action="Index"
+           class="a-sidebar__link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Workers" ? "active" : "")">
+            Workers
+        </a>
+        @if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
+        {
+            <a asp-area="Admin" asp-controller="Users" asp-action="Index"
+               class="a-sidebar__link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Users" ? "active" : "")">
+                Users
+            </a>
+        }
+    </nav>
+</aside>
+
+<main class="a-main">
+    <div class="a-topbar">
+        <span class="a-topbar__title">@ViewData["Title"]</span>
+        <div class="a-topbar__user">
+            @if (!string.IsNullOrWhiteSpace(adminImage))
+            {
+                <img src="@adminImage" alt="Profile" class="a-topbar__avatar" />
+            }
+            else
+            {
+                <div class="a-topbar__avatar-placeholder">
+                    @((adminUser ?? "A").Substring(0, 1).ToUpper())
+                </div>
+            }
+            <span>@(adminUser ?? User.Identity?.Name)</span>
+        </div>
+    </div>
+    @RenderBody()
+</main>
+
+</body>
+</html>
