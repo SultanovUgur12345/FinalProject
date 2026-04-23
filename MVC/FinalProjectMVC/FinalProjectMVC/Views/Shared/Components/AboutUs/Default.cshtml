@@ -1,77 +1,190 @@
-﻿<section id="aboutSection">
+@using FinalProjectMVC.ViewModels.AboutUs
+@model List<AboutUsGetVM>
 
-    <div class="about-block alt">
-        <div class="container split-grid">
-            <div class="split-media">
-                <img src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=1200&q=80" alt="Luxury yacht achievement moment">
-            </div>
-            <div class="split-content">
-                <div class="split-content-top">
-                    <span class="about-kicker">Our Achievements</span>
-                    <button class="split-video-btn js-open-video" data-video="https://www.youtube-nocookie.com/embed/M7lc1UVf-VE?autoplay=1&rel=0" aria-label="Play section video"><i class="fas fa-play"></i></button>
-                </div>
-                <h2>What We Have Achieved So Far</h2>
-                <p>Over decades, we built a reputation for operational excellence, guest delight and marine sustainability. These milestones represent not just numbers, but the trust thousands of guests placed in us.</p>
-                <div class="achievements-list">
-                    <div class="achievement-item">
-                        <span class="anim-border-top"></span>
-                        <span class="anim-border-bottom"></span>
-                        <h4>Best Luxury Charter Experience 2024</h4>
-                        <p>Recognized by Blue Marina Guild for guest satisfaction, route originality and onboard service standards.</p>
-                    </div>
-                    <div class="achievement-item">
-                        <span class="anim-border-top"></span>
-                        <span class="anim-border-bottom"></span>
-                        <h4>Zero-Major-Incident Safety Streak</h4>
-                        <p>8 consecutive years of major tours completed with top-tier emergency-readiness audits and crew certification.</p>
-                    </div>
-                    <div class="achievement-item">
-                        <span class="anim-border-top"></span>
-                        <span class="anim-border-bottom"></span>
-                        <h4>Eco-Commitment Milestone</h4>
-                        <p>Reduced fuel impact by 34% through route optimization, modern fleet upgrades and clean-marina partnerships.</p>
-                    </div>
-                </div>
-                <p style="margin-top: 18px;">We continue to evolve with smarter fleet technology and advanced crew training to deliver the same Seafarer quality in every destination.</p>
-            </div>
+@if (Model != null && Model.Any())
+{
+    <section id="aboutSection">
+        @{ int aboutIndex = 0; }
+        @foreach (var item in Model)
+        {
+            bool isEven = (aboutIndex % 2 == 0);
+            aboutIndex++;
 
-        </div>
-    </div>
+            <div class="about-block alt">
+                <div class="container split-grid @(isEven ? "" : "split-grid--reverse")">
 
-    <div class="about-block alt">
-        <div class="container split-grid">
-            <div class="split-content">
-                <div class="split-content-top">
-                    <span class="about-kicker">Global Milestones</span>
-                    <button class="split-video-btn js-open-video" data-video="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0" aria-label="Play section video"><i class="fas fa-play"></i></button>
+                    @if (isEven)
+                    {
+                        <div class="split-content">
+                            <div class="split-content-top">
+                                <span class="about-kicker">@item.SubTitle</span>
+                                @if (!string.IsNullOrWhiteSpace(item.VideoUrl))
+                                {
+                                    <button class="split-video-btn js-open-video"
+                                            data-video="@item.VideoUrl"
+                                            aria-label="Play section video">
+                                        <i class="fas fa-play"></i>
+                                    </button>
+                                }
+                            </div>
+                            <h2>@item.Title</h2>
+                            <p>@item.Description</p>
+                            @if (item.Achievements.Any())
+                            {
+                                <div class="achievements-list">
+                                    @foreach (var ach in item.Achievements)
+                                    {
+                                        <div class="achievement-item">
+                                            <span class="anim-border-top"></span>
+                                            <span class="anim-border-bottom"></span>
+                                            <h4>@ach.Title</h4>
+                                            <p>@ach.Description</p>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                            @if (!string.IsNullOrWhiteSpace(item.BottomText))
+                            {
+                                <p style="margin-top: 18px;">@item.BottomText</p>
+                            }
+                        </div>
+                        <div class="split-media">
+                            @if (!string.IsNullOrWhiteSpace(item.Image))
+                            {
+                                <img src="@("http://localhost:5147/" + item.Image)" alt="@item.Title" />
+                            }
+                            else
+                            {
+                                <img src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=1200&q=80" alt="@item.Title" />
+                            }
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="split-media">
+                            @if (!string.IsNullOrWhiteSpace(item.Image))
+                            {
+                                <img src="@("http://localhost:5147/" + item.Image)" alt="@item.Title" />
+                            }
+                            else
+                            {
+                                <img src="https://images.unsplash.com/photo-1540946485063-a40da27545f8?auto=format&fit=crop&w=1200&q=80" alt="@item.Title" />
+                            }
+                        </div>
+                        <div class="split-content">
+                            <div class="split-content-top">
+                                <span class="about-kicker">@item.SubTitle</span>
+                                @if (!string.IsNullOrWhiteSpace(item.VideoUrl))
+                                {
+                                    <button class="split-video-btn js-open-video"
+                                            data-video="@item.VideoUrl"
+                                            aria-label="Play section video">
+                                        <i class="fas fa-play"></i>
+                                    </button>
+                                }
+                            </div>
+                            <h2>@item.Title</h2>
+                            <p>@item.Description</p>
+                            @if (item.Achievements.Any())
+                            {
+                                <div class="achievements-list">
+                                    @foreach (var ach in item.Achievements)
+                                    {
+                                        <div class="achievement-item">
+                                            <span class="anim-border-top"></span>
+                                            <span class="anim-border-bottom"></span>
+                                            <h4>@ach.Title</h4>
+                                            <p>@ach.Description</p>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                            @if (!string.IsNullOrWhiteSpace(item.BottomText))
+                            {
+                                <p style="margin-top: 18px;">@item.BottomText</p>
+                            }
+                        </div>
+                    }
+
                 </div>
-                <h2>Growth That Matches Our Vision</h2>
-                <p>Our recent years have focused on quality expansion, stronger safety metrics, and smarter sustainability integrations across routes and fleet operations. Each milestone marks a direct improvement in guest experience.</p>
-                <div class="achievements-list">
-                    <div class="achievement-item">
-                        <span class="anim-border-top"></span>
-                        <span class="anim-border-bottom"></span>
-                        <h4>Top Guest Retention Performance 2025</h4>
-                        <p>Exceeded 78% repeat booking rate through custom itinerary design and concierge-level onboard service.</p>
-                    </div>
-                    <div class="achievement-item">
-                        <span class="anim-border-top"></span>
-                        <span class="anim-border-bottom"></span>
-                        <h4>Fleet Modernization Completion</h4>
-                        <p>Refitted core vessels with navigation upgrades, low-noise systems and improved comfort architecture.</p>
-                    </div>
-                    <div class="achievement-item">
-                        <span class="anim-border-top"></span>
-                        <span class="anim-border-bottom"></span>
-                        <h4>Expanded Premium Route Network</h4>
-                        <p>Launched curated island routes with better docking logistics and flexible weather-safe alternates.</p>
-                    </div>
-                </div>
-                <p style="margin-top: 18px;">These milestones are not endpoint wins. They are the baseline for our next-level charter standards and future ocean experiences.</p>
             </div>
-            <div class="split-media">
-                <img src="https://images.unsplash.com/photo-1540946485063-a40da27545f8?auto=format&fit=crop&w=1200&q=80" alt="Seafarer captain and yacht deck">
-            </div>
-        </div>
+        }
+    </section>
+}
+
+<section id="videoPopupSection" aria-hidden="true">
+    <div class="video-dialog" role="dialog" aria-modal="true" aria-label="Seafarer video popup">
+        <button class="video-close" id="videoPopupClose" aria-label="Close video"><i class="fas fa-times"></i></button>
+        <iframe id="videoFrame" src="" title="Seafarer video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     </div>
 </section>
+
+<script>
+    (function () {
+        const popup   = document.getElementById("videoPopupSection");
+        const frame   = document.getElementById("videoFrame");
+        const closeBtn = document.getElementById("videoPopupClose");
+
+        if (!popup || !frame || !closeBtn) return;
+
+        // YouTube linki embed formatına çevirir
+        function convertToEmbed(url) {
+            if (!url) return "";
+
+            // watch?v=
+            if (url.includes("watch?v=")) {
+                let videoId = url.split("watch?v=")[1];
+
+                if (videoId.includes("&"))
+                    videoId = videoId.split("&")[0];
+
+                return "https://www.youtube.com/embed/" + videoId;
+            }
+
+            // youtu.be/
+            if (url.includes("youtu.be/")) {
+                let videoId = url.split("youtu.be/")[1];
+
+                if (videoId.includes("?"))
+                    videoId = videoId.split("?")[0];
+
+                return "https://www.youtube.com/embed/" + videoId;
+            }
+
+            return url;
+        }
+
+        function openPopup(videoUrl) {
+            const embedUrl = convertToEmbed(videoUrl);
+
+            frame.src = embedUrl;
+            popup.classList.add("open");
+            popup.setAttribute("aria-hidden", "false");
+            document.body.style.overflow = "hidden";
+        }
+
+        function closePopup() {
+            popup.classList.remove("open");
+            popup.setAttribute("aria-hidden", "true");
+            document.body.style.overflow = "";
+            frame.src = "";
+        }
+
+        document.querySelectorAll(".js-open-video").forEach(function (btn) {
+            btn.addEventListener("click", function () {
+                var url = btn.getAttribute("data-video");
+                if (url) openPopup(url);
+            });
+        });
+
+        closeBtn.addEventListener("click", closePopup);
+
+        popup.addEventListener("click", function (e) {
+            if (e.target === popup) closePopup();
+        });
+
+        document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape") closePopup();
+        });
+    })();
+</script>

@@ -1,0 +1,79 @@
+@using FinalProjectMVC.ViewModels.AboutUs
+@model List<AboutUsGetVM>
+
+@{
+    ViewData["Title"] = "About Us Management";
+}
+
+<div class="admin-content__header">
+    <div>
+        <p class="admin-content__subtitle">ABOUT US MANAGEMENT</p>
+        <h1>About Us List</h1>
+    </div>
+    <a asp-area="Admin" asp-controller="AboutUs" asp-action="Create" class="admin-btn admin-btn--primary">+ Add New</a>
+</div>
+
+@if (!Model.Any())
+{
+    <p style="color:rgba(255,255,255,0.5); margin-top:24px;">No about us entries found.</p>
+}
+else
+{
+    <div class="workers-grid">
+        @foreach (var item in Model)
+        {
+            <div class="worker-card">
+                @if (!string.IsNullOrWhiteSpace(item.Image))
+                {
+                    <img src="@("http://localhost:5147/" + item.Image)" alt="@item.Title" class="worker-card__img" />
+                }
+                <div class="worker-card__body">
+                    <span class="worker-card__kicker">@item.SubTitle</span>
+                    <h3 class="worker-card__name">@item.Title</h3>
+                    <p class="worker-card__position">@item.Description</p>
+                    @if (item.Achievements.Any())
+                    {
+                        <div class="worker-card__achievements">
+                            <span class="worker-card__ach-label">Achievements: @item.Achievements.Count</span>
+                        </div>
+                    }
+                    <div class="admin-actions" style="margin-top:16px;">
+                        <a asp-area="Admin" asp-controller="AboutUs" asp-action="Detail" asp-route-id="@item.Id" class="admin-btn admin-btn--sm">Detail</a>
+                        <a asp-area="Admin" asp-controller="AboutUs" asp-action="Edit" asp-route-id="@item.Id" class="admin-btn admin-btn--sm">Edit</a>
+                        <form asp-area="Admin" asp-controller="AboutUs" asp-action="Delete" asp-route-id="@item.Id" method="post" style="display:inline;">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="admin-btn admin-btn--sm admin-btn--danger"
+                                    onclick="return confirm('Delete this about us entry?')">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+<style>
+    .admin-content__header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 28px; flex-wrap: wrap; gap: 16px; }
+    .admin-content__subtitle { color: #bfa888; letter-spacing: 2px; font-size: 12px; margin-bottom: 8px; }
+    .admin-content h1, h1 { font-family: 'Cormorant Garamond', serif; font-size: 40px; margin: 0; }
+
+    .workers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 24px; }
+
+    .worker-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(191,168,136,0.15); transition: border-color 0.3s ease; overflow: hidden; }
+    .worker-card:hover { border-color: rgba(191,168,136,0.4); }
+    .worker-card__img { width: 100%; height: 180px; object-fit: cover; display: block; border-bottom: 1px solid rgba(191,168,136,0.12); }
+    .worker-card__body { padding: 24px; }
+    .worker-card__kicker { display: block; color: #bfa888; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+    .worker-card__name { font-family: 'Cormorant Garamond', serif; font-size: 22px; margin: 0 0 6px; color: #fff; }
+    .worker-card__position { color: rgba(255,255,255,0.55); font-size: 13px; margin: 0 0 12px; line-height: 1.5; }
+    .worker-card__ach-label { display: inline-block; background: rgba(191,168,136,0.12); color: #bfa888; font-size: 11px; letter-spacing: 1px; padding: 4px 10px; text-transform: uppercase; }
+
+    .admin-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .admin-btn { display: inline-block; text-decoration: none; background: transparent; color: #fff; border: 1px solid rgba(191,168,136,0.5); padding: 10px 18px; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: all 0.3s ease; }
+    .admin-btn:hover { color: #bfa888; border-color: #bfa888; }
+    .admin-btn--primary { background: linear-gradient(135deg, #bfa888 0%, #a68b6a 100%); color: #021527; border-color: transparent; font-weight: 600; }
+    .admin-btn--primary:hover { color: #021527; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(191,168,136,0.35); }
+    .admin-btn--sm { padding: 7px 12px; font-size: 11px; }
+    .admin-btn--danger { border-color: rgba(255,80,80,0.4); color: #ff8080; }
+    .admin-btn--danger:hover { border-color: #ff5050; color: #ff5050; }
+</style>

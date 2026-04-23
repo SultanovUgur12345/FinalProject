@@ -50,6 +50,12 @@ builder.Services.AddHttpClient<IShipHeroVideoApiService, ShipHeroVideoApiService
     client.BaseAddress = new Uri(apiBaseUrl);
 }).AddHttpMessageHandler<JwtTokenHandler>();
 
+builder.Services.AddHttpClient<IAboutUsApiService, AboutUsApiService>(client =>
+{
+    var apiBaseUrl = builder.Configuration["ApiSettings:BaseUrl"] ?? "http://localhost:5147/";
+    client.BaseAddress = new Uri(apiBaseUrl);
+}).AddHttpMessageHandler<JwtTokenHandler>();
+
 builder.Services.AddHttpClient<IAccountService, AccountService>(client =>
 {
     var apiBaseUrl = builder.Configuration["ApiSettings:BaseUrl"] ?? "http://localhost:5147/";

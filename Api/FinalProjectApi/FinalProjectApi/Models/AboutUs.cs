@@ -2,15 +2,17 @@
 {
     public class AboutUs:BaseEntity
     {
-        public string SubTitle { get; set; } = null!;
+        public string Image { get; set; }
 
-        public string Title { get; set; } = null!;
+        public string SubTitle { get; set; }
 
-        public string Description { get; set; } = null!;
+        public string Title { get; set; }
 
-        public string BottomText { get; set; } = null!;
+        public string Description { get; set; }
 
-        public string VideoUrl { get; set; } = null!;
+        public string BottomText { get; set; }
+
+        public string VideoUrl { get; set; }
 
         public ICollection<AboutUsAchievement> Achievements { get; set; }
     }

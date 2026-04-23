@@ -1,0 +1,92 @@
+@using FinalProjectMVC.ViewModels.AboutUs
+@model AboutUsGetVM
+
+@{
+    ViewData["Title"] = "About Us - Detail";
+}
+
+<div class="admin-content__header">
+    <div>
+        <p class="admin-content__subtitle">ABOUT US MANAGEMENT</p>
+        <h1>About Us Detail</h1>
+    </div>
+    <div style="display:flex;gap:10px;">
+        <a asp-area="Admin" asp-controller="AboutUs" asp-action="Edit" asp-route-id="@Model.Id" class="admin-btn admin-btn--primary">Edit</a>
+        <a asp-area="Admin" asp-controller="AboutUs" asp-action="Index" class="admin-btn">&#8592; Back to List</a>
+    </div>
+</div>
+
+<div class="detail-card">
+    @if (!string.IsNullOrWhiteSpace(Model.Image))
+    {
+        <div class="detail-row">
+            <span class="detail-label">Şəkil</span>
+            <img src="@("http://localhost:5147/" + Model.Image)" alt="@Model.Title" style="max-width:320px; max-height:220px; object-fit:cover; border:1px solid rgba(191,168,136,0.3); margin-top:6px;" />
+        </div>
+    }
+    <div class="detail-row">
+        <span class="detail-label">Sub Title</span>
+        <span class="detail-value">@Model.SubTitle</span>
+    </div>
+    <div class="detail-row">
+        <span class="detail-label">Title</span>
+        <span class="detail-value">@Model.Title</span>
+    </div>
+    <div class="detail-row">
+        <span class="detail-label">Description</span>
+        <span class="detail-value">@Model.Description</span>
+    </div>
+    <div class="detail-row">
+        <span class="detail-label">Bottom Text</span>
+        <span class="detail-value">@Model.BottomText</span>
+    </div>
+    <div class="detail-row">
+        <span class="detail-label">Video URL</span>
+        <span class="detail-value">
+            @if (!string.IsNullOrWhiteSpace(Model.VideoUrl))
+            {
+                <a href="@Model.VideoUrl" target="_blank" style="color:#bfa888;">@Model.VideoUrl</a>
+            }
+        </span>
+    </div>
+</div>
+
+@if (Model.Achievements.Any())
+{
+    <div style="margin-top:32px;">
+        <p class="admin-content__subtitle">ACHIEVEMENTS</p>
+        <div class="workers-grid" style="margin-top:12px;">
+            @foreach (var ach in Model.Achievements)
+            {
+                <div class="worker-card">
+                    <div class="worker-card__body">
+                        <h3 class="worker-card__name">@ach.Title</h3>
+                        <p class="worker-card__position">@ach.Description</p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
+
+<style>
+    .admin-content__header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 28px; flex-wrap: wrap; gap: 16px; }
+    .admin-content__subtitle { color: #bfa888; letter-spacing: 2px; font-size: 12px; margin-bottom: 8px; }
+
+    .detail-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(191,168,136,0.15); padding: 28px; display: flex; flex-direction: column; gap: 18px; }
+    .detail-row { display: flex; flex-direction: column; gap: 4px; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 14px; }
+    .detail-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .detail-label { color: #bfa888; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; }
+    .detail-value { color: rgba(255,255,255,0.85); font-size: 15px; line-height: 1.6; }
+
+    .workers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+    .worker-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(191,168,136,0.15); }
+    .worker-card__body { padding: 20px; }
+    .worker-card__name { font-family: 'Cormorant Garamond', serif; font-size: 20px; margin: 0 0 6px; color: #fff; }
+    .worker-card__position { color: rgba(255,255,255,0.55); font-size: 13px; margin: 0; line-height: 1.5; }
+
+    .admin-btn { display: inline-block; text-decoration: none; background: transparent; color: #fff; border: 1px solid rgba(191,168,136,0.5); padding: 10px 18px; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: all 0.3s ease; }
+    .admin-btn:hover { color: #bfa888; border-color: #bfa888; }
+    .admin-btn--primary { background: linear-gradient(135deg, #bfa888 0%, #a68b6a 100%); color: #021527; border-color: transparent; font-weight: 600; }
+    .admin-btn--primary:hover { color: #021527; }
+</style>

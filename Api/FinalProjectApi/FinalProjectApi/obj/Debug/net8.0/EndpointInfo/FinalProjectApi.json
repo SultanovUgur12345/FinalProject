@@ -5,6 +5,235 @@
     "version": "1.0"
   },
   "paths": {
+    "/api/AboutUs/GetAll": {
+      "get": {
+        "tags": [
+          "AboutUs"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/AboutUs/GetAllAdmin": {
+      "get": {
+        "tags": [
+          "AboutUs"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/AboutUs/Get/{id}": {
+      "get": {
+        "tags": [
+          "AboutUs"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/AboutUs/Create": {
+      "post": {
+        "tags": [
+          "AboutUs"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Image": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "SubTitle": {
+                    "type": "string"
+                  },
+                  "Title": {
+                    "type": "string"
+                  },
+                  "Description": {
+                    "type": "string"
+                  },
+                  "BottomText": {
+                    "type": "string"
+                  },
+                  "VideoUrl": {
+                    "type": "string"
+                  },
+                  "Achievements": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/AboutUsAchievementCreateDto"
+                    }
+                  }
+                }
+              },
+              "encoding": {
+                "Image": {
+                  "style": "form"
+                },
+                "SubTitle": {
+                  "style": "form"
+                },
+                "Title": {
+                  "style": "form"
+                },
+                "Description": {
+                  "style": "form"
+                },
+                "BottomText": {
+                  "style": "form"
+                },
+                "VideoUrl": {
+                  "style": "form"
+                },
+                "Achievements": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/AboutUs/Update/{id}": {
+      "put": {
+        "tags": [
+          "AboutUs"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Image": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "CurrentImage": {
+                    "type": "string"
+                  },
+                  "SubTitle": {
+                    "type": "string"
+                  },
+                  "Title": {
+                    "type": "string"
+                  },
+                  "Description": {
+                    "type": "string"
+                  },
+                  "BottomText": {
+                    "type": "string"
+                  },
+                  "VideoUrl": {
+                    "type": "string"
+                  },
+                  "Achievements": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/AboutUsAchievementUpdateDto"
+                    }
+                  }
+                }
+              },
+              "encoding": {
+                "Image": {
+                  "style": "form"
+                },
+                "CurrentImage": {
+                  "style": "form"
+                },
+                "SubTitle": {
+                  "style": "form"
+                },
+                "Title": {
+                  "style": "form"
+                },
+                "Description": {
+                  "style": "form"
+                },
+                "BottomText": {
+                  "style": "form"
+                },
+                "VideoUrl": {
+                  "style": "form"
+                },
+                "Achievements": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/AboutUs/Delete/{id}": {
+      "delete": {
+        "tags": [
+          "AboutUs"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Account/register": {
       "post": {
         "tags": [
@@ -1380,6 +1609,38 @@
   },
   "components": {
     "schemas": {
+      "AboutUsAchievementCreateDto": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AboutUsAchievementUpdateDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "AssignRoleDto": {
         "type": "object",
         "properties": {

@@ -1,14 +1,21 @@
-﻿using FinalProjectMVC.Services;
-using FinalProjectMVC.ViewModels.Faq;
+﻿using FinalProjectMVC.ViewModels.AboutUs;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FinalProjectMVC.ViewComponents.About
 {
-    public class AboutUsViewComponent:ViewComponent
+    public class AboutUsViewComponent : ViewComponent
     {
-        public IViewComponentResult Invoke()
+        private readonly IAboutUsApiService _service;
+
+        public AboutUsViewComponent(IAboutUsApiService service)
         {
-            return View();
+            _service = service;
+        }
+
+        public async Task<IViewComponentResult> InvokeAsync()
+        {
+            var data = await _service.GetAllAsync();
+            return View(data);
         }
     }
 }

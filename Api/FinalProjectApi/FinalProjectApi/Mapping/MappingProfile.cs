@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FinalProjectApi.DTOs.AboutUs;
 using FinalProjectApi.DTOs.Account;
 using FinalProjectApi.DTOs.Faq;
 using FinalProjectApi.DTOs.Feature;
@@ -56,6 +57,13 @@ namespace FinalProjectApi.Mapping
                 .ForMember(dest => dest.Video, opt => opt.Ignore());
             CreateMap<ShipHeroVideo, ShipHeroVideoGetDto>();
 
+            CreateMap<AboutUsCreateDto, AboutUs>()
+                .ForMember(dest => dest.Image, opt => opt.Ignore());
+            CreateMap<AboutUsAchievementCreateDto, AboutUsAchievement>();
+            CreateMap<AboutUsAchievementUpdateDto, AboutUsAchievement>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore());
+            CreateMap<AboutUs, AboutUsGetDto>();
+            CreateMap<AboutUsAchievement, AboutUsAchievementGetDto>();
         }
     }
 }

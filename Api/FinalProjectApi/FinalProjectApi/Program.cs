@@ -77,6 +77,7 @@ builder.Services.AddScoped<IFeatureService, FeatureService>();
 builder.Services.AddScoped<IPartnerService, PartnerService>();
 builder.Services.AddScoped<IFaqService, FaqService>();
 builder.Services.AddScoped<IShipHeroVideoService, ShipHeroVideoService>();
+builder.Services.AddScoped<IAboutUsService, AboutUsService>();
 builder.Services.AddScoped<IFileService, FileService>();
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<IUserService, UserService>();

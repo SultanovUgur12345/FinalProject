@@ -14,5 +14,7 @@ namespace FinalProjectApi.Data
         public DbSet<Partner> Partners { get; set; }
         public DbSet<Faq> Faqs { get; set; }
         public DbSet<ShipHeroVideo> ShipHeroVideos { get; set; }
+        public DbSet<AboutUs> AboutUs { get; set; }
+        public DbSet<AboutUsAchievement> AboutUsAchievements { get; set; }
     }
 }

@@ -1,5 +1,159 @@
 [
   {
+    "ContainingType": "FinalProjectApi.Controllers.AboutUsController",
+    "Method": "Create",
+    "RelativePath": "api/AboutUs/Create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Image",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "SubTitle",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Title",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Description",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "BottomText",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "VideoUrl",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Achievements",
+        "Type": "System.Collections.Generic.List\u00601[[FinalProjectApi.DTOs.AboutUs.AboutUsAchievementCreateDto, FinalProjectApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FinalProjectApi.Controllers.AboutUsController",
+    "Method": "Delete",
+    "RelativePath": "api/AboutUs/Delete/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FinalProjectApi.Controllers.AboutUsController",
+    "Method": "Get",
+    "RelativePath": "api/AboutUs/Get/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FinalProjectApi.Controllers.AboutUsController",
+    "Method": "GetAll",
+    "RelativePath": "api/AboutUs/GetAll",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FinalProjectApi.Controllers.AboutUsController",
+    "Method": "GetAllAdmin",
+    "RelativePath": "api/AboutUs/GetAllAdmin",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FinalProjectApi.Controllers.AboutUsController",
+    "Method": "Update",
+    "RelativePath": "api/AboutUs/Update/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "Image",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "CurrentImage",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SubTitle",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Title",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Description",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "BottomText",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "VideoUrl",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Achievements",
+        "Type": "System.Collections.Generic.List\u00601[[FinalProjectApi.DTOs.AboutUs.AboutUsAchievementUpdateDto, FinalProjectApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "AccountController",
     "Method": "ConfirmEmail",
     "RelativePath": "api/Account/confirm-email",

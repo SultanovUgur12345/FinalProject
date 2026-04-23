@@ -199,6 +199,10 @@
         <a asp-controller="Workers" asp-action="Index">
             <i class="fa-solid fa-user-tie"></i><span>İşçilər</span>
         </a>
+        <a asp-area="Admin" asp-controller="AboutUs" asp-action="Index"
+           class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "AboutUs" ? "active" : "")">
+            <i class="fa-solid fa-circle-info"></i><span>Haqqımızda</span>
+        </a>
     </nav>
 
     <div class="sidebar-footer">

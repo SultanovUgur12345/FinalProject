@@ -38,3 +38,7 @@ wwwroot\uploads\features\5ab45ffa-7412-4252-af92-abbbfa2eea9f_Ekran görüntüs�
 wwwroot\uploads\features\4d024830-abbe-4ba7-87bc-3535741f6248_Ekran görüntüsü 2025-05-21 081258.png
 wwwroot\uploads\shiphervideos\767973ac-1148-4c86-8a5f-97741ed00f38_WhatsApp Video 2026-04-23 at 16.04.13.mp4
 wwwroot\uploads\shiphervideos\0928b48a-556b-475a-aa3d-c8d4f0af9577_6167438-hd_1920_1080_24fps.mp4
+wwwroot\uploads\aboutus\43c74e39-31c3-48c5-b4a3-fa4015203bba_4ced58e0d288caa80f6bd0942afb2c36.jpg
+wwwroot\uploads\aboutus\922470c6-c304-4496-813b-e83ee1919880_18fff7dae0c79208a1e1abe644b2a208.jpg
+wwwroot\uploads\workers\293d64fb-4dc8-4b86-a7cd-a89ca08a3019_Ekran görüntüsü 2025-06-18 145110.png
+wwwroot\uploads\aboutus\eb72c1e2-0569-4b57-9c28-9be3e65ee449_49bb51041772ea3b21b703223a823267.jpg
