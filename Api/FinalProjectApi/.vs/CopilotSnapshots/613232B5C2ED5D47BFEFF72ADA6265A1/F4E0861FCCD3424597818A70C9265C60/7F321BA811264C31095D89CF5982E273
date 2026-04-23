@@ -1,0 +1,9 @@
+﻿<section id="video">
+    <video class="video-bg" autoplay loop muted playsinline>
+        <source src="https://seafarer.qodeinteractive.com/wp-content/uploads/2021/08/video-boat.mp4" type="video/mp4">
+    </video>
+    <div class="video-caption">
+        <div class="pre-title">EXPLORE THE OCEAN</div>
+        <h2>RENT A YACHT</h2>
+    </div>
+</section>

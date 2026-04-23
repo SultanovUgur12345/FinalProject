@@ -1,0 +1,8 @@
+﻿namespace FinalProjectApi.Services.Interfaces
+{
+    public interface IFileService
+    {
+        Task<string> UploadAsync(IFormFile file, string folderName);
+        Task<string> UploadVideoAsync(IFormFile file, string folderName);
+    }
+}

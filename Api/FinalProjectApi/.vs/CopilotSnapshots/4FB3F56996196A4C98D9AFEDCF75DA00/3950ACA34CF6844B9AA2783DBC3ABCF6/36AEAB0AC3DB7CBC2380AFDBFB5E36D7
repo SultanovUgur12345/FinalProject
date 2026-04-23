@@ -1,0 +1,36 @@
+﻿using FinalProjectApi.Services.Interfaces;
+using Microsoft.AspNetCore.Http;
+
+namespace FinalProjectApi.Services
+{
+    public class FileService : IFileService
+    {
+        private readonly IWebHostEnvironment _env;
+
+        public FileService(IWebHostEnvironment env)
+        {
+            _env = env;
+        }
+
+        public async Task<string> UploadAsync(IFormFile file, string folderName)
+        {
+            if (file == null || file.Length == 0)
+                throw new Exception("File bosdur");
+
+            string uploadsFolder = Path.Combine(_env.WebRootPath, "uploads", folderName);
+
+            if (!Directory.Exists(uploadsFolder))
+                Directory.CreateDirectory(uploadsFolder);
+
+            string fileName = Guid.NewGuid().ToString() + "_" + file.FileName;
+            string filePath = Path.Combine(uploadsFolder, fileName);
+
+            using (FileStream stream = new FileStream(filePath, FileMode.Create))
+            {
+                await file.CopyToAsync(stream);
+            }
+
+            return $"/uploads/{folderName}/{fileName}";
+        }
+    }
+}

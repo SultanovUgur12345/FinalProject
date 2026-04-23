@@ -166,6 +166,34 @@ namespace FinalProjectApi.Migrations
                     b.ToTable("Partners");
                 });
 
+            modelBuilder.Entity("FinalProjectApi.Models.ShipHeroVideo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("SubTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Video")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ShipHeroVideos");
+                });
+
             modelBuilder.Entity("FinalProjectApi.Models.ShipSlider", b =>
                 {
                     b.Property<int>("Id")

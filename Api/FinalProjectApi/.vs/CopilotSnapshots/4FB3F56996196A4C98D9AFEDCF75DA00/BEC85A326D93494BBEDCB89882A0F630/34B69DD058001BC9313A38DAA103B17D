@@ -1,0 +1,62 @@
+﻿using AutoMapper;
+using FinalProjectApi.DTOs.Account;
+using FinalProjectApi.DTOs.Faq;
+using FinalProjectApi.DTOs.Feature;
+using FinalProjectApi.DTOs.Partner;
+using FinalProjectApi.DTOs.ShipSlider;
+using FinalProjectApi.DTOs.Video;
+using FinalProjectApi.DTOs.Worker;
+using FinalProjectApi.Models;
+
+namespace FinalProjectApi.Mapping
+{
+    public class MappingProfile : Profile
+    {
+        public MappingProfile()
+        {
+            CreateMap<WorkerCreateDto, Worker>()
+                .ForMember(dest => dest.Image, opt => opt.Ignore());
+
+            CreateMap<WorkerUpdateDto, Worker>()
+              .ForMember(dest => dest.Image, opt => opt.Ignore())
+              .ForMember(dest => dest.CurrentImage, opt => opt.Ignore());
+
+            CreateMap<Worker, WorkerGetDto>();
+            CreateMap<Worker, WorkerDetailDto>();
+
+            CreateMap<RegisterDto, AppUser>();
+            CreateMap<UpdateProfileDto, AppUser>()
+                .ForMember(x => x.Id, opt => opt.Ignore());
+
+            CreateMap<ShipSliderCreateDto, ShipSlider>()
+                .ForMember(dest => dest.Image, opt => opt.Ignore());
+
+            CreateMap<ShipSliderUpdateDto, ShipSlider>()
+                .ForMember(dest => dest.Image, opt => opt.Ignore());
+
+            CreateMap<ShipSlider, ShipSliderGetDto>();
+
+            CreateMap<FeatureCreateDto, Feature>()
+                .ForMember(dest => dest.Image, opt => opt.Ignore());
+
+            CreateMap<FeatureUpdateDto, Feature>()
+                .ForMember(dest => dest.Image, opt => opt.Ignore());
+
+            CreateMap<Feature, FeatureGetDto>();
+
+            CreateMap<Partner, PartnerGetDto>();
+
+            CreateMap<FaqCreateDto, Faq>();
+            CreateMap<FaqUpdateDto, Faq>();
+            CreateMap<Faq, FaqGetDto>();
+
+            CreateMap<VideoCreateDto, Video>()
+                .ForMember(dest => dest.VideoUrl, opt => opt.Ignore());
+
+            CreateMap<VideoUpdateDto, Video>()
+                .ForMember(dest => dest.VideoUrl, opt => opt.Ignore());
+
+            CreateMap<Video, VideoGetDto>();
+        }
+    }
+}

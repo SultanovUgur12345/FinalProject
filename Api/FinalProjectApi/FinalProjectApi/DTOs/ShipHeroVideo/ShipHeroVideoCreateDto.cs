@@ -1,0 +1,9 @@
+namespace FinalProjectApi.DTOs.ShipHeroVideoDtos
+{
+    public class ShipHeroVideoCreateDto
+    {
+        public string Title { get; set; }
+        public string SubTitle { get; set; }
+        public IFormFile Video { get; set; }
+    }
+}

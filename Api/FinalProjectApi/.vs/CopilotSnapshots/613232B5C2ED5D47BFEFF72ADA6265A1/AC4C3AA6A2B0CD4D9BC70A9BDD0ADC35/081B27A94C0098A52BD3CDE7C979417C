@@ -1,0 +1,81 @@
+﻿using AutoMapper;
+using FinalProjectApi.Data;
+using FinalProjectApi.DTOs.ShipHeroVideo;
+using FinalProjectApi.Models;
+using FinalProjectApi.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
+
+namespace FinalProjectApi.Services
+{
+    public class ShipHeroVideoService : IShipHeroVideoService
+    {
+        private readonly AppDbContext _context;
+        private readonly IMapper _mapper;
+        private readonly IFileService _fileService;
+
+        public ShipHeroVideoService(AppDbContext context, IMapper mapper, IFileService fileService)
+        {
+            _context = context;
+            _mapper = mapper;
+            _fileService = fileService;
+        }
+
+        public async Task<List<ShipHeroVideoGetDto>> GetAllAsync()
+        {
+            var videos = await _context.ShipHeroVideos.OrderByDescending(v => v.CreateDate).ToListAsync();
+            return _mapper.Map<List<ShipHeroVideoGetDto>>(videos);
+        }
+
+        public async Task<ShipHeroVideoGetDto> GetByIdAsync(int id)
+        {
+            var video = await _context.ShipHeroVideos.FindAsync(id);
+            if (video == null) return null;
+            return _mapper.Map<ShipHeroVideoGetDto>(video);
+        }
+
+        public async Task CreateAsync(ShipHeroVideoCreateDto dto)
+        {
+            var video = _mapper.Map<ShipHeroVideo>(dto);
+
+            if (dto.Video != null)
+            {
+                string fileName = await _fileService.UploadAsync(dto.Video, "shiphervideos");
+                video.Video = fileName;
+            }
+
+            await _context.ShipHeroVideos.AddAsync(video);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateAsync(int id, ShipHeroVideoUpdateDto dto)
+        {
+            var video = await _context.ShipHeroVideos.FindAsync(id);
+            if (video == null)
+                throw new Exception("ShipHeroVideo tapilmadi");
+
+            _mapper.Map(dto, video);
+
+            if (dto.Video != null)
+            {
+                string fileName = await _fileService.UploadAsync(dto.Video, "shiphervideos");
+                video.Video = fileName;
+            }
+            else
+            {
+                video.Video = dto.CurrentVideo;
+            }
+
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+            var video = await _context.ShipHeroVideos.FindAsync(id);
+            if (video == null)
+                throw new Exception("ShipHeroVideo tapilmadi");
+
+            _context.ShipHeroVideos.Remove(video);
+            await _context.SaveChangesAsync();
+        }
+    }
+}

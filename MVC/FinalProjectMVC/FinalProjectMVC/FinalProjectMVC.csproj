@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="ViewComponents\About\" />
     <Folder Include="wwwroot\admin\assets\style\" />
     <Folder Include="wwwroot\client\assets\images\" />
   </ItemGroup>

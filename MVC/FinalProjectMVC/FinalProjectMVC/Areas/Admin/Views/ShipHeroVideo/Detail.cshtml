@@ -1,0 +1,60 @@
+@using FinalProjectMVC.ViewModels.ShipHeroVideo
+@inject IConfiguration Configuration
+@model ShipHeroVideoGetVM
+
+@{
+    ViewData["Title"] = "ShipHeroVideo - Detail";
+    string apiBaseUrl = (Configuration["ApiSettings:BaseUrl"] ?? "http://localhost:5147/").TrimEnd('/');
+}
+
+<section class="admin-workers">
+    <div class="admin-workers__container admin-workers__container--form">
+        <div class="admin-workers__head">
+            <div>
+                <p class="admin-workers__subtitle">ADMIN PANEL</p>
+                <h1>Hero Video Detail</h1>
+            </div>
+            <a asp-area="Admin" asp-controller="ShipHeroVideo" asp-action="Index" class="admin-btn">Back to List</a>
+        </div>
+
+        <div class="video-detail-grid">
+            <div class="video-detail-player">
+                @if (!string.IsNullOrWhiteSpace(Model.Video))
+                {
+                    <video src="@($"{apiBaseUrl}{Model.Video}")" controls class="admin-detail-video"></video>
+                }
+                else
+                {
+                    <p style="color:rgba(255,255,255,0.4)">No video uploaded.</p>
+                }
+            </div>
+
+            <div class="video-detail-content">
+                <h2>@Model.Title</h2>
+                <p class="video-subtitle">@Model.SubTitle</p>
+
+                <div class="admin-actions" style="margin-top:24px;">
+                    <a asp-area="Admin" asp-controller="ShipHeroVideo" asp-action="Edit" asp-route-id="@Model.Id" class="admin-btn admin-btn--primary">Edit Video</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .admin-workers { width: 100%; color: #fff; }
+    .admin-workers__container { background: rgba(2,21,39,0.86); border: 1px solid rgba(191,168,136,0.3); padding: 30px; backdrop-filter: blur(10px); border-radius: 12px; }
+    .admin-workers__container--form { max-width: 980px; margin: 0 auto; }
+    .admin-workers__head { display: flex; justify-content: space-between; align-items: center; gap: 15px; margin-bottom: 25px; }
+    .admin-workers__subtitle { color: #bfa888; letter-spacing: 2px; font-size: 12px; margin-bottom: 6px; }
+    .video-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+    .admin-detail-video { width: 100%; border: 1px solid rgba(191,168,136,0.3); }
+    .video-detail-content h2 { font-family: 'Cormorant Garamond', serif; font-size: 32px; margin-bottom: 12px; }
+    .video-subtitle { color: #bfa888; font-size: 14px; letter-spacing: 1px; }
+    .admin-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .admin-btn { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; background: rgba(191,168,136,0.15); color: #bfa888; border: 1px solid rgba(191,168,136,0.3); cursor: pointer; font-size: 13px; font-weight: 600; text-decoration: none; transition: 0.3s; }
+    .admin-btn:hover { background: rgba(191,168,136,0.28); color: #fff; }
+    .admin-btn--primary { background: linear-gradient(135deg,#bfa888 0%,#a68b6a 100%); color: #021527; border-color: transparent; }
+    .admin-btn--primary:hover { opacity: 0.88; color: #021527; }
+    @@media (max-width: 700px) { .video-detail-grid { grid-template-columns: 1fr; } }
+</style>

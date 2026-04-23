@@ -1,0 +1,13 @@
+﻿using FinalProjectApi.DTOs.ShipHeroVideoDtos;
+
+namespace FinalProjectApi.Services.Interfaces
+{
+    public interface IShipHeroVideoService
+    {
+        Task<List<ShipHeroVideoGetDto>> GetAllAsync();
+        Task<ShipHeroVideoGetDto> GetByIdAsync(int id);
+        Task CreateAsync(ShipHeroVideoCreateDto dto);
+        Task UpdateAsync(int id, ShipHeroVideoUpdateDto dto);
+        Task DeleteAsync(int id);
+    }
+}

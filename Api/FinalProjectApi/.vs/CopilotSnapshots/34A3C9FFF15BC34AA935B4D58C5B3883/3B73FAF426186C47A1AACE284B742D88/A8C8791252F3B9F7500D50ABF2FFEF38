@@ -1,0 +1,65 @@
+﻿using FinalProjectApi.Services.Interfaces;
+using Microsoft.AspNetCore.Http;
+
+namespace FinalProjectApi.Services
+{
+    public class FileService : IFileService
+    {
+        private readonly IWebHostEnvironment _env;
+
+        private static readonly string[] AllowedImageTypes = { "image/jpeg", "image/png", "image/webp", "image/gif" };
+        private static readonly string[] AllowedVideoTypes = { "video/mp4", "video/webm", "video/ogg", "video/quicktime" };
+
+        private const long MaxImageSize = 10 * 1024 * 1024;  // 10 MB
+        private const long MaxVideoSize = 200 * 1024 * 1024; // 200 MB
+
+        public FileService(IWebHostEnvironment env)
+        {
+            _env = env;
+        }
+
+        public async Task<string> UploadAsync(IFormFile file, string folderName)
+        {
+            if (file == null || file.Length == 0)
+                throw new Exception("Fayl bos ola bilmez");
+
+            if (!AllowedImageTypes.Contains(file.ContentType.ToLower()))
+                throw new Exception($"Yalniz sekil fayllar qebul edilir: {string.Join(", ", AllowedImageTypes)}");
+
+            if (file.Length > MaxImageSize)
+                throw new Exception("Sekil olcusu 10 MB-dan boyuk ola bilmez");
+
+            return await SaveFileAsync(file, folderName);
+        }
+
+        public async Task<string> UploadVideoAsync(IFormFile file, string folderName)
+        {
+            if (file == null || file.Length == 0)
+                throw new Exception("Fayl bos ola bilmez");
+
+            if (!AllowedVideoTypes.Contains(file.ContentType.ToLower()))
+                throw new Exception($"Yalniz video fayllar qebul edilir: {string.Join(", ", AllowedVideoTypes)}");
+
+            if (file.Length > MaxVideoSize)
+                throw new Exception("Video olcusu 200 MB-dan boyuk ola bilmez");
+
+            return await SaveFileAsync(file, folderName);
+        }
+
+        private async Task<string> SaveFileAsync(IFormFile file, string folderName)
+        {
+            string uploadsFolder = Path.Combine(_env.WebRootPath, "uploads", folderName);
+
+            if (!Directory.Exists(uploadsFolder))
+                Directory.CreateDirectory(uploadsFolder);
+
+            string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+            string filePath = Path.Combine(uploadsFolder, fileName);
+
+            using var stream = new FileStream(filePath, FileMode.Create);
+            await file.CopyToAsync(stream);
+
+            return $"/uploads/{folderName}/{fileName}";
+        }
+    }
+}

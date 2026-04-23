@@ -78,6 +78,22 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/G713RM/Desktop/C\# Projects/FinalProject/MVC/FinalProjectMVC/FinalProjectMVC/Areas/Admin/Views/ShipHeroVideo/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hpcEhlcm9WaWRlb1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/G713RM/Desktop/C\# Projects/FinalProject/MVC/FinalProjectMVC/FinalProjectMVC/Areas/Admin/Views/ShipHeroVideo/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hpcEhlcm9WaWRlb1xEZXRhaWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/G713RM/Desktop/C\# Projects/FinalProject/MVC/FinalProjectMVC/FinalProjectMVC/Areas/Admin/Views/ShipHeroVideo/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hpcEhlcm9WaWRlb1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/G713RM/Desktop/C\# Projects/FinalProject/MVC/FinalProjectMVC/FinalProjectMVC/Areas/Admin/Views/ShipHeroVideo/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hpcEhlcm9WaWRlb1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/G713RM/Desktop/C\# Projects/FinalProject/MVC/FinalProjectMVC/FinalProjectMVC/Areas/Admin/Views/ShipSlider/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hpcFNsaWRlclxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -166,6 +182,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/G713RM/Desktop/C\# Projects/FinalProject/MVC/FinalProjectMVC/FinalProjectMVC/Views/Shared/Components/AboutUs/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcQWJvdXRVc1xEZWZhdWx0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/G713RM/Desktop/C\# Projects/FinalProject/MVC/FinalProjectMVC/FinalProjectMVC/Views/Shared/Components/Clients/Default.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcQ2xpZW50c1xEZWZhdWx0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -196,6 +216,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/G713RM/Desktop/C\# Projects/FinalProject/MVC/FinalProjectMVC/FinalProjectMVC/Views/Shared/Components/Discover/Default.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcRGlzY292ZXJcRGVmYXVsdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/G713RM/Desktop/C\# Projects/FinalProject/MVC/FinalProjectMVC/FinalProjectMVC/Views/Shared/Components/Faq/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcRmFxXERlZmF1bHQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/G713RM/Desktop/C\# Projects/FinalProject/MVC/FinalProjectMVC/FinalProjectMVC/Views/Shared/Components/Features/Default.cshtml]

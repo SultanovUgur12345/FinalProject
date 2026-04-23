@@ -1,0 +1,36 @@
+﻿@model List<FinalProjectMVC.ViewModels.Faq.FaqGetVM>
+
+<section id="faqSection">
+    <div class="container faq-layout">
+        <aside class="faq-intro">
+            <span class="about-kicker">Detailed FAQ</span>
+            <h3>Everything About Us</h3>
+            <p>Our FAQ is intentionally extensive so visitors can clearly understand who we are, how long we have operated, and why clients trust us.</p>
+            <p><strong>Need a custom answer?</strong><br>Reach our concierge team at info@seafarer.com.</p>
+        </aside>
+
+        <div class="faq-list" id="faqList">
+            @if (Model != null && Model.Any())
+            {
+                for (int i = 0; i < Model.Count; i++)
+                {
+                    var faq = Model[i];
+                    bool isFirst = i == 0;
+                    <article class="faq-item @(isFirst ? "active" : "")">
+                        <span class="anim-border-top"></span>
+                        <span class="anim-border-bottom"></span>
+                        <button class="faq-question" type="button" aria-expanded="@(isFirst ? "true" : "false")">
+                            <span class="faq-number">@((i + 1).ToString("D2"))</span>
+                            <strong>@faq.Question</strong>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer" @(isFirst ? "style=max-height:220px;" : "")>
+                            <p>@faq.Answer</p>
+                        </div>
+                    </article>
+                }
+            }
+        </div>
+    </div>
+</section>
+
