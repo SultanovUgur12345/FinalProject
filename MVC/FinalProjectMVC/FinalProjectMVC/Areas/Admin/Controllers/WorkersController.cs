@@ -15,9 +15,9 @@ public class WorkersController : AdminBaseController
         _service = service;
     }
 
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(int page = 1, int pageSize = 5)
     {
-        var data = await _service.GetAllAsync();
+        var data = await _service.GetPagedAsync(page, pageSize);
         return View(data);
     }
 
@@ -28,6 +28,13 @@ public class WorkersController : AdminBaseController
             ? await _service.GetAllAsync()
             : await _service.SearchByNameAsync(name);
 
+        return Json(data);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetPage([FromQuery] int page = 1, [FromQuery] int pageSize = 5)
+    {
+        var data = await _service.GetPagedAsync(page, pageSize);
         return Json(data);
     }
 

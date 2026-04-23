@@ -20,11 +20,41 @@ builder.Services.AddHttpClient<IWorkerApiService, WorkerApiService>(client =>
     client.BaseAddress = new Uri(apiBaseUrl);
 }).AddHttpMessageHandler<JwtTokenHandler>();
 
+builder.Services.AddHttpClient<IShipSliderApiService, ShipSliderApiService>(client =>
+{
+    var apiBaseUrl = builder.Configuration["ApiSettings:BaseUrl"] ?? "http://localhost:5147/";
+    client.BaseAddress = new Uri(apiBaseUrl);
+}).AddHttpMessageHandler<JwtTokenHandler>();
+
+builder.Services.AddHttpClient<IFeatureApiService, FeatureApiService>(client =>
+{
+    var apiBaseUrl = builder.Configuration["ApiSettings:BaseUrl"] ?? "http://localhost:5147/";
+    client.BaseAddress = new Uri(apiBaseUrl);
+}).AddHttpMessageHandler<JwtTokenHandler>();
+
+builder.Services.AddHttpClient<IPartnerApiService, PartnerApiService>(client =>
+{
+    var apiBaseUrl = builder.Configuration["ApiSettings:BaseUrl"] ?? "http://localhost:5147/";
+    client.BaseAddress = new Uri(apiBaseUrl);
+}).AddHttpMessageHandler<JwtTokenHandler>();
+
+builder.Services.AddHttpClient<IFaqApiService, FaqApiService>(client =>
+{
+    var apiBaseUrl = builder.Configuration["ApiSettings:BaseUrl"] ?? "http://localhost:5147/";
+    client.BaseAddress = new Uri(apiBaseUrl);
+}).AddHttpMessageHandler<JwtTokenHandler>();
+
 builder.Services.AddHttpClient<IAccountService, AccountService>(client =>
 {
     var apiBaseUrl = builder.Configuration["ApiSettings:BaseUrl"] ?? "http://localhost:5147/";
     client.BaseAddress = new Uri(apiBaseUrl);
 });
+
+builder.Services.AddHttpClient<IUserService, UserService>(client =>
+{
+    var apiBaseUrl = builder.Configuration["ApiSettings:BaseUrl"] ?? "http://localhost:5147/";
+    client.BaseAddress = new Uri(apiBaseUrl);
+}).AddHttpMessageHandler<JwtTokenHandler>();
 
 builder.Services.AddDistributedMemoryCache();
 
@@ -39,8 +69,8 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     .AddCookie(options =>
     {
         options.LoginPath = "/Home/Index";
-            options.LogoutPath = "/Account/Logout";
-            options.AccessDeniedPath = "/Home/Index";
+        options.LogoutPath = "/Account/Logout";
+        options.AccessDeniedPath = "/Home/Index";
     });
 
 var app = builder.Build();

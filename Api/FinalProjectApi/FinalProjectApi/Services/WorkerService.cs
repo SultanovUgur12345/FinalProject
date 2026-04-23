@@ -27,6 +27,22 @@ namespace FinalProjectApi.Services
             return _mapper.Map<List<WorkerGetDto>>(workers);
         }
 
+        public async Task<PaginatedResult<WorkerGetDto>> GetPagedAsync(int page, int pageSize)
+        {
+            var query = _context.Workers.OrderByDescending(w => w.CreateDate);
+
+            var totalCount = await query.CountAsync();
+            var workers = await query.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
+
+            return new PaginatedResult<WorkerGetDto>
+            {
+                Items = _mapper.Map<List<WorkerGetDto>>(workers),
+                TotalCount = totalCount,
+                Page = page,
+                PageSize = pageSize
+            };
+        }
+
         public async Task<List<WorkerGetDto>> SearchByNameAsync(string name)
         {
             var workers = await _context.Workers

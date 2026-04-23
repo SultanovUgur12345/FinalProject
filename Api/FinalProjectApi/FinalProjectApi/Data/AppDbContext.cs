@@ -9,5 +9,13 @@ namespace FinalProjectApi.Data
         public AppDbContext(DbContextOptions<AppDbContext> options): base(options){}
 
         public DbSet<Worker> Workers { get; set; }
+        public DbSet<ShipSlider> ShipSliders { get; set; }
+        public DbSet<Feature> Features { get; set; }
+        public DbSet<Partner> Partners { get; set; }
+        public DbSet<Faq> Faqs { get; set; }
+
+
+
+
     }
 }

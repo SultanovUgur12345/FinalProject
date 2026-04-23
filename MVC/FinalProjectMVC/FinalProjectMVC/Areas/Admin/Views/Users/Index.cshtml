@@ -1,5 +1,5 @@
 @using FinalProjectMVC.ViewModels.Account
-@model List<UserListVM>
+@model PaginatedResult<UserListVM>
 
 @{
     ViewData["Title"] = "Users";
@@ -30,9 +30,9 @@
 
         <div class="admin-topbar">
             <div class="admin-search">
-                <input type="text" id="emailSearchInput" class="admin-search__input" placeholder="Search by email..." autocomplete="off" />
+                <input type="text" id="emailSearchInput" class="admin-search__input" placeholder="Search by full name..." autocomplete="off" />
             </div>
-            <span class="admin-stat">Total: <strong id="totalUsersCount">0</strong></span>
+            <span class="admin-stat">Total: <strong id="totalUsersCount">@Model.TotalCount</strong></span>
         </div>
 
         <div class="admin-table-container">
@@ -51,10 +51,10 @@
                     </tr>
                 </thead>
                 <tbody id="usersTableBody">
-                    @if (Model != null && Model.Any())
+                    @if (Model.Items != null && Model.Items.Any())
                     {
                         int i = 1;
-                        foreach (var item in Model)
+                        foreach (var item in Model.Items)
                         {
                             <tr class="user-row">
                                 <td>@(i++)</td>
@@ -101,9 +101,15 @@
         </div>
 
         <div class="admin-pagination" id="paginationContainer">
-            <button class="admin-pagination__btn" id="prevPageBtn">? Previous</button>
-            <div class="admin-pagination__numbers" id="paginationNumbers"></div>
-            <button class="admin-pagination__btn" id="nextPageBtn">Next ?</button>
+            <button class="admin-pagination__btn" id="prevPageBtn" data-page="@(Model.Page - 1)" @(Model.Page <= 1 ? "disabled" : "")>← Previous</button>
+            <div class="admin-pagination__numbers" id="paginationNumbers">
+                @for (int i = 1; i <= Model.TotalPages; i++)
+                {
+                    <button class="admin-pagination__number @(i == Model.Page ? "active" : "")"
+                            data-page="@i">@i</button>
+                }
+            </div>
+            <button class="admin-pagination__btn" id="nextPageBtn" data-page="@(Model.Page + 1)" @(Model.Page >= Model.TotalPages ? "disabled" : "")>Next →</button>
         </div>
 
 @if (isSuperAdmin)
@@ -593,126 +599,158 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        const rows = Array.from(document.querySelectorAll(".user-row"));
+        const tableBody = document.getElementById("usersTableBody");
         const paginationNumbers = document.getElementById("paginationNumbers");
         const prevPageBtn = document.getElementById("prevPageBtn");
         const nextPageBtn = document.getElementById("nextPageBtn");
-        const totalUsersCount = document.getElementById("totalUsersCount");
         const paginationContainer = document.getElementById("paginationContainer");
-        const noUsersRow = document.getElementById("noUsersRow");
-        const emailSearchInput = document.getElementById("emailSearchInput");
+        const isSuperAdmin = "@callerRole" === "SuperAdmin";
 
-        let currentPage = 1;
-        const rowsPerPage = 10;
+        const pageSize = @Model.PageSize;
+        let currentPage = @Model.Page;
 
-        function getVisibleRows() {
-            const query = emailSearchInput ? emailSearchInput.value.trim().toLowerCase() : "";
-            return Array.from(rows).filter(row => {
-                if (!query) return true;
-                // Email is in the 4th <td> (index 3)
-                const emailCell = row.querySelectorAll("td")[3];
-                return emailCell && emailCell.textContent.trim().toLowerCase().includes(query);
-            });
-        }
-
-        function refreshTable() {
-            const visible = getVisibleRows();
-            totalUsersCount.textContent = visible.length;
-
-            rows.forEach(row => row.style.display = "none");
-
-            if (visible.length === 0) {
-                if (noUsersRow) noUsersRow.style.display = "";
-                if (paginationContainer) paginationContainer.style.display = "none";
-                return;
-            }
-
-            if (noUsersRow) noUsersRow.style.display = "none";
-            if (paginationContainer) paginationContainer.style.display = "";
-
-            const totalPages = Math.ceil(visible.length / rowsPerPage) || 1;
-            if (currentPage > totalPages) currentPage = totalPages;
-
-            const start = (currentPage - 1) * rowsPerPage;
-            const end = start + rowsPerPage;
-
-            visible.forEach((row, index) => {
-                row.style.display = (index >= start && index < end) ? "" : "none";
-            });
-
-            renderPaginationNumbers(totalPages);
-            updateButtons(totalPages);
-        }
-
-        function renderPaginationNumbers(totalPages) {
-            paginationNumbers.innerHTML = "";
-            for (let i = 1; i <= totalPages; i++) {
-                const btn = document.createElement("button");
-                btn.type = "button";
-                btn.className = "admin-pagination__number" + (i === currentPage ? " active" : "");
-                btn.textContent = i;
-                btn.addEventListener("click", function () { currentPage = i; refreshTable(); });
-                paginationNumbers.appendChild(btn);
-            }
-        }
-
-        function updateButtons(totalPages) {
-            prevPageBtn.disabled = currentPage === 1;
-            nextPageBtn.disabled = currentPage === totalPages || totalPages === 0;
-        }
-
-        refreshTable();
-
-        prevPageBtn?.addEventListener("click", function () {
-            if (currentPage > 1) { currentPage--; refreshTable(); }
-        });
-
-        nextPageBtn?.addEventListener("click", function () {
-            const totalPages = Math.ceil(getVisibleRows().length / rowsPerPage);
-            if (currentPage < totalPages) { currentPage++; refreshTable(); }
-        });
-
-        emailSearchInput?.addEventListener("input", function () {
-            currentPage = 1;
-            refreshTable();
-        });
-
+        // ROLE MODAL
         const roleModal = document.getElementById("roleModal");
         const roleModalOverlay = document.getElementById("roleModalOverlay");
         const roleModalClose = document.getElementById("roleModalClose");
 
-        if (roleModal) {
+        function openRoleModal(btn) {
+            document.getElementById("modalUserId").value = btn.dataset.id;
+            document.getElementById("modalUserNameInput").value = btn.dataset.name;
+            document.getElementById("modalUserName").textContent = btn.dataset.name;
+            document.getElementById("modalCurrentRole").textContent = btn.dataset.role;
+            const select = document.getElementById("modalRoleSelect");
+            Array.from(select.options).forEach(opt => { opt.selected = opt.value === btn.dataset.role; });
+            roleModal.classList.add("active");
+        }
+
+        function closeRoleModal() { roleModal?.classList.remove("active"); }
+
+        function bindRoleModalButtons() {
             document.querySelectorAll(".open-role-modal").forEach(btn => {
-                btn.addEventListener("click", function () {
-                    const userId = this.dataset.id;
-                    const userName = this.dataset.name;
-                    const currentRole = this.dataset.role;
-
-                    document.getElementById("modalUserId").value = userId;
-                    document.getElementById("modalUserNameInput").value = userName;
-                    document.getElementById("modalUserName").textContent = userName;
-                    document.getElementById("modalCurrentRole").textContent = currentRole;
-
-                    const select = document.getElementById("modalRoleSelect");
-                    Array.from(select.options).forEach(opt => {
-                        opt.selected = opt.value === currentRole;
-                    });
-
-                    roleModal.classList.add("active");
-                });
+                btn.removeEventListener("click", btn._roleHandler);
+                btn._roleHandler = function () { openRoleModal(this); };
+                btn.addEventListener("click", btn._roleHandler);
             });
+        }
 
-            function closeRoleModal() {
-                roleModal.classList.remove("active");
-            }
-
+        if (roleModal) {
+            bindRoleModalButtons();
             roleModalClose?.addEventListener("click", closeRoleModal);
             roleModalOverlay?.addEventListener("click", closeRoleModal);
-
             document.querySelectorAll(".admin-modal-cancel").forEach(btn => {
                 btn.addEventListener("click", closeRoleModal);
             });
         }
+
+        function buildRows(items, pageOffset) {
+            if (items.length === 0) {
+                tableBody.innerHTML = `<tr id="noUsersRow"><td colspan="6" class="admin-table__empty">No users found</td></tr>`;
+                document.getElementById("totalUsersCount").textContent = "0";
+                return;
+            }
+
+            tableBody.innerHTML = "";
+            items.forEach(function (item, index) {
+                const badgeClass = item.role ? `admin-badge--${item.role.toLowerCase()}` : "";
+                const changeRoleBtn = (isSuperAdmin && item.canChangeRole)
+                    ? `<button type="button" class="admin-btn admin-btn--sm open-role-modal"
+                            data-id="${item.id}" data-name="${item.fullName}" data-role="${item.role}">
+                            Change Role
+                       </button>`
+                    : (isSuperAdmin ? `<span class="admin-text-muted">—</span>` : "");
+
+                const actionsTd = isSuperAdmin
+                    ? `<td><div class="admin-actions">${changeRoleBtn}</div></td>`
+                    : "";
+
+                tableBody.innerHTML += `
+                    <tr class="user-row">
+                        <td>${pageOffset + index + 1}</td>
+                        <td>${item.fullName ?? ""}</td>
+                        <td>${item.userName ?? ""}</td>
+                        <td>${item.email ?? ""}</td>
+                        <td><span class="admin-badge ${badgeClass}">${item.role ?? ""}</span></td>
+                        ${actionsTd}
+                    </tr>`;
+            });
+
+            bindRoleModalButtons();
+        }
+
+        // PAGINATION
+        async function loadPage(page) {
+            try {
+                const response = await fetch(`/Admin/Users/GetPage?page=${page}&pageSize=${pageSize}`);
+                if (!response.ok) return;
+                const result = await response.json();
+                const items = result.items ?? [];
+
+                buildRows(items, (page - 1) * pageSize);
+                document.getElementById("totalUsersCount").textContent = result.totalCount ?? 0;
+
+                currentPage = result.page;
+                const totalPages = result.totalPages;
+
+                prevPageBtn.disabled = currentPage <= 1;
+                prevPageBtn.dataset.page = currentPage - 1;
+                nextPageBtn.disabled = currentPage >= totalPages;
+                nextPageBtn.dataset.page = currentPage + 1;
+
+                paginationNumbers.innerHTML = "";
+                for (let i = 1; i <= totalPages; i++) {
+                    const btn = document.createElement("button");
+                    btn.className = "admin-pagination__number" + (i === currentPage ? " active" : "");
+                    btn.textContent = i;
+                    btn.dataset.page = i;
+                    btn.addEventListener("click", () => loadPage(i));
+                    paginationNumbers.appendChild(btn);
+                }
+
+                paginationContainer.style.display = totalPages > 1 ? "flex" : "none";
+            } catch (e) {
+                console.error("Pagination error:", e);
+            }
+        }
+
+        prevPageBtn?.addEventListener("click", function () {
+            if (!this.disabled) loadPage(parseInt(this.dataset.page));
+        });
+        nextPageBtn?.addEventListener("click", function () {
+            if (!this.disabled) loadPage(parseInt(this.dataset.page));
+        });
+        document.querySelectorAll("#paginationNumbers .admin-pagination__number").forEach(btn => {
+            btn.addEventListener("click", function () { loadPage(parseInt(this.dataset.page)); });
+        });
+
+        // SEARCH
+        const emailSearchInput = document.getElementById("emailSearchInput");
+        let searchTimeout = null;
+        emailSearchInput?.addEventListener("input", function () {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(async function () {
+                const email = emailSearchInput.value.trim();
+
+                if (!email) {
+                    paginationContainer.style.display = "";
+                    loadPage(currentPage);
+                    return;
+                }
+
+                paginationContainer.style.display = "none";
+
+                try {
+                    const response = await fetch(`/Admin/Users/SearchJson?fullName=${encodeURIComponent(email)}`);
+                    if (!response.ok) return;
+                    const users = await response.json();
+
+                    buildRows(users, 0);
+                    document.getElementById("totalUsersCount").textContent = users.length;
+                } catch (e) {
+                    console.error("Search error:", e);
+                }
+            }, 350);
+        });
     });
 </script>
 

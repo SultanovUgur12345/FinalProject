@@ -1,0 +1,55 @@
+﻿@using FinalProjectMVC.ViewModels.ShipSlider
+@model ShipSliderCreateVM
+
+@{
+    ViewData["Title"] = "ShipSlider - Create";
+}
+
+<div class="admin-content__header">
+    <div>
+        <p class="admin-content__subtitle">SHIP SLIDER MANAGEMENT</p>
+        <h1>Create Ship Slider</h1>
+    </div>
+    <a asp-area="Admin" asp-controller="ShipSlider" asp-action="Index" class="admin-btn">← Back to List</a>
+</div>
+
+<form method="post"
+      enctype="multipart/form-data"
+      asp-area="Admin"
+      asp-controller="ShipSlider"
+      asp-action="Create"
+      class="admin-form">
+
+    @Html.AntiForgeryToken()
+
+    <div asp-validation-summary="ModelOnly" class="admin-validation"></div>
+
+    <div class="admin-form-group">
+        <label asp-for="PreTitle">Pre Title</label>
+        <input asp-for="PreTitle" class="admin-input" placeholder="e.g. NAUTICAL COMPANY" />
+        <span asp-validation-for="PreTitle" class="admin-validation"></span>
+    </div>
+
+    <div class="admin-form-group">
+        <label asp-for="Title">Title</label>
+        <input asp-for="Title" class="admin-input" placeholder="e.g. YACHTING" />
+        <span asp-validation-for="Title" class="admin-validation"></span>
+    </div>
+
+    <div class="admin-form-group admin-form-group--full">
+        <label asp-for="Description">Description</label>
+        <textarea asp-for="Description" class="admin-input admin-input--area"></textarea>
+        <span asp-validation-for="Description" class="admin-validation"></span>
+    </div>
+
+    <div class="admin-form-group">
+        <label asp-for="Image">Slider Image</label>
+        <input asp-for="Image" class="admin-input admin-input--file" type="file" />
+        <span asp-validation-for="Image" class="admin-validation"></span>
+    </div>
+
+    <div class="admin-form-actions">
+        <button type="submit" class="admin-btn admin-btn--primary">Create</button>
+        <a asp-area="Admin" asp-controller="ShipSlider" asp-action="Index" class="admin-btn">Cancel</a>
+    </div>
+</form>

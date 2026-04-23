@@ -12,11 +12,13 @@ namespace FinalProjectMVC.Controllers
     public class AccountController : Controller
     {
         private readonly IAccountService _accountService;
+        private readonly IUserService _userService;
         private readonly string _apiBaseUrl;
 
-        public AccountController(IAccountService accountService, IConfiguration configuration)
+        public AccountController(IAccountService accountService, IUserService userService, IConfiguration configuration)
         {
             _accountService = accountService;
+            _userService = userService;
             _apiBaseUrl = (configuration["ApiSettings:BaseUrl"] ?? "http://localhost:5147").TrimEnd('/');
         }
 
@@ -76,7 +78,7 @@ namespace FinalProjectMVC.Controllers
 
             HttpContext.Session.SetString("UserName", result.userName);
 
-            var profileData = await _accountService.GetProfileAsync(result.token);
+            var profileData = await _userService.GetProfileAsync(result.token);
             if (!string.IsNullOrWhiteSpace(profileData?.ProfileImageUrl))
             {
                 var imageUrl = profileData.ProfileImageUrl.StartsWith("http")
@@ -125,7 +127,7 @@ namespace FinalProjectMVC.Controllers
                 return RedirectToAction(nameof(Login));
 
             var callerRole = User.IsInRole("SuperAdmin") ? "SuperAdmin" : "Admin";
-            var users = await _accountService.GetAllUsersAsync(token, callerRole);
+            var users = await _userService.GetAllUsersAsync(token, callerRole);
             return View(users);
         }
 
@@ -159,7 +161,7 @@ namespace FinalProjectMVC.Controllers
             if (string.IsNullOrWhiteSpace(token))
                 return RedirectToAction(nameof(Login));
 
-            var result = await _accountService.AssignRoleAsync(model, token);
+            var result = await _userService.AssignRoleAsync(model, token);
 
             if (!result.success)
             {
@@ -242,7 +244,7 @@ namespace FinalProjectMVC.Controllers
             if (string.IsNullOrWhiteSpace(token))
                 return RedirectToAction(nameof(Login));
 
-            var profile = await _accountService.GetProfileAsync(token);
+            var profile = await _userService.GetProfileAsync(token);
 
             var sessionImage = HttpContext.Session.GetString("ProfileImage");
             string? profileImageUrl = null;
@@ -281,7 +283,7 @@ namespace FinalProjectMVC.Controllers
             if (string.IsNullOrWhiteSpace(token))
                 return RedirectToAction(nameof(Login));
 
-            var result = await _accountService.UpdateProfileAsync(model, model.ProfileImage, token);
+            var result = await _userService.UpdateProfileAsync(model, model.ProfileImage, token);
 
             if (!result.success)
             {

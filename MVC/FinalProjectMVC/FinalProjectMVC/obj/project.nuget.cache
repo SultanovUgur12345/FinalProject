@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "ZlrHkY8q8G4=",
+  "dgSpecHash": "T22s7JcqQxY=",
   "success": true,
   "projectFilePath": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\G713RM\\.nuget\\packages\\bouncycastle.cryptography\\2.6.2\\bouncycastle.cryptography.2.6.2.nupkg.sha512",
     "C:\\Users\\G713RM\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\G713RM\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\G713RM\\.nuget\\packages\\humanizer.core.af\\2.14.1\\humanizer.core.af.2.14.1.nupkg.sha512",
@@ -54,6 +55,7 @@
     "C:\\Users\\G713RM\\.nuget\\packages\\humanizer.core.zh-cn\\2.14.1\\humanizer.core.zh-cn.2.14.1.nupkg.sha512",
     "C:\\Users\\G713RM\\.nuget\\packages\\humanizer.core.zh-hans\\2.14.1\\humanizer.core.zh-hans.2.14.1.nupkg.sha512",
     "C:\\Users\\G713RM\\.nuget\\packages\\humanizer.core.zh-hant\\2.14.1\\humanizer.core.zh-hant.2.14.1.nupkg.sha512",
+    "C:\\Users\\G713RM\\.nuget\\packages\\mailkit\\4.16.0\\mailkit.4.16.0.nupkg.sha512",
     "C:\\Users\\G713RM\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\6.0.24\\microsoft.aspnetcore.razor.language.6.0.24.nupkg.sha512",
     "C:\\Users\\G713RM\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\7.0.0\\microsoft.bcl.asyncinterfaces.7.0.0.nupkg.sha512",
     "C:\\Users\\G713RM\\.nuget\\packages\\microsoft.build\\17.11.48\\microsoft.build.17.11.48.nupkg.sha512",
@@ -98,6 +100,7 @@
     "C:\\Users\\G713RM\\.nuget\\packages\\microsoft.visualstudio.web.codegeneration.templating\\8.0.23\\microsoft.visualstudio.web.codegeneration.templating.8.0.23.nupkg.sha512",
     "C:\\Users\\G713RM\\.nuget\\packages\\microsoft.visualstudio.web.codegeneration.utils\\8.0.23\\microsoft.visualstudio.web.codegeneration.utils.8.0.23.nupkg.sha512",
     "C:\\Users\\G713RM\\.nuget\\packages\\microsoft.visualstudio.web.codegenerators.mvc\\8.0.23\\microsoft.visualstudio.web.codegenerators.mvc.8.0.23.nupkg.sha512",
+    "C:\\Users\\G713RM\\.nuget\\packages\\mimekit\\4.16.0\\mimekit.4.16.0.nupkg.sha512",
     "C:\\Users\\G713RM\\.nuget\\packages\\mono.texttemplating\\2.3.1\\mono.texttemplating.2.3.1.nupkg.sha512",
     "C:\\Users\\G713RM\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\G713RM\\.nuget\\packages\\nuget.common\\6.11.0\\nuget.common.6.11.0.nupkg.sha512",
@@ -126,7 +129,7 @@
     "C:\\Users\\G713RM\\.nuget\\packages\\system.reflection.metadata\\8.0.0\\system.reflection.metadata.8.0.0.nupkg.sha512",
     "C:\\Users\\G713RM\\.nuget\\packages\\system.reflection.metadataloadcontext\\8.0.0\\system.reflection.metadataloadcontext.8.0.0.nupkg.sha512",
     "C:\\Users\\G713RM\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
-    "C:\\Users\\G713RM\\.nuget\\packages\\system.security.cryptography.pkcs\\6.0.4\\system.security.cryptography.pkcs.6.0.4.nupkg.sha512",
+    "C:\\Users\\G713RM\\.nuget\\packages\\system.security.cryptography.pkcs\\8.0.1\\system.security.cryptography.pkcs.8.0.1.nupkg.sha512",
     "C:\\Users\\G713RM\\.nuget\\packages\\system.security.cryptography.protecteddata\\8.0.0\\system.security.cryptography.protecteddata.8.0.0.nupkg.sha512",
     "C:\\Users\\G713RM\\.nuget\\packages\\system.text.json\\8.0.6\\system.text.json.8.0.6.nupkg.sha512",
     "C:\\Users\\G713RM\\.nuget\\packages\\system.threading.channels\\7.0.0\\system.threading.channels.7.0.0.nupkg.sha512"

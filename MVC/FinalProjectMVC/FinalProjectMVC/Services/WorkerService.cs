@@ -18,6 +18,12 @@ public class WorkerApiService : IWorkerApiService
         return await _httpClient.GetFromJsonAsync<List<WorkerGetVM>>("api/Worker/GetAll");
     }
 
+    public async Task<PaginatedResult<WorkerGetVM>> GetPagedAsync(int page, int pageSize)
+    {
+        return await _httpClient.GetFromJsonAsync<PaginatedResult<WorkerGetVM>>(
+            $"api/Worker/GetPaged?page={page}&pageSize={pageSize}");
+    }
+
     public async Task<List<WorkerGetVM>> SearchByNameAsync(string name)
     {
         return await _httpClient.GetFromJsonAsync<List<WorkerGetVM>>(

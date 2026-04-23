@@ -1,0 +1,93 @@
+﻿using FinalProjectMVC.Services.Interfaces;
+using FinalProjectMVC.ViewModels.Account;
+using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
+
+namespace FinalProjectMVC.Areas.Admin.Controllers
+{
+    public class UsersController : AdminBaseController
+    {
+        private readonly IUserService _userService;
+
+        public UsersController(IUserService userService)
+        {
+            _userService = userService;
+        }
+
+        public async Task<IActionResult> Index(int page = 1, int pageSize = 5)
+        {
+            var token = HttpContext.Session.GetString("token") ?? Request.Cookies["jwt_token"];
+            if (string.IsNullOrWhiteSpace(token))
+                return RedirectToAction("Login", "Account", new { area = "" });
+
+            var callerRole = User.FindFirstValue(ClaimTypes.Role) ?? "Admin";
+
+            var result = await _userService.GetPagedUsersAsync(page, pageSize, token, callerRole);
+
+            result.Items = result.Items
+                .Where(u => u.Role == "Admin" || u.Role == "Member")
+                .ToList();
+
+            ViewBag.CallerRole = callerRole;
+
+            return View(result);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetPage(int page = 1, int pageSize = 5)
+        {
+            var token = HttpContext.Session.GetString("token") ?? Request.Cookies["jwt_token"];
+            if (string.IsNullOrWhiteSpace(token))
+                return Unauthorized();
+
+            var callerRole = User.FindFirstValue(ClaimTypes.Role) ?? "Admin";
+
+            var result = await _userService.GetPagedUsersAsync(page, pageSize, token, callerRole);
+
+            result.Items = result.Items
+                .Where(u => u.Role == "Admin" || u.Role == "Member")
+                .ToList();
+
+            return Json(result);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> SearchJson(string fullName)
+        {
+            var token = HttpContext.Session.GetString("token") ?? Request.Cookies["jwt_token"];
+            if (string.IsNullOrWhiteSpace(token))
+                return Unauthorized();
+
+            if (string.IsNullOrWhiteSpace(fullName))
+                return Json(new List<object>());
+
+            var callerRole = User.FindFirstValue(ClaimTypes.Role) ?? "Admin";
+
+            var users = await _userService.SearchByFullNameAsync(fullName, token, callerRole);
+
+            var filtered = users
+                .Where(u => u.Role == "Admin" || u.Role == "Member")
+                .ToList();
+
+            return Json(filtered);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AssignRole(AssignRoleVM model)
+        {
+            var token = HttpContext.Session.GetString("token") ?? Request.Cookies["jwt_token"];
+            if (string.IsNullOrWhiteSpace(token))
+                return RedirectToAction("Login", "Account", new { area = "" });
+
+            var result = await _userService.AssignRoleAsync(model, token);
+
+            if (!result.success)
+                TempData["UserError"] = result.message;
+            else
+                TempData["UserSuccess"] = result.message;
+
+            return RedirectToAction(nameof(Index));
+        }
+    }
+}

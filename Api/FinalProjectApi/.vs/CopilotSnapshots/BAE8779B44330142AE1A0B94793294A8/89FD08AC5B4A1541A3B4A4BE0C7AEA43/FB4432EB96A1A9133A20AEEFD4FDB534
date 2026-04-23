@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+
+    <style>
+        body { display: flex; min-height: 100vh; flex-direction: column; }
+        .wrapper { display: flex; flex: 1; }
+        #sidebar {
+            width: 250px;
+            color: #fff;
+            min-height: 100vh;
+            padding-top: 20px;
+            flex-shrink: 0;
+        }
+        #sidebar .sidebar-brand {
+            font-size: 1.25rem;
+            font-weight: 700;
+            padding: 0 20px 20px;
+            border-bottom: 1px solid #444;
+            display: block;
+            color: #fff;
+            text-decoration: none;
+        }
+        #sidebar .nav-link {
+            color: #adb5bd;
+            padding: 10px 20px;
+        }
+        #sidebar .nav-link:hover, #sidebar .nav-link.active {
+            color: #fff;
+            background-color: #343a40;
+            border-radius: 4px;
+        }
+        #sidebar .nav-link i { width: 20px; margin-right: 8px; }
+        #content { flex: 1; padding: 30px; background-color: #f8f9fa; }
+        .topbar {
+            background-color: #fff;
+            border-bottom: 1px solid #dee2e6;
+            padding: 10px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="topbar">
+        <span class="fw-semibold text-muted">Admin Panel</span>
+        <div>
+            <span class="me-3 text-muted"><i class="fas fa-user me-1"></i>@User.Identity?.Name</span>
+            <a asp-area="" asp-controller="Account" asp-action="Logout" class="btn btn-sm btn-outline-danger">
+                <i class="fas fa-sign-out-alt me-1"></i>Çıxış
+            </a>
+        </div>
+    </div>
+
+    <div class="wrapper">
+        <nav id="sidebar">
+            <a class="sidebar-brand" asp-area="Admin" asp-controller="Dashboard" asp-action="Index">
+                <i class="fas fa-tachometer-alt me-2"></i>Dashboard
+            </a>
+            <ul class="nav flex-column mt-3">
+                <li class="nav-item">
+                    <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Dashboard" ? "active" : "")"
+                       asp-area="Admin" asp-controller="Dashboard" asp-action="Index">
+                        <i class="fas fa-home"></i>Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Workers" ? "active" : "")"
+                       asp-area="Admin" asp-controller="Workers" asp-action="Index">
+                        <i class="fas fa-users"></i>İşçilər
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Users" ? "active" : "")"
+                       asp-area="Admin" asp-controller="Users" asp-action="Index">
+                        <i class="fas fa-user-shield"></i>İstifadəçilər
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div id="content">
+            @RenderBody()
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

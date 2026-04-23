@@ -1,0 +1,70 @@
+﻿@using FinalProjectMVC.ViewModels.ShipSlider
+@model List<ShipSliderGetVM>
+
+@inject IConfiguration Configuration
+@{
+    ViewData["Title"] = "ShipSlider - Index";
+    string apiBaseUrl = (Configuration["ApiSettings:BaseUrl"] ?? "http://localhost:5147/").TrimEnd('/');
+}
+
+<div class="admin-content__header">
+    <div>
+        <p class="admin-content__subtitle">SHIP SLIDER MANAGEMENT</p>
+        <h1>Ship Sliders</h1>
+    </div>
+    <a asp-area="Admin" asp-controller="ShipSlider" asp-action="Create" class="admin-btn admin-btn--primary">+ Add New</a>
+</div>
+
+<div class="admin-table-wrapper">
+    <table class="admin-table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Image</th>
+                <th>Pre Title</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>
+                            @if (!string.IsNullOrWhiteSpace(item.Image))
+                            {
+                                <img src="@($"{apiBaseUrl}{item.Image}")" alt="@item.Title" class="admin-avatar" />
+                            }
+                        </td>
+                        <td>@item.PreTitle</td>
+                        <td>@item.Title</td>
+                        <td>@(item.Description?.Length > 60 ? item.Description[..60] + "..." : item.Description)</td>
+                        <td>
+                            <div class="admin-actions">
+                                <a asp-area="Admin" asp-controller="ShipSlider" asp-action="Detail" asp-route-id="@item.Id" class="admin-btn admin-btn--sm">Get</a>
+                                <a asp-area="Admin" asp-controller="ShipSlider" asp-action="Edit" asp-route-id="@item.Id" class="admin-btn admin-btn--sm">Edit</a>
+                                <form asp-area="Admin" asp-controller="ShipSlider" asp-action="Delete" asp-route-id="@item.Id" method="post" style="display:inline;">
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="admin-btn admin-btn--sm admin-btn--danger"
+                                            onclick="return confirm('Are you sure you want to delete this slider?')">
+                                        Delete
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="6" class="admin-table__empty">No ship sliders found</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

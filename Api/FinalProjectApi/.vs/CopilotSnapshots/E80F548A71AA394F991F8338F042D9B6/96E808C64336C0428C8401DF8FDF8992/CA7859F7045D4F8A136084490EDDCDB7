@@ -1,0 +1,17 @@
+﻿@await Component.InvokeAsync("HeroSwiper")
+
+@await Component.InvokeAsync("Features")
+
+@await Component.InvokeAsync("PricingTable")
+
+@await Component.InvokeAsync("TourSlider")
+
+@await Component.InvokeAsync("Counter")
+
+@await Component.InvokeAsync("Clients")
+
+@await Component.InvokeAsync("ShipVideo")
+
+@await Component.InvokeAsync("Progress")
+
+@await Component.InvokeAsync("Discover")

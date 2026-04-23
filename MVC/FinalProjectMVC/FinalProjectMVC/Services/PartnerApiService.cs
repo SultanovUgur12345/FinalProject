@@ -1,0 +1,83 @@
+using FinalProjectMVC.ViewModels.Partner;
+using System.Net.Http.Headers;
+using System.Net.Http.Json;
+
+namespace FinalProjectMVC.Services
+{
+    public class PartnerApiService : IPartnerApiService
+    {
+        private readonly HttpClient _httpClient;
+
+        public PartnerApiService(HttpClient httpClient)
+        {
+            _httpClient = httpClient;
+        }
+
+        public async Task<List<PartnerGetVM>> GetAllAsync()
+        {
+            return await _httpClient.GetFromJsonAsync<List<PartnerGetVM>>("api/Partner/GetAll");
+        }
+
+        public async Task<PartnerGetVM> GetByIdAsync(int id)
+        {
+            return await _httpClient.GetFromJsonAsync<PartnerGetVM>($"api/Partner/Get/{id}");
+        }
+
+        public async Task<PartnerEditVM> GetByIdForEditAsync(int id)
+        {
+            var data = await _httpClient.GetFromJsonAsync<PartnerGetVM>($"api/Partner/Get/{id}");
+
+            if (data == null)
+                throw new Exception($"Partner tapilmadi. Id: {id}");
+
+            return new PartnerEditVM
+            {
+                Id = data.Id,
+                CurrentImage = data.Image
+            };
+        }
+
+        public async Task CreateAsync(PartnerCreateVM vm)
+        {
+            using var content = new MultipartFormDataContent();
+
+            if (vm.Image != null)
+            {
+                var fileContent = new StreamContent(vm.Image.OpenReadStream());
+                fileContent.Headers.ContentType = new MediaTypeHeaderValue(vm.Image.ContentType);
+                content.Add(fileContent, "Image", vm.Image.FileName);
+            }
+
+            var response = await _httpClient.PostAsync("api/Partner/Create", content);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                var error = await response.Content.ReadAsStringAsync();
+                throw new Exception(error);
+            }
+        }
+
+        public async Task UpdateAsync(int id, PartnerEditVM vm)
+        {
+            using var content = new MultipartFormDataContent();
+
+            content.Add(new StringContent(vm.CurrentImage ?? ""), "CurrentImage");
+
+            if (vm.Image != null)
+            {
+                var fileContent = new StreamContent(vm.Image.OpenReadStream());
+                fileContent.Headers.ContentType = new MediaTypeHeaderValue(vm.Image.ContentType);
+                content.Add(fileContent, "Image", vm.Image.FileName);
+            }
+
+            var response = await _httpClient.PutAsync($"api/Partner/Update/{id}", content);
+            response.EnsureSuccessStatusCode();
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+            var response = await _httpClient.DeleteAsync($"api/Partner/Delete/{id}");
+            response.EnsureSuccessStatusCode();
+        }
+    }
+}

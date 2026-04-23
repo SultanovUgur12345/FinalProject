@@ -1,0 +1,54 @@
+@using FinalProjectMVC.ViewModels.ShipSlider
+@model List<ShipSliderGetVM>
+
+@inject IConfiguration Configuration
+@{
+    string apiBaseUrl = (Configuration["ApiSettings:BaseUrl"] ?? "http://localhost:5147/").TrimEnd('/');
+}
+
+<section id="ship-slider">
+    <div class="swiper ship-swiper">
+        <div class="swiper-wrapper">
+            @if (Model != null && Model.Any())
+            {
+                @foreach (var item in Model)
+                {
+                    <div class="swiper-slide ship-slide"
+                         style="background-image: url('@($"{apiBaseUrl}{item.Image}")');">
+                        <div class="ship-slide__overlay"></div>
+                        <div class="ship-slide__content">
+                            <div class="pre-title">@item.PreTitle</div>
+                            <h2>@item.Title</h2>
+                            <p>@item.Description</p>
+                            <div class="btn-group">
+                                <a href="#" class="btn btn-outline">VIEW MORE</a>
+                                <a href="#" class="btn btn-filled">EXPLORE</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+        <div class="swiper-button-prev-custom"><i class="fas fa-chevron-left"></i></div>
+        <div class="swiper-button-next-custom"><i class="fas fa-chevron-right"></i></div>
+        <div class="swiper-pagination ship-swiper-pagination"></div>
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        new Swiper('.ship-swiper', {
+            loop: true,
+            autoplay: { delay: 5000, disableOnInteraction: false },
+            speed: 800,
+            pagination: {
+                el: '.ship-swiper-pagination',
+                clickable: true
+            },
+            navigation: {
+                nextEl: '.swiper-button-next-custom',
+                prevEl: '.swiper-button-prev-custom'
+            }
+        });
+    </script>
+}

@@ -1,0 +1,520 @@
+﻿using AutoMapper;
+using FinalProjectApi.DTOs.Account;
+using FinalProjectApi.Helpers.Enums;
+using FinalProjectApi.Models;
+using FinalProjectApi.Services.Interfaces;
+using Microsoft.AspNetCore.Identity;
+using System.Text;
+
+namespace FinalProjectApi.Services
+{
+    public class AccountService : IAccountService
+    {
+        private readonly UserManager<AppUser> _userManager;
+        private readonly SignInManager<AppUser> _signInManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IEmailService _emailService;
+        private readonly IEmailTemplateService _emailTemplateService;
+        private readonly IJwtService _jwtService;
+        private readonly IMapper _mapper;
+
+        public AccountService(
+            UserManager<AppUser> userManager,
+            SignInManager<AppUser> signInManager,
+            RoleManager<IdentityRole> roleManager,
+            IEmailService emailService,
+            IEmailTemplateService emailTemplateService,
+            IJwtService jwtService,
+            IMapper mapper)
+        {
+            _userManager = userManager;
+            _signInManager = signInManager;
+            _roleManager = roleManager;
+            _emailService = emailService;
+            _emailTemplateService = emailTemplateService;
+            _jwtService = jwtService;
+            _mapper = mapper;
+        }
+
+        public async Task<ResponceDto> RegisterAsync(RegisterDto dto, string scheme, string host)
+        {
+            var existByUserName = await _userManager.FindByNameAsync(dto.UserName);
+            if (existByUserName != null)
+            {
+                return new ResponceDto
+                {
+                    IsSuccess = false,
+                    Message = "Bu username artiq movcuddur"
+                };
+            }
+
+            var existByEmail = await _userManager.FindByEmailAsync(dto.Email);
+            if (existByEmail != null)
+            {
+                return new ResponceDto
+                {
+                    IsSuccess = false,
+                    Message = "Bu email artiq movcuddur"
+                };
+            }
+
+            var user = _mapper.Map<AppUser>(dto);
+
+            var result = await _userManager.CreateAsync(user, dto.Password);
+
+            if (!result.Succeeded)
+            {
+                return new ResponceDto
+                {
+                    IsSuccess = false,
+                    Message = string.Join(" | ", result.Errors.Select(x => x.Description))
+                };
+            }
+
+            var superAdminRole = nameof(Roles.Member);
+            await EnsureRoleExistsAsync(superAdminRole);
+            await _userManager.AddToRoleAsync(user, superAdminRole);
+
+            var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            var encodedToken = Uri.EscapeDataString(token);
+
+            var confirmUrl = $"{scheme}://{host}/api/account/confirm-email?userId={user.Id}&token={encodedToken}";
+
+            var sb = new StringBuilder();
+            sb.AppendLine("<h2>Email tesdiqi</h2>");
+            sb.AppendLine($"<p>Salam {user.FullName},</p>");
+            sb.AppendLine("<p>Qeydiyyati tamamlamaq ucun asagidaki linke klik et:</p>");
+            sb.AppendLine($"<a href='{confirmUrl}'>Emaili tesdiq et</a>");
+
+            await _emailService.SendEmailAsync(user.Email, "Email Tesdiqi", sb.ToString());
+
+            return new ResponceDto
+            {
+                IsSuccess = true,
+                Message = "Qeydiyyat ugurla tamamlandi. Email tesdiq linki gonderildi."
+            };
+        }
+
+        public async Task<ResponceDto> ConfirmEmailAsync(string userId, string token)
+        {
+            if (string.IsNullOrWhiteSpace(userId) || string.IsNullOrWhiteSpace(token))
+            {
+                return new ResponceDto
+                {
+                    IsSuccess = false,
+                    Message = "UserId ve ya token bosdur"
+                };
+            }
+
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                return new ResponceDto
+                {
+                    IsSuccess = false,
+                    Message = "Istifadeci tapilmadi"
+                };
+            }
+
+            var result = await _userManager.ConfirmEmailAsync(user, token);
+
+            if (!result.Succeeded)
+            {
+                return new ResponceDto
+                {
+                    IsSuccess = false,
+                    Message = string.Join(" | ", result.Errors.Select(x => x.Description))
+                };
+            }
+
+            return new ResponceDto
+            {
+                IsSuccess = true,
+                RedirectUrl = "http://localhost:5015/Account/Login?confirmed=true"
+            };
+        }
+
+        public async Task<ResponceDto> LoginAsync(LoginDto dto)
+        {
+            AppUser user;
+
+            if (dto.UserNameOrEmail.Contains("@"))
+                user = await _userManager.FindByEmailAsync(dto.UserNameOrEmail);
+            else
+                user = await _userManager.FindByNameAsync(dto.UserNameOrEmail);
+
+            if (user == null)
+            {
+                return new ResponceDto
+                {
+                    IsSuccess = false,
+                    Message = "Username/email ve ya password sehvdir"
+                };
+            }
+
+            if (!await _userManager.CheckPasswordAsync(user, dto.Password))
+            {
+                return new ResponceDto
+                {
+                    IsSuccess = false,
+                    Message = "Username/email ve ya password sehvdir"
+                };
+            }
+
+            if (!user.EmailConfirmed)
+            {
+                return new ResponceDto
+                {
+                    IsSuccess = false,
+                    Message = "Zehmet olmasa emailinizi tesdiq edin"
+                };
+            }
+
+            var roles = await _userManager.GetRolesAsync(user);
+            var (token, expireDate) = _jwtService.GenerateToken(user, roles);
+
+            return new ResponceDto
+            {
+                IsSuccess = true,
+                Message = "Login ugurludur",
+                Token = token,
+                ExpireDate = expireDate,
+                UserName = user.UserName
+            };
+        }
+
+        public async Task<ResponceDto> ForgotPasswordAsync(ForgotPasswordDto dto)
+        {
+            var user = await _userManager.FindByEmailAsync(dto.Email);
+
+            if (user == null)
+            {
+                return new ResponceDto
+                {
+                    IsSuccess = true,
+                    Message = "Eger bu email movcuddursa, reset linki gonderildi."
+                };
+            }
+
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+            var encodedToken = Uri.EscapeDataString(token);
+
+            var resetUrl = $"http://localhost:5015/Account/ResetPassword?email={user.Email}&token={encodedToken}";
+
+            var sb = new StringBuilder();
+            sb.AppendLine("<h2>Sifrenin yenilenmesi</h2>");
+            sb.AppendLine($"<p>Salam {user.FullName},</p>");
+            sb.AppendLine("<p>Sifrenizi yenilemek ucun asagidaki linke klik edin:</p>");
+            sb.AppendLine($"<a href='{resetUrl}'>Sifreni yenile</a>");
+
+            await _emailService.SendEmailAsync(user.Email, "Sifre yenileme", sb.ToString());
+
+            return new ResponceDto
+            {
+                IsSuccess = true,
+                Message = "Eger bu email movcuddursa, reset linki gonderildi."
+            };
+        }
+
+        public async Task<ResponceDto> ResetPasswordAsync(ResetPasswordDto dto)
+        {
+            var user = await _userManager.FindByEmailAsync(dto.Email);
+            if (user == null)
+            {
+                return new ResponceDto
+                {
+                    IsSuccess = false,
+                    Message = "Istifadeci tapilmadi"
+                };
+            }
+
+            var result = await _userManager.ResetPasswordAsync(user, dto.Token, dto.NewPassword);
+
+            if (!result.Succeeded)
+            {
+                return new ResponceDto
+                {
+                    IsSuccess = false,
+                    Message = string.Join(" | ", result.Errors.Select(x => x.Description))
+                };
+            }
+
+            return new ResponceDto
+            {
+                IsSuccess = true,
+                Message = "Sifre ugurla yenilendi"
+            };
+        }
+
+
+
+
+
+
+
+
+        public async Task<GetProfileDto?> GetProfileAsync(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+
+            if (user == null)
+                return null;
+
+            return new GetProfileDto
+            {
+                FullName = user.FullName ?? string.Empty,
+                UserName = user.UserName ?? string.Empty,
+                ProfileImage = user.ProfileImage
+            };
+        }
+
+        public async Task<ResponceDto> UpdateProfileAsync(string userId, UpdateProfileDto dto, IFormFile? file, string? baseUrl)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+
+            if (user == null)
+            {
+                return new ResponceDto
+                {
+                    IsSuccess = false,
+                    Message = "Istifadeci tapilmadi"
+                };
+            }
+
+            if (!string.IsNullOrWhiteSpace(dto.FullName))
+            {
+                user.FullName = dto.FullName.Trim();
+            }
+
+            if (!string.IsNullOrWhiteSpace(dto.UserName))
+            {
+                var newUserName = dto.UserName.Trim();
+
+                if (newUserName != user.UserName)
+                {
+                    var existUser = await _userManager.FindByNameAsync(newUserName);
+
+                    if (existUser != null && existUser.Id != user.Id)
+                    {
+                        return new ResponceDto
+                        {
+                            IsSuccess = false,
+                            Message = "Bu username artiq movcuddur"
+                        };
+                    }
+
+                    user.UserName = newUserName;
+                }
+            }
+
+            bool currentPasswordFilled = !string.IsNullOrWhiteSpace(dto.CurrentPassword);
+            bool newPasswordFilled = !string.IsNullOrWhiteSpace(dto.NewPassword);
+
+            if (currentPasswordFilled || newPasswordFilled)
+            {
+                if (!currentPasswordFilled || !newPasswordFilled)
+                {
+                    return new ResponceDto
+                    {
+                        IsSuccess = false,
+                        Message = "Sifre deyismek ucun hem kohne, hem de yeni sifre daxil edilmelidir"
+                    };
+                }
+
+                var passwordResult = await _userManager.ChangePasswordAsync(
+                    user,
+                    dto.CurrentPassword!,
+                    dto.NewPassword!
+                );
+
+                if (!passwordResult.Succeeded)
+                {
+                    return new ResponceDto
+                    {
+                        IsSuccess = false,
+                        Message = string.Join(", ", passwordResult.Errors.Select(x => x.Description))
+                    };
+                }
+            }
+
+            if (file != null && !string.IsNullOrWhiteSpace(baseUrl))
+            {
+                var folder = Path.Combine("wwwroot", "uploads", "users");
+                Directory.CreateDirectory(folder);
+
+                var fileName = $"{Guid.NewGuid()}{Path.GetExtension(file.FileName)}";
+                var filePath = Path.Combine(folder, fileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                    await file.CopyToAsync(stream);
+
+                if (!string.IsNullOrWhiteSpace(user.ProfileImage))
+                {
+                    var oldPath = Path.Combine("wwwroot", user.ProfileImage.TrimStart('/').Replace('/', Path.DirectorySeparatorChar));
+                    if (File.Exists(oldPath)) File.Delete(oldPath);
+                }
+
+                user.ProfileImage = $"/uploads/users/{fileName}";
+            }
+
+            var updateResult = await _userManager.UpdateAsync(user);
+
+            if (!updateResult.Succeeded)
+            {
+                return new ResponceDto
+                {
+                    IsSuccess = false,
+                    Message = string.Join(", ", updateResult.Errors.Select(x => x.Description))
+                };
+            }
+
+            return new ResponceDto
+            {
+                IsSuccess = true,
+                Message = "Profil ugurla yenilendi",
+                UserName = user.UserName,
+                ProfileImage = file != null && !string.IsNullOrWhiteSpace(baseUrl)
+                    ? $"{baseUrl}/uploads/users/{Path.GetFileName(user.ProfileImage)}"
+                    : null
+            };
+        }
+
+        public async Task<List<UserListDto>> GetAllUsersAsync()
+        {
+            var users = _userManager.Users.ToList();
+            var result = new List<UserListDto>();
+
+            foreach (var user in users)
+            {
+                var roles = await _userManager.GetRolesAsync(user);
+                result.Add(new UserListDto
+                {
+                    Id = user.Id,
+                    FullName = user.FullName ?? string.Empty,
+                    UserName = user.UserName ?? string.Empty,
+                    Email = user.Email ?? string.Empty,
+                    Role = roles.FirstOrDefault() ?? string.Empty,
+                    CanChangeRole = roles.FirstOrDefault() != nameof(Roles.SuperAdmin)
+                });
+            }
+
+            return result;
+        }
+
+        public async Task<List<UserListDto>> SearchByEmailAsync(string email)
+        {
+            var users = _userManager.Users
+                .Where(u => u.Email != null && u.Email.Contains(email))
+                .ToList();
+
+            var result = new List<UserListDto>();
+
+            foreach (var user in users)
+            {
+                var roles = await _userManager.GetRolesAsync(user);
+                result.Add(new UserListDto
+                {
+                    Id = user.Id,
+                    FullName = user.FullName ?? string.Empty,
+                    UserName = user.UserName ?? string.Empty,
+                    Email = user.Email ?? string.Empty,
+                    Role = roles.FirstOrDefault() ?? string.Empty,
+                    CanChangeRole = roles.FirstOrDefault() != nameof(Roles.SuperAdmin)
+                });
+            }
+
+            return result;
+        }
+
+        private async Task EnsureRoleExistsAsync(string roleName)
+        {
+            if (!await _roleManager.RoleExistsAsync(roleName))
+                await _roleManager.CreateAsync(new IdentityRole(roleName));
+        }
+
+        public async Task<ResponceDto> AssignRoleAsync(AssignRoleDto dto, string callerRole = "SuperAdmin")
+        {
+            var user = await _userManager.FindByIdAsync(dto.UserId);
+
+            if (user == null)
+            {
+                return new ResponceDto
+                {
+                    IsSuccess = false,
+                    Message = "Istifadeci tapilmadi"
+                };
+            }
+
+            var targetRoles = await _userManager.GetRolesAsync(user);
+            var targetRole = targetRoles.FirstOrDefault() ?? string.Empty;
+
+            if (targetRole == nameof(Roles.SuperAdmin))
+            {
+                return new ResponceDto
+                {
+                    IsSuccess = false,
+                    Message = "SuperAdmin istifadecisinin rolu deyisile bilmez"
+                };
+            }
+
+            if (callerRole == nameof(Roles.Admin) &&
+                targetRole != nameof(Roles.Member))
+            {
+                return new ResponceDto
+                {
+                    IsSuccess = false,
+                    Message = "Admin yalniz Member istifadecisinin rolunu deyise biler"
+                };
+            }
+
+            if (callerRole == nameof(Roles.Admin) &&
+                dto.Role != Roles.Member)
+            {
+                return new ResponceDto
+                {
+                    IsSuccess = false,
+                    Message = "Admin yalniz Member rolu teyinleye biler"
+                };
+            }
+
+            if (dto.Role == Roles.SuperAdmin)
+            {
+                return new ResponceDto
+                {
+                    IsSuccess = false,
+                    Message = "SuperAdmin rolu teyinlenile bilmez"
+                };
+            }
+
+            if (!Enum.IsDefined(typeof(Roles), dto.Role))
+            {
+                return new ResponceDto
+                {
+                    IsSuccess = false,
+                    Message = "Gecersiz rol"
+                };
+            }
+
+            var currentRoles = await _userManager.GetRolesAsync(user);
+            await _userManager.RemoveFromRolesAsync(user, currentRoles);
+
+            var result = await _userManager.AddToRoleAsync(user, dto.Role.ToString());
+
+            if (!result.Succeeded)
+            {
+                return new ResponceDto
+                {
+                    IsSuccess = false,
+                    Message = string.Join(" | ", result.Errors.Select(x => x.Description))
+                };
+            }
+
+            return new ResponceDto
+            {
+                IsSuccess = true,
+                Message = $"Rol ugurla teyinlendi: {dto.Role}"
+            };
+        }
+    }
+}
+

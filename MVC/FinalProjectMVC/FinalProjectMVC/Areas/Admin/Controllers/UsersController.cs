@@ -7,14 +7,14 @@ namespace FinalProjectMVC.Areas.Admin.Controllers
 {
     public class UsersController : AdminBaseController
     {
-        private readonly IAccountService _accountService;
+        private readonly IUserService _userService;
 
-        public UsersController(IAccountService accountService)
+        public UsersController(IUserService userService)
         {
-            _accountService = accountService;
+            _userService = userService;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1, int pageSize = 5)
         {
             var token = HttpContext.Session.GetString("token") ?? Request.Cookies["jwt_token"];
             if (string.IsNullOrWhiteSpace(token))
@@ -22,40 +22,54 @@ namespace FinalProjectMVC.Areas.Admin.Controllers
 
             var callerRole = User.FindFirstValue(ClaimTypes.Role) ?? "Admin";
 
-            var users = await _accountService.GetAllUsersAsync(token, callerRole);
+            var result = await _userService.GetPagedUsersAsync(page, pageSize, token, callerRole);
 
-            // Yalniz Admin ve Member-leri goster
-            var filtered = users
+            result.Items = result.Items
                 .Where(u => u.Role == "Admin" || u.Role == "Member")
                 .ToList();
 
             ViewBag.CallerRole = callerRole;
 
-            return View(filtered);
+            return View(result);
         }
 
         [HttpGet]
-        public async Task<IActionResult> Search(string email)
+        public async Task<IActionResult> GetPage(int page = 1, int pageSize = 5)
         {
             var token = HttpContext.Session.GetString("token") ?? Request.Cookies["jwt_token"];
             if (string.IsNullOrWhiteSpace(token))
-                return RedirectToAction("Login", "Account", new { area = "" });
-
-            if (string.IsNullOrWhiteSpace(email))
-                return RedirectToAction(nameof(Index));
+                return Unauthorized();
 
             var callerRole = User.FindFirstValue(ClaimTypes.Role) ?? "Admin";
 
-            var users = await _accountService.SearchUsersByEmailAsync(email, token, callerRole);
+            var result = await _userService.GetPagedUsersAsync(page, pageSize, token, callerRole);
+
+            result.Items = result.Items
+                .Where(u => u.Role == "Admin" || u.Role == "Member")
+                .ToList();
+
+            return Json(result);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> SearchJson(string fullName)
+        {
+            var token = HttpContext.Session.GetString("token") ?? Request.Cookies["jwt_token"];
+            if (string.IsNullOrWhiteSpace(token))
+                return Unauthorized();
+
+            if (string.IsNullOrWhiteSpace(fullName))
+                return Json(new List<object>());
+
+            var callerRole = User.FindFirstValue(ClaimTypes.Role) ?? "Admin";
+
+            var users = await _userService.SearchByFullNameAsync(fullName, token, callerRole);
 
             var filtered = users
                 .Where(u => u.Role == "Admin" || u.Role == "Member")
                 .ToList();
 
-            ViewBag.CallerRole = callerRole;
-            ViewBag.SearchEmail = email;
-
-            return View("Index", filtered);
+            return Json(filtered);
         }
 
         [HttpPost]
@@ -66,7 +80,7 @@ namespace FinalProjectMVC.Areas.Admin.Controllers
             if (string.IsNullOrWhiteSpace(token))
                 return RedirectToAction("Login", "Account", new { area = "" });
 
-            var result = await _accountService.AssignRoleAsync(model, token);
+            var result = await _userService.AssignRoleAsync(model, token);
 
             if (!result.success)
                 TempData["UserError"] = result.message;

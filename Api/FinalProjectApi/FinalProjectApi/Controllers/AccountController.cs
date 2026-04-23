@@ -1,8 +1,5 @@
 ﻿using FinalProjectApi.DTOs.Account;
-using FinalProjectApi.Helpers.Enums;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -71,80 +68,6 @@ public class AccountController : ControllerBase
             return BadRequest(ModelState);
 
         var result = await _accountService.ResetPasswordAsync(dto);
-
-        if (!result.IsSuccess)
-            return BadRequest(result);
-
-        return Ok(result);
-    }
-
-
-    [Authorize]
-    [HttpGet("get-profile")]
-    public async Task<IActionResult> GetProfile()
-    {
-        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-        if (string.IsNullOrWhiteSpace(userId))
-            return Unauthorized();
-
-        var result = await _accountService.GetProfileAsync(userId);
-
-        if (result == null)
-            return NotFound();
-
-        return Ok(result);
-    }
-
-    [Authorize]
-    [HttpPut("update-profile")]
-    public async Task<IActionResult> UpdateProfile([FromForm] UpdateProfileDto dto, IFormFile? file)
-    {
-        if (!ModelState.IsValid)
-            return BadRequest(ModelState);
-
-        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-        if (string.IsNullOrWhiteSpace(userId))
-            return Unauthorized();
-
-        var baseUrl = $"{Request.Scheme}://{Request.Host}";
-        var result = await _accountService.UpdateProfileAsync(userId, dto, file, baseUrl);
-
-        if (!result.IsSuccess)
-            return BadRequest(result);
-
-        return Ok(result);
-    }
-
-    [Authorize(Roles = "SuperAdmin,Admin")]
-    [HttpGet("get-all-users")]
-    public async Task<IActionResult> GetAllUsers()
-    {
-        var users = await _accountService.GetAllUsersAsync();
-        return Ok(users);
-    }
-
-    [Authorize(Roles = "SuperAdmin,Admin")]
-    [HttpGet("search-by-email")]
-    public async Task<IActionResult> SearchByEmail([FromQuery] string email)
-    {
-        if (string.IsNullOrWhiteSpace(email))
-            return BadRequest(new { message = "Email parametri bos ola bilmez" });
-
-        var users = await _accountService.SearchByEmailAsync(email);
-        return Ok(users);
-    }
-
-    [Authorize(Roles = "SuperAdmin,Admin")]
-    [HttpPost("assign-role")]
-    public async Task<IActionResult> AssignRole([FromBody] AssignRoleDto dto)
-    {
-        if (!ModelState.IsValid)
-            return BadRequest(ModelState);
-
-        var callerRole = User.IsInRole(nameof(Roles.SuperAdmin)) ? nameof(Roles.SuperAdmin) : nameof(Roles.Admin);
-        var result = await _accountService.AssignRoleAsync(dto, callerRole);
 
         if (!result.IsSuccess)
             return BadRequest(result);

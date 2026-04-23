@@ -27,6 +27,14 @@ namespace FinalProjectApi.Controllers
             return Ok(result);
         }
 
+        [AllowAnonymous]
+        [HttpGet]
+        public async Task<IActionResult> GetPaged([FromQuery] int page = 1, [FromQuery] int pageSize = 5)
+        {
+            var result = await _service.GetPagedAsync(page, pageSize);
+            return Ok(result);
+        }
+
         [Authorize(Roles = $"{nameof(Roles.SuperAdmin)},{nameof(Roles.Admin)}")]
         [HttpGet]
         public async Task<IActionResult> Search([FromQuery] string name)

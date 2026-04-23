@@ -2,21 +2,8 @@
 public interface IAccountService
 {
     Task<ResponceDto> RegisterAsync(RegisterDto dto, string scheme, string host);
-
     Task<ResponceDto> ConfirmEmailAsync(string userId, string token);
-
     Task<ResponceDto> LoginAsync(LoginDto dto);
-
     Task<ResponceDto> ForgotPasswordAsync(ForgotPasswordDto dto);
     Task<ResponceDto> ResetPasswordAsync(ResetPasswordDto dto);
-
-
-
-    Task<GetProfileDto?> GetProfileAsync(string userId);
-    Task<ResponceDto> UpdateProfileAsync(string userId, UpdateProfileDto dto, IFormFile? file, string? baseUrl);
-
-    Task<ResponceDto> AssignRoleAsync(AssignRoleDto dto, string callerRole = "SuperAdmin");
-
-    Task<List<UserListDto>> GetAllUsersAsync();
-    Task<List<UserListDto>> SearchByEmailAsync(string email);
 }

@@ -5,6 +5,7 @@ public interface IWorkerService
     public interface IWorkerApiService
     {
         Task<List<WorkerGetVM>> GetAllAsync();
+        Task<PaginatedResult<WorkerGetVM>> GetPagedAsync(int page, int pageSize);
         Task<List<WorkerGetVM>> SearchByNameAsync(string name);
         Task<WorkerDetailVM> GetByIdAsync(int id);
         Task<WorkerEditVM> GetByIdForEditAsync(int id);

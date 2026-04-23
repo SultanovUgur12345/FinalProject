@@ -1,0 +1,15 @@
+﻿using FinalProjectApi.DTOs.Account;
+
+namespace FinalProjectApi.Services.Interfaces
+{
+    public interface IUserService
+    {
+        Task<GetProfileDto?> GetProfileAsync(string userId);
+        Task<ResponceDto> UpdateProfileAsync(string userId, UpdateProfileDto dto, IFormFile? file, string? baseUrl);
+
+        Task<List<UserListDto>> GetAllUsersAsync();
+        Task<PaginatedResult<UserListDto>> GetPagedUsersAsync(int page, int pageSize);
+        Task<List<UserListDto>> SearchByFullNameAsync(string fullName);
+        Task<ResponceDto> AssignRoleAsync(AssignRoleDto dto, string callerRole = "SuperAdmin");
+    }
+}

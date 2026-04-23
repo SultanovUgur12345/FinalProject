@@ -14,5 +14,10 @@
 
         public string RedirectUrl { get; set; }
         public string? ProfileImage { get; set; }
+
+        public string? ConfirmUrl { get; set; }
+        public string? UserEmail { get; set; }
+        public string? UserFullName { get; set; }
+        public string? ResetUrl { get; set; }
     }
 }

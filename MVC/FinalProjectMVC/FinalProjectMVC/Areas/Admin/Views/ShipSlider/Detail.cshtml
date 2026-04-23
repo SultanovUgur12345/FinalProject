@@ -1,0 +1,171 @@
+﻿@using FinalProjectMVC.ViewModels.ShipSlider
+@inject IConfiguration Configuration
+@model ShipSliderGetVM
+
+@{
+    ViewData["Title"] = "ShipSlider - Detail";
+    string apiBaseUrl = (Configuration["ApiSettings:BaseUrl"] ?? "http://localhost:5147/").TrimEnd('/');
+}
+
+<section class="admin-workers">
+    <div class="admin-workers__container admin-workers__container--form">
+        <div class="admin-workers__head">
+            <div>
+                <p class="admin-workers__subtitle">SHIP SLIDER MANAGEMENT</p>
+                <h1>Slide Detail</h1>
+            </div>
+            <div class="admin-actions">
+                <a asp-area="Admin" asp-controller="ShipSlider" asp-action="Edit" asp-route-id="@Model.Id" class="admin-btn admin-btn--primary">Edit Slide</a>
+                <a asp-area="Admin" asp-controller="ShipSlider" asp-action="Index" class="admin-btn">&#8592; Back to List</a>
+            </div>
+        </div>
+
+        <div class="slide-detail-grid">
+            <div class="slide-detail-image">
+                @if (!string.IsNullOrWhiteSpace(Model.Image))
+                {
+                    <img src="@($"{apiBaseUrl}{Model.Image}")" alt="@Model.Title" />
+                }
+            </div>
+
+            <div class="slide-detail-content">
+                <p class="slide-pretitle">@Model.PreTitle</p>
+                <h2>@Model.Title</h2>
+                <p class="slide-description">@Model.Description</p>
+
+                <div class="slide-meta">
+                    <div class="slide-meta__item">
+                        <span class="slide-meta__label">ID</span>
+                        <span class="slide-meta__value">@Model.Id</span>
+                    </div>
+                    <div class="slide-meta__item">
+                        <span class="slide-meta__label">Pre Title</span>
+                        <span class="slide-meta__value">@Model.PreTitle</span>
+                    </div>
+                    <div class="slide-meta__item">
+                        <span class="slide-meta__label">Title</span>
+                        <span class="slide-meta__value">@Model.Title</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .admin-workers { width: 100%; color: #fff; }
+
+    .admin-workers__container {
+        background: rgba(2, 21, 39, 0.86);
+        border: 1px solid rgba(191, 168, 136, 0.3);
+        padding: 30px;
+        backdrop-filter: blur(10px);
+        border-radius: 12px;
+    }
+
+    .admin-workers__container--form { max-width: 980px; margin: 0 auto; }
+
+    .admin-workers__head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 25px;
+        flex-wrap: wrap;
+    }
+
+    .admin-workers__subtitle { color: #bfa888; letter-spacing: 2px; font-size: 12px; margin-bottom: 6px; }
+    .admin-workers__head h1 { font-family: "Cormorant Garamond", serif; font-size: 38px; margin: 0; }
+
+    .admin-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+    .slide-detail-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 28px;
+        align-items: start;
+    }
+
+    .slide-detail-image img {
+        width: 100%;
+        height: 340px;
+        object-fit: cover;
+        border: 1px solid rgba(191, 168, 136, 0.5);
+        border-radius: 10px;
+    }
+
+    .slide-pretitle {
+        color: #bfa888;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin: 0 0 8px;
+    }
+
+    .slide-detail-content h2 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 36px;
+        margin: 0 0 14px;
+    }
+
+    .slide-description {
+        color: rgba(255,255,255,0.75);
+        font-size: 14px;
+        line-height: 1.7;
+        margin-bottom: 24px;
+    }
+
+    .slide-meta { display: flex; flex-direction: column; gap: 12px; }
+
+    .slide-meta__item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 14px;
+        background: rgba(191, 168, 136, 0.07);
+        border: 1px solid rgba(191, 168, 136, 0.2);
+        border-radius: 6px;
+    }
+
+    .slide-meta__label {
+        color: #bfa888;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 600;
+    }
+
+    .slide-meta__value { font-size: 14px; color: #fff; }
+
+    .admin-btn {
+        display: inline-block;
+        text-decoration: none;
+        background: transparent;
+        color: #fff;
+        border: 1px solid rgba(191, 168, 136, 0.5);
+        padding: 10px 18px;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border-radius: 8px;
+    }
+
+    .admin-btn:hover { color: #bfa888; border-color: #bfa888; }
+
+    .admin-btn--primary {
+        background: linear-gradient(135deg, #bfa888 0%, #a68b6a 100%);
+        color: #021527;
+        border-color: transparent;
+        font-weight: 600;
+    }
+
+    .admin-btn--primary:hover { color: #021527; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(191,168,136,0.35); }
+
+    @@media (max-width: 768px) {
+        .slide-detail-grid { grid-template-columns: 1fr; }
+        .slide-detail-image img { height: 260px; }
+        .admin-workers__head { flex-direction: column; align-items: flex-start; }
+    }
+</style>

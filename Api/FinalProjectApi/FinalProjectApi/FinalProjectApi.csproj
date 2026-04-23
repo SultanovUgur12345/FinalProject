@@ -26,6 +26,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="EmailTemplates\**\*.cshtml" />
+    <None Include="EmailTemplates\**\*.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="DTOs\Common\" />
     <Folder Include="wwwroot\uploads\workers\" />
   </ItemGroup>

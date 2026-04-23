@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Seafarer - Yacht and Boat Rental</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Inconsolata:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+    <!-- Magnific Popup CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+
+
+
+    <link rel="stylesheet" href="~/client/assets/style/home.css">
+    <link rel="stylesheet" href="~/client/assets/style/workers.css">
+    
+    
+
+
+</head>
+
+<body>
+
+    @await Component.InvokeAsync("Header")
+
+    <div>
+        @RenderBody()
+    </div>
+
+        @await Component.InvokeAsync("Footer")
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+
+    <script src="~/client/assets/js/home.js"></script>
+    <script src="~/client/assets/js/workers.js"></script>
+
+</body>
+
+</html>
+

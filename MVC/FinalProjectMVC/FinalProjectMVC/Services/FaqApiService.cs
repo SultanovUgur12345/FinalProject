@@ -1,0 +1,61 @@
+using FinalProjectMVC.ViewModels.Faq;
+using System.Net.Http.Json;
+
+namespace FinalProjectMVC.Services
+{
+    public class FaqApiService : IFaqApiService
+    {
+        private readonly HttpClient _httpClient;
+
+        public FaqApiService(HttpClient httpClient)
+        {
+            _httpClient = httpClient;
+        }
+
+        public async Task<List<FaqGetVM>> GetAllAsync()
+        {
+            return await _httpClient.GetFromJsonAsync<List<FaqGetVM>>("api/Faq/GetAll");
+        }
+
+        public async Task<FaqGetVM> GetByIdAsync(int id)
+        {
+            return await _httpClient.GetFromJsonAsync<FaqGetVM>($"api/Faq/Get/{id}");
+        }
+
+        public async Task<FaqEditVM> GetByIdForEditAsync(int id)
+        {
+            var data = await _httpClient.GetFromJsonAsync<FaqGetVM>($"api/Faq/Get/{id}");
+            if (data == null)
+                throw new Exception($"Faq tapilmadi. Id: {id}");
+
+            return new FaqEditVM
+            {
+                Id = data.Id,
+                Question = data.Question,
+                Answer = data.Answer
+            };
+        }
+
+        public async Task CreateAsync(FaqCreateVM vm)
+        {
+            var response = await _httpClient.PostAsJsonAsync("api/Faq/Create", vm);
+            if (!response.IsSuccessStatusCode)
+            {
+                var error = await response.Content.ReadAsStringAsync();
+                throw new Exception(error);
+            }
+        }
+
+        public async Task UpdateAsync(int id, FaqEditVM vm)
+        {
+            var response = await _httpClient.PutAsJsonAsync($"api/Faq/Update/{id}", vm);
+            response.EnsureSuccessStatusCode();
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+            var response = await _httpClient.DeleteAsync($"api/Faq/Delete/{id}");
+            response.EnsureSuccessStatusCode();
+        }
+    }
+}

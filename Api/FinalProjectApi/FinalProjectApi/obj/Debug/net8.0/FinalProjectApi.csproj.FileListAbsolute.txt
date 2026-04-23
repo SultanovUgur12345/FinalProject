@@ -138,7 +138,6 @@ C:\Users\G713RM\Desktop\C# Projects\FinalProject\Api\FinalProjectApi\FinalProjec
 C:\Users\G713RM\Desktop\C# Projects\FinalProject\Api\FinalProjectApi\FinalProjectApi\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\G713RM\Desktop\C# Projects\FinalProject\Api\FinalProjectApi\FinalProjectApi\obj\Debug\net8.0\staticwebassets.build.endpoints.json
 C:\Users\G713RM\Desktop\C# Projects\FinalProject\Api\FinalProjectApi\FinalProjectApi\obj\Debug\net8.0\swae.build.ex.cache
-C:\Users\G713RM\Desktop\C# Projects\FinalProject\Api\FinalProjectApi\FinalProjectApi\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\G713RM\Desktop\C# Projects\FinalProject\Api\FinalProjectApi\FinalProjectApi\obj\Debug\net8.0\FinalPro.208382EF.Up2Date
 C:\Users\G713RM\Desktop\C# Projects\FinalProject\Api\FinalProjectApi\FinalProjectApi\obj\Debug\net8.0\FinalProjectApi.dll
 C:\Users\G713RM\Desktop\C# Projects\FinalProject\Api\FinalProjectApi\FinalProjectApi\obj\Debug\net8.0\refint\FinalProjectApi.dll
@@ -160,3 +159,6 @@ C:\Users\G713RM\Desktop\C# Projects\FinalProject\Api\FinalProjectApi\FinalProjec
 C:\Users\G713RM\Desktop\C# Projects\FinalProject\Api\FinalProjectApi\FinalProjectApi\bin\Debug\net8.0\System.Security.Cryptography.Pkcs.dll
 C:\Users\G713RM\Desktop\C# Projects\FinalProject\Api\FinalProjectApi\FinalProjectApi\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Security.Cryptography.Pkcs.dll
 C:\Users\G713RM\Desktop\C# Projects\FinalProject\Api\FinalProjectApi\FinalProjectApi\obj\Debug\net8.0\FinalProjectApi.sourcelink.json
+C:\Users\G713RM\Desktop\C# Projects\FinalProject\Api\FinalProjectApi\FinalProjectApi\bin\Debug\net8.0\EmailTemplates\ConfirmEmail.cshtml
+C:\Users\G713RM\Desktop\C# Projects\FinalProject\Api\FinalProjectApi\FinalProjectApi\bin\Debug\net8.0\EmailTemplates\ResetPassword.cshtml
+C:\Users\G713RM\Desktop\C# Projects\FinalProject\Api\FinalProjectApi\FinalProjectApi\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

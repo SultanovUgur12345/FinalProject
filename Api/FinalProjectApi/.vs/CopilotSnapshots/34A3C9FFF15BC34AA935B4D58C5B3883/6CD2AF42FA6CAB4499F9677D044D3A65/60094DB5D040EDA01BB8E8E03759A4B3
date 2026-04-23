@@ -1,0 +1,10 @@
+﻿<section id="clients-section">
+    <div class="clients-grid">
+        <div class="client-item"><img src="https://seafarer.qodeinteractive.com/wp-content/uploads/2021/07/Light-logo-img-1.png" alt="Client"></div>
+        <div class="client-item"><img src="https://seafarer.qodeinteractive.com/wp-content/uploads/2021/07/Light-logo-img-2.png" alt="Client"></div>
+        <div class="client-item"><img src="https://seafarer.qodeinteractive.com/wp-content/uploads/2021/07/Light-logo-img-3.png" alt="Client"></div>
+        <div class="client-item"><img src="https://seafarer.qodeinteractive.com/wp-content/uploads/2021/07/Light-logo-img-4.png" alt="Client"></div>
+        <div class="client-item"><img src="https://seafarer.qodeinteractive.com/wp-content/uploads/2021/07/Light-logo-img-5.png" alt="Client"></div>
+        <div class="client-item"><img src="https://seafarer.qodeinteractive.com/wp-content/uploads/2021/07/Light-logo-img-6.png" alt="Client"></div>
+    </div>
+</section>

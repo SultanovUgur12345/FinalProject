@@ -19,7 +19,19 @@ wwwroot\uploads\workers\32fa232e-a6fb-4adb-a60b-0dac4086a2b4_Ekran görüntüsü
 wwwroot\uploads\workers\2965d2e2-805a-4840-8dee-3359c9aedc3c_Ekran görüntüsü 2024-08-23 160610.png
 wwwroot\uploads\workers\0b0d6828-fd5f-4753-9726-cc0b365ef3bd_Ekran görüntüsü 2024-08-10 225420 - Copy.png
 wwwroot\uploads\workers\09c7fec5-0e54-41e4-959e-8cdc350ddbbb_Ekran görüntüsü 2025-05-21 081258.png
-wwwroot\uploads\users\6c84989e-c0d1-427b-b000-0ed0d9241ecd.png
-wwwroot\uploads\users\cb895541-4b87-4881-9c59-b34d2ce1a1a2.png
-wwwroot\uploads\users\1a19065b-5ebd-4e09-a403-916adef22860.png
-wwwroot\uploads\workers\73571430-5917-4681-8297-9a8bc20439a6_Ekran görüntüsü 2025-05-16 162506.png
+wwwroot\uploads\users\6bcb22a1-8774-489f-a4d9-ca18b22a87b4.png
+wwwroot\uploads\users\73df6a29-2a1f-4f17-8bf8-5705c54b6714.png
+wwwroot\uploads\workers\bc83765e-6f97-4057-a17a-986e4257921b_Screenshot 2026-04-13 143000.png
+wwwroot\uploads\users\f144ec24-07be-46b1-b7c5-886f87fed7aa.png
+wwwroot\uploads\workers\57a8d2cf-1365-48c0-9f46-7e6c9f5c7e6b_Ekran görüntüsü 2025-05-21 081258.png
+wwwroot\uploads\users\306256a4-f779-4d56-a50f-e8707f7ca9cc.png
+wwwroot\uploads\users\5f56cae9-cae7-4377-b51a-c920db7e8636.png
+wwwroot\uploads\shipsliders\42490860-7d40-4ded-bc31-317a3c222f96_Ekran görüntüsü 2025-05-16 162506.png
+wwwroot\uploads\shipsliders\01b5ec93-2d32-4434-a6f5-8b2224e85aa6_Ekran görüntüsü 2024-08-23 160610.png
+wwwroot\uploads\shipsliders\a9e36670-53a2-4fe0-81a6-0c7cb7e5fe9f_Ekran görüntüsü 2025-07-03 134401.png
+wwwroot\uploads\features\5ab45ffa-7412-4252-af92-abbbfa2eea9f_Ekran görüntüsü 2025-05-16 162506.png
+wwwroot\uploads\features\4d024830-abbe-4ba7-87bc-3535741f6248_Ekran görüntüsü 2025-05-21 081258.png
+wwwroot\uploads\features\ec86935e-ceb6-44d1-9389-92cc24d8c94e_Ekran görüntüsü 2024-08-10 225420.png
+wwwroot\uploads\partners\328d2f88-8414-4cd1-a02f-62d6645b6d8f_Ekran görüntüsü 2025-05-16 162506.png
+wwwroot\uploads\partners\91f7515e-ebc8-47f8-8077-5e3d35f74af1_Ekran görüntüsü 2024-12-18 014954.png
+wwwroot\uploads\partners\8bc199c9-0ce2-48b4-b3bf-695feb0c1260_Ekran görüntüsü 2025-06-19 034043.png

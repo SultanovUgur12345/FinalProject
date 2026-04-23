@@ -1,0 +1,736 @@
+﻿@using FinalProjectMVC.ViewModels.Worker
+@inject IConfiguration Configuration
+@model PaginatedResult<WorkerGetVM>
+
+@{
+    ViewData["Title"] = "Workers - GetAll";
+    string apiBaseUrl = (Configuration["ApiSettings:BaseUrl"] ?? "http://localhost:5147/").TrimEnd('/');
+}
+
+<div class="admin-content__header">
+            <div>
+                <p class="admin-content__subtitle">WORKER MANAGEMENT</p>
+                <h1>Workers List</h1>
+            </div>
+            <a asp-area="Admin" asp-controller="Workers" asp-action="Create" class="admin-btn admin-btn--primary">+ Create Worker</a>
+        </div>
+
+        @if (TempData["WorkerError"] is string errorMessage)
+        {
+            <div class="admin-alert admin-alert--error">⚠ @errorMessage</div>
+        }
+
+        <div class="admin-topbar">
+            <div class="admin-search">
+                <input type="text" id="workerSearchInput" class="admin-search__input" placeholder="Search by name..." autocomplete="off" />
+            </div>
+            <span class="admin-stat">Total: <strong id="totalWorkersCount">@Model.TotalCount</strong></span>
+        </div>
+
+        <div class="admin-table-container">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Image</th>
+                        <th>Full Name</th>
+                        <th>Role</th>
+                        <th>Experience</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="workersTableBody">
+                    @if (Model.Items != null && Model.Items.Any())
+                    {
+                        foreach (var item in Model.Items)
+                        {
+                            <tr class="worker-row">
+                                <td>@item.Id</td>
+                                <td>
+                                    <img class="admin-avatar"
+                                         src="@(string.IsNullOrWhiteSpace(item.Image) ? "" : $"{apiBaseUrl}{item.Image}")"
+                                         alt="@item.FullName" />
+                                </td>
+                                <td>@item.FullName</td>
+                                <td>@item.Position</td>
+                                <td>@item.ExperienceYears year</td>
+                                <td>
+                                    <div class="admin-actions">
+                                        <a asp-area="Admin" asp-controller="Workers" asp-action="Detail" asp-route-id="@item.Id" class="admin-btn admin-btn--sm">Get</a>
+                                        <a asp-area="Admin" asp-controller="Workers" asp-action="Edit" asp-route-id="@item.Id" class="admin-btn admin-btn--sm">Edit</a>
+                                        <button type="button"
+                                                class="admin-btn admin-btn--sm admin-btn--danger open-delete-modal"
+                                                data-id="@item.Id"
+                                                data-name="@item.FullName"
+                                                data-position="@item.Position"
+                                                data-experience="@item.ExperienceYears"
+                                                data-image="@(string.IsNullOrWhiteSpace(item.Image) ? "" : $"{apiBaseUrl}{item.Image}")">
+                                            Delete
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr id="noWorkersRow">
+                            <td colspan="6" class="admin-table__empty">No workers found</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="admin-pagination" id="paginationContainer">
+            <button class="admin-pagination__btn" id="prevPageBtn" data-page="@(Model.Page - 1)" @(Model.Page <= 1 ? "disabled" : "")>← Previous</button>
+
+            <div class="admin-pagination__numbers" id="paginationNumbers">
+                @for (int i = 1; i <= Model.TotalPages; i++)
+                {
+                    <button class="admin-pagination__number @(i == Model.Page ? "active" : "")"
+                            data-page="@i">@i</button>
+                }
+            </div>
+
+            <button class="admin-pagination__btn" id="nextPageBtn" data-page="@(Model.Page + 1)" @(Model.Page >= Model.TotalPages ? "disabled" : "")>Next →</button>
+        </div>
+
+<div class="delete-modal" id="deleteModal">
+    <div class="delete-modal__overlay" id="deleteModalOverlay"></div>
+
+    <div class="delete-modal__content">
+        <button type="button" class="delete-modal__close" id="deleteModalClose">&times;</button>
+
+        <div class="delete-modal__top">
+            <p class="delete-modal__subtitle">DELETE CONFIRMATION</p>
+            <h2>Are you sure?</h2>
+            <p class="delete-modal__text">
+                This worker will be permanently deleted.
+            </p>
+        </div>
+
+        <div class="delete-modal__worker">
+            <img id="deleteWorkerImage" src="" alt="Worker Image" class="delete-modal__image" />
+
+            <div class="delete-modal__info">
+                <h3 id="deleteWorkerName"></h3>
+                <p><strong>Position:</strong> <span id="deleteWorkerPosition"></span></p>
+                <p><strong>Experience:</strong> <span id="deleteWorkerExperience"></span> year</p>
+            </div>
+        </div>
+
+        <form method="post"
+              asp-area="Admin"
+              asp-controller="Workers"
+              asp-action="Delete"
+              id="deleteForm">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="id" id="deleteWorkerId" />
+
+            <div class="delete-modal__actions">
+                <button type="button" class="admin-btn" id="cancelDelete">Cancel</button>
+                <button type="submit" class="admin-btn admin-btn--danger-fill">Yes, Delete</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    .admin-content__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 24px;
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
+    .admin-content__subtitle {
+        color: #bfa888;
+        letter-spacing: 2px;
+        font-size: 12px;
+        margin-bottom: 8px;
+    }
+
+    .admin-content h1 {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 40px;
+        margin: 0;
+    }
+
+    .admin-topbar {
+        margin-bottom: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+
+    .admin-search {
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+
+    .admin-search__input {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(191, 168, 136, 0.35);
+        color: #fff;
+        padding: 8px 14px;
+        font-size: 13px;
+        outline: none;
+        width: 240px;
+        transition: border-color 0.3s;
+    }
+
+    .admin-search__input::placeholder {
+        color: rgba(255, 255, 255, 0.4);
+    }
+
+    .admin-search__input:focus {
+        border-color: #bfa888;
+    }
+
+
+    .admin-stat {
+        font-size: 14px;
+        color: #fff;
+        padding: 8px 16px;
+        background: rgba(191, 168, 136, 0.1);
+        border: 1px solid rgba(191, 168, 136, 0.25);
+    }
+
+        .admin-stat strong {
+            color: #bfa888;
+            margin-left: 6px;
+        }
+
+    .admin-alert {
+        padding: 12px 16px;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 13px;
+    }
+
+    .admin-alert--error {
+        background: rgba(220, 53, 69, 0.15);
+        border: 1px solid rgba(220, 53, 69, 0.4);
+        color: #ff6b6b;
+    }
+
+    .admin-table-container {
+        overflow-x: auto;
+        margin-bottom: 24px;
+    }
+
+    .admin-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+        .admin-table thead tr {
+            border-bottom: 2px solid rgba(191, 168, 136, 0.3);
+        }
+
+        .admin-table th {
+            text-align: left;
+            padding: 14px 12px;
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #bfa888;
+            font-weight: 600;
+        }
+
+        .admin-table td {
+            padding: 14px 12px;
+            border-bottom: 1px solid rgba(191, 168, 136, 0.15);
+            font-size: 14px;
+            vertical-align: middle;
+        }
+
+        .admin-table tbody tr {
+            transition: background 0.2s ease;
+        }
+
+            .admin-table tbody tr:hover {
+                background: rgba(191, 168, 136, 0.05);
+            }
+
+    .admin-table__empty {
+        text-align: center;
+        color: #bfa888;
+        padding: 40px 12px !important;
+        font-style: italic;
+    }
+
+    .admin-avatar {
+        width: 52px;
+        height: 52px;
+        object-fit: cover;
+        border: 1px solid rgba(191, 168, 136, 0.4);
+        display: block;
+    }
+
+    .admin-actions {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    .admin-btn {
+        display: inline-block;
+        text-decoration: none;
+        background: transparent;
+        color: #fff;
+        border: 1px solid rgba(191, 168, 136, 0.5);
+        padding: 10px 16px;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+        .admin-btn:hover {
+            color: #bfa888;
+            border-color: #bfa888;
+        }
+
+    .admin-btn--sm {
+        padding: 6px 12px;
+        font-size: 11px;
+    }
+
+    .admin-btn--primary {
+        background: linear-gradient(135deg, #bfa888 0%, #a68b6a 100%);
+        color: #021527;
+        border-color: transparent;
+        font-weight: 600;
+    }
+
+        .admin-btn--primary:hover {
+            color: #021527;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(191, 168, 136, 0.35);
+        }
+
+    .admin-btn--danger {
+        border-color: rgba(220, 53, 69, 0.5);
+        color: #ff6b6b;
+    }
+
+        .admin-btn--danger:hover {
+            border-color: #dc3545;
+            background: rgba(220, 53, 69, 0.15);
+        }
+
+    .admin-btn--danger-fill {
+        background: linear-gradient(135deg, #dc3545 0%, #b02a37 100%);
+        color: #fff;
+        border-color: transparent;
+        font-weight: 600;
+    }
+
+        .admin-btn--danger-fill:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(220, 53, 69, 0.35);
+        }
+
+    .admin-pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        margin-top: 24px;
+        flex-wrap: wrap;
+    }
+
+    .admin-pagination__btn {
+        background: transparent;
+        color: #fff;
+        border: 1px solid rgba(191, 168, 136, 0.3);
+        padding: 8px 16px;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+        .admin-pagination__btn:hover:not(:disabled) {
+            background: rgba(191, 168, 136, 0.1);
+            border-color: #bfa888;
+            color: #bfa888;
+        }
+
+        .admin-pagination__btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+    .admin-pagination__numbers {
+        display: flex;
+        gap: 4px;
+    }
+
+    .admin-pagination__number {
+        background: transparent;
+        color: #fff;
+        border: 1px solid rgba(191, 168, 136, 0.25);
+        padding: 8px 12px;
+        font-size: 12px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        min-width: 36px;
+    }
+
+        .admin-pagination__number:hover {
+            border-color: #bfa888;
+            color: #bfa888;
+        }
+
+        .admin-pagination__number.active {
+            background: linear-gradient(135deg, #bfa888 0%, #a68b6a 100%);
+            color: #021527;
+            border-color: transparent;
+            font-weight: 600;
+        }
+
+    /* DELETE MODAL */
+    .delete-modal {
+        position: fixed;
+        inset: 0;
+        display: none;
+        z-index: 9999;
+    }
+
+        .delete-modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+    .delete-modal__overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(5px);
+    }
+
+    .delete-modal__content {
+        position: relative;
+        width: min(92%, 560px);
+        background: rgba(2, 21, 39, 0.96);
+        border: 1px solid rgba(191, 168, 136, 0.3);
+        padding: 28px;
+        color: #fff;
+        z-index: 2;
+    }
+
+    .delete-modal__close {
+        position: absolute;
+        top: 12px;
+        right: 16px;
+        background: transparent;
+        border: none;
+        color: #bfa888;
+        font-size: 28px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+        .delete-modal__close:hover {
+            color: #fff;
+            transform: rotate(90deg);
+        }
+
+    .delete-modal__subtitle {
+        color: #bfa888;
+        letter-spacing: 2px;
+        font-size: 12px;
+        margin-bottom: 6px;
+    }
+
+    .delete-modal__top h2 {
+        margin: 0 0 10px;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 34px;
+    }
+
+    .delete-modal__text {
+        color: rgba(255,255,255,0.75);
+        margin-bottom: 20px;
+    }
+
+    .delete-modal__worker {
+        display: flex;
+        gap: 18px;
+        align-items: center;
+        padding: 16px;
+        border: 1px solid rgba(191, 168, 136, 0.2);
+        background: rgba(255,255,255,0.04);
+        margin-bottom: 22px;
+    }
+
+    .delete-modal__image {
+        width: 90px;
+        height: 90px;
+        object-fit: cover;
+        border: 1px solid rgba(191, 168, 136, 0.4);
+    }
+
+    .delete-modal__info h3 {
+        margin: 0 0 10px;
+        font-size: 22px;
+    }
+
+    .delete-modal__info p {
+        margin: 6px 0;
+        color: rgba(255,255,255,0.82);
+    }
+
+    .delete-modal__actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+    }
+
+    @@media (max-width: 900px) {
+        .admin-content__header {
+            flex-direction: column;
+        }
+
+        .admin-table th, .admin-table td {
+            padding: 10px 8px;
+            font-size: 12px;
+        }
+    }
+
+    @@media (max-width: 576px) {
+        .delete-modal__worker {
+            flex-direction: column;
+        }
+
+        .delete-modal__image {
+            width: 100%;
+            height: 180px;
+        }
+
+        .delete-modal__actions {
+            flex-direction: column;
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        // SEARCH
+        const searchInput = document.getElementById("workerSearchInput");
+        const tableBody = document.getElementById("workersTableBody");
+        const apiBaseUrl = "@apiBaseUrl";
+
+        let searchTimeout = null;
+
+        searchInput.addEventListener("input", function () {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(async function () {
+                const name = searchInput.value.trim();
+
+                if (!name) {
+                    // Bos olsa normal pagination-i goster
+                    loadPage(currentPage);
+                    return;
+                }
+
+                // Axtaris varsa pagination-i gizlet
+                document.getElementById("paginationContainer").style.display = "none";
+
+                try {
+                    const response = await fetch(`/Admin/Workers/Search?name=${encodeURIComponent(name)}`);
+                    if (!response.ok) return;
+                    const workers = await response.json();
+
+                    tableBody.innerHTML = "";
+
+                    if (workers.length === 0) {
+                        tableBody.innerHTML = `<tr id="noWorkersRow"><td colspan="6" class="admin-table__empty">No workers found</td></tr>`;
+                        document.getElementById("totalWorkersCount").textContent = "0";
+                        return;
+                    }
+
+                    document.getElementById("totalWorkersCount").textContent = workers.length;
+
+                    workers.forEach(function (item) {
+                        const imgSrc = item.image ? `${apiBaseUrl}${item.image}` : "";
+                        tableBody.innerHTML += `
+                            <tr class="worker-row">
+                                <td>${item.id}</td>
+                                <td><img class="admin-avatar" src="${imgSrc}" alt="${item.fullName}" /></td>
+                                <td>${item.fullName}</td>
+                                <td>${item.position ?? ""}</td>
+                                <td>${item.experienceYears} year</td>
+                                <td>
+                                    <div class="admin-actions">
+                                        <a href="/Admin/Workers/Detail/${item.id}" class="admin-btn admin-btn--sm">Get</a>
+                                        <a href="/Admin/Workers/Edit/${item.id}" class="admin-btn admin-btn--sm">Edit</a>
+                                        <button type="button"
+                                                class="admin-btn admin-btn--sm admin-btn--danger open-delete-modal"
+                                                data-id="${item.id}"
+                                                data-name="${item.fullName}"
+                                                data-position="${item.position ?? ""}"
+                                                data-experience="${item.experienceYears}"
+                                                data-image="${imgSrc}">
+                                            Delete
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>`;
+                    });
+
+                    document.querySelectorAll(".open-delete-modal").forEach(function (btn) {
+                        btn.addEventListener("click", function () { openDeleteModal(btn); });
+                    });
+
+                } catch (e) {
+                    console.error("Search error:", e);
+                }
+            }, 350);
+        });
+
+        // DELETE MODAL
+        const deleteModal = document.getElementById("deleteModal");
+        const deleteModalOverlay = document.getElementById("deleteModalOverlay");
+        const deleteModalClose = document.getElementById("deleteModalClose");
+        const cancelDelete = document.getElementById("cancelDelete");
+
+        const deleteWorkerId = document.getElementById("deleteWorkerId");
+        const deleteWorkerName = document.getElementById("deleteWorkerName");
+        const deleteWorkerPosition = document.getElementById("deleteWorkerPosition");
+        const deleteWorkerExperience = document.getElementById("deleteWorkerExperience");
+        const deleteWorkerImage = document.getElementById("deleteWorkerImage");
+
+        function openDeleteModal(button) {
+            const id = button.getAttribute("data-id") || "";
+            const name = button.getAttribute("data-name") || "";
+            const position = button.getAttribute("data-position") || "";
+            const experience = button.getAttribute("data-experience") || "";
+            const image = button.getAttribute("data-image") || "";
+
+            deleteWorkerId.value = id;
+            deleteWorkerName.textContent = name;
+            deleteWorkerPosition.textContent = position;
+            deleteWorkerExperience.textContent = experience;
+            deleteWorkerImage.src = image;
+            deleteWorkerImage.style.display = image ? "block" : "none";
+
+            deleteModal.classList.add("show");
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeDeleteModal() {
+            deleteModal.classList.remove("show");
+            document.body.style.overflow = "";
+        }
+
+        document.addEventListener("click", function (e) {
+            const deleteBtn = e.target.closest(".open-delete-modal");
+            if (deleteBtn) {
+                openDeleteModal(deleteBtn);
+            }
+        });
+
+        if (deleteModalClose) deleteModalClose.addEventListener("click", closeDeleteModal);
+        if (cancelDelete) cancelDelete.addEventListener("click", closeDeleteModal);
+        if (deleteModalOverlay) deleteModalOverlay.addEventListener("click", closeDeleteModal);
+
+        // PAGINATION (AJAX - refreshsiz)
+        const pageSize = @Model.PageSize;
+        let currentPage = @Model.Page;
+
+        async function loadPage(page) {
+            try {
+                const response = await fetch(`/Admin/Workers/GetPage?page=${page}&pageSize=${pageSize}`);
+                if (!response.ok) return;
+                const result = await response.json();
+
+                // Table
+                tableBody.innerHTML = "";
+                if (!result.items || result.items.length === 0) {
+                    tableBody.innerHTML = `<tr id="noWorkersRow"><td colspan="6" class="admin-table__empty">No workers found</td></tr>`;
+                    document.getElementById("totalWorkersCount").textContent = "0";
+                    document.getElementById("paginationContainer").style.display = "none";
+                    return;
+                }
+
+                document.getElementById("totalWorkersCount").textContent = result.totalCount;
+                result.items.forEach(function (item) {
+                    const imgSrc = item.image ? `${apiBaseUrl}${item.image}` : "";
+                    tableBody.innerHTML += `
+                        <tr class="worker-row">
+                            <td>${item.id}</td>
+                            <td><img class="admin-avatar" src="${imgSrc}" alt="${item.fullName}" /></td>
+                            <td>${item.fullName}</td>
+                            <td>${item.position ?? ""}</td>
+                            <td>${item.experienceYears} year</td>
+                            <td>
+                                <div class="admin-actions">
+                                    <a href="/Admin/Workers/Detail/${item.id}" class="admin-btn admin-btn--sm">Get</a>
+                                    <a href="/Admin/Workers/Edit/${item.id}" class="admin-btn admin-btn--sm">Edit</a>
+                                    <button type="button"
+                                            class="admin-btn admin-btn--sm admin-btn--danger open-delete-modal"
+                                            data-id="${item.id}"
+                                            data-name="${item.fullName}"
+                                            data-position="${item.position ?? ""}"
+                                            data-experience="${item.experienceYears}"
+                                            data-image="${imgSrc}">
+                                        Delete
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>`;
+                });
+
+                // Pagination controls
+                currentPage = result.page;
+                const totalPages = result.totalPages;   
+
+                document.getElementById("prevPageBtn").disabled = currentPage <= 1;
+                document.getElementById("prevPageBtn").dataset.page = currentPage - 1;
+                document.getElementById("nextPageBtn").disabled = currentPage >= totalPages;
+                document.getElementById("nextPageBtn").dataset.page = currentPage + 1;
+
+                const paginationNumbers = document.getElementById("paginationNumbers");
+                paginationNumbers.innerHTML = "";
+                for (let i = 1; i <= totalPages; i++) {
+                    const btn = document.createElement("button");
+                    btn.className = "admin-pagination__number" + (i === currentPage ? " active" : "");
+                    btn.textContent = i;
+                    btn.dataset.page = i;
+                    btn.addEventListener("click", () => loadPage(i));
+                    paginationNumbers.appendChild(btn);
+                }
+
+                document.getElementById("paginationContainer").style.display = totalPages > 1 ? "flex" : "none";
+
+            } catch (e) {
+                console.error("Pagination error:", e);
+            }
+        }
+
+        document.getElementById("prevPageBtn").addEventListener("click", function () {
+            if (!this.disabled) loadPage(parseInt(this.dataset.page));
+        });
+        document.getElementById("nextPageBtn").addEventListener("click", function () {
+            if (!this.disabled) loadPage(parseInt(this.dataset.page));
+        });
+        document.querySelectorAll("#paginationNumbers .admin-pagination__number").forEach(function (btn) {
+            btn.addEventListener("click", function () { loadPage(parseInt(this.dataset.page)); });
+        });
+    });
+</script>

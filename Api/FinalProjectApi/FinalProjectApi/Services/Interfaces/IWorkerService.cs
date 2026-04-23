@@ -5,6 +5,7 @@ namespace FinalProjectApi.Services.Interfaces
     public interface IWorkerService
     {
         Task<List<WorkerGetDto>> GetAllAsync();
+        Task<PaginatedResult<WorkerGetDto>> GetPagedAsync(int page, int pageSize);
         Task<List<WorkerGetDto>> SearchByNameAsync(string name);
         Task<WorkerDetailDto> GetByIdAsync(int id);
 

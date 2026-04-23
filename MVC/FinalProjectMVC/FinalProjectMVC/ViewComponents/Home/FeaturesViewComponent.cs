@@ -1,12 +1,20 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FinalProjectMVC.ViewComponents.Header
 {
     public class FeaturesViewComponent : ViewComponent
     {
-        public IViewComponentResult Invoke()
+        private readonly IFeatureApiService _service;
+
+        public FeaturesViewComponent(IFeatureApiService service)
         {
-            return View();
+            _service = service;
+        }
+
+        public async Task<IViewComponentResult> InvokeAsync()
+        {
+            var features = await _service.GetAllAsync();
+            return View(features);
         }
     }
 }
