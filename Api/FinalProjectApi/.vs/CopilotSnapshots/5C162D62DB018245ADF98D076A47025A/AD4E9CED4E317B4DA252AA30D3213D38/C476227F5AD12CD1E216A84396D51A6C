@@ -1,0 +1,49 @@
+﻿@using FinalProjectMVC.ViewModels.Setting
+@model SettingBulkEditVM
+
+@{
+    ViewData["Title"] = "Edit Settings";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="admin-content__header">
+    <div>
+        <p class="admin-content__subtitle">SITE MANAGEMENT</p>
+        <h1>Tənzimləmələr</h1>
+    </div>
+    <a asp-area="Admin" asp-controller="Setting" asp-action="Index" class="admin-btn">← Back to List</a>
+</div>
+
+<form method="post"
+      asp-area="Admin"
+      asp-controller="Setting"
+      asp-action="EditAll"
+      class="admin-form">
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(false, "", new { @class = "admin-alert admin-alert--error" })
+
+    <input asp-for="NumberId" type="hidden" />
+    <input asp-for="EmailId" type="hidden" />
+
+    <div class="admin-form-group">
+        <label asp-for="Number">Phone Number</label>
+        <input asp-for="Number" class="admin-input" />
+        <span asp-validation-for="Number" class="admin-validation"></span>
+    </div>
+
+    <div class="admin-form-group">
+        <label asp-for="Email">Email</label>
+        <input asp-for="Email" class="admin-input" />
+        <span asp-validation-for="Email" class="admin-validation"></span>
+    </div>
+
+    <div class="admin-form-actions">
+        <button type="submit" class="admin-btn admin-btn--primary">Save Changes</button>
+        <a asp-area="Admin" asp-controller="Setting" asp-action="Index" class="admin-btn">Cancel</a>
+    </div>
+</form>
+
+@section Scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

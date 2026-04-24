@@ -1,0 +1,44 @@
+﻿<section id="contactTop">
+    <article class="panel contact-info">
+        <div class="contact-kicker">Contact Us</div>
+        <h2 class="contact-title">Get In Touch With Us</h2>
+        <p class="contact-text">Whether you have questions, need support, or want to discuss a private cruise, our team is ready to assist with fast, premium service.</p>
+
+        <div class="info-grid">
+            <div class="contact-chip">
+                <i class="fas fa-phone"></i>
+                <h4>Phone Number</h4>
+                <a href="tel:+3155577784">+1 994 51 315 36 84</a>
+            </div>
+            <div class="contact-chip">
+                <i class="fas fa-envelope"></i>
+                <h4>Email Address</h4>
+                <a href="mailto:seafarer.info@gmail.com">seafarer.info@gmail.com</a>
+            </div>
+            <div class="contact-chip" style="grid-column: 1 / -1;">
+                <i class="fas fa-location-dot"></i>
+                <h4>Address</h4>
+                <p>Roadtown Street 9, The Yacht Building, British Virgin Islands</p>
+            </div>
+        </div>
+
+        <div class="social-row">
+            <a class="social-chip" href="https://wa.me/994513153684" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            <a class="social-chip" href="https://www.instagram.com" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> Instagram</a>
+            <a class="social-chip" href="https://x.com" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i> Twitter</a>
+        </div>
+    </article>
+
+    <article class="panel contact-form-card">
+        <h3 class="contact-form-title">Send A Message</h3>
+        <p class="contact-form-sub">Unlock your potential with expert guidance. Schedule a free consultation for personalized business success.</p>
+        <form class="contact-form-grid" action="#" method="post">
+            <input type="text" placeholder="First Name" required>
+            <input type="text" placeholder="Last Name" required>
+            <input type="email" placeholder="Email Address" required>
+            <input type="tel" placeholder="Phone Number" required>
+            <textarea placeholder="Message" required></textarea>
+        </form>
+        <button class="btn-gold" type="button">Submit Message</button>
+    </article>
+</section>

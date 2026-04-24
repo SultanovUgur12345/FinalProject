@@ -16,5 +16,8 @@ namespace FinalProjectApi.Data
         public DbSet<ShipHeroVideo> ShipHeroVideos { get; set; }
         public DbSet<AboutUs> AboutUs { get; set; }
         public DbSet<AboutUsAchievement> AboutUsAchievements { get; set; }
+        public DbSet<Setting> Settings { get; set; }
+
+
     }
 }

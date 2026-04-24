@@ -1,0 +1,57 @@
+﻿@using FinalProjectMVC.ViewModels.Setting
+@model List<SettingGetVM>
+
+@{
+    ViewData["Title"] = "Settings";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="admin-content__header">
+    <div>
+        <p class="admin-content__subtitle">SITE MANAGEMENT</p>
+        <h1>Settings</h1>
+    </div>
+</div>
+
+@if (TempData["SettingSuccess"] is string msg)
+{
+    <div class="admin-alert admin-alert--success">✔ @msg</div>
+}
+
+<div class="admin-table-container">
+    <table class="admin-table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Key</th>
+                <th>Value</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td><strong style="color:#fff">@item.Key</strong></td>
+                        <td style="max-width:420px;word-break:break-word">@item.Value</td>
+                        <td>
+                            <div class="admin-actions">
+                                <a asp-area="Admin" asp-controller="Setting" asp-action="Edit" asp-route-id="@item.Id"
+                                   class="admin-btn admin-btn--sm">Edit</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="4" class="admin-table__empty">No settings found.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

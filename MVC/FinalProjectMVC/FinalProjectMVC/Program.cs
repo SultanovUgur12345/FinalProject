@@ -56,6 +56,12 @@ builder.Services.AddHttpClient<IAboutUsApiService, AboutUsApiService>(client =>
     client.BaseAddress = new Uri(apiBaseUrl);
 }).AddHttpMessageHandler<JwtTokenHandler>();
 
+builder.Services.AddHttpClient<ISettingApiService, SettingApiService>(client =>
+{
+    var apiBaseUrl = builder.Configuration["ApiSettings:BaseUrl"] ?? "http://localhost:5147/";
+    client.BaseAddress = new Uri(apiBaseUrl);
+}).AddHttpMessageHandler<JwtTokenHandler>();
+
 builder.Services.AddHttpClient<IAccountService, AccountService>(client =>
 {
     var apiBaseUrl = builder.Configuration["ApiSettings:BaseUrl"] ?? "http://localhost:5147/";

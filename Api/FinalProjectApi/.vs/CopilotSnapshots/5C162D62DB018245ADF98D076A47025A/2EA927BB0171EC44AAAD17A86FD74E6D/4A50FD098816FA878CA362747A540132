@@ -1,0 +1,157 @@
+﻿@using FinalProjectMVC.ViewModels.Setting
+@model SettingEditVM
+
+@{
+    ViewData["Title"] = "Edit Setting";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="admin-content__header">
+    <div>
+        <p class="admin-content__subtitle">SITE MANAGEMENT</p>
+        <h1>Edit Setting</h1>
+    </div>
+    <a asp-area="Admin" asp-controller="Setting" asp-action="Index" class="admin-btn">← Back to List</a>
+</div>
+
+<form method="post"
+      asp-area="Admin"
+      asp-controller="Setting"
+      asp-action="Edit"
+      asp-route-id="@Model.Id"
+      class="admin-form">
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(false, "", new { @class = "admin-alert admin-alert--error" })
+
+    <input asp-for="Id" type="hidden" />
+    <input asp-for="Key" type="hidden" />
+
+    <div class="admin-form-group">
+        <label asp-for="Value">Value</label>
+        <textarea asp-for="Value" class="admin-input admin-input--area" rows="4"></textarea>
+        <span asp-validation-for="Value" class="admin-validation"></span>
+    </div>
+
+    <div class="admin-form-actions">
+        <button type="submit" class="admin-btn admin-btn--primary">Save Changes</button>
+        <a asp-area="Admin" asp-controller="Setting" asp-action="Index" class="admin-btn">Cancel</a>
+    </div>
+</form>
+
+@section Scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
+
+<style>
+    .admin-content__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 28px;
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
+    .admin-content__subtitle {
+        color: #bfa888;
+        letter-spacing: 2px;
+        font-size: 12px;
+        margin-bottom: 8px;
+    }
+
+    h1 {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 40px;
+        margin: 0;
+    }
+
+    .admin-btn {
+        display: inline-block;
+        text-decoration: none;
+        background: transparent;
+        color: #fff;
+        border: 1px solid rgba(191,168,136,0.5);
+        padding: 10px 16px;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .admin-btn:hover { color: #bfa888; border-color: #bfa888; }
+
+    .admin-btn--primary {
+        background: linear-gradient(135deg, #bfa888 0%, #a68b6a 100%);
+        color: #021527;
+        border-color: transparent;
+        font-weight: 600;
+    }
+
+    .admin-btn--primary:hover {
+        color: #021527;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(191,168,136,0.35);
+    }
+
+    .admin-form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px 28px;
+        max-width: 820px;
+    }
+
+    .admin-form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .admin-form-group--full {
+        grid-column: 1 / -1;
+    }
+
+    .admin-form-group label {
+        font-size: 11px;
+        letter-spacing: 1.4px;
+        text-transform: uppercase;
+        color: #bfa888;
+    }
+
+    .admin-input {
+        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(191,168,136,0.3);
+        color: #fff;
+        padding: 10px 14px;
+        font-size: 14px;
+        outline: none;
+        width: 100%;
+        transition: border-color 0.3s;
+        font-family: inherit;
+    }
+
+    .admin-input:focus { border-color: #bfa888; }
+
+    .admin-input:disabled {
+        opacity: 0.45;
+        cursor: not-allowed;
+    }
+
+    .admin-input--area {
+        resize: vertical;
+        min-height: 120px;
+    }
+
+    .admin-validation {
+        font-size: 12px;
+        color: #ff6b6b;
+    }
+
+    .admin-form-actions {
+        grid-column: 1 / -1;
+        display: flex;
+        gap: 12px;
+        margin-top: 8px;
+    }
+</style>

@@ -1,0 +1,968 @@
+﻿@{
+    ViewData["Title"] = "Ship Detail";
+}
+
+<style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+        --navy:   #021527;
+        --deep:   #0d2242;
+        --ocean:  #0e3460;
+        --accent: #bfa888;
+        --gold:   #d6c09b;
+        --light:  #e8f0f8;
+        --white:  #ffffff;
+        --text:   #cdd8e8;
+        --radius: 12px;
+        --shadow: 0 20px 60px rgba(0,0,0,.5);
+        --transition: all .4s cubic-bezier(.25,.8,.25,1);
+    }
+
+    body {
+        background: var(--navy);
+        color: var(--text);
+        font-family: 'Segoe UI', system-ui, sans-serif;
+        overflow-x: hidden;
+    }
+
+    /* ── HERO ───────────────────────────────────────────────── */
+    .sh-hero {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        min-height: 600px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .sh-hero__bg {
+        position: absolute;
+        inset: 0;
+        background: url('https://seafarer.qodeinteractive.com/wp-content/uploads/2021/07/home-1-parallax-1.jpg')
+            center / cover no-repeat;
+        transform: scale(1.06);
+        animation: shHeroZoom 10s ease forwards;
+    }
+
+    @@keyframes shHeroZoom {
+        from { transform: scale(1.06); }
+        to   { transform: scale(1.00); }
+    }
+
+    .sh-hero__overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            to bottom,
+            rgba(2,21,39,.55) 0%,
+            rgba(2,21,39,.75) 60%,
+            rgba(2,21,39,.98) 100%
+        );
+    }
+
+    .sh-hero__content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        padding: 0 5vw;
+        max-width: 860px;
+    }
+
+    .sh-hero__kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        text-transform: uppercase;
+        letter-spacing: .22em;
+        font-size: .75rem;
+        color: var(--gold);
+        margin-bottom: 20px;
+    }
+
+    .sh-hero__kicker::before,
+    .sh-hero__kicker::after {
+        content: '';
+        display: inline-block;
+        width: 40px;
+        height: 1px;
+        background: var(--gold);
+    }
+
+    .sh-hero__title {
+        font-size: clamp(2.8rem, 6vw, 5.8rem);
+        font-weight: 900;
+        color: var(--white);
+        line-height: 1.06;
+        letter-spacing: -.01em;
+        text-transform: uppercase;
+    }
+
+    .sh-hero__title span { color: var(--accent); }
+
+    .sh-hero__sub {
+        margin-top: 22px;
+        font-size: 1.05rem;
+        color: rgba(255,255,255,.72);
+        line-height: 1.8;
+    }
+
+    .sh-hero__scroll {
+        position: absolute;
+        bottom: 32px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 3;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        color: rgba(255,255,255,.4);
+        font-size: .68rem;
+        letter-spacing: .14em;
+        text-transform: uppercase;
+        animation: shBounce 2.2s infinite;
+    }
+
+    @@keyframes shBounce {
+        0%, 100% { transform: translateX(-50%) translateY(0); }
+        50%       { transform: translateX(-50%) translateY(9px); }
+    }
+
+    /* ── FULL-WIDTH IMAGE ───────────────────────────────────── */
+    .sh-fullimg {
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .sh-fullimg img {
+        width: 100%;
+        height: 70vh;
+        object-fit: cover;
+        display: block;
+        transition: transform 8s ease;
+    }
+
+    .sh-fullimg:hover img { transform: scale(1.04); }
+
+    .sh-fullimg__badge {
+        position: absolute;
+        bottom: 28px;
+        left: 5vw;
+        background: rgba(2,21,39,.85);
+        border: 1px solid rgba(191,168,136,.35);
+        backdrop-filter: blur(10px);
+        color: var(--gold);
+        padding: 12px 28px;
+        border-radius: 40px;
+        font-size: .78rem;
+        font-weight: 700;
+        letter-spacing: .12em;
+        text-transform: uppercase;
+    }
+
+    /* ── LONG DESCRIPTION ───────────────────────────────────── */
+    .sh-desc {
+        width: 100%;
+        background: var(--deep);
+        padding: 90px 10vw;
+    }
+
+    .sh-desc__inner { max-width: 1200px; margin: 0 auto; }
+
+    .sh-desc__kicker {
+        font-size: .72rem;
+        letter-spacing: .22em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 16px;
+        display: block;
+    }
+
+    .sh-desc__title {
+        font-size: clamp(1.7rem, 3vw, 2.8rem);
+        font-weight: 800;
+        color: var(--white);
+        margin-bottom: 40px;
+        line-height: 1.2;
+    }
+
+    .sh-desc__title span { color: var(--accent); }
+
+    .sh-desc__cols {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+    }
+
+    .sh-desc__col p {
+        font-size: .98rem;
+        line-height: 1.9;
+        color: var(--text);
+        margin-bottom: 18px;
+    }
+
+    .sh-desc__col p:last-child { margin-bottom: 0; }
+
+    .sh-desc__divider {
+        width: 60px;
+        height: 2px;
+        background: linear-gradient(to right, var(--accent), transparent);
+        margin: 32px 0;
+    }
+
+    /* ── STATS ──────────────────────────────────────────────── */
+    .sh-stats {
+        background: var(--navy);
+        border-top: 1px solid rgba(191,168,136,.1);
+        border-bottom: 1px solid rgba(191,168,136,.1);
+    }
+
+    .sh-stats__grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+    }
+
+    .sh-stat {
+        padding: 52px 20px;
+        text-align: center;
+        border-right: 1px solid rgba(255,255,255,.06);
+        transition: var(--transition);
+    }
+
+    .sh-stat:last-child { border-right: none; }
+    .sh-stat:hover { background: rgba(191,168,136,.05); }
+
+    .sh-stat__icon {
+        font-size: 1.9rem;
+        color: var(--accent);
+        margin-bottom: 14px;
+    }
+
+    .sh-stat__number {
+        font-size: 2.4rem;
+        font-weight: 900;
+        color: var(--white);
+        line-height: 1;
+    }
+
+    .sh-stat__number sup {
+        font-size: .9rem;
+        color: var(--gold);
+    }
+
+    .sh-stat__label {
+        margin-top: 8px;
+        font-size: .72rem;
+        letter-spacing: .14em;
+        text-transform: uppercase;
+        color: rgba(255,255,255,.45);
+    }
+
+    /* ── SPLIT ──────────────────────────────────────────────── */
+    .sh-split-section {
+        background: var(--deep);
+        padding: 100px 5vw;
+    }
+
+    .sh-split {
+        max-width: 1280px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 72px;
+        align-items: center;
+    }
+
+    .sh-split__img-wrap {
+        position: relative;
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: var(--shadow);
+    }
+
+    .sh-split__img-wrap img {
+        width: 100%;
+        height: 560px;
+        object-fit: cover;
+        display: block;
+        transition: transform .7s ease;
+    }
+
+    .sh-split__img-wrap:hover img { transform: scale(1.04); }
+
+    .sh-split__img-label {
+        position: absolute;
+        bottom: 24px;
+        left: 24px;
+        background: rgba(2,21,39,.85);
+        border: 1px solid rgba(191,168,136,.3);
+        backdrop-filter: blur(8px);
+        color: var(--gold);
+        padding: 10px 22px;
+        border-radius: 30px;
+        font-size: .76rem;
+        font-weight: 700;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+    }
+
+    .sh-split__info { padding: 10px 0; }
+
+    .sh-split__info .kicker {
+        font-size: .72rem;
+        letter-spacing: .22em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 14px;
+        display: block;
+    }
+
+    .sh-split__info h2 {
+        font-size: clamp(1.6rem, 2.6vw, 2.5rem);
+        font-weight: 800;
+        color: var(--white);
+        line-height: 1.15;
+        margin-bottom: 24px;
+    }
+
+    .sh-split__info h2 span { color: var(--accent); }
+
+    .sh-split__info p {
+        font-size: .97rem;
+        line-height: 1.85;
+        color: var(--text);
+        margin-bottom: 16px;
+    }
+
+    .sh-split__checklist {
+        list-style: none;
+        margin-top: 28px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px 24px;
+    }
+
+    .sh-split__checklist li {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: .88rem;
+        color: var(--text);
+    }
+
+    .sh-split__checklist li i {
+        color: var(--accent);
+        font-size: .9rem;
+        flex-shrink: 0;
+    }
+
+    /* ── HOVER TAB GALLERY ──────────────────────────────────── */
+    .sh-tabs-section {
+        background: var(--navy);
+        padding: 100px 5vw;
+    }
+
+    .sh-tabs-section .section-head {
+        max-width: 1280px;
+        margin: 0 auto 60px;
+        text-align: center;
+    }
+
+    .section-head .kicker {
+        font-size: .72rem;
+        letter-spacing: .22em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 12px;
+        display: block;
+    }
+
+    .section-head h2 {
+        font-size: clamp(1.7rem, 3vw, 2.9rem);
+        font-weight: 800;
+        color: var(--white);
+    }
+
+    .section-head h2 span { color: var(--accent); }
+
+    .sh-tabs-wrap {
+        max-width: 1280px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 320px 1fr;
+        gap: 0;
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        min-height: 520px;
+    }
+
+    .sh-tab-nav {
+        background: var(--deep);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sh-tab-btn {
+        padding: 26px 30px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        text-align: left;
+        border-bottom: 1px solid rgba(255,255,255,.05);
+        transition: var(--transition);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .sh-tab-btn::before {
+        content: '';
+        position: absolute;
+        left: 0; top: 0;
+        width: 3px; height: 100%;
+        background: var(--accent);
+        transform: scaleY(0);
+        transform-origin: bottom;
+        transition: transform .35s ease;
+    }
+
+    .sh-tab-btn:hover,
+    .sh-tab-btn.active {
+        background: rgba(191,168,136,.08);
+    }
+
+    .sh-tab-btn:hover::before,
+    .sh-tab-btn.active::before { transform: scaleY(1); }
+
+    .sh-tab-btn__num {
+        font-size: .65rem;
+        letter-spacing: .18em;
+        color: var(--accent);
+        margin-bottom: 5px;
+        display: block;
+    }
+
+    .sh-tab-btn__title {
+        font-size: .93rem;
+        font-weight: 700;
+        color: var(--white);
+        margin-bottom: 3px;
+    }
+
+    .sh-tab-btn__sub {
+        font-size: .76rem;
+        color: rgba(255,255,255,.38);
+    }
+
+    .sh-tab-panels {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .sh-tab-panel {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transition: opacity .5s ease;
+        pointer-events: none;
+    }
+
+    .sh-tab-panel.active {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    .sh-tab-panel img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .sh-tab-panel__caption {
+        position: absolute;
+        bottom: 0; left: 0; right: 0;
+        padding: 40px 36px 32px;
+        background: linear-gradient(to top, rgba(2,21,39,.95) 0%, transparent 100%);
+    }
+
+    .sh-tab-panel__caption h3 {
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: var(--white);
+        margin-bottom: 8px;
+    }
+
+    .sh-tab-panel__caption p {
+        font-size: .86rem;
+        color: rgba(255,255,255,.62);
+        line-height: 1.7;
+        max-width: 500px;
+    }
+
+    /* ── SPECIFICATIONS ─────────────────────────────────────── */
+    .sh-specs-section {
+        background: var(--deep);
+        padding: 100px 5vw;
+    }
+
+    .sh-specs-inner {
+        max-width: 860px;
+        margin: 0 auto;
+    }
+
+    .sh-specs-inner .section-head {
+        text-align: center;
+        margin-bottom: 56px;
+    }
+
+    .sh-specs-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 8px;
+    }
+
+    .sh-specs-table td {
+        padding: 14px 22px;
+        font-size: .9rem;
+    }
+
+    .sh-specs-table td:first-child {
+        color: rgba(255,255,255,.5);
+        width: 50%;
+        background: rgba(255,255,255,.03);
+        border-radius: 8px 0 0 8px;
+        letter-spacing: .04em;
+    }
+
+    .sh-specs-table td:last-child {
+        color: var(--white);
+        font-weight: 700;
+        background: rgba(191,168,136,.07);
+        border-radius: 0 8px 8px 0;
+    }
+
+    /* ── CTA ────────────────────────────────────────────────── */
+    .sh-cta {
+        background:
+            linear-gradient(rgba(2,21,39,.84), rgba(2,21,39,.84)),
+            url('https://seafarer.qodeinteractive.com/wp-content/uploads/2021/07/home-1-parallax-1.jpg')
+            center / cover no-repeat fixed;
+        padding: 120px 5vw;
+        text-align: center;
+    }
+
+    .sh-cta h2 {
+        font-size: clamp(1.8rem, 3.5vw, 3.2rem);
+        font-weight: 900;
+        color: var(--white);
+        margin-bottom: 18px;
+        text-transform: uppercase;
+        letter-spacing: .04em;
+    }
+
+    .sh-cta h2 span { color: var(--accent); }
+
+    .sh-cta p {
+        font-size: .98rem;
+        color: rgba(255,255,255,.6);
+        max-width: 520px;
+        margin: 0 auto 40px;
+        line-height: 1.8;
+    }
+
+    .sh-btn-group {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
+    .sh-btn {
+        padding: 15px 42px;
+        border-radius: 40px;
+        font-size: .82rem;
+        font-weight: 700;
+        letter-spacing: .12em;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: var(--transition);
+        cursor: pointer;
+        border: none;
+        display: inline-block;
+    }
+
+    .sh-btn--primary {
+        background: var(--accent);
+        color: var(--navy);
+        box-shadow: 0 8px 28px rgba(191,168,136,.3);
+    }
+
+    .sh-btn--primary:hover {
+        background: var(--gold);
+        transform: translateY(-3px);
+        color: var(--navy);
+    }
+
+    .sh-btn--outline {
+        background: transparent;
+        color: var(--white);
+        border: 1.5px solid rgba(255,255,255,.3);
+    }
+
+    .sh-btn--outline:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+        transform: translateY(-3px);
+    }
+
+    /* ── RESPONSIVE ─────────────────────────────────────────── */
+    @@media (max-width: 1100px) {
+        .sh-stats__grid { grid-template-columns: repeat(3, 1fr); }
+        .sh-split { grid-template-columns: 1fr; gap: 40px; }
+        .sh-split__img-wrap img { height: 380px; }
+        .sh-tabs-wrap { grid-template-columns: 1fr; min-height: auto; }
+        .sh-tab-nav { flex-direction: row; flex-wrap: wrap; }
+        .sh-tab-btn { flex: 1 1 140px; border-bottom: none; border-right: 1px solid rgba(255,255,255,.05); }
+        .sh-tab-panels { min-height: 400px; }
+        .sh-tab-panel { position: relative; inset: auto; min-height: 400px; }
+        .sh-tab-panel:not(.active) { display: none; }
+        .sh-desc__cols { grid-template-columns: 1fr; gap: 0; }
+    }
+
+    @@media (max-width: 640px) {
+        .sh-stats__grid { grid-template-columns: repeat(2, 1fr); }
+        .sh-stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,.06); }
+        .sh-split__checklist { grid-template-columns: 1fr; }
+        .sh-desc { padding: 60px 6vw; }
+    }
+</style>
+
+<!-- HERO -->
+<section class="sh-hero">
+    <div class="sh-hero__bg"></div>
+    <div class="sh-hero__overlay"></div>
+    <div class="sh-hero__content">
+        <div class="sh-hero__kicker">Maritime Excellence</div>
+        <h1 class="sh-hero__title">MV Ocean<br><span>Sovereign</span></h1>
+        <p class="sh-hero__sub">
+            A state-of-the-art Kamsarmax bulk carrier engineered for endurance,
+            efficiency and unmatched performance on the world's most demanding ocean routes.
+        </p>
+    </div>
+    <div class="sh-hero__scroll">
+        <i class="fas fa-chevron-down"></i>
+        <span>Scroll</span>
+    </div>
+</section>
+
+<!-- FULL-WIDTH IMAGE -->
+<div class="sh-fullimg">
+    <img src="https://images.unsplash.com/photo-1605745341112-85968b19335b?auto=format&fit=crop&w=2400&q=90"
+         alt="MV Ocean Sovereign full view" />
+    <span class="sh-fullimg__badge"><i class="fas fa-anchor"></i>&nbsp; MV Ocean Sovereign — Built 2019</span>
+</div>
+
+<!-- LONG DESCRIPTION -->
+<div class="sh-desc">
+    <div class="sh-desc__inner">
+        <span class="sh-desc__kicker">Vessel Overview</span>
+        <h2 class="sh-desc__title">Engineered for the <span>Open Ocean</span></h2>
+        <div class="sh-desc__cols">
+            <div class="sh-desc__col">
+                <p>
+                    The MV Ocean Sovereign represents the pinnacle of modern bulk carrier design.
+                    Constructed at the Hyundai Heavy Industries shipyard in Ulsan, South Korea,
+                    she combines cutting-edge naval architecture with decades of accumulated
+                    operational wisdom to deliver a vessel that is both powerful and precise.
+                </p>
+                <p>
+                    Her double-hull construction and advanced anti-corrosion coating systems ensure
+                    structural integrity across the harshest sea conditions, from the storm-swept
+                    North Atlantic to the monsoon-laden corridors of the Indian Ocean. Every weld,
+                    every frame and every bulkhead has been designed to exceed Bureau Veritas class
+                    standards by a considerable margin.
+                </p>
+                <div class="sh-desc__divider"></div>
+                <p>
+                    Her cargo system comprises six self-trimming holds with a combined grain
+                    capacity of 96,580 m³, serviced by hydraulic folding hatch covers operated
+                    from a central hydraulic power unit on the main deck. The hopper tank arrangement
+                    eliminates dead cargo spaces and accelerates discharge operations at every port.
+                </p>
+            </div>
+            <div class="sh-desc__col">
+                <p>
+                    Propulsion is provided by a MAN B&amp;W 6G60ME-C9.5 two-stroke electronically
+                    controlled main engine producing 14,280 kW of continuous shaft power, driving
+                    a 7.2-metre fixed-pitch propeller through a direct-drive arrangement. Waste
+                    heat recovery cuts heavy fuel oil consumption by approximately 4% on long passages.
+                </p>
+                <p>
+                    The integrated bridge system combines FURUNO ECDIS, AIS Class A, S-Band and
+                    X-Band radars, dual gyrocompass and autopilot into a single ergonomic console
+                    that allows a single officer of the watch to manage all navigation functions
+                    efficiently and safely in full compliance with SOLAS V.
+                </p>
+                <div class="sh-desc__divider"></div>
+                <p>
+                    Crew welfare is taken seriously aboard MV Ocean Sovereign. All 26 officers and
+                    ratings are accommodated in air-conditioned single-occupancy cabins. A gymnasium,
+                    recreation lounge, cinema room and hospital bay are available throughout the voyage,
+                    reflecting the operator's commitment to crew retention and well-being at sea.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- STATS -->
+<div class="sh-stats">
+    <div class="sh-stats__grid">
+        <div class="sh-stat">
+            <div class="sh-stat__icon"><i class="fas fa-ruler-combined"></i></div>
+            <div class="sh-stat__number">295<sup>m</sup></div>
+            <div class="sh-stat__label">Length Overall</div>
+        </div>
+        <div class="sh-stat">
+            <div class="sh-stat__icon"><i class="fas fa-weight-hanging"></i></div>
+            <div class="sh-stat__number">87<sup>k DWT</sup></div>
+            <div class="sh-stat__label">Deadweight</div>
+        </div>
+        <div class="sh-stat">
+            <div class="sh-stat__icon"><i class="fas fa-tachometer-alt"></i></div>
+            <div class="sh-stat__number">14.5<sup>kn</sup></div>
+            <div class="sh-stat__label">Service Speed</div>
+        </div>
+        <div class="sh-stat">
+            <div class="sh-stat__icon"><i class="fas fa-users"></i></div>
+            <div class="sh-stat__number">26</div>
+            <div class="sh-stat__label">Crew Capacity</div>
+        </div>
+        <div class="sh-stat">
+            <div class="sh-stat__icon"><i class="fas fa-anchor"></i></div>
+            <div class="sh-stat__number">6</div>
+            <div class="sh-stat__label">Cargo Holds</div>
+        </div>
+        <div class="sh-stat">
+            <div class="sh-stat__icon"><i class="fas fa-calendar-alt"></i></div>
+            <div class="sh-stat__number">2019</div>
+            <div class="sh-stat__label">Year Built</div>
+        </div>
+    </div>
+</div>
+
+<!-- SPLIT: LEFT IMAGE / RIGHT INFO -->
+<div class="sh-split-section">
+    <div class="sh-split">
+        <div class="sh-split__img-wrap">
+            <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=1400&q=85"
+                 alt="Ship side view" />
+            <span class="sh-split__img-label">MV Ocean Sovereign</span>
+        </div>
+        <div class="sh-split__info">
+            <span class="kicker">On-Board Systems</span>
+            <h2>World-Class <span>Capabilities</span></h2>
+            <p>
+                Every system aboard MV Ocean Sovereign has been selected to deliver peak
+                reliability, operational flexibility and crew safety across the full spectrum
+                of bulk cargo trades worldwide.
+            </p>
+            <p>
+                From the advanced ECDIS navigation suite and Inmarsat Fleet One VSAT
+                communications to the CO₂ fixed firefighting system and redundant steering
+                gear, no compromises have been made in equipping this vessel for a lifetime
+                of demanding global service.
+            </p>
+            <ul class="sh-split__checklist">
+                <li><i class="fas fa-check-circle"></i> ECDIS + AIS Class A</li>
+                <li><i class="fas fa-check-circle"></i> Inmarsat VSAT</li>
+                <li><i class="fas fa-check-circle"></i> CO₂ Firefighting</li>
+                <li><i class="fas fa-check-circle"></i> Hydraulic Hatch Covers</li>
+                <li><i class="fas fa-check-circle"></i> ECO Main Engine</li>
+                <li><i class="fas fa-check-circle"></i> SOLAS Lifeboats</li>
+                <li><i class="fas fa-check-circle"></i> Bow Thruster 1,200 kW</li>
+                <li><i class="fas fa-check-circle"></i> BV Certified</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- HOVER TAB GALLERY -->
+<div class="sh-tabs-section">
+    <div class="section-head">
+        <span class="kicker">Visual Tour</span>
+        <h2>Explore the <span>Vessel</span></h2>
+    </div>
+    <div class="sh-tabs-wrap">
+        <nav class="sh-tab-nav" id="shTabNav">
+            <button class="sh-tab-btn active" data-tab="0">
+                <span class="sh-tab-btn__num">01</span>
+                <div class="sh-tab-btn__title">Bow at Sea</div>
+                <div class="sh-tab-btn__sub">Forward section underway</div>
+            </button>
+            <button class="sh-tab-btn" data-tab="1">
+                <span class="sh-tab-btn__num">02</span>
+                <div class="sh-tab-btn__title">Port Side</div>
+                <div class="sh-tab-btn__sub">Full length amidships</div>
+            </button>
+            <button class="sh-tab-btn" data-tab="2">
+                <span class="sh-tab-btn__num">03</span>
+                <div class="sh-tab-btn__title">Bridge Deck</div>
+                <div class="sh-tab-btn__sub">Integrated navigation</div>
+            </button>
+            <button class="sh-tab-btn" data-tab="3">
+                <span class="sh-tab-btn__num">04</span>
+                <div class="sh-tab-btn__title">Engine Room</div>
+                <div class="sh-tab-btn__sub">MAN B&amp;W main engine</div>
+            </button>
+            <button class="sh-tab-btn" data-tab="4">
+                <span class="sh-tab-btn__num">05</span>
+                <div class="sh-tab-btn__title">Cargo Holds</div>
+                <div class="sh-tab-btn__sub">6 self-trimming holds</div>
+            </button>
+            <button class="sh-tab-btn" data-tab="5">
+                <span class="sh-tab-btn__num">06</span>
+                <div class="sh-tab-btn__title">Aerial View</div>
+                <div class="sh-tab-btn__sub">Full vessel from above</div>
+            </button>
+        </nav>
+        <div class="sh-tab-panels" id="shTabPanels">
+            <div class="sh-tab-panel active" data-panel="0">
+                <img src="https://images.unsplash.com/photo-1605745341112-85968b19335b?auto=format&fit=crop&w=1600&q=85" alt="Bow at Sea" />
+                <div class="sh-tab-panel__caption">
+                    <h3>Bow at Sea</h3>
+                    <p>The reinforced bulbous bow cuts through swells with minimal resistance, reducing fuel consumption by up to 6% vs conventional hull forms.</p>
+                </div>
+            </div>
+            <div class="sh-tab-panel" data-panel="1">
+                <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=1600&q=85" alt="Port Side" />
+                <div class="sh-tab-panel__caption">
+                    <h3>Port Side View</h3>
+                    <p>295 metres of high-tensile steel from stem to stern. Anti-fouling coatings renewed at each dry-dock cycle for optimal hydrodynamic performance.</p>
+                </div>
+            </div>
+            <div class="sh-tab-panel" data-panel="2">
+                <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1600&q=85" alt="Bridge Deck" />
+                <div class="sh-tab-panel__caption">
+                    <h3>Integrated Bridge</h3>
+                    <p>Full FURUNO ECDIS suite, dual gyrocompass, adaptive autopilot and GMDSS communications integrated into a single ergonomic console.</p>
+                </div>
+            </div>
+            <div class="sh-tab-panel" data-panel="3">
+                <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1600&q=85" alt="Engine Room" />
+                <div class="sh-tab-panel__caption">
+                    <h3>Engine Room</h3>
+                    <p>MAN B&amp;W 6G60ME-C9.5 electronically controlled two-stroke producing 14,280 kW. Waste heat recovery cuts HFO consumption by ~4% on ocean passages.</p>
+                </div>
+            </div>
+            <div class="sh-tab-panel" data-panel="4">
+                <img src="https://images.unsplash.com/photo-1530053969600-caed2596d242?auto=format&fit=crop&w=1600&q=85" alt="Cargo Holds" />
+                <div class="sh-tab-panel__caption">
+                    <h3>Cargo Holds</h3>
+                    <p>Six self-trimming holds with 96,580 m³ total grain capacity. Hydraulic folding hatch covers open fully in under four minutes.</p>
+                </div>
+            </div>
+            <div class="sh-tab-panel" data-panel="5">
+                <img src="https://images.unsplash.com/photo-1504309092620-4d0ec726efa4?auto=format&fit=crop&w=1600&q=85" alt="Aerial View" />
+                <div class="sh-tab-panel__caption">
+                    <h3>Aerial View</h3>
+                    <p>Full vessel layout visible from above — six hatch covers running the entire cargo deck length, with accommodation block and funnel aft.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- TECHNICAL SPECIFICATIONS -->
+<div class="sh-specs-section">
+    <div class="sh-specs-inner">
+        <div class="section-head">
+            <span class="kicker">Technical Data</span>
+            <h2>Full <span>Specifications</span></h2>
+        </div>
+        <table class="sh-specs-table">
+            <tr><td>Vessel Type</td><td>Kamsarmax Bulk Carrier</td></tr>
+            <tr><td>Flag State</td><td>Panama</td></tr>
+            <tr><td>Classification</td><td>Bureau Veritas + 1A</td></tr>
+            <tr><td>IMO Number</td><td>9801234</td></tr>
+            <tr><td>Call Sign</td><td>3FKZ9</td></tr>
+            <tr><td>Built</td><td>2019 — HHI Ulsan, South Korea</td></tr>
+            <tr><td>Length Overall (LOA)</td><td>295.0 m</td></tr>
+            <tr><td>Beam (Moulded)</td><td>45.0 m</td></tr>
+            <tr><td>Depth (Moulded)</td><td>24.8 m</td></tr>
+            <tr><td>Summer Draft</td><td>18.3 m</td></tr>
+            <tr><td>Deadweight (Summer)</td><td>87,200 MT</td></tr>
+            <tr><td>Gross Tonnage</td><td>48,740 GT</td></tr>
+            <tr><td>Net Tonnage</td><td>29,890 NT</td></tr>
+            <tr><td>Grain Capacity</td><td>96,580 m³</td></tr>
+            <tr><td>Bale Capacity</td><td>93,100 m³</td></tr>
+            <tr><td>Main Engine</td><td>MAN B&amp;W 6G60ME-C9.5</td></tr>
+            <tr><td>MCR Power</td><td>14,280 kW @@ 97 RPM</td></tr>
+            <tr><td>Fuel (HFO) Daily</td><td>32 MT/day @@ CSR</td></tr>
+            <tr><td>Service Speed</td><td>14.5 knots</td></tr>
+            <tr><td>Bow Thruster</td><td>1,200 kW Tunnel</td></tr>
+            <tr><td>Cargo Holds / Hatches</td><td>6 / 6</td></tr>
+            <tr><td>Hatch Cover Type</td><td>Hydraulic Folding</td></tr>
+            <tr><td>Crew</td><td>26 persons</td></tr>
+        </table>
+    </div>
+</div>
+
+<!-- CTA -->
+<div class="sh-cta">
+    <h2>Ready to <span>Charter</span> This Vessel?</h2>
+    <p>Contact our chartering desk for availability, freight rates and the full operational portfolio of MV Ocean Sovereign.</p>
+    <div class="sh-btn-group">
+        <a href="#" class="sh-btn sh-btn--primary">Request a Charter</a>
+        <a href="#" class="sh-btn sh-btn--outline">Download Spec Sheet</a>
+    </div>
+</div>
+
+<script>
+    // Hover Tab Gallery
+    const tabBtns   = document.querySelectorAll('.sh-tab-btn');
+    const tabPanels = document.querySelectorAll('.sh-tab-panel');
+
+    function activateTab(index) {
+        tabBtns.forEach(b => b.classList.remove('active'));
+        tabPanels.forEach(p => p.classList.remove('active'));
+        tabBtns[index].classList.add('active');
+        tabPanels[index].classList.add('active');
+    }
+
+    tabBtns.forEach((btn, i) => {
+        btn.addEventListener('mouseenter', () => activateTab(i));
+        btn.addEventListener('click',      () => activateTab(i));
+    });
+
+    // Stats Counter
+    const statNumbers = document.querySelectorAll('.sh-stat__number');
+
+    const counterObs = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !entry.target.dataset.done) {
+                entry.target.dataset.done = '1';
+                const sup     = entry.target.querySelector('sup');
+                const supHTML = sup ? sup.outerHTML : '';
+                const raw     = entry.target.textContent.replace(sup ? sup.textContent : '', '').trim();
+                const target  = parseFloat(raw);
+                if (isNaN(target)) return;
+                const isFloat = raw.includes('.');
+                let cur = 0;
+                const step = target / 60;
+                const t = setInterval(() => {
+                    cur += step;
+                    if (cur >= target) { cur = target; clearInterval(t); }
+                    entry.target.innerHTML = (isFloat ? cur.toFixed(1) : Math.floor(cur)) + supHTML;
+                }, 20);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    statNumbers.forEach(n => counterObs.observe(n));
+</script>

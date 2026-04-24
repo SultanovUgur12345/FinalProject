@@ -203,6 +203,10 @@
            class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "AboutUs" ? "active" : "")">
             <i class="fa-solid fa-circle-info"></i><span>Haqqımızda</span>
         </a>
+        <a asp-area="Admin" asp-controller="Setting" asp-action="Index"
+           class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "Setting" ? "active" : "")">
+            <i class="fa-solid fa-sliders"></i><span>Tənzimləmələr</span>
+        </a>
     </nav>
 
     <div class="sidebar-footer">

@@ -1,0 +1,56 @@
+﻿using FinalProjectMVC.Services.Interfaces;
+using FinalProjectMVC.ViewModels.Setting;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
+namespace FinalProjectMVC.Areas.Admin.Controllers
+{
+    [Authorize(Roles = "SuperAdmin,Admin")]
+    public class SettingController : AdminBaseController
+    {
+        private readonly ISettingApiService _service;
+
+        public SettingController(ISettingApiService service)
+        {
+            _service = service;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var data = await _service.GetAllAsync();
+            ViewData["Title"] = "Settings";
+            return View(data);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit()
+        {
+            var all = await _service.GetAllAsync();
+            var vm = new SettingBulkEditVM
+            {
+                Items = all.Select(s => new SettingEditVM
+                {
+                    Id = s.Id,
+                    Key = s.Key,
+                    Value = s.Value
+                }).ToList()
+            };
+            ViewData["Title"] = "Edit Settings";
+            return View(vm);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(SettingBulkEditVM vm)
+        {
+            if (!ModelState.IsValid)
+                return View(vm);
+
+            foreach (var item in vm.Items)
+                await _service.UpdateAsync(item.Id, item);
+
+            TempData["SettingSuccess"] = "Settings updated successfully.";
+            return RedirectToAction(nameof(Index));
+        }
+    }
+}

@@ -1,0 +1,45 @@
+﻿using FinalProjectApi.DTOs.Setting;
+using FinalProjectApi.Helpers.Enums;
+using FinalProjectApi.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
+namespace FinalProjectApi.Controllers
+{
+    [ApiController]
+    [Route("api/[controller]/[action]")]
+    public class SettingController : ControllerBase
+    {
+        private readonly ISettingService _service;
+
+        public SettingController(ISettingService service)
+        {
+            _service = service;
+        }
+
+        [AllowAnonymous]
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var result = await _service.GetAllAsync();
+            return Ok(result);
+        }
+
+        [AllowAnonymous]
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(int id)
+        {
+            var result = await _service.GetByIdAsync(id);
+            if (result == null) return NotFound();
+            return Ok(result);
+        }
+
+        [Authorize(Roles = $"{nameof(Roles.SuperAdmin)},{nameof(Roles.Admin)}")]
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, [FromBody] SettingUpdateDto dto)
+        {
+            await _service.UpdateAsync(id, dto);
+            return Ok("Updated successfully");
+        }
+    }
+}

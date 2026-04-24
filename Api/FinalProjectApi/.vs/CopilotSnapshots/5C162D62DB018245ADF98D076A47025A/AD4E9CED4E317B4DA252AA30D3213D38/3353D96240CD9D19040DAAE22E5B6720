@@ -1,0 +1,338 @@
+﻿@{
+    ViewData["Title"] = "Hotel Types";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- LIGHTBOX -->
+<div class="lb-overlay" id="lb" onclick="lbClose(event)">
+    <button class="lb-close" onclick="closeLb()">&times;</button>
+    <button class="lb-arrow lb-prev" onclick="lbNav(-1)">&#8249;</button>
+    <button class="lb-arrow lb-next" onclick="lbNav(1)">&#8250;</button>
+    <div class="lb-box">
+        <img id="lb-img" src="" alt="" />
+        <p class="lb-caption" id="lb-cap"></p>
+    </div>
+</div>
+
+<!-- HERO -->
+<section class="oh-hero">
+    <div class="oh-hero__overlay"></div>
+    <div class="oh-hero__content">
+        <p class="oh-hero__kicker">Accommodation</p>
+        <h1 class="oh-hero__title">Our Hotel Types</h1>
+        <p class="oh-hero__sub">Three distinct experiences — each crafted for a different journey</p>
+    </div>
+    <div class="oh-hero__scroll"><span></span></div>
+</section>
+
+<div class="oh-wrapper">
+
+    <!-- RESORT -->
+    <article class="oh-block">
+        <div class="oh-block__media">
+            <img class="oh-block__cover lb-img" src="https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format&fit=crop&w=1800&q=80" alt="Resort Hotel" />
+            <div class="oh-block__gallery">
+                <div class="oh-block__thumb oh-block__thumb--tall">
+                    <img class="lb-img" src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=900&q=80" alt="Resort Pool" />
+                </div>
+                <div class="oh-block__thumb">
+                    <img class="lb-img" src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=900&q=80" alt="Resort Suite" />
+                </div>
+                <div class="oh-block__thumb">
+                    <img class="lb-img" src="https://images.unsplash.com/photo-1561501900-3701fa6a0864?auto=format&fit=crop&w=900&q=80" alt="Resort Balcony" />
+                </div>
+            </div>
+        </div>
+        <div class="oh-block__info">
+            <span class="oh-tag">Type 01</span>
+            <h2 class="oh-block__name">Resort Hotel</h2>
+            <p class="oh-block__desc">A relaxation-focused complex format. Selected for long-stay experiences with nature, sea views, pool and spa facilities.</p>
+            <ul class="oh-list">
+                <li><i class="fas fa-check"></i> Guest profile: families, couples, leisure travel</li>
+                <li><i class="fas fa-check"></i> Key advantage: outdoor activities + comfortable service</li>
+                <li><i class="fas fa-check"></i> Recommended stay: 3–7 nights</li>
+            </ul>
+            <div class="oh-chips">
+                <span>Beach Access</span><span>Spa & Pool</span><span>Family Zone</span><span>All Inclusive</span>
+            </div>
+        </div>
+    </article>
+
+    <div class="oh-divider"></div>
+
+    <!-- BUSINESS -->
+    <article class="oh-block oh-block--reverse">
+        <div class="oh-block__media">
+            <img class="oh-block__cover lb-img" src="https://images.unsplash.com/photo-1455587734955-081b22074882?auto=format&fit=crop&w=1800&q=80" alt="Business Hotel" />
+            <div class="oh-block__gallery">
+                <div class="oh-block__thumb oh-block__thumb--tall">
+                    <img class="lb-img" src="https://images.unsplash.com/photo-1517502884422-41eaead166d4?auto=format&fit=crop&w=900&q=80" alt="Conference Hall" />
+                </div>
+                <div class="oh-block__thumb">
+                    <img class="lb-img" src="https://images.unsplash.com/photo-1631049035182-249067d7618e?auto=format&fit=crop&w=900&q=80" alt="Business Room" />
+                </div>
+                <div class="oh-block__thumb">
+                    <img class="lb-img" src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=900&q=80" alt="Work Zone" />
+                </div>
+            </div>
+        </div>
+        <div class="oh-block__info">
+            <span class="oh-tag">Type 02</span>
+            <h2 class="oh-block__name">Business Hotel</h2>
+            <p class="oh-block__desc">Designed for corporate travel. Central location, meeting facilities and fast service create an advantage for business guests.</p>
+            <ul class="oh-list">
+                <li><i class="fas fa-check"></i> Guest profile: corporate guests & short business trips</li>
+                <li><i class="fas fa-check"></i> Key advantage: conference hall + lounge + logistics</li>
+                <li><i class="fas fa-check"></i> Recommended stay: 1–3 nights</li>
+            </ul>
+            <div class="oh-chips">
+                <span>Meeting Ready</span><span>Fast Wi-Fi</span><span>City Center</span><span>24/7 Service</span>
+            </div>
+        </div>
+    </article>
+
+    <div class="oh-divider"></div>
+
+    <!-- BOUTIQUE -->
+    <article class="oh-block">
+        <div class="oh-block__media">
+            <img class="oh-block__cover lb-img" src="https://images.unsplash.com/photo-1470246973918-29a93221c455?auto=format&fit=crop&w=1800&q=80" alt="Boutique Hotel" />
+            <div class="oh-block__gallery">
+                <div class="oh-block__thumb oh-block__thumb--tall">
+                    <img class="lb-img" src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=900&q=80" alt="Boutique Lobby" />
+                </div>
+                <div class="oh-block__thumb">
+                    <img class="lb-img" src="https://images.unsplash.com/photo-1615460549969-36fa19521a4f?auto=format&fit=crop&w=900&q=80" alt="Boutique Room" />
+                </div>
+                <div class="oh-block__thumb">
+                    <img class="lb-img" src="https://images.unsplash.com/photo-1605346434674-a440ca4dc4c0?auto=format&fit=crop&w=900&q=80" alt="Boutique Decor" />
+                </div>
+            </div>
+        </div>
+        <div class="oh-block__info">
+            <span class="oh-tag">Type 03</span>
+            <h2 class="oh-block__name">Boutique Hotel</h2>
+            <p class="oh-block__desc">A design-focused premium format with few rooms and personalized service. The atmosphere is built on intimacy and aesthetic choice.</p>
+            <ul class="oh-list">
+                <li><i class="fas fa-check"></i> Guest profile: romantic & individual style seekers</li>
+                <li><i class="fas fa-check"></i> Key advantage: unique interior + personal service quality</li>
+                <li><i class="fas fa-check"></i> Recommended stay: short premium retreat</li>
+            </ul>
+            <div class="oh-chips">
+                <span>Signature Design</span><span>Private Mood</span><span>Premium Service</span><span>Curated Experience</span>
+            </div>
+        </div>
+    </article>
+
+</div>
+
+<script>
+    const imgs = [];
+    let cur = 0;
+
+    document.querySelectorAll('.lb-img').forEach((img, i) => {
+        imgs.push({ src: img.src, alt: img.alt });
+        img.style.cursor = 'zoom-in';
+        img.addEventListener('click', () => openLb(i));
+    });
+
+    function openLb(i) {
+        cur = i;
+        document.getElementById('lb-img').src = imgs[i].src;
+        document.getElementById('lb-cap').textContent = imgs[i].alt;
+        document.getElementById('lb').classList.add('lb--open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLb() {
+        document.getElementById('lb').classList.remove('lb--open');
+        document.body.style.overflow = '';
+    }
+
+    function lbClose(e) {
+        if (e.target === document.getElementById('lb')) closeLb();
+    }
+
+    function lbNav(dir) {
+        cur = (cur + dir + imgs.length) % imgs.length;
+        const el = document.getElementById('lb-img');
+        el.style.opacity = 0;
+        setTimeout(() => {
+            el.src = imgs[cur].src;
+            document.getElementById('lb-cap').textContent = imgs[cur].alt;
+            el.style.opacity = 1;
+        }, 180);
+    }
+
+    document.addEventListener('keydown', e => {
+        if (!document.getElementById('lb').classList.contains('lb--open')) return;
+        if (e.key === 'Escape') closeLb();
+        if (e.key === 'ArrowLeft') lbNav(-1);
+        if (e.key === 'ArrowRight') lbNav(1);
+    });
+</script>
+
+<style>
+    /* ── LIGHTBOX ── */
+    .lb-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.92);
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s;
+    }
+
+    .lb-overlay.lb--open {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    .lb-box {
+        max-width: 90vw;
+        max-height: 90vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+    }
+
+    #lb-img {
+        max-width: 90vw;
+        max-height: 80vh;
+        object-fit: contain;
+        display: block;
+        transition: opacity 0.18s ease;
+        box-shadow: 0 0 60px rgba(0,0,0,0.7);
+    }
+
+    .lb-caption {
+        color: rgba(255,255,255,0.6);
+        font-size: 13px;
+        letter-spacing: 1px;
+        text-align: center;
+    }
+
+    .lb-close {
+        position: fixed;
+        top: 24px;
+        right: 32px;
+        background: none;
+        border: 1px solid rgba(255,255,255,0.25);
+        color: #fff;
+        font-size: 28px;
+        width: 44px;
+        height: 44px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: border-color 0.2s, color 0.2s;
+        z-index: 10000;
+    }
+
+    .lb-close:hover { border-color: #bfa888; color: #bfa888; }
+
+    .lb-arrow {
+        position: fixed;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: 1px solid rgba(255,255,255,0.2);
+        color: #fff;
+        font-size: 36px;
+        width: 52px;
+        height: 52px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: border-color 0.2s, color 0.2s;
+        z-index: 10000;
+    }
+
+    .lb-prev { left: 24px; }
+    .lb-next { right: 24px; }
+    .lb-arrow:hover { border-color: #bfa888; color: #bfa888; }
+
+    /* ── HERO ── */
+    .oh-hero {
+        position: relative;
+        height: 70vh;
+        min-height: 480px;
+        background: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=2400&q=80') center/cover no-repeat;
+        display: flex;
+        align-items: flex-end;
+        padding-bottom: 80px;
+        overflow: hidden;
+    }
+
+    .oh-hero__overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(5,10,14,0.92) 0%, rgba(5,10,14,0.3) 60%, transparent 100%);
+    }
+
+    .oh-hero__content {
+        position: relative;
+        z-index: 2;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 40px;
+        width: 100%;
+    }
+
+    .oh-hero__kicker { color: #bfa888; font-size: 11px; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 12px; }
+    .oh-hero__title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem, 6vw, 5.5rem); font-weight: 700; color: #fff; line-height: 1; margin: 0 0 14px; }
+    .oh-hero__sub { color: rgba(255,255,255,0.65); font-size: 1rem; margin: 0; }
+
+    .oh-hero__scroll { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); z-index: 2; }
+    .oh-hero__scroll span { display: block; width: 1px; height: 60px; background: linear-gradient(to bottom, transparent, #bfa888); margin: 0 auto; }
+
+    /* ── WRAPPER ── */
+    .oh-wrapper { max-width: 1260px; margin: 0 auto; padding: 80px 40px 100px; }
+    .oh-divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(191,168,136,0.3), transparent); margin: 80px 0; }
+
+    /* ── BLOCK ── */
+    .oh-block { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+    .oh-block--reverse { direction: rtl; }
+    .oh-block--reverse > * { direction: ltr; }
+
+    /* ── MEDIA ── */
+    .oh-block__media { display: grid; gap: 10px; }
+    .oh-block__cover { width: 100%; height: 380px; object-fit: cover; display: block; transition: transform 0.6s ease; }
+    .oh-block__cover:hover { transform: scale(1.02); }
+
+    .oh-block__gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .oh-block__thumb { overflow: hidden; height: 150px; }
+    .oh-block__thumb--tall { height: 310px; grid-row: span 2; }
+    .oh-block__thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
+    .oh-block__thumb:hover img { transform: scale(1.07); }
+
+    /* ── INFO ── */
+    .oh-block__info { padding-top: 12px; display: flex; flex-direction: column; gap: 20px; }
+
+    .oh-tag { display: inline-block; border: 1px solid rgba(191,168,136,0.5); color: #bfa888; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; padding: 5px 14px; }
+    .oh-block__name { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 700; color: #fff; line-height: 1.1; margin: 0; }
+    .oh-block__desc { color: rgba(255,255,255,0.65); font-size: 0.95rem; line-height: 1.8; margin: 0; }
+
+    .oh-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+    .oh-list li { color: rgba(255,255,255,0.75); font-size: 0.88rem; display: flex; align-items: flex-start; gap: 10px; }
+    .oh-list li i { color: #bfa888; font-size: 10px; margin-top: 4px; flex-shrink: 0; }
+
+    .oh-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .oh-chips span { border: 1px solid rgba(191,168,136,0.25); color: rgba(255,255,255,0.6); font-size: 11px; letter-spacing: 1px; text-transform: uppercase; padding: 6px 14px; background: rgba(191,168,136,0.05); transition: all 0.25s; }
+    .oh-chips span:hover { border-color: #bfa888; color: #bfa888; }
+
+    @@media (max-width: 900px) {
+        .oh-block, .oh-block--reverse { grid-template-columns: 1fr; direction: ltr; gap: 32px; }
+        .oh-hero__content { padding: 0 20px; }
+        .oh-wrapper { padding: 60px 20px 80px; }
+        .oh-divider { margin: 50px 0; }
+        .lb-arrow { display: none; }
+    }
+</style>

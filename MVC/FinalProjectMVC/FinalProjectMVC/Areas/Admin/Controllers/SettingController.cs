@@ -1,0 +1,46 @@
+using FinalProjectMVC.Services.Interfaces;
+using FinalProjectMVC.ViewModels.Setting;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
+namespace FinalProjectMVC.Areas.Admin.Controllers
+{
+    [Authorize(Roles = "SuperAdmin,Admin")]
+    public class SettingController : AdminBaseController
+    {
+        private readonly ISettingApiService _service;
+
+        public SettingController(ISettingApiService service)
+        {
+            _service = service;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var data = await _service.GetAllAsync();
+            return View(data);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> InlineEdit(int id, [FromBody] InlineEditRequest request)
+        {
+            if (string.IsNullOrWhiteSpace(request?.Value))
+                return BadRequest("Value is required.");
+
+            var existing = await _service.GetByIdAsync(id);
+            if (existing == null) return NotFound();
+
+            var result = await _service.UpdateAsync(id, new SettingEditVM { Id = id, Key = existing.Key, Value = request.Value });
+            if (!result.success)
+                return StatusCode(500, result.error);
+
+            return Ok();
+        }
+    }
+}
+
+public class InlineEditRequest
+{
+    public string Value { get; set; }
+}

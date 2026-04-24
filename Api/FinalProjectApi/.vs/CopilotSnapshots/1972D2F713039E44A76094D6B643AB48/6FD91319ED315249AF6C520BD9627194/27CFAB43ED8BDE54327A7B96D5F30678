@@ -1,0 +1,1100 @@
+﻿@{
+    ViewData["Title"] = "Ship Detail";
+}
+
+<style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+        --black:  #060c14;
+        --dark:   #0b1622;
+        --card:   #111d2c;
+        --border: rgba(255,255,255,.07);
+        --accent: #c8a96e;
+        --blue:   #2d7dd2;
+        --white:  #ffffff;
+        --muted:  #8fa3bc;
+        --radius: 18px;
+        --shadow: 0 32px 80px rgba(0,0,0,.55);
+        --ease:   cubic-bezier(.22,.61,.36,1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+        background: var(--black);
+        color: var(--muted);
+        font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        overflow-x: hidden;
+    }
+
+    /* ─── HERO ──────────────────────────────────────────────── */
+    .hero {
+        position: relative;
+        height: 100svh;
+        min-height: 640px;
+        display: flex;
+        align-items: flex-end;
+        overflow: hidden;
+    }
+
+    .hero__media {
+        position: absolute;
+        inset: 0;
+        background:
+            url('https://images.unsplash.com/photo-1605745341112-85968b19335b?auto=format&fit=crop&w=2400&q=90')
+            center / cover no-repeat;
+        transform: scale(1.07);
+        animation: heroZoom 12s var(--ease) forwards;
+    }
+
+    @@keyframes heroZoom {
+        to { transform: scale(1); }
+    }
+
+    .hero__overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            160deg,
+            rgba(6,12,20,.1) 0%,
+            rgba(6,12,20,.5) 50%,
+            rgba(6,12,20,.96) 100%
+        );
+    }
+
+    .hero__body {
+        position: relative;
+        z-index: 2;
+        max-width: 900px;
+        padding: 0 7vw 80px;
+    }
+
+    .label {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-size: .7rem;
+        letter-spacing: .22em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 22px;
+    }
+
+    .label::before {
+        content: '';
+        width: 32px;
+        height: 1.5px;
+        background: var(--accent);
+        flex-shrink: 0;
+    }
+
+    .hero__title {
+        font-size: clamp(3rem, 7vw, 6.5rem);
+        font-weight: 900;
+        color: var(--white);
+        line-height: 1.0;
+        letter-spacing: -.02em;
+        text-transform: uppercase;
+    }
+
+    .hero__title em {
+        font-style: normal;
+        color: var(--accent);
+    }
+
+    .hero__meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 32px;
+    }
+
+    .tag {
+        padding: 7px 18px;
+        border: 1px solid rgba(255,255,255,.15);
+        border-radius: 40px;
+        font-size: .75rem;
+        letter-spacing: .08em;
+        color: rgba(255,255,255,.65);
+        backdrop-filter: blur(6px);
+        background: rgba(255,255,255,.04);
+    }
+
+    .hero__scroll {
+        position: absolute;
+        right: 5vw;
+        bottom: 40px;
+        z-index: 3;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        color: rgba(255,255,255,.3);
+        font-size: .62rem;
+        letter-spacing: .18em;
+        text-transform: uppercase;
+    }
+
+    .hero__scroll-line {
+        width: 1px;
+        height: 60px;
+        background: linear-gradient(to bottom, rgba(255,255,255,.3), transparent);
+        animation: lineDown 2s ease infinite;
+    }
+
+    @@keyframes lineDown {
+        0%   { transform: scaleY(0); transform-origin: top; }
+        50%  { transform: scaleY(1); transform-origin: top; }
+        51%  { transform: scaleY(1); transform-origin: bottom; }
+        100% { transform: scaleY(0); transform-origin: bottom; }
+    }
+
+    /* ─── SECTION BASE ──────────────────────────────────────── */
+    .sec {
+        padding: 120px 7vw;
+    }
+
+    .sec__inner {
+        max-width: 1340px;
+        margin: 0 auto;
+    }
+
+    /* ─── SECTION HEADER ────────────────────────────────────── */
+    .sec-hd {
+        margin-bottom: 72px;
+    }
+
+    .sec-hd--center { text-align: center; }
+    .sec-hd--center .sec-hd__line { margin: 0 auto; }
+
+    .sec-hd__title {
+        font-size: clamp(2rem, 4vw, 3.4rem);
+        font-weight: 900;
+        color: var(--white);
+        line-height: 1.1;
+        letter-spacing: -.02em;
+        text-transform: uppercase;
+        margin-bottom: 18px;
+    }
+
+    .sec-hd__title em {
+        font-style: normal;
+        color: var(--accent);
+    }
+
+    .sec-hd__line {
+        width: 48px;
+        height: 3px;
+        background: var(--accent);
+        border-radius: 2px;
+        margin-bottom: 20px;
+    }
+
+    .sec-hd__sub {
+        font-size: .97rem;
+        line-height: 1.8;
+        color: var(--muted);
+        max-width: 560px;
+    }
+
+    /* ─── OVERVIEW (image left + text right) ───────────────── */
+    .overview {
+        background: var(--dark);
+    }
+
+    .split {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: center;
+    }
+
+    .split--reverse { direction: rtl; }
+    .split--reverse > * { direction: ltr; }
+
+    .img-frame {
+        position: relative;
+        border-radius: var(--radius);
+        overflow: hidden;
+    }
+
+    .img-frame img {
+        width: 100%;
+        height: 560px;
+        object-fit: cover;
+        display: block;
+        transition: transform .8s var(--ease);
+    }
+
+    .img-frame:hover img { transform: scale(1.05); }
+
+    .img-frame__badge {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        background: rgba(6,12,20,.88);
+        border: 1px solid rgba(200,169,110,.3);
+        backdrop-filter: blur(12px);
+        color: var(--accent);
+        padding: 9px 20px;
+        border-radius: 30px;
+        font-size: .72rem;
+        font-weight: 700;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+    }
+
+    .img-frame__num {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 48px;
+        height: 48px;
+        background: var(--accent);
+        color: var(--black);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: .7rem;
+        font-weight: 900;
+        letter-spacing: .1em;
+    }
+
+    .text-body p {
+        font-size: .97rem;
+        line-height: 1.9;
+        color: var(--muted);
+        margin-bottom: 18px;
+    }
+
+    .text-body p:last-child { margin-bottom: 0; }
+
+    .divider {
+        width: 40px;
+        height: 2px;
+        background: var(--accent);
+        margin: 28px 0;
+    }
+
+    /* ─── FEATURE CARDS ─────────────────────────────────────── */
+    .features {
+        background: var(--black);
+    }
+
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+    }
+
+    .feat-card {
+        position: relative;
+        border-radius: var(--radius);
+        overflow: hidden;
+        cursor: pointer;
+        background: var(--card);
+        border: 1px solid var(--border);
+        transition: border-color .3s, transform .4s var(--ease), box-shadow .4s;
+    }
+
+    .feat-card:hover {
+        border-color: rgba(200,169,110,.35);
+        transform: translateY(-8px);
+        box-shadow: 0 40px 80px rgba(0,0,0,.5);
+    }
+
+    .feat-card__img {
+        width: 100%;
+        height: 240px;
+        object-fit: cover;
+        display: block;
+        transition: transform .7s var(--ease);
+    }
+
+    .feat-card:hover .feat-card__img { transform: scale(1.07); }
+
+    .feat-card__body {
+        padding: 28px 28px 32px;
+    }
+
+    .feat-card__icon {
+        width: 44px;
+        height: 44px;
+        background: rgba(200,169,110,.12);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+        color: var(--accent);
+        margin-bottom: 16px;
+        transition: background .3s;
+    }
+
+    .feat-card:hover .feat-card__icon {
+        background: var(--accent);
+        color: var(--black);
+    }
+
+    .feat-card__title {
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--white);
+        margin-bottom: 10px;
+    }
+
+    .feat-card__text {
+        font-size: .87rem;
+        line-height: 1.75;
+        color: var(--muted);
+    }
+
+    /* ─── GALLERY STRIP ─────────────────────────────────────── */
+    .gallery-strip {
+        background: var(--dark);
+    }
+
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        grid-template-rows: 300px 300px;
+        gap: 14px;
+    }
+
+    .gallery-cell {
+        border-radius: 14px;
+        overflow: hidden;
+        position: relative;
+        cursor: zoom-in;
+    }
+
+    .gallery-cell:first-child {
+        grid-row: 1 / 3;
+    }
+
+    .gallery-cell img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform .6s var(--ease);
+    }
+
+    .gallery-cell:hover img { transform: scale(1.08); }
+
+    .gallery-cell__overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(6,12,20,.8) 0%, transparent 55%);
+        opacity: 0;
+        transition: opacity .35s;
+        display: flex;
+        align-items: flex-end;
+        padding: 18px;
+    }
+
+    .gallery-cell:hover .gallery-cell__overlay { opacity: 1; }
+
+    .gallery-cell__overlay span {
+        font-size: .78rem;
+        font-weight: 700;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+        color: var(--white);
+    }
+
+    /* ─── TAB SECTION ───────────────────────────────────────── */
+    .tab-section {
+        background: var(--black);
+    }
+
+    .tab-wrap {
+        display: grid;
+        grid-template-columns: 300px 1fr;
+        border-radius: var(--radius);
+        overflow: hidden;
+        border: 1px solid var(--border);
+        min-height: 540px;
+    }
+
+    .tab-nav {
+        background: var(--card);
+        border-right: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .tab-btn {
+        padding: 24px 28px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        text-align: left;
+        border-bottom: 1px solid var(--border);
+        transition: background .25s;
+        position: relative;
+    }
+
+    .tab-btn::after {
+        content: '';
+        position: absolute;
+        left: 0; top: 0;
+        width: 3px; height: 100%;
+        background: var(--accent);
+        transform: scaleY(0);
+        transform-origin: bottom;
+        transition: transform .3s var(--ease);
+    }
+
+    .tab-btn:hover,
+    .tab-btn.is-active { background: rgba(200,169,110,.06); }
+
+    .tab-btn.is-active::after,
+    .tab-btn:hover::after { transform: scaleY(1); }
+
+    .tab-btn__num {
+        font-size: .6rem;
+        letter-spacing: .2em;
+        color: var(--accent);
+        margin-bottom: 4px;
+        display: block;
+    }
+
+    .tab-btn__name {
+        font-size: .9rem;
+        font-weight: 700;
+        color: var(--white);
+        margin-bottom: 3px;
+    }
+
+    .tab-btn__hint {
+        font-size: .74rem;
+        color: rgba(255,255,255,.3);
+    }
+
+    .tab-panels { position: relative; overflow: hidden; }
+
+    .tab-panel {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity .5s var(--ease);
+    }
+
+    .tab-panel.is-active {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    .tab-panel img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .tab-panel__cap {
+        position: absolute;
+        bottom: 0; left: 0; right: 0;
+        padding: 48px 36px 32px;
+        background: linear-gradient(to top, rgba(6,12,20,.95) 0%, transparent 100%);
+    }
+
+    .tab-panel__cap h3 {
+        font-size: 1.35rem;
+        font-weight: 800;
+        color: var(--white);
+        margin-bottom: 8px;
+    }
+
+    .tab-panel__cap p {
+        font-size: .86rem;
+        color: rgba(255,255,255,.58);
+        line-height: 1.7;
+        max-width: 480px;
+    }
+
+    /* ─── SPECS ─────────────────────────────────────────────── */
+    .specs {
+        background: var(--dark);
+    }
+
+    .specs-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: start;
+    }
+
+    .specs-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 6px;
+    }
+
+    .specs-table td {
+        padding: 14px 20px;
+        font-size: .88rem;
+    }
+
+    .specs-table td:first-child {
+        color: var(--muted);
+        background: rgba(255,255,255,.03);
+        border-radius: 8px 0 0 8px;
+        width: 48%;
+    }
+
+    .specs-table td:last-child {
+        color: var(--white);
+        font-weight: 600;
+        background: rgba(200,169,110,.06);
+        border-radius: 0 8px 8px 0;
+    }
+
+    .specs-img {
+        position: relative;
+        border-radius: var(--radius);
+        overflow: hidden;
+    }
+
+    .specs-img img {
+        width: 100%;
+        height: 580px;
+        object-fit: cover;
+        display: block;
+        transition: transform .7s var(--ease);
+    }
+
+    .specs-img:hover img { transform: scale(1.04); }
+
+    .specs-img__label {
+        position: absolute;
+        top: 20px; right: 20px;
+        background: rgba(6,12,20,.85);
+        border: 1px solid rgba(200,169,110,.25);
+        backdrop-filter: blur(10px);
+        color: var(--accent);
+        padding: 8px 18px;
+        border-radius: 24px;
+        font-size: .72rem;
+        font-weight: 700;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+    }
+
+    /* ─── CONTACT STRIP ─────────────────────────────────────── */
+    .contact-strip {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .contact-strip__bg {
+        position: absolute;
+        inset: 0;
+        background:
+            url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=2000&q=85')
+            center / cover no-repeat;
+    }
+
+    .contact-strip__overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, rgba(6,12,20,.92) 0%, rgba(6,12,20,.75) 100%);
+    }
+
+    .contact-strip__body {
+        position: relative;
+        z-index: 2;
+        padding: 120px 7vw;
+        max-width: 700px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .contact-strip__body h2 {
+        font-size: clamp(2rem, 4vw, 3.2rem);
+        font-weight: 900;
+        color: var(--white);
+        text-transform: uppercase;
+        letter-spacing: -.01em;
+        margin-bottom: 18px;
+    }
+
+    .contact-strip__body h2 em {
+        font-style: normal;
+        color: var(--accent);
+    }
+
+    .contact-strip__body p {
+        font-size: .97rem;
+        color: rgba(255,255,255,.55);
+        line-height: 1.8;
+        margin-bottom: 40px;
+    }
+
+    .btn-row {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 14px;
+    }
+
+    .btn {
+        padding: 14px 38px;
+        border-radius: 40px;
+        font-size: .78rem;
+        font-weight: 700;
+        letter-spacing: .12em;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: transform .3s var(--ease), box-shadow .3s, background .3s;
+        display: inline-block;
+        border: none;
+        cursor: pointer;
+    }
+
+    .btn--gold {
+        background: var(--accent);
+        color: var(--black);
+        box-shadow: 0 8px 28px rgba(200,169,110,.3);
+    }
+
+    .btn--gold:hover {
+        background: #dbbf7e;
+        transform: translateY(-3px);
+        box-shadow: 0 16px 40px rgba(200,169,110,.45);
+        color: var(--black);
+    }
+
+    .btn--ghost {
+        background: transparent;
+        color: var(--white);
+        border: 1.5px solid rgba(255,255,255,.25);
+    }
+
+    .btn--ghost:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+        transform: translateY(-3px);
+    }
+
+    /* ─── LIGHTBOX ──────────────────────────────────────────── */
+    .lb {
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,.94);
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity .3s;
+    }
+
+    .lb.is-open { opacity: 1; pointer-events: all; }
+
+    .lb img {
+        max-width: 90vw;
+        max-height: 88vh;
+        border-radius: 10px;
+        object-fit: contain;
+    }
+
+    .lb__close {
+        position: absolute;
+        top: 22px; right: 28px;
+        background: none;
+        border: none;
+        color: rgba(255,255,255,.7);
+        font-size: 1.6rem;
+        cursor: pointer;
+        transition: color .2s;
+    }
+
+    .lb__close:hover { color: var(--white); }
+
+    /* ─── RESPONSIVE ────────────────────────────────────────── */
+    @@media (max-width: 1100px) {
+        .split, .specs-layout { grid-template-columns: 1fr; gap: 48px; }
+        .split--reverse { direction: ltr; }
+        .features-grid { grid-template-columns: 1fr 1fr; }
+        .tab-wrap { grid-template-columns: 1fr; }
+        .tab-nav { flex-direction: row; flex-wrap: wrap; }
+        .tab-btn { flex: 1 1 140px; border-bottom: none; border-right: 1px solid var(--border); }
+        .tab-panels { min-height: 420px; }
+        .tab-panel { position: relative; inset: auto; min-height: 420px; }
+        .tab-panel:not(.is-active) { display: none; }
+        .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+        .gallery-cell:first-child { grid-row: auto; }
+    }
+
+    @@media (max-width: 640px) {
+        .features-grid { grid-template-columns: 1fr; }
+        .gallery-grid { grid-template-columns: 1fr; }
+        .sec { padding: 72px 5vw; }
+        .img-frame img { height: 340px; }
+    }
+</style>
+
+<!-- ══ HERO ══════════════════════════════════════════════════ -->
+<section class="hero">
+    <div class="hero__media"></div>
+    <div class="hero__overlay"></div>
+    <div class="hero__body">
+        <div class="label">Maritime Excellence</div>
+        <h1 class="hero__title">MV Ocean<br><em>Sovereign</em></h1>
+        <div class="hero__meta">
+            <span class="tag">Kamsarmax Bulk Carrier</span>
+            <span class="tag">IMO Certified</span>
+            <span class="tag">ECO Class</span>
+            <span class="tag">Built 2019</span>
+            <span class="tag">Panama Flag</span>
+            <span class="tag">87,200 DWT</span>
+        </div>
+    </div>
+    <div class="hero__scroll">
+        <div class="hero__scroll-line"></div>
+        <span>Scroll</span>
+    </div>
+</section>
+
+<!-- ══ OVERVIEW ══════════════════════════════════════════════ -->
+<section class="sec overview">
+    <div class="sec__inner">
+        <div class="split">
+            <div class="img-frame">
+                <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=1400&q=85"
+                     alt="Ship side view" />
+                <span class="img-frame__badge">MV Ocean Sovereign</span>
+                <span class="img-frame__num">01</span>
+            </div>
+            <div class="text-body">
+                <div class="sec-hd">
+                    <div class="label">Vessel Overview</div>
+                    <div class="sec-hd__line"></div>
+                    <h2 class="sec-hd__title">Built for the<br><em>Open Ocean</em></h2>
+                </div>
+                <p>
+                    The MV Ocean Sovereign represents the pinnacle of modern bulk carrier design.
+                    Constructed at the Hyundai Heavy Industries shipyard in Ulsan, South Korea,
+                    she combines cutting-edge naval architecture with decades of accumulated
+                    operational wisdom to deliver a vessel that is both powerful and precise.
+                </p>
+                <div class="divider"></div>
+                <p>
+                    Her double-hull construction and advanced anti-corrosion coating systems ensure
+                    structural integrity across the harshest sea conditions — from the storm-swept
+                    North Atlantic to the monsoon-laden corridors of the Indian Ocean.
+                </p>
+                <p>
+                    Propulsion is provided by a MAN B&amp;W 6G60ME-C9.5 two-stroke engine producing
+                    14,280 kW of continuous shaft power. Waste heat recovery cuts HFO consumption
+                    by approximately 4% on long ocean passages.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══ FEATURES ══════════════════════════════════════════════ -->
+<section class="sec features">
+    <div class="sec__inner">
+        <div class="sec-hd sec-hd--center">
+            <div class="label" style="justify-content:center">On-Board Systems</div>
+            <div class="sec-hd__line"></div>
+            <h2 class="sec-hd__title">World-Class <em>Capabilities</em></h2>
+        </div>
+        <div class="features-grid">
+            <div class="feat-card">
+                <img class="feat-card__img"
+                     src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=900&q=80"
+                     alt="Navigation" />
+                <div class="feat-card__body">
+                    <div class="feat-card__icon"><i class="fas fa-compass"></i></div>
+                    <div class="feat-card__title">Advanced Navigation</div>
+                    <p class="feat-card__text">Integrated ECDIS, AIS Class A, dual gyrocompass and real-time GMDSS ensure pinpoint accuracy on every voyage.</p>
+                </div>
+            </div>
+            <div class="feat-card">
+                <img class="feat-card__img"
+                     src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=900&q=80"
+                     alt="Engine Room" />
+                <div class="feat-card__body">
+                    <div class="feat-card__icon"><i class="fas fa-cogs"></i></div>
+                    <div class="feat-card__title">ECO Engine Suite</div>
+                    <p class="feat-card__text">MAN-B&amp;W 6G60ME-C9.5 with waste heat recovery and auto-tuning injection for EEXI-compliant low-emission operation.</p>
+                </div>
+            </div>
+            <div class="feat-card">
+                <img class="feat-card__img"
+                     src="https://images.unsplash.com/photo-1530053969600-caed2596d242?auto=format&fit=crop&w=900&q=80"
+                     alt="Cargo Holds" />
+                <div class="feat-card__body">
+                    <div class="feat-card__icon"><i class="fas fa-box-open"></i></div>
+                    <div class="feat-card__title">Cargo Handling</div>
+                    <p class="feat-card__text">Six self-trimming cargo holds with hydraulic hatch covers and a maximum grain capacity of 96,580 m³.</p>
+                </div>
+            </div>
+            <div class="feat-card">
+                <img class="feat-card__img"
+                     src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=900&q=80"
+                     alt="Safety" />
+                <div class="feat-card__body">
+                    <div class="feat-card__icon"><i class="fas fa-shield-alt"></i></div>
+                    <div class="feat-card__title">Safety Systems</div>
+                    <p class="feat-card__text">CO₂ fixed firefighting, foam deck systems, SOLAS lifeboats and full GMDSS equipment fit throughout the vessel.</p>
+                </div>
+            </div>
+            <div class="feat-card">
+                <img class="feat-card__img"
+                     src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=900&q=80"
+                     alt="Communications" />
+                <div class="feat-card__body">
+                    <div class="feat-card__icon"><i class="fas fa-broadcast-tower"></i></div>
+                    <div class="feat-card__title">Communication Hub</div>
+                    <p class="feat-card__text">Inmarsat Fleet One VSAT, NAVTEX, SSB radio and integrated bridge comms for uninterrupted global connectivity.</p>
+                </div>
+            </div>
+            <div class="feat-card">
+                <img class="feat-card__img"
+                     src="https://images.unsplash.com/photo-1504309092620-4d0ec726efa4?auto=format&fit=crop&w=900&q=80"
+                     alt="Crew" />
+                <div class="feat-card__body">
+                    <div class="feat-card__icon"><i class="fas fa-users"></i></div>
+                    <div class="feat-card__title">Crew Accommodation</div>
+                    <p class="feat-card__text">Air-conditioned single cabins, mess rooms, gymnasium, hospital bay and recreation lounge for 26 officers and crew.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══ GALLERY STRIP ══════════════════════════════════════════ -->
+<section class="sec gallery-strip">
+    <div class="sec__inner">
+        <div class="sec-hd sec-hd--center">
+            <div class="label" style="justify-content:center">Visual Tour</div>
+            <div class="sec-hd__line"></div>
+            <h2 class="sec-hd__title">Ship <em>Gallery</em></h2>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-cell">
+                <img src="https://images.unsplash.com/photo-1605745341112-85968b19335b?auto=format&fit=crop&w=1400&q=85" alt="Bow at Sea" />
+                <div class="gallery-cell__overlay"><span>Bow at Sea</span></div>
+            </div>
+            <div class="gallery-cell">
+                <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=800&q=80" alt="Port Side" />
+                <div class="gallery-cell__overlay"><span>Port Side</span></div>
+            </div>
+            <div class="gallery-cell">
+                <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80" alt="Bridge Deck" />
+                <div class="gallery-cell__overlay"><span>Bridge Deck</span></div>
+            </div>
+            <div class="gallery-cell">
+                <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80" alt="Engine Room" />
+                <div class="gallery-cell__overlay"><span>Engine Room</span></div>
+            </div>
+            <div class="gallery-cell">
+                <img src="https://images.unsplash.com/photo-1530053969600-caed2596d242?auto=format&fit=crop&w=800&q=80" alt="Cargo Holds" />
+                <div class="gallery-cell__overlay"><span>Cargo Holds</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══ TAB SECTION ════════════════════════════════════════════ -->
+<section class="sec tab-section">
+    <div class="sec__inner">
+        <div class="sec-hd">
+            <div class="label">Detailed View</div>
+            <div class="sec-hd__line"></div>
+            <h2 class="sec-hd__title">Explore <em>Every Deck</em></h2>
+        </div>
+        <div class="tab-wrap">
+            <nav class="tab-nav">
+                <button class="tab-btn is-active" data-tab="0">
+                    <span class="tab-btn__num">01</span>
+                    <div class="tab-btn__name">Bow at Sea</div>
+                    <div class="tab-btn__hint">Forward section</div>
+                </button>
+                <button class="tab-btn" data-tab="1">
+                    <span class="tab-btn__num">02</span>
+                    <div class="tab-btn__name">Port Side</div>
+                    <div class="tab-btn__hint">Full length view</div>
+                </button>
+                <button class="tab-btn" data-tab="2">
+                    <span class="tab-btn__num">03</span>
+                    <div class="tab-btn__name">Bridge</div>
+                    <div class="tab-btn__hint">Navigation console</div>
+                </button>
+                <button class="tab-btn" data-tab="3">
+                    <span class="tab-btn__num">04</span>
+                    <div class="tab-btn__name">Engine Room</div>
+                    <div class="tab-btn__hint">MAN B&amp;W drive</div>
+                </button>
+                <button class="tab-btn" data-tab="4">
+                    <span class="tab-btn__num">05</span>
+                    <div class="tab-btn__name">Cargo Holds</div>
+                    <div class="tab-btn__hint">6 self-trimming</div>
+                </button>
+                <button class="tab-btn" data-tab="5">
+                    <span class="tab-btn__num">06</span>
+                    <div class="tab-btn__name">Aerial View</div>
+                    <div class="tab-btn__hint">Full vessel above</div>
+                </button>
+            </nav>
+            <div class="tab-panels">
+                <div class="tab-panel is-active">
+                    <img src="https://images.unsplash.com/photo-1605745341112-85968b19335b?auto=format&fit=crop&w=1600&q=85" alt="Bow at Sea" />
+                    <div class="tab-panel__cap">
+                        <h3>Bow at Sea</h3>
+                        <p>The reinforced bulbous bow cuts through swells with minimal resistance, reducing fuel consumption by up to 6% vs conventional hull forms.</p>
+                    </div>
+                </div>
+                <div class="tab-panel">
+                    <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=1600&q=85" alt="Port Side" />
+                    <div class="tab-panel__cap">
+                        <h3>Port Side View</h3>
+                        <p>295 metres of high-tensile steel from stem to stern. Anti-fouling coatings renewed at each dry-dock cycle for optimal hydrodynamic performance.</p>
+                    </div>
+                </div>
+                <div class="tab-panel">
+                    <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1600&q=85" alt="Bridge" />
+                    <div class="tab-panel__cap">
+                        <h3>Integrated Bridge</h3>
+                        <p>Full FURUNO ECDIS suite, dual gyrocompass, adaptive autopilot and GMDSS communications in a single ergonomic console.</p>
+                    </div>
+                </div>
+                <div class="tab-panel">
+                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1600&q=85" alt="Engine Room" />
+                    <div class="tab-panel__cap">
+                        <h3>Engine Room</h3>
+                        <p>MAN B&amp;W 6G60ME-C9.5 producing 14,280 kW. Waste heat recovery system cuts HFO consumption by ~4% on ocean passages.</p>
+                    </div>
+                </div>
+                <div class="tab-panel">
+                    <img src="https://images.unsplash.com/photo-1530053969600-caed2596d242?auto=format&fit=crop&w=1600&q=85" alt="Cargo Holds" />
+                    <div class="tab-panel__cap">
+                        <h3>Cargo Holds</h3>
+                        <p>Six self-trimming holds with 96,580 m³ total grain capacity. Hydraulic folding hatch covers open in under four minutes.</p>
+                    </div>
+                </div>
+                <div class="tab-panel">
+                    <img src="https://images.unsplash.com/photo-1504309092620-4d0ec726efa4?auto=format&fit=crop&w=1600&q=85" alt="Aerial View" />
+                    <div class="tab-panel__cap">
+                        <h3>Aerial View</h3>
+                        <p>Six hatch covers running the full cargo deck length, with the accommodation block and funnel dominating the aft section.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══ SPECS ══════════════════════════════════════════════════ -->
+<section class="sec specs">
+    <div class="sec__inner">
+        <div class="sec-hd">
+            <div class="label">Technical Data</div>
+            <div class="sec-hd__line"></div>
+            <h2 class="sec-hd__title">Full <em>Specifications</em></h2>
+        </div>
+        <div class="specs-layout">
+            <table class="specs-table">
+                <tr><td>Vessel Type</td><td>Kamsarmax Bulk Carrier</td></tr>
+                <tr><td>Flag State</td><td>Panama</td></tr>
+                <tr><td>Classification</td><td>Bureau Veritas + 1A</td></tr>
+                <tr><td>IMO Number</td><td>9801234</td></tr>
+                <tr><td>Call Sign</td><td>3FKZ9</td></tr>
+                <tr><td>Built</td><td>2019 — HHI Ulsan, South Korea</td></tr>
+                <tr><td>Length Overall (LOA)</td><td>295.0 m</td></tr>
+                <tr><td>Beam (Moulded)</td><td>45.0 m</td></tr>
+                <tr><td>Depth (Moulded)</td><td>24.8 m</td></tr>
+                <tr><td>Summer Draft</td><td>18.3 m</td></tr>
+                <tr><td>Deadweight (Summer)</td><td>87,200 MT</td></tr>
+                <tr><td>Gross Tonnage</td><td>48,740 GT</td></tr>
+                <tr><td>Net Tonnage</td><td>29,890 NT</td></tr>
+                <tr><td>Grain Capacity</td><td>96,580 m³</td></tr>
+                <tr><td>Bale Capacity</td><td>93,100 m³</td></tr>
+                <tr><td>Main Engine</td><td>MAN B&amp;W 6G60ME-C9.5</td></tr>
+                <tr><td>MCR Power</td><td>14,280 kW @@ 97 RPM</td></tr>
+                <tr><td>Fuel (HFO) Daily</td><td>32 MT/day @@ CSR</td></tr>
+                <tr><td>Service Speed</td><td>14.5 knots</td></tr>
+                <tr><td>Bow Thruster</td><td>1,200 kW Tunnel</td></tr>
+                <tr><td>Cargo Holds / Hatches</td><td>6 / 6</td></tr>
+                <tr><td>Hatch Cover Type</td><td>Hydraulic Folding</td></tr>
+                <tr><td>Crew</td><td>26 persons</td></tr>
+            </table>
+            <div class="specs-img">
+                <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=1200&q=85"
+                     alt="Technical view" />
+                <span class="specs-img__label">BV Certified</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══ CONTACT STRIP ══════════════════════════════════════════ -->
+<div class="contact-strip">
+    <div class="contact-strip__bg"></div>
+    <div class="contact-strip__overlay"></div>
+    <div class="contact-strip__body">
+        <h2>Ready to <em>Charter</em><br>This Vessel?</h2>
+        <p>Contact our chartering desk for availability, freight rates and the full operational portfolio of MV Ocean Sovereign.</p>
+        <div class="btn-row">
+            <a href="#" class="btn btn--gold">Request a Charter</a>
+            <a href="#" class="btn btn--ghost">Download Spec Sheet</a>
+        </div>
+    </div>
+</div>
+
+<!-- ══ LIGHTBOX ═══════════════════════════════════════════════ -->
+<div class="lb" id="lb">
+    <button class="lb__close" id="lbClose"><i class="fas fa-times"></i></button>
+    <img src="" alt="" id="lbImg" />
+</div>
+
+<script>
+    // Gallery lightbox
+    const lb      = document.getElementById('lb');
+    const lbImg   = document.getElementById('lbImg');
+    const lbClose = document.getElementById('lbClose');
+
+    document.querySelectorAll('.gallery-cell img').forEach(img => {
+        img.style.cursor = 'zoom-in';
+        img.addEventListener('click', () => {
+            lbImg.src = img.src;
+            lb.classList.add('is-open');
+            document.body.style.overflow = 'hidden';
+        });
+    });
+
+    lbClose.addEventListener('click', closeLb);
+    lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
+
+    function closeLb() {
+        lb.classList.remove('is-open');
+        document.body.style.overflow = '';
+    }
+
+    // Hover tabs
+    const tabBtns   = document.querySelectorAll('.tab-btn');
+    const tabPanels = document.querySelectorAll('.tab-panel');
+
+    function activateTab(i) {
+        tabBtns.forEach(b => b.classList.remove('is-active'));
+        tabPanels.forEach(p => p.classList.remove('is-active'));
+        tabBtns[i].classList.add('is-active');
+        tabPanels[i].classList.add('is-active');
+    }
+
+    tabBtns.forEach((btn, i) => {
+        btn.addEventListener('mouseenter', () => activateTab(i));
+        btn.addEventListener('click',      () => activateTab(i));
+    });
+</script>

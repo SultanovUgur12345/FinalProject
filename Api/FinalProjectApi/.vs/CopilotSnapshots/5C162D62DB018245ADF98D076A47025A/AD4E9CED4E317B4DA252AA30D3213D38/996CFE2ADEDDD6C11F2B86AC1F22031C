@@ -1,0 +1,63 @@
+﻿using FinalProjectMVC.Services.Interfaces;
+using FinalProjectMVC.ViewModels.Setting;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
+namespace FinalProjectMVC.Areas.Admin.Controllers
+{
+    [Authorize(Roles = "SuperAdmin,Admin")]
+    public class SettingController : AdminBaseController
+    {
+        private readonly ISettingApiService _service;
+
+        public SettingController(ISettingApiService service)
+        {
+            _service = service;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var data = await _service.GetAllAsync();
+            ViewData["Title"] = "Settings";
+            return View(data);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> EditAll()
+        {
+            var settings = await _service.GetAllAsync();
+            var number = settings?.FirstOrDefault(s => s.Key == "Number");
+            var email = settings?.FirstOrDefault(s => s.Key == "Email");
+
+            var vm = new SettingBulkEditVM
+            {
+                NumberId = number?.Id ?? 0,
+                Number = number?.Value ?? "",
+                EmailId = email?.Id ?? 0,
+                Email = email?.Value ?? ""
+            };
+            return View(vm);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditAll(SettingBulkEditVM vm)
+        {
+            if (!ModelState.IsValid)
+                return View(vm);
+
+            var r1 = await _service.UpdateAsync(vm.NumberId, new SettingEditVM { Id = vm.NumberId, Key = "Number", Value = vm.Number });
+            var r2 = await _service.UpdateAsync(vm.EmailId, new SettingEditVM { Id = vm.EmailId, Key = "Email", Value = vm.Email });
+
+            if (!r1.success || !r2.success)
+            {
+                ModelState.AddModelError("", $"Update failed: {r1.error ?? r2.error}");
+                return View(vm);
+            }
+
+            TempData["SettingSuccess"] = "Settings updated successfully.";
+            return RedirectToAction(nameof(Index));
+        }
+    }
+}
+

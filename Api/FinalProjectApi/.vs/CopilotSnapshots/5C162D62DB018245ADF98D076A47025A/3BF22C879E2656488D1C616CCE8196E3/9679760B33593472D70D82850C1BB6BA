@@ -1,0 +1,23 @@
+﻿using FinalProjectMVC.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
+
+namespace FinalProjectMVC.ViewComponents.Footer
+{
+    public class ContactFormViewComponent : ViewComponent
+    {
+        private readonly ISettingApiService _settingService;
+
+        public ContactFormViewComponent(ISettingApiService settingService)
+        {
+            _settingService = settingService;
+        }
+
+        public async Task<IViewComponentResult> InvokeAsync()
+        {
+            var settings = await _settingService.GetAllAsync();
+            ViewBag.Phone = settings?.FirstOrDefault(s => s.Key == "Number")?.Value ?? "";
+            ViewBag.Email = settings?.FirstOrDefault(s => s.Key == "Email")?.Value ?? "";
+            return View();
+        }
+    }
+}

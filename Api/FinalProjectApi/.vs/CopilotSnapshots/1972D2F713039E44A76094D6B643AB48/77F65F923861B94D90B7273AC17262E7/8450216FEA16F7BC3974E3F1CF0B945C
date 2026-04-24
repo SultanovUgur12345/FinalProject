@@ -1,0 +1,46 @@
+﻿@using FinalProjectMVC.ViewModels.Setting
+@model SettingEditVM
+
+@{
+    ViewData["Title"] = "Edit Setting";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="admin-content__header">
+    <div>
+        <p class="admin-content__subtitle">SITE MANAGEMENT</p>
+        <h1>Edit Setting</h1>
+    </div>
+    <a asp-area="Admin" asp-controller="Setting" asp-action="Index" class="admin-btn">← Back to List</a>
+</div>
+
+<form method="post"
+      asp-area="Admin"
+      asp-controller="Setting"
+      asp-action="Edit"
+      asp-route-id="@Model.Id"
+      class="admin-form">
+    @Html.AntiForgeryToken()
+
+    <input asp-for="Id" type="hidden" />
+
+    <div class="admin-form-group">
+        <label>Key</label>
+        <input value="@Model.Key" class="admin-input" readonly disabled />
+    </div>
+
+    <div class="admin-form-group">
+        <label asp-for="Value">Value</label>
+        <textarea asp-for="Value" class="admin-input admin-input--area" rows="4"></textarea>
+        <span asp-validation-for="Value" class="admin-validation"></span>
+    </div>
+
+    <div class="admin-form-actions">
+        <button type="submit" class="admin-btn admin-btn--primary">Save Changes</button>
+        <a asp-area="Admin" asp-controller="Setting" asp-action="Index" class="admin-btn">Cancel</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

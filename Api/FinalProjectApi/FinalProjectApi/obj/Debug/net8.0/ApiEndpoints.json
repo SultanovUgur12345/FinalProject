@@ -506,6 +506,53 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "FinalProjectApi.Controllers.SettingController",
+    "Method": "Get",
+    "RelativePath": "api/Setting/Get/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FinalProjectApi.Controllers.SettingController",
+    "Method": "GetAll",
+    "RelativePath": "api/Setting/GetAll",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FinalProjectApi.Controllers.SettingController",
+    "Method": "Update",
+    "RelativePath": "api/Setting/Update/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "FinalProjectApi.DTOs.Setting.SettingUpdateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "FinalProjectApi.Controllers.ShipHeroVideoController",
     "Method": "Create",
     "RelativePath": "api/ShipHeroVideo/Create",

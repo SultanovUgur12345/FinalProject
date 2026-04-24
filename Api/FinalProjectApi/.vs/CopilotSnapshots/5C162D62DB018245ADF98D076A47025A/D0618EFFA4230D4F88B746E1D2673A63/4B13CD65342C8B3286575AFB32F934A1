@@ -1,0 +1,20 @@
+﻿<section id="contactStrip">
+    <article class="panel strip-item">
+        <i class="fas fa-phone"></i>
+        <h4>Contact Us</h4>
+        <p>+1 0513153684<br>Mon - Fri, 9:00 to 20:00</p>
+        <a class="strip-link" href="tel:+10513153684">Call Now</a>
+    </article>
+    <article class="panel strip-item">
+        <i class="fas fa-location-dot"></i>
+        <h4>Address</h4>
+        <p>Roadtown Street 9,<br>British Virgin Islands</p>
+        <a class="strip-link" href="https://maps.google.com/?q=Road+Town+British+Virgin+Islands" target="_blank" rel="noopener noreferrer">Get Direction</a>
+    </article>
+    <article class="panel strip-item">
+        <i class="far fa-clock"></i>
+        <h4>Opening Hours</h4>
+        <p>Everyday 09:00 to 22:00<br>Support Line 24/7</p>
+        <a class="strip-link" href="mailto:seafarer.info@gmail.com">Reserve Now</a>
+    </article>
+</section>

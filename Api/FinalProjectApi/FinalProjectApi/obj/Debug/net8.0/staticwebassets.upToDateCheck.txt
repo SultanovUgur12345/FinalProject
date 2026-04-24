@@ -42,3 +42,5 @@ wwwroot\uploads\aboutus\43c74e39-31c3-48c5-b4a3-fa4015203bba_4ced58e0d288caa80f6
 wwwroot\uploads\aboutus\922470c6-c304-4496-813b-e83ee1919880_18fff7dae0c79208a1e1abe644b2a208.jpg
 wwwroot\uploads\workers\293d64fb-4dc8-4b86-a7cd-a89ca08a3019_Ekran görüntüsü 2025-06-18 145110.png
 wwwroot\uploads\aboutus\eb72c1e2-0569-4b57-9c28-9be3e65ee449_49bb51041772ea3b21b703223a823267.jpg
+wwwroot\uploads\aboutus\8379b488-c3ca-459d-ab74-5ce119781d48_Ekran görüntüsü 2025-07-06 200244.png
+wwwroot\uploads\aboutus\e36cf356-c856-4571-b54f-f3f4ae751b1f_Ekran görüntüsü 2025-06-18 131756.png
