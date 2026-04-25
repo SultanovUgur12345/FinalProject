@@ -1,0 +1,102 @@
+﻿@using FinalProjectMVC.ViewModels.ShipHeroVideo
+@inject IConfiguration Configuration
+@model List<ShipHeroVideoGetVM>
+
+@{
+    ViewData["Title"] = "ShipHeroVideo - GetAll";
+    string apiBaseUrl = (Configuration["ApiSettings:BaseUrl"] ?? "http://localhost:5147/").TrimEnd('/');
+}
+
+<div class="admin-content__header">
+    <div>
+        <p class="admin-content__subtitle">SHIP HERO VIDEO MANAGEMENT</p>
+        <h1>Hero Videos List</h1>
+    </div>
+    <a asp-area="Admin" asp-controller="ShipHeroVideo" asp-action="Create" class="admin-btn admin-btn--primary">+ Create Video</a>
+</div>
+
+<div class="admin-table-container">
+    <table class="admin-table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>SubTitle</th>
+                <th>Video</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Title</td>
+                        <td>@item.SubTitle</td>
+                        <td>
+                            @if (!string.IsNullOrWhiteSpace(item.Video))
+                            {
+                                <video class="admin-video-thumb" src="@($"{apiBaseUrl}{item.Video}")" muted preload="metadata"></video>
+                            }
+                            else
+                            {
+                                <span>â€”</span>
+                            }
+                        </td>
+                        <td>
+                            <div class="admin-actions">
+                                <a asp-area="Admin" asp-controller="ShipHeroVideo" asp-action="Detail" asp-route-id="@item.Id" class="admin-btn admin-btn--sm">Get</a>
+                                <a asp-area="Admin" asp-controller="ShipHeroVideo" asp-action="Edit" asp-route-id="@item.Id" class="admin-btn admin-btn--sm">Edit</a>
+                                <button type="button"
+                                        class="admin-btn admin-btn--sm admin-btn--danger open-delete-modal"
+                                        data-id="@item.Id"
+                                        data-title="@item.Title">
+                                    Delete
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="5" class="admin-table__empty">No videos found</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="delete-modal" id="deleteModal">
+    <div class="delete-modal__overlay" id="deleteModalOverlay"></div>
+    <div class="delete-modal__content">
+        <button type="button" class="delete-modal__close" id="deleteModalClose">&times;</button>
+        <div class="delete-modal__top">
+            <p class="delete-modal__subtitle">DELETE CONFIRMATION</p>
+            <h2>Are you sure?</h2>
+            <p class="delete-modal__text">This video will be permanently deleted.</p>
+        </div>
+        <div class="delete-modal__info" style="margin:20px 0;">
+            <h3 id="deleteVideoTitle"></h3>
+        </div>
+        <form method="post" id="deleteForm" asp-area="Admin" asp-controller="ShipHeroVideo" asp-action="Delete">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="id" id="deleteVideoId" />
+            <div class="delete-modal__actions">
+                <button type="button" class="admin-btn" id="cancelDeleteBtn">Cancel</button>
+                <button type="submit" class="admin-btn admin-btn--danger">Delete</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Styles {
+    <link rel="stylesheet" href="~/admin/assets/style/ship-hero-video-index.css" />
+}
+
+@section Scripts {
+    <script src="~/admin/assets/js/ship-hero-video-index.js"></script>
+}

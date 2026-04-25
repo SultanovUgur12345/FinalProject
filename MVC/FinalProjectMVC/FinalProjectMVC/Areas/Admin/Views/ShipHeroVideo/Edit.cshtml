@@ -1,4 +1,4 @@
-@using FinalProjectMVC.ViewModels.ShipHeroVideo
+﻿@using FinalProjectMVC.ViewModels.ShipHeroVideo
 @inject IConfiguration Configuration
 @model ShipHeroVideoEditVM
 
@@ -12,7 +12,7 @@
         <p class="admin-content__subtitle">SHIP HERO VIDEO MANAGEMENT</p>
         <h1>Edit Hero Video</h1>
     </div>
-    <a asp-area="Admin" asp-controller="ShipHeroVideo" asp-action="Index" class="admin-btn">← Back to List</a>
+    <a asp-area="Admin" asp-controller="ShipHeroVideo" asp-action="Index" class="admin-btn">â† Back to List</a>
 </div>
 
 <form method="post"
@@ -58,23 +58,6 @@
     </div>
 </form>
 
-<style>
-    .admin-content__header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 28px; flex-wrap: wrap; gap: 16px; }
-    .admin-content__subtitle { color: #bfa888; letter-spacing: 2px; font-size: 12px; margin-bottom: 8px; }
-    .admin-content h1 { font-family: 'Cormorant Garamond', serif; font-size: 40px; margin: 0; }
-    .admin-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
-    .admin-form-group { display: flex; flex-direction: column; gap: 8px; }
-    .admin-form-group--full { grid-column: 1 / -1; }
-    .admin-form-group label { color: #bfa888; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
-    .admin-input { width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(191,168,136,0.25); color: #fff; padding: 12px 14px; outline: none; transition: 0.3s ease; font-size: 14px; box-sizing: border-box; }
-    .admin-input:focus { border-color: #bfa888; background: rgba(255,255,255,0.09); }
-    .admin-input--file { padding: 10px; cursor: pointer; }
-    .admin-input--file::file-selector-button { background: linear-gradient(135deg,#bfa888 0%,#a68b6a 100%); color: #021527; border: none; padding: 8px 14px; margin-right: 12px; cursor: pointer; font-weight: 600; }
-    .admin-form-actions { grid-column: 1 / -1; display: flex; justify-content: flex-end; }
-    .admin-btn { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; background: rgba(191,168,136,0.15); color: #bfa888; border: 1px solid rgba(191,168,136,0.3); cursor: pointer; font-size: 13px; font-weight: 600; text-decoration: none; transition: 0.3s; }
-    .admin-btn:hover { background: rgba(191,168,136,0.28); color: #fff; }
-    .admin-btn--primary { background: linear-gradient(135deg,#bfa888 0%,#a68b6a 100%); color: #021527; border-color: transparent; }
-    .admin-btn--primary:hover { opacity: 0.88; color: #021527; }
-    .admin-validation { color: #e06c75; font-size: 12px; }
-    .admin-current-video { width: 100%; max-width: 480px; border: 1px solid rgba(191,168,136,0.3); }
-</style>
+@section Styles {
+    <link rel="stylesheet" href="~/admin/assets/style/ship-hero-video-edit.css" />
+}

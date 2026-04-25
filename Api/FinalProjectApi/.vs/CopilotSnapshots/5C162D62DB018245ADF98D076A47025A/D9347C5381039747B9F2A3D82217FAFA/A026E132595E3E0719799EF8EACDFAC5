@@ -1,0 +1,86 @@
+﻿using FinalProjectMVC.Services.Interfaces;
+using FinalProjectMVC.ViewModels.ShipHeroVideo;
+using System.Net.Http.Headers;
+using System.Net.Http.Json;
+
+namespace FinalProjectMVC.Services
+{
+    public class ShipHeroVideoApiService : IShipHeroVideoApiService
+    {
+    private readonly HttpClient _httpClient;
+
+    public ShipHeroVideoApiService(HttpClient httpClient)
+    {
+        _httpClient = httpClient;
+    }
+
+    public async Task<List<ShipHeroVideoGetVM>> GetAllAsync()
+    {
+        return await _httpClient.GetFromJsonAsync<List<ShipHeroVideoGetVM>>("api/ShipHeroVideo/GetAll");
+    }
+
+    public async Task<ShipHeroVideoGetVM> GetByIdAsync(int id)
+    {
+        return await _httpClient.GetFromJsonAsync<ShipHeroVideoGetVM>($"api/ShipHeroVideo/Get/{id}");
+    }
+
+    public async Task<ShipHeroVideoEditVM> GetByIdForEditAsync(int id)
+    {
+        var data = await _httpClient.GetFromJsonAsync<ShipHeroVideoGetVM>($"api/ShipHeroVideo/Get/{id}");
+
+        if (data == null)
+            throw new Exception($"ShipHeroVideo tapilmadi. Id: {id}");
+
+        return new ShipHeroVideoEditVM
+        {
+            Id = data.Id,
+            Title = data.Title,
+            SubTitle = data.SubTitle,
+            CurrentVideo = data.Video
+        };
+    }
+
+    public async Task CreateAsync(ShipHeroVideoCreateVM dto)
+    {
+        using var content = new MultipartFormDataContent();
+
+        content.Add(new StringContent(dto.Title ?? ""), "Title");
+        content.Add(new StringContent(dto.SubTitle ?? ""), "SubTitle");
+
+        if (dto.Video != null)
+        {
+            var fileContent = new StreamContent(dto.Video.OpenReadStream());
+            fileContent.Headers.ContentType = new MediaTypeHeaderValue(dto.Video.ContentType);
+            content.Add(fileContent, "Video", dto.Video.FileName);
+        }
+
+        var response = await _httpClient.PostAsync("api/ShipHeroVideo/Create", content);
+        response.EnsureSuccessStatusCode();
+    }
+
+    public async Task UpdateAsync(int id, ShipHeroVideoEditVM dto)
+    {
+        using var content = new MultipartFormDataContent();
+
+        content.Add(new StringContent(dto.Title ?? ""), "Title");
+        content.Add(new StringContent(dto.SubTitle ?? ""), "SubTitle");
+        content.Add(new StringContent(dto.CurrentVideo ?? ""), "CurrentVideo");
+
+        if (dto.Video != null && dto.Video.Length > 0)
+        {
+            var fileContent = new StreamContent(dto.Video.OpenReadStream());
+            fileContent.Headers.ContentType = new MediaTypeHeaderValue(dto.Video.ContentType);
+            content.Add(fileContent, "Video", dto.Video.FileName);
+        }
+
+        var response = await _httpClient.PutAsync($"api/ShipHeroVideo/Update/{id}", content);
+        response.EnsureSuccessStatusCode();
+    }
+
+    public async Task DeleteAsync(int id)
+    {
+        var response = await _httpClient.DeleteAsync($"api/ShipHeroVideo/Delete/{id}");
+        response.EnsureSuccessStatusCode();
+    }
+}
+}

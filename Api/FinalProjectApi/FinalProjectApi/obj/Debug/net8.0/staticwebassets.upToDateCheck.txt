@@ -44,3 +44,10 @@ wwwroot\uploads\workers\293d64fb-4dc8-4b86-a7cd-a89ca08a3019_Ekran görüntüsü
 wwwroot\uploads\aboutus\eb72c1e2-0569-4b57-9c28-9be3e65ee449_49bb51041772ea3b21b703223a823267.jpg
 wwwroot\uploads\aboutus\8379b488-c3ca-459d-ab74-5ce119781d48_Ekran görüntüsü 2025-07-06 200244.png
 wwwroot\uploads\aboutus\e36cf356-c856-4571-b54f-f3f4ae751b1f_Ekran görüntüsü 2025-06-18 131756.png
+wwwroot\uploads\features\f4791279-f555-43d0-8b07-184831cf30ca_Ekran görüntüsü 2025-07-01 160600.png
+wwwroot\uploads\features\4e82809c-41c1-48ad-bd1b-e91ee5334d65_Ekran görüntüsü 2025-06-18 150615.png
+wwwroot\uploads\features\641dd8ba-6d28-47a1-b37a-57bc9538492d_Ekran görüntüsü 2025-05-16 162506.png
+wwwroot\uploads\features\bf812475-a538-4f1a-bab7-1e09ed3ae76d_Ekran görüntüsü 2025-05-16 162506.png
+wwwroot\uploads\aboutus\e8ffaaef-f2a4-484a-b613-fa5c88f42445_Ekran görüntüsü 2025-05-16 162506.png
+wwwroot\uploads\shipsliders\f993d72a-90d5-48ae-a46b-cf8289052d48_Ekran görüntüsü 2025-05-16 162506.png
+wwwroot\uploads\shipsliders\94b21d94-a2ad-464b-b5f9-be274b61d194_Ekran görüntüsü 2025-07-01 160600.png

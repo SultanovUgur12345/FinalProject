@@ -1,6 +1,6 @@
-using FinalProjectMVC.ViewModels.Worker;
+﻿using FinalProjectMVC.ViewModels.Worker;
 
-public interface IWorkerService
+namespace FinalProjectMVC.Services.Interfaces
 {
     public interface IWorkerApiService
     {

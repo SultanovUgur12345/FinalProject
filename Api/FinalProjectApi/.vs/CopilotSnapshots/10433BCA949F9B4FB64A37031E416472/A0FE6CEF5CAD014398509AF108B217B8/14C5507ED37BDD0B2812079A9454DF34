@@ -1,0 +1,204 @@
+﻿@using FinalProjectMVC.ViewModels.ShipSlider
+@model List<ShipSliderGetVM>
+
+@inject IConfiguration Configuration
+@{
+    ViewData["Title"] = "ShipSlider - Index";
+    string apiBaseUrl = (Configuration["ApiSettings:BaseUrl"] ?? "http://localhost:5147/").TrimEnd('/');
+}
+
+<div class="admin-content__header">
+    <div>
+        <p class="admin-content__subtitle">SHIP SLIDER MANAGEMENT</p>
+        <h1>Ship Sliders</h1>
+        <div class="admin-topbar">
+            <span class="admin-stat">Total: <strong>@(Model?.Count ?? 0)</strong></span>
+        </div>
+    </div>
+    <a asp-area="Admin" asp-controller="ShipSlider" asp-action="Create" class="admin-btn admin-btn--primary" style="margin-top: 30px;">+ Add New Slide</a>
+</div>
+
+<div class="admin-table-container">
+    <table class="admin-table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Image</th>
+                <th>Pre Title</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>
+                            @if (!string.IsNullOrWhiteSpace(item.Image))
+                            {
+                                <img class="admin-avatar"
+                                     src="@($"{apiBaseUrl}{item.Image}")"
+                                     alt="@item.Title" />
+                            }
+                        </td>
+                        <td>@item.PreTitle</td>
+                        <td>@item.Title</td>
+                        <td>@(item.Description?.Length > 60 ? item.Description[..60] + "…" : item.Description)</td>
+                        <td>
+                            <div class="admin-actions">
+                                <a asp-area="Admin" asp-controller="ShipSlider" asp-action="Detail" asp-route-id="@item.Id" class="admin-btn admin-btn--sm">Detail</a>
+                                <a asp-area="Admin" asp-controller="ShipSlider" asp-action="Edit" asp-route-id="@item.Id" class="admin-btn admin-btn--sm">Edit</a>
+                                <button type="button"
+                                        class="admin-btn admin-btn--sm admin-btn--danger open-delete-modal"
+                                        data-id="@item.Id"
+                                        data-title="@item.Title"
+                                        data-pretitle="@item.PreTitle"
+                                        data-image="@(string.IsNullOrWhiteSpace(item.Image) ? "" : $"{apiBaseUrl}{item.Image}")">
+                                    Delete
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="6" class="admin-table__empty">No ship sliders found</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- Delete Modal -->
+<div class="delete-modal" id="deleteModal">
+    <div class="delete-modal__overlay" id="deleteModalOverlay"></div>
+    <div class="delete-modal__content">
+        <button type="button" class="delete-modal__close" id="deleteModalClose">&times;</button>
+        <div class="delete-modal__top">
+            <p class="delete-modal__subtitle">DELETE CONFIRMATION</p>
+            <h2>Are you sure?</h2>
+            <p class="delete-modal__text">This slide will be permanently deleted.</p>
+        </div>
+        <div class="delete-modal__worker">
+            <img id="deleteSliderImage" src="" alt="Slide Image" class="delete-modal__image" />
+            <div class="delete-modal__info">
+                <h3 id="deleteSliderTitle"></h3>
+                <p><strong>Pre Title:</strong> <span id="deleteSliderPreTitle"></span></p>
+            </div>
+        </div>
+        <form method="post"
+              asp-area="Admin"
+              asp-controller="ShipSlider"
+              asp-action="Delete"
+              id="deleteForm">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="id" id="deleteSliderId" />
+            <div class="delete-modal__actions">
+                <button type="button" class="admin-btn" id="cancelDelete">Cancel</button>
+                <button type="submit" class="admin-btn admin-btn--danger-fill">Yes, Delete</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    .admin-content__header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px; flex-wrap: wrap; gap: 16px; }
+    .admin-content__subtitle { color: #bfa888; letter-spacing: 2px; font-size: 12px; margin-bottom: 8px; }
+    .admin-content h1, h1 { font-family: 'Cormorant Garamond', serif; font-size: 40px; margin: 0; }
+    .admin-topbar { margin-bottom: 18px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+    .admin-stat { font-size: 14px; color: #fff; padding: 8px 16px; background: rgba(191,168,136,0.1); border: 1px solid rgba(191,168,136,0.25); }
+    .admin-stat strong { color: #bfa888; margin-left: 6px; }
+
+    .admin-table-container { overflow-x: auto; margin-bottom: 24px; }
+    .admin-table { width: 100%; border-collapse: collapse; }
+    .admin-table thead tr { border-bottom: 2px solid rgba(191,168,136,0.3); }
+    .admin-table th { text-align: left; padding: 14px 12px; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: #bfa888; font-weight: 600; }
+    .admin-table td { padding: 14px 12px; border-bottom: 1px solid rgba(191,168,136,0.15); font-size: 14px; vertical-align: middle; }
+    .admin-table tbody tr { transition: background 0.2s ease; }
+    .admin-table tbody tr:hover { background: rgba(191,168,136,0.05); }
+    .admin-table__empty { text-align: center; color: #bfa888; padding: 40px 12px !important; font-style: italic; }
+
+    .admin-avatar { width: 80px; height: 55px; object-fit: cover; border: 1px solid rgba(191,168,136,0.4); display: block; }
+    .admin-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+    .admin-btn { display: inline-block; text-decoration: none; background: transparent; color: #fff; border: 1px solid rgba(191,168,136,0.5); padding: 10px 16px; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: all 0.3s ease; font-family: inherit; }
+    .admin-btn:hover { color: #bfa888; border-color: #bfa888; }
+    .admin-btn--sm { padding: 6px 12px; font-size: 11px; }
+    .admin-btn--primary { background: linear-gradient(135deg, #bfa888 0%, #a68b6a 100%); color: #021527; border-color: transparent; font-weight: 600; }
+    .admin-btn--primary:hover { color: #021527; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(191,168,136,0.35); }
+    .admin-btn--danger { border-color: rgba(220,53,69,0.5); color: #ff6b6b; }
+    .admin-btn--danger:hover { border-color: #dc3545; background: rgba(220,53,69,0.15); }
+    .admin-btn--danger-fill { background: linear-gradient(135deg, #dc3545 0%, #b02a37 100%); color: #fff; border-color: transparent; font-weight: 600; }
+    .admin-btn--danger-fill:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(220,53,69,0.35); }
+
+    /* DELETE MODAL */
+    .delete-modal { position: fixed; inset: 0; display: none; z-index: 9999; }
+    .delete-modal.show { display: flex; align-items: center; justify-content: center; }
+    .delete-modal__overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); }
+    .delete-modal__content { position: relative; width: min(92%, 560px); background: rgba(2,21,39,0.96); border: 1px solid rgba(191,168,136,0.3); padding: 28px; color: #fff; z-index: 2; }
+    .delete-modal__close { position: absolute; top: 12px; right: 16px; background: transparent; border: none; color: #bfa888; font-size: 28px; cursor: pointer; transition: all 0.3s ease; }
+    .delete-modal__close:hover { color: #fff; transform: rotate(90deg); }
+    .delete-modal__subtitle { color: #bfa888; letter-spacing: 2px; font-size: 12px; margin-bottom: 6px; }
+    .delete-modal__top h2 { margin: 0 0 10px; font-family: 'Cormorant Garamond', serif; font-size: 34px; }
+    .delete-modal__text { color: rgba(255,255,255,0.75); margin-bottom: 20px; }
+    .delete-modal__worker { display: flex; gap: 18px; align-items: center; padding: 16px; border: 1px solid rgba(191,168,136,0.2); background: rgba(255,255,255,0.04); margin-bottom: 22px; }
+    .delete-modal__image { width: 90px; height: 62px; object-fit: cover; border: 1px solid rgba(191,168,136,0.4); }
+    .delete-modal__info h3 { margin: 0 0 10px; font-size: 22px; }
+    .delete-modal__info p { margin: 6px 0; color: rgba(255,255,255,0.82); }
+    .delete-modal__actions { display: flex; justify-content: flex-end; gap: 10px; }
+
+    @@media (max-width: 900px) {
+        .admin-content__header { flex-direction: column; }
+        .admin-table th, .admin-table td { padding: 10px 8px; font-size: 12px; }
+    }
+    @@media (max-width: 576px) {
+        .delete-modal__worker { flex-direction: column; }
+        .delete-modal__image { width: 100%; height: 180px; }
+        .delete-modal__actions { flex-direction: column; }
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const deleteModal = document.getElementById("deleteModal");
+        const deleteModalOverlay = document.getElementById("deleteModalOverlay");
+        const deleteModalClose = document.getElementById("deleteModalClose");
+        const cancelDelete = document.getElementById("cancelDelete");
+
+        function openDeleteModal(button) {
+            document.getElementById("deleteSliderId").value = button.getAttribute("data-id") || "";
+            document.getElementById("deleteSliderTitle").textContent = button.getAttribute("data-title") || "";
+            document.getElementById("deleteSliderPreTitle").textContent = button.getAttribute("data-pretitle") || "";
+            const img = button.getAttribute("data-image") || "";
+            const imgEl = document.getElementById("deleteSliderImage");
+            imgEl.src = img;
+            imgEl.style.display = img ? "block" : "none";
+            deleteModal.classList.add("show");
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeDeleteModal() {
+            deleteModal.classList.remove("show");
+            document.body.style.overflow = "";
+        }
+
+        document.addEventListener("click", function (e) {
+            const btn = e.target.closest(".open-delete-modal");
+            if (btn) openDeleteModal(btn);
+        });
+
+        if (deleteModalClose) deleteModalClose.addEventListener("click", closeDeleteModal);
+        if (cancelDelete) cancelDelete.addEventListener("click", closeDeleteModal);
+        if (deleteModalOverlay) deleteModalOverlay.addEventListener("click", closeDeleteModal);
+
+        document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape") closeDeleteModal();
+        });
+    });
+</script>

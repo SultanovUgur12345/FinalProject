@@ -1,4 +1,4 @@
-@using FinalProjectMVC.ViewModels.AboutUs
+﻿@using FinalProjectMVC.ViewModels.AboutUs
 @model AboutUsEditVM
 
 @{
@@ -58,12 +58,12 @@
     <input type="hidden" asp-for="CurrentImage" />
 
     <div class="admin-form-group admin-form-group--full">
-        <label asp-for="Image">Şəkil</label>
+        <label asp-for="Image">ÅžÉ™kil</label>
         @if (!string.IsNullOrWhiteSpace(Model.CurrentImage))
         {
             <div class="admin-current-img">
                 <img src="@("http://localhost:5147/" + Model.CurrentImage)" alt="current" />
-                <span>Mövcud şəkil. Dəyişmək üçün yeni şəkil seçin.</span>
+                <span>MÃ¶vcud ÅŸÉ™kil. DÉ™yiÅŸmÉ™k Ã¼Ã§Ã¼n yeni ÅŸÉ™kil seÃ§in.</span>
             </div>
         }
         <input asp-for="Image" type="file" accept="image/*" class="admin-input admin-input--file" id="imageInput" onchange="previewImage(this)" />
@@ -100,84 +100,9 @@
     </div>
 </form>
 
-<script>
-    let achIndex = @Model.Achievements.Count;
 
-    document.getElementById('addAchBtn').addEventListener('click', function () {
-        const container = document.getElementById('achievementsContainer');
-        const row = document.createElement('div');
-        row.className = 'ach-row';
-        row.dataset.index = achIndex;
-        row.innerHTML = `
-            <input type="hidden" name="Achievements[${achIndex}].Id" value="0" />
-            <div class="ach-fields">
-                <input name="Achievements[${achIndex}].Title" class="admin-input" placeholder="Achievement title..." />
-                <input name="Achievements[${achIndex}].Description" class="admin-input" placeholder="Achievement description..." />
-            </div>
-            <button type="button" class="admin-btn admin-btn--sm admin-btn--danger remove-ach-btn">&#10005;</button>`;
-        container.appendChild(row);
-        achIndex++;
-        bindRemove(row.querySelector('.remove-ach-btn'));
-    });
 
-    function bindRemove(btn) {
-        btn.addEventListener('click', function () {
-            btn.closest('.ach-row').remove();
-            reindexAchievements();
-        });
-    }
 
-    function reindexAchievements() {
-        document.querySelectorAll('#achievementsContainer .ach-row').forEach(function (row, idx) {
-            row.querySelectorAll('input').forEach(function (input) {
-                input.name = input.name.replace(/\[\d+\]/, '[' + idx + ']');
-            });
-        });
-        achIndex = document.querySelectorAll('#achievementsContainer .ach-row').length;
-    }
-
-    document.querySelectorAll('.remove-ach-btn').forEach(bindRemove);
-</script>
-
-<style>
-    .admin-content__header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 28px; flex-wrap: wrap; gap: 16px; }
-    .admin-content__subtitle { color: #bfa888; letter-spacing: 2px; font-size: 12px; margin-bottom: 8px; }
-
-    .admin-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
-    .admin-form-group { display: flex; flex-direction: column; gap: 8px; }
-    .admin-form-group--full { grid-column: 1 / -1; }
-    .admin-form-group label { color: #bfa888; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
-
-    .admin-input { width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(191,168,136,0.25); color: #fff; padding: 12px 14px; outline: none; transition: 0.3s ease; font-size: 14px; box-sizing: border-box; }
-    .admin-input:focus { border-color: #bfa888; background: rgba(255,255,255,0.09); }
-    .admin-input--area { min-height: 120px; resize: vertical; }
-    .admin-input--file { padding: 8px 14px; cursor: pointer; }
-    .admin-input--file::file-selector-button { background: rgba(191,168,136,0.15); border: 1px solid rgba(191,168,136,0.4); color: #bfa888; padding: 6px 12px; font-size: 12px; cursor: pointer; margin-right: 10px; }
-    .admin-current-img { display: flex; align-items: center; gap: 14px; margin-bottom: 10px; }
-    .admin-current-img img { width: 100px; height: 70px; object-fit: cover; border: 1px solid rgba(191,168,136,0.3); }
-    .admin-current-img span { color: rgba(255,255,255,0.45); font-size: 12px; }
-
-    .ach-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-    .ach-section-label { color: #bfa888; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
-    .ach-row { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 10px; background: rgba(255,255,255,0.03); border: 1px solid rgba(191,168,136,0.12); padding: 14px; }
-    .ach-fields { flex: 1; display: flex; flex-direction: column; gap: 8px; }
-
-    .admin-validation { color: #ff6b6b; font-size: 13px; }
-    .admin-form-actions { grid-column: 1 / -1; display: flex; gap: 10px; margin-top: 8px; }
-
-    .admin-btn { display: inline-block; text-decoration: none; background: transparent; color: #fff; border: 1px solid rgba(191,168,136,0.5); padding: 10px 18px; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: all 0.3s ease; }
-    .admin-btn:hover { color: #bfa888; border-color: #bfa888; }
-    .admin-btn--primary { background: linear-gradient(135deg, #bfa888 0%, #a68b6a 100%); color: #021527; border-color: transparent; font-weight: 600; }
-    .admin-btn--primary:hover { color: #021527; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(191,168,136,0.35); }
-    .admin-btn--sm { padding: 7px 12px; font-size: 11px; }
-    .admin-btn--danger { border-color: rgba(255,80,80,0.4); color: #ff8080; }
-    .admin-btn--danger:hover { border-color: #ff5050; color: #ff5050; }
-
-    @@media (max-width: 900px) {
-        .admin-form { grid-template-columns: 1fr; }
-        .admin-form-group--full, .admin-form-actions { grid-column: 1; }
-    }
-</style>
 
 <script>
     function previewImage(input) {
@@ -195,3 +120,11 @@
         }
     }
 </script>
+
+@section Styles {
+    <link rel="stylesheet" href="~/admin/assets/style/about-us-edit.css" />
+}
+
+@section Scripts {
+    <script src="~/admin/assets/js/about-us-edit.js"></script>
+}

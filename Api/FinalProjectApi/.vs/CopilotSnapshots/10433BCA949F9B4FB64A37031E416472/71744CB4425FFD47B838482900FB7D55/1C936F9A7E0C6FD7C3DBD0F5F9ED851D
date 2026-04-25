@@ -1,0 +1,83 @@
+﻿@using FinalProjectMVC.ViewModels.Faq
+@model List<FaqGetVM>
+
+@{
+    ViewData["Title"] = "FAQs";
+}
+
+<div class="admin-content__header">
+    <div>
+        <p class="admin-content__subtitle">FAQ MANAGEMENT</p>
+        <h1>FAQs</h1>
+    </div>
+    <a asp-area="Admin" asp-controller="Faq" asp-action="Create" class="admin-btn admin-btn--primary" style="margin-top: 30px;">+ Add FAQ</a>
+</div>
+
+<div class="admin-table-container">
+    <table class="admin-table">
+        <thead>
+            <tr>
+                <th>Question</th>
+                <th>Answer</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td class="faq-question">@item.Question</td>
+                        <td class="faq-answer">@item.Answer</td>
+                        <td>
+                            <div class="admin-actions">
+                                <a asp-area="Admin" asp-controller="Faq" asp-action="Edit" asp-route-id="@item.Id" class="admin-btn admin-btn--sm">Edit</a>
+                                <button type="button"
+                                        class="admin-btn admin-btn--sm admin-btn--danger open-delete-modal"
+                                        data-id="@item.Id"
+                                        data-question="@item.Question">
+                                    Delete
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="4" class="admin-table__empty">No FAQs found</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- Delete Modal -->
+<div class="delete-modal" id="deleteModal">
+    <div class="delete-modal__overlay" id="deleteModalOverlay"></div>
+    <div class="delete-modal__box">
+        <div class="delete-modal__content">
+            <h2 class="delete-modal__title">Delete FAQ</h2>
+            <p class="delete-modal__text">Are you sure you want to delete:</p>
+            <p class="delete-modal__item" id="modalFaqQuestion"></p>
+            <div class="delete-modal__actions">
+                <form id="deleteForm" method="post">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="admin-btn admin-btn--danger">Yes, Delete</button>
+                </form>
+                <button type="button" class="admin-btn" id="cancelDeleteBtn">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <link rel="stylesheet" href="~/admin/assets/style/faq.css" />
+}
+
+@section Scripts {
+    <script src="~/admin/assets/js/faq-index.js"></script>
+}

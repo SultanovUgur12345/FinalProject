@@ -2,7 +2,6 @@ using FinalProjectMVC.Handlers;
 using FinalProjectMVC.Services;
 using FinalProjectMVC.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using static IWorkerService;
 
 var builder = WebApplication.CreateBuilder(args);
 

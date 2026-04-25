@@ -1,6 +1,6 @@
-﻿using FinalProjectMVC.ViewModels.Worker;
+﻿using FinalProjectMVC.Services.Interfaces;
+using FinalProjectMVC.ViewModels.Worker;
 using Microsoft.AspNetCore.Mvc;
-using static IWorkerService;
 
 namespace FinalProjectMVC.Controllers
 {

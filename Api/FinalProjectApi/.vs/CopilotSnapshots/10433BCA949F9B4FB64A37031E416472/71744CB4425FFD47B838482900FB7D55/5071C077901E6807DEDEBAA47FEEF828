@@ -1,0 +1,89 @@
+﻿@using FinalProjectMVC.ViewModels.Partner
+@model List<PartnerGetVM>
+
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
+@{
+    ViewData["Title"] = "Partners";
+    var apiBaseUrl = (Configuration["ApiSettings:BaseUrl"] ?? "http://localhost:5147/").TrimEnd('/');
+}
+
+<div class="admin-content__header">
+    <div>
+        <p class="admin-content__subtitle">PARTNER MANAGEMENT</p>
+        <h1>Partners</h1>
+    </div>
+    <a asp-area="Admin" asp-controller="Partner" asp-action="Create" class="admin-btn admin-btn--primary" style="margin-top: 30px;">+ Add Partner</a>
+</div>
+
+<div class="admin-table-container">
+    <table class="admin-table">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>
+                            <img class="admin-avatar"
+                                 src="@(string.IsNullOrWhiteSpace(item.Image) ? "" : $"{apiBaseUrl}{item.Image}")"
+                                 alt="Partner" />
+                        </td>
+                        <td>
+                            <div class="admin-actions">
+                                <a asp-area="Admin" asp-controller="Partner" asp-action="Edit" asp-route-id="@item.Id" class="admin-btn admin-btn--sm">Edit</a>
+                                <button type="button"
+                                        class="admin-btn admin-btn--sm admin-btn--danger open-delete-modal"
+                                        data-id="@item.Id"
+                                        data-image="@(string.IsNullOrWhiteSpace(item.Image) ? "" : $"{apiBaseUrl}{item.Image}")">
+                                    Delete
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="3" class="admin-table__empty">No partners found</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- Delete Modal -->
+<div class="delete-modal" id="deleteModal">
+    <div class="delete-modal__overlay" id="deleteModalOverlay"></div>
+    <div class="delete-modal__box">
+        <div class="delete-modal__preview">
+            <img id="modalPartnerImage" src="" alt="Partner" class="delete-modal__img" />
+        </div>
+        <div class="delete-modal__content">
+            <h2 class="delete-modal__title">Delete Partner</h2>
+            <p class="delete-modal__text">Are you sure you want to delete this partner?</p>
+            <div class="delete-modal__actions">
+                <form id="deleteForm" method="post">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="admin-btn admin-btn--danger">Yes, Delete</button>
+                </form>
+                <button type="button" class="admin-btn" id="cancelDeleteBtn">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <link rel="stylesheet" href="~/admin/assets/style/partner.css" />
+}
+
+@section Scripts {
+    <script src="~/admin/assets/js/partner-index.js"></script>
+}

@@ -3,10 +3,86 @@
   "WorkspaceRootPath": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\Api\\FinalProjectApi\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\wwwroot\\admin\\assets\\js\\workers-index.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\areas\\admin\\views\\faq\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\areas\\admin\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\areas\\admin\\views\\workers\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\areas\\admin\\views\\shipslider\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\areas\\admin\\views\\users\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DF0D9306-CF46-B7C9-6000-4C5930447069}|FinalProjectApi\\FinalProjectApi.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\api\\finalprojectapi\\finalprojectapi\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DF0D9306-CF46-B7C9-6000-4C5930447069}|FinalProjectApi\\FinalProjectApi.csproj|solutionrelative:finalprojectapi\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\areas\\admin\\views\\dashboard\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\areas\\admin\\views\\aboutus\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\views\\otel\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\controllers\\workerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\controllers\\otelcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\viewcomponents\\about\\faqviewcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\areas\\admin\\controllers\\shipslidercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\areas\\admin\\controllers\\featurecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\areas\\admin\\controllers\\faqcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\services\\shipsliderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\services\\featureapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\services\\faqapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\services\\workerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\areas\\admin\\controllers\\workerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\services\\interfaces\\ifaqapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\services\\interfaces\\ishipsliderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\services\\interfaces\\ishipherovideoapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\services\\interfaces\\ipartnerapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\services\\interfaces\\ifeatureapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\areas\\admin\\views\\setting\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
@@ -51,6 +127,78 @@
     },
     {
       "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\viewmodels\\setting\\settingeditvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\areas\\admin\\controllers\\partnercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\areas\\admin\\controllers\\shipherovideocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\services\\partnerapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\services\\shipherovideoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\viewcomponents\\home\\featuresviewcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\viewcomponents\\home\\shipvideoviewcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\viewcomponents\\home\\heroswiperviewcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\viewcomponents\\home\\shipsliderviewcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\viewcomponents\\home\\clientsviewcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\areas\\admin\\views\\feature\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\areas\\admin\\views\\partner\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\wwwroot\\admin\\assets\\style\\admin-table.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\wwwroot\\admin\\assets\\js\\admin-delete-modal.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\wwwroot\\admin\\assets\\style\\feature.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\wwwroot\\admin\\assets\\style\\partner.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\wwwroot\\admin\\assets\\style\\faq.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\wwwroot\\admin\\assets\\style\\about-us.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\wwwroot\\admin\\assets\\style\\ship-slider.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\wwwroot\\admin\\assets\\js\\feature-index.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\wwwroot\\admin\\assets\\js\\partner-index.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\wwwroot\\admin\\assets\\js\\faq-index.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\wwwroot\\admin\\assets\\js\\about-us-index.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\wwwroot\\admin\\assets\\js\\ship-slider-index.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2800704C-2DB2-A558-D622-8A0C48598A4C}|..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\FinalProjectMVC.csproj|c:\\users\\g713rm\\desktop\\c# projects\\finalproject\\mvc\\finalprojectmvc\\finalprojectmvc\\areas\\admin\\views\\shipherovideo\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -60,8 +208,281 @@
       "DocumentGroups": [
         {
           "DockedWidth": 179,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "workers-index.js",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\js\\workers-index.js",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\js\\workers-index.js",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\js\\workers-index.js",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\js\\workers-index.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-04-25T09:17:26.22Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 64,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\ShipHeroVideo\\Index.cshtml",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\ShipHeroVideo\\Index.cshtml",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\ShipHeroVideo\\Index.cshtml",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\ShipHeroVideo\\Index.cshtml",
+              "ViewState": "AgIAABEAAAAAAAAAAEBVwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-25T09:22:50.822Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 63,
+              "Title": "ship-slider-index.js",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\js\\ship-slider-index.js",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\js\\ship-slider-index.js",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\js\\ship-slider-index.js",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\js\\ship-slider-index.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-04-25T08:57:41.628Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 62,
+              "Title": "about-us-index.js",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\js\\about-us-index.js",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\js\\about-us-index.js",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\js\\about-us-index.js",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\js\\about-us-index.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-04-25T08:57:26.035Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 61,
+              "Title": "faq-index.js",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\js\\faq-index.js",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\js\\faq-index.js",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\js\\faq-index.js",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\js\\faq-index.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-04-25T08:57:09.273Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 60,
+              "Title": "partner-index.js",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\js\\partner-index.js",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\js\\partner-index.js",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\js\\partner-index.js",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\js\\partner-index.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-04-25T08:57:00.273Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 59,
+              "Title": "feature-index.js",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\js\\feature-index.js",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\js\\feature-index.js",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\js\\feature-index.js",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\js\\feature-index.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-04-25T08:56:48.599Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 58,
+              "Title": "ship-slider.css",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\style\\ship-slider.css",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\style\\ship-slider.css",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\style\\ship-slider.css",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\style\\ship-slider.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJ8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-04-25T08:56:34.237Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 57,
+              "Title": "about-us.css",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\style\\about-us.css",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\style\\about-us.css",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\style\\about-us.css",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\style\\about-us.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAIgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-04-25T08:56:16.604Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 56,
+              "Title": "faq.css",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\style\\faq.css",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\style\\faq.css",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\style\\faq.css",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\style\\faq.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-04-25T08:55:53.381Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 55,
+              "Title": "partner.css",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\style\\partner.css",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\style\\partner.css",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\style\\partner.css",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\style\\partner.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-04-25T08:55:38.043Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 54,
+              "Title": "feature.css",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\style\\feature.css",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\style\\feature.css",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\style\\feature.css",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\style\\feature.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAI4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-04-25T08:55:20.994Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAABYAAAAAAAAAAAAlwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-25T08:46:58.536Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 52,
+              "Title": "admin-table.css",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\style\\admin-table.css",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\style\\admin-table.css",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\style\\admin-table.css",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\style\\admin-table.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHABAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-04-25T08:45:35.668Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\Faq\\Index.cshtml",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\Faq\\Index.cshtml",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\Faq\\Index.cshtml",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\Faq\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-25T08:33:27.953Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 53,
+              "Title": "admin-delete-modal.js",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\js\\admin-delete-modal.js",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\js\\admin-delete-modal.js",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\js\\admin-delete-modal.js",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\wwwroot\\admin\\assets\\js\\admin-delete-modal.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-04-25T08:45:50.723Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\Workers\\Index.cshtml",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\Workers\\Index.cshtml",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\Workers\\Index.cshtml",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\Workers\\Index.cshtml",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAlwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-25T08:33:28.095Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 51,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\Partner\\Index.cshtml",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\Partner\\Index.cshtml",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\Partner\\Index.cshtml",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\Partner\\Index.cshtml",
+              "ViewState": "AgIAAAgAAAAAAAAAAEBVwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-25T08:33:27.853Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 50,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\Feature\\Index.cshtml",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\Feature\\Index.cshtml",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\Feature\\Index.cshtml",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\Feature\\Index.cshtml",
+              "ViewState": "AgIAAAkAAAAAAAAAAEBVwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-25T08:33:27.755Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\Api\\FinalProjectApi\\FinalProjectApi\\Services\\UserService.cs",
+              "RelativeDocumentMoniker": "FinalProjectApi\\Services\\UserService.cs",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\Api\\FinalProjectApi\\FinalProjectApi\\Services\\UserService.cs",
+              "RelativeToolTip": "FinalProjectApi\\Services\\UserService.cs",
+              "ViewState": "AgIAACoBAAAAAAAAAAAhwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-25T08:13:54.519Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\Users\\Index.cshtml",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\Users\\Index.cshtml",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\Users\\Index.cshtml",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\Users\\Index.cshtml",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAAACkAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-25T07:42:53.018Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
@@ -76,20 +497,130 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 7,
               "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Views\\Otel\\Index.cshtml",
-              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Views\\Otel\\Index.cshtml",
-              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Views\\Otel\\Index.cshtml",
-              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Views\\Otel\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAdAAAAAAAAAA==",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\Dashboard\\Index.cshtml",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\Dashboard\\Index.cshtml",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\Dashboard\\Index.cshtml",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\Dashboard\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-24T12:38:36.405Z",
+              "WhenOpened": "2026-04-25T07:41:40.131Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\ShipSlider\\Index.cshtml",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\ShipSlider\\Index.cshtml",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\ShipSlider\\Index.cshtml",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\ShipSlider\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAlwBUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-25T07:27:56.251Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\AboutUs\\Index.cshtml",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\AboutUs\\Index.cshtml",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\AboutUs\\Index.cshtml",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\AboutUs\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-25T07:17:00.638Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "FeaturesViewComponent.cs",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewComponents\\Home\\FeaturesViewComponent.cs",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewComponents\\Home\\FeaturesViewComponent.cs",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewComponents\\Home\\FeaturesViewComponent.cs",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewComponents\\Home\\FeaturesViewComponent.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAxwBQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T13:41:04.465Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "FeatureApiService.cs",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\FeatureApiService.cs",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\FeatureApiService.cs",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\FeatureApiService.cs",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\FeatureApiService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T13:40:35.91Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "FaqController.cs",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Controllers\\FaqController.cs",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Controllers\\FaqController.cs",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Controllers\\FaqController.cs",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Controllers\\FaqController.cs",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAAAEEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T13:40:04.483Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "ShipSliderService.cs",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\ShipSliderService.cs",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\ShipSliderService.cs",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\ShipSliderService.cs",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\ShipSliderService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAF8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T13:40:36.252Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "FeatureController.cs",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Controllers\\FeatureController.cs",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Controllers\\FeatureController.cs",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Controllers\\FeatureController.cs",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Controllers\\FeatureController.cs",
+              "ViewState": "AgIAAEgAAAAAAAAAAAAAAEgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T13:40:04.716Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "ShipSliderController.cs",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Controllers\\ShipSliderController.cs",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Controllers\\ShipSliderController.cs",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Controllers\\ShipSliderController.cs",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Controllers\\ShipSliderController.cs",
+              "ViewState": "AgIAAEoAAAAAAAAAAAAAAEoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T13:40:05.039Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "FaqViewComponent.cs",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewComponents\\About\\FaqViewComponent.cs",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewComponents\\About\\FaqViewComponent.cs",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewComponents\\About\\FaqViewComponent.cs",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewComponents\\About\\FaqViewComponent.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAAABQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T13:41:04.926Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
               "Title": "OtelController.cs",
               "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Controllers\\OtelController.cs",
               "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Controllers\\OtelController.cs",
@@ -97,111 +628,31 @@
               "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Controllers\\OtelController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-24T12:38:09.544Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Default.cshtml",
-              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Views\\Shared\\Components\\ContactForm\\Default.cshtml",
-              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Views\\Shared\\Components\\ContactForm\\Default.cshtml",
-              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Views\\Shared\\Components\\ContactForm\\Default.cshtml",
-              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Views\\Shared\\Components\\ContactForm\\Default.cshtml",
-              "ViewState": "AgIAABMAAAAAAAAAAAAIwBIAAAAzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-24T10:58:13.499Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ContactFormViewComponent.cs",
-              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewComponents\\Contact\\ContactFormViewComponent.cs",
-              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewComponents\\Contact\\ContactFormViewComponent.cs",
-              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewComponents\\Contact\\ContactFormViewComponent.cs",
-              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewComponents\\Contact\\ContactFormViewComponent.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAowBcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-24T10:58:13.371Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Default.cshtml",
-              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Views\\Shared\\Components\\ContactStrip\\Default.cshtml",
-              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Views\\Shared\\Components\\ContactStrip\\Default.cshtml",
-              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Views\\Shared\\Components\\ContactStrip\\Default.cshtml",
-              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Views\\Shared\\Components\\ContactStrip\\Default.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAkAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-24T10:51:32.989Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Default.cshtml",
-              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Views\\Shared\\Components\\Header\\Default.cshtml",
-              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Views\\Shared\\Components\\Header\\Default.cshtml",
-              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Views\\Shared\\Components\\Header\\Default.cshtml",
-              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Views\\Shared\\Components\\Header\\Default.cshtml",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAnwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-24T10:51:32.714Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "ContactStripViewComponent.cs",
-              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewComponents\\Contact\\ContactStripViewComponent.cs",
-              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewComponents\\Contact\\ContactStripViewComponent.cs",
-              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewComponents\\Contact\\ContactStripViewComponent.cs",
-              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewComponents\\Contact\\ContactStripViewComponent.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAxwAEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-24T10:51:14.33Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-24T12:38:09.544Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 10,
-              "Title": "HeaderViewComponent.cs",
-              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewComponents\\Header\\HeaderViewComponent.cs",
-              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewComponents\\Header\\HeaderViewComponent.cs",
-              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewComponents\\Header\\HeaderViewComponent.cs",
-              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewComponents\\Header\\HeaderViewComponent.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Title": "WorkersController.cs",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Controllers\\WorkersController.cs",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Controllers\\WorkersController.cs",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Controllers\\WorkersController.cs",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Controllers\\WorkersController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-24T10:51:14.139Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-24T13:37:19.099Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "SettingController.cs",
-              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Controllers\\SettingController.cs",
-              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Controllers\\SettingController.cs",
-              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Controllers\\SettingController.cs",
-              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Controllers\\SettingController.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAIAwwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-24T10:33:22.825Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 9,
               "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\Setting\\Index.cshtml",
-              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\Setting\\Index.cshtml",
-              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\Setting\\Index.cshtml",
-              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\Setting\\Index.cshtml",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAnwBgAAAA5AAAAAAAAAA==",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Views\\Otel\\Index.cshtml",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Views\\Otel\\Index.cshtml",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Views\\Otel\\Index.cshtml",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Views\\Otel\\Index.cshtml",
+              "ViewState": "AgIAACwBAAAAAAAAAAAAADkBAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-24T10:29:00.247Z",
+              "WhenOpened": "2026-04-24T12:38:36.405Z",
               "EditorCaption": ""
             },
             {
@@ -210,17 +661,316 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "dbo.Settings [Data]",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/FinalProject/True/SqlTable/dbo.Settings.sql",
-              "ToolTip": "dbo.Settings [Data]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2026-04-24T10:24:46.778Z",
-              "EditorCaption": ""
+              "DocumentIndex": 46,
+              "Title": "ShipVideoViewComponent.cs",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewComponents\\Home\\ShipVideoViewComponent.cs",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewComponents\\Home\\ShipVideoViewComponent.cs",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewComponents\\Home\\ShipVideoViewComponent.cs",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewComponents\\Home\\ShipVideoViewComponent.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAxwBYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T13:41:04.559Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 47,
+              "Title": "HeroSwiperViewComponent.cs",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewComponents\\Home\\HeroSwiperViewComponent.cs",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewComponents\\Home\\HeroSwiperViewComponent.cs",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewComponents\\Home\\HeroSwiperViewComponent.cs",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewComponents\\Home\\HeroSwiperViewComponent.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAxwBMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T13:41:04.655Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 48,
+              "Title": "ShipSliderViewComponent.cs",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewComponents\\Home\\ShipSliderViewComponent.cs",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewComponents\\Home\\ShipSliderViewComponent.cs",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewComponents\\Home\\ShipSliderViewComponent.cs",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewComponents\\Home\\ShipSliderViewComponent.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAxwBQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T13:41:04.747Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 49,
+              "Title": "ClientsViewComponent.cs",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewComponents\\Home\\ClientsViewComponent.cs",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewComponents\\Home\\ClientsViewComponent.cs",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewComponents\\Home\\ClientsViewComponent.cs",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewComponents\\Home\\ClientsViewComponent.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAxwBwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T13:41:04.835Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "PartnerApiService.cs",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\PartnerApiService.cs",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\PartnerApiService.cs",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\PartnerApiService.cs",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\PartnerApiService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAxwFMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T13:40:36.022Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "ShipHeroVideoService.cs",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\ShipHeroVideoService.cs",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\ShipHeroVideoService.cs",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\ShipHeroVideoService.cs",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\ShipHeroVideoService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAxwFIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T13:40:36.143Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "FaqApiService.cs",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\FaqApiService.cs",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\FaqApiService.cs",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\FaqApiService.cs",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\FaqApiService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAD0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T13:40:35.808Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "ShipHeroVideoController.cs",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Controllers\\ShipHeroVideoController.cs",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Controllers\\ShipHeroVideoController.cs",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Controllers\\ShipHeroVideoController.cs",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Controllers\\ShipHeroVideoController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAxwEkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T13:40:04.93Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "PartnerController.cs",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Controllers\\PartnerController.cs",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Controllers\\PartnerController.cs",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Controllers\\PartnerController.cs",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Controllers\\PartnerController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAxwEEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T13:40:04.824Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "WorkerService.cs",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\WorkerService.cs",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\WorkerService.cs",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\WorkerService.cs",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\WorkerService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T13:37:38.836Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Program.cs",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Program.cs",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Program.cs",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T13:37:28.288Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "WorkersController.cs",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Controllers\\WorkersController.cs",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Controllers\\WorkersController.cs",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Controllers\\WorkersController.cs",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Controllers\\WorkersController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T13:36:52.796Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "IShipSliderService.cs",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\Interfaces\\IShipSliderService.cs",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\Interfaces\\IShipSliderService.cs",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\Interfaces\\IShipSliderService.cs",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\Interfaces\\IShipSliderService.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T13:35:11.272Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "IShipHeroVideoApiService.cs",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\Interfaces\\IShipHeroVideoApiService.cs",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\Interfaces\\IShipHeroVideoApiService.cs",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\Interfaces\\IShipHeroVideoApiService.cs",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\Interfaces\\IShipHeroVideoApiService.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T13:35:11.128Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "IPartnerApiService.cs",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\Interfaces\\IPartnerApiService.cs",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\Interfaces\\IPartnerApiService.cs",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\Interfaces\\IPartnerApiService.cs",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\Interfaces\\IPartnerApiService.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T13:35:11.003Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "IFeatureApiService.cs",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\Interfaces\\IFeatureApiService.cs",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\Interfaces\\IFeatureApiService.cs",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\Interfaces\\IFeatureApiService.cs",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\Interfaces\\IFeatureApiService.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T13:35:10.801Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "IFaqApiService.cs",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\Interfaces\\IFaqApiService.cs",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\Interfaces\\IFaqApiService.cs",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\Interfaces\\IFaqApiService.cs",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\Interfaces\\IFaqApiService.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T13:35:10.396Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "Default.cshtml",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Views\\Shared\\Components\\ContactForm\\Default.cshtml",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Views\\Shared\\Components\\ContactForm\\Default.cshtml",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Views\\Shared\\Components\\ContactForm\\Default.cshtml",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Views\\Shared\\Components\\ContactForm\\Default.cshtml",
+              "ViewState": "AgIAABMAAAAAAAAAAAAIwBIAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-24T10:58:13.499Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "ContactFormViewComponent.cs",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewComponents\\Contact\\ContactFormViewComponent.cs",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewComponents\\Contact\\ContactFormViewComponent.cs",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewComponents\\Contact\\ContactFormViewComponent.cs",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewComponents\\Contact\\ContactFormViewComponent.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAowBcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T10:58:13.371Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "Default.cshtml",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Views\\Shared\\Components\\ContactStrip\\Default.cshtml",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Views\\Shared\\Components\\ContactStrip\\Default.cshtml",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Views\\Shared\\Components\\ContactStrip\\Default.cshtml",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Views\\Shared\\Components\\ContactStrip\\Default.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-24T10:51:32.989Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "Default.cshtml",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Views\\Shared\\Components\\Header\\Default.cshtml",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Views\\Shared\\Components\\Header\\Default.cshtml",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Views\\Shared\\Components\\Header\\Default.cshtml",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Views\\Shared\\Components\\Header\\Default.cshtml",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAnwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-24T10:51:32.714Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "ContactStripViewComponent.cs",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewComponents\\Contact\\ContactStripViewComponent.cs",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewComponents\\Contact\\ContactStripViewComponent.cs",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewComponents\\Contact\\ContactStripViewComponent.cs",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewComponents\\Contact\\ContactStripViewComponent.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAxwAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T10:51:14.33Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "HeaderViewComponent.cs",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewComponents\\Header\\HeaderViewComponent.cs",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewComponents\\Header\\HeaderViewComponent.cs",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewComponents\\Header\\HeaderViewComponent.cs",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewComponents\\Header\\HeaderViewComponent.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T10:51:14.139Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "SettingController.cs",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Controllers\\SettingController.cs",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Controllers\\SettingController.cs",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Controllers\\SettingController.cs",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Controllers\\SettingController.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAIAwwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T10:33:22.825Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\Setting\\Index.cshtml",
+              "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\Setting\\Index.cshtml",
+              "ToolTip": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\Setting\\Index.cshtml",
+              "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Areas\\Admin\\Views\\Setting\\Index.cshtml",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAnwBgAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-24T10:29:00.247Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "dbo.Settings.sql",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/FinalProject/True/SqlTable/dbo.Settings.sql",
+              "ToolTip": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/FinalProject/True/SqlTable/dbo.Settings.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2026-04-24T10:24:46.778Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
               "Title": "SettingEditVM.cs",
               "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewModels\\Setting\\SettingEditVM.cs",
               "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewModels\\Setting\\SettingEditVM.cs",
@@ -228,12 +978,11 @@
               "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\ViewModels\\Setting\\SettingEditVM.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-24T10:41:28.519Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-24T10:41:28.519Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 36,
               "Title": "ISettingApiService.cs",
               "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\Interfaces\\ISettingApiService.cs",
               "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\Interfaces\\ISettingApiService.cs",
@@ -241,12 +990,11 @@
               "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\Interfaces\\ISettingApiService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-24T10:33:22.651Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-24T10:33:22.651Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 38,
               "Title": "SettingController.cs",
               "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\Api\\FinalProjectApi\\FinalProjectApi\\FinalProjectApi\\Controllers\\SettingController.cs",
               "RelativeDocumentMoniker": "FinalProjectApi\\FinalProjectApi\\Controllers\\SettingController.cs",
@@ -254,12 +1002,11 @@
               "RelativeToolTip": "FinalProjectApi\\FinalProjectApi\\Controllers\\SettingController.cs",
               "ViewState": "AgIAABIAAAAAAAAAAAAAABYAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-24T10:36:43.203Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-24T10:36:43.203Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 37,
               "Title": "SettingApiService.cs",
               "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\SettingApiService.cs",
               "RelativeDocumentMoniker": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\SettingApiService.cs",
@@ -267,12 +1014,11 @@
               "RelativeToolTip": "..\\..\\MVC\\FinalProjectMVC\\FinalProjectMVC\\Services\\SettingApiService.cs",
               "ViewState": "AgIAAA8AAAAAAAAAAAAkwBQAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-24T10:32:52.722Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-24T10:32:52.722Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 39,
               "Title": "ShipHeroVideo.cs",
               "DocumentMoniker": "C:\\Users\\G713RM\\Desktop\\C# Projects\\FinalProject\\Api\\FinalProjectApi\\FinalProjectApi\\Models\\ShipHeroVideo.cs",
               "RelativeDocumentMoniker": "FinalProjectApi\\Models\\ShipHeroVideo.cs",

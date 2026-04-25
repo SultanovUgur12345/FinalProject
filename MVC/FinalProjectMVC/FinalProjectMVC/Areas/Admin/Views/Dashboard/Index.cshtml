@@ -5,48 +5,6 @@
 <p class="admin-content__subtitle">WELCOME</p>
 <h1 class="admin-h1">Admin Dashboard</h1>
 
-<a asp-area="Admin" asp-controller="Workers" asp-action="Index" class="admin-btn admin-btn--primary">
-    Go to Workers Index
-</a>
-
-<style>
-    .admin-content__subtitle {
-        color: #bfa888;
-        letter-spacing: 2px;
-        font-size: 12px;
-        margin-bottom: 8px;
-    }
-
-    .admin-h1 {
-        font-family: 'Cormorant Garamond', serif;
-        font-size: 40px;
-        margin: 0 0 24px;
-    }
-
-    .admin-btn {
-        display: inline-block;
-        text-decoration: none;
-        background: transparent;
-        color: #fff;
-        border: 1px solid rgba(191, 168, 136, 0.5);
-        padding: 10px 16px;
-        font-size: 12px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-
-    .admin-btn--primary {
-        background: linear-gradient(135deg, #bfa888 0%, #a68b6a 100%);
-        color: #021527;
-        border-color: transparent;
-        font-weight: 600;
-    }
-
-    .admin-btn--primary:hover {
-        color: #021527;
-        transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(191, 168, 136, 0.35);
-    }
-</style>
+@section Styles {
+    <link rel="stylesheet" href="~/admin/assets/style/dashboard.css" />
+}

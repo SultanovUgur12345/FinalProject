@@ -1,7 +1,7 @@
+using FinalProjectMVC.Services.Interfaces;
 using FinalProjectMVC.ViewModels.Worker;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using static IWorkerService;
 
 namespace FinalProjectMVC.Areas.Admin.Controllers;
 

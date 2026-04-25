@@ -1,0 +1,92 @@
+/* ===== FAQ INDEX ===== */
+.admin-content__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.admin-content__subtitle {
+    color: #bfa888;
+    letter-spacing: 2px;
+    font-size: 12px;
+    margin-bottom: 8px;
+}
+
+.faq-question {
+    max-width: 280px;
+    font-weight: 500;
+}
+
+.faq-answer {
+    max-width: 360px;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Delete Modal */
+.delete-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete-modal.active {
+    display: flex;
+}
+
+.delete-modal__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(2, 21, 39, 0.85);
+    backdrop-filter: blur(4px);
+}
+
+.delete-modal__box {
+    position: relative;
+    z-index: 1;
+    max-width: 480px;
+    width: 90%;
+    background: #0c1e2e;
+    border: 1px solid rgba(191, 168, 136, 0.2);
+    padding: 36px 32px;
+}
+
+.delete-modal__title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    margin: 0 0 10px;
+    color: #fff;
+}
+
+.delete-modal__text {
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 14px;
+    margin: 0 0 6px;
+}
+
+.delete-modal__item {
+    color: #bfa888;
+    font-size: 15px;
+    font-style: italic;
+    margin: 0 0 20px;
+}
+
+.delete-modal__actions {
+    display: flex;
+    gap: 10px;
+}
+
+@media (max-width: 576px) {
+    .delete-modal__actions {
+        flex-direction: column;
+    }
+}

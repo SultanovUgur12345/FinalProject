@@ -1,4 +1,4 @@
-@using FinalProjectMVC.ViewModels.Faq
+﻿@using FinalProjectMVC.ViewModels.Faq
 @model List<FaqGetVM>
 
 @{
@@ -8,16 +8,15 @@
 <div class="admin-content__header">
     <div>
         <p class="admin-content__subtitle">FAQ MANAGEMENT</p>
-        <h1>FAQs <span>(@Model.Count)</span></h1>
+        <h1>FAQs</h1>
     </div>
-    <a asp-area="Admin" asp-controller="Faq" asp-action="Create" class="admin-btn admin-btn--primary">+ Add FAQ</a>
+    <a asp-area="Admin" asp-controller="Faq" asp-action="Create" class="admin-btn admin-btn--primary" style="margin-top: 30px;">+ Add FAQ</a>
 </div>
 
 <div class="admin-table-container">
     <table class="admin-table">
         <thead>
             <tr>
-                <th>#</th>
                 <th>Question</th>
                 <th>Answer</th>
                 <th>Actions</th>
@@ -29,7 +28,6 @@
                 foreach (var item in Model)
                 {
                     <tr>
-                        <td>@item.Id</td>
                         <td class="faq-question">@item.Question</td>
                         <td class="faq-answer">@item.Answer</td>
                         <td>
@@ -75,57 +73,10 @@
     </div>
 </div>
 
-<style>
-    .admin-content__header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 28px; flex-wrap: wrap; gap: 16px; }
-    .admin-content__subtitle { color: #bfa888; letter-spacing: 2px; font-size: 12px; margin-bottom: 8px; }
-    .admin-content h1 { font-family: 'Cormorant Garamond', serif; font-size: 40px; margin: 0; }
+@section Styles {
+    <link rel="stylesheet" href="~/admin/assets/style/faq.css" />
+}
 
-    .admin-table-container { overflow-x: auto; }
-    .admin-table { width: 100%; border-collapse: collapse; font-size: 14px; }
-    .admin-table thead tr { border-bottom: 1px solid rgba(191,168,136,0.3); }
-    .admin-table th { color: #bfa888; text-transform: uppercase; font-size: 11px; letter-spacing: 1px; padding: 12px 14px; text-align: left; font-weight: 600; }
-    .admin-table td { padding: 12px 14px; border-bottom: 1px solid rgba(255,255,255,0.06); color: rgba(255,255,255,0.85); vertical-align: middle; }
-    .admin-table__empty { text-align: center; color: rgba(255,255,255,0.35); padding: 40px; }
-
-    .faq-question { max-width: 280px; font-weight: 500; }
-    .faq-answer { max-width: 360px; color: rgba(255,255,255,0.55); font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-
-    .admin-actions { display: flex; gap: 8px; flex-wrap: wrap; }
-    .admin-btn { display: inline-block; text-decoration: none; background: transparent; color: #fff; border: 1px solid rgba(191,168,136,0.5); padding: 10px 18px; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: all 0.3s ease; }
-    .admin-btn:hover { color: #bfa888; border-color: #bfa888; }
-    .admin-btn--sm { padding: 6px 12px; font-size: 11px; }
-    .admin-btn--primary { background: linear-gradient(135deg, #bfa888 0%, #a68b6a 100%); color: #021527; border-color: transparent; font-weight: 600; }
-    .admin-btn--primary:hover { color: #021527; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(191,168,136,0.35); }
-    .admin-btn--danger { background: transparent; color: #ff6b6b; border-color: rgba(255,107,107,0.4); }
-    .admin-btn--danger:hover { background: rgba(255,107,107,0.1); color: #ff6b6b; border-color: #ff6b6b; }
-
-    .delete-modal { display: none; position: fixed; inset: 0; z-index: 1000; align-items: center; justify-content: center; }
-    .delete-modal.active { display: flex; }
-    .delete-modal__overlay { position: absolute; inset: 0; background: rgba(2,21,39,0.85); backdrop-filter: blur(4px); }
-    .delete-modal__box { position: relative; z-index: 1; max-width: 480px; width: 90%; background: #0c1e2e; border: 1px solid rgba(191,168,136,0.2); padding: 36px 32px; }
-    .delete-modal__title { font-family: 'Cormorant Garamond', serif; font-size: 26px; margin: 0 0 10px; color: #fff; }
-    .delete-modal__text { color: rgba(255,255,255,0.55); font-size: 14px; margin: 0 0 6px; }
-    .delete-modal__item { color: #bfa888; font-size: 15px; font-style: italic; margin: 0 0 20px; }
-    .delete-modal__actions { display: flex; gap: 10px; }
-</style>
-
-<script>
-    document.querySelectorAll(".open-delete-modal").forEach(function (btn) {
-        btn.addEventListener("click", function () {
-            const id = this.dataset.id;
-            const question = this.dataset.question;
-
-            document.getElementById("modalFaqQuestion").textContent = question;
-            document.getElementById("deleteForm").action = `/Admin/Faq/Delete/${id}`;
-            document.getElementById("deleteModal").classList.add("active");
-        });
-    });
-
-    document.getElementById("cancelDeleteBtn").addEventListener("click", function () {
-        document.getElementById("deleteModal").classList.remove("active");
-    });
-
-    document.getElementById("deleteModalOverlay").addEventListener("click", function () {
-        document.getElementById("deleteModal").classList.remove("active");
-    });
-</script>
+@section Scripts {
+    <script src="~/admin/assets/js/faq-index.js"></script>
+}

@@ -1,0 +1,29 @@
+﻿using FinalProjectMVC.ViewModels.Partner;
+using Microsoft.AspNetCore.Mvc;
+
+namespace FinalProjectMVC.ViewComponents.Header
+{
+    public class ClientsViewComponent : ViewComponent
+    {
+        private readonly IPartnerApiService _partnerService;
+
+        public ClientsViewComponent(IPartnerApiService partnerService)
+        {
+            _partnerService = partnerService;
+        }
+
+        public async Task<IViewComponentResult> InvokeAsync()
+        {
+            List<PartnerGetVM> partners;
+            try
+            {
+                partners = await _partnerService.GetAllAsync();
+            }
+            catch
+            {
+                partners = new List<PartnerGetVM>();
+            }
+            return View(partners);
+        }
+    }
+}

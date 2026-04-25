@@ -1,0 +1,99 @@
+﻿using FinalProjectMVC.Services.Interfaces;
+using FinalProjectMVC.ViewModels.ShipSlider;
+using System.Net.Http.Headers;
+using System.Net.Http.Json;
+
+namespace FinalProjectMVC.Services
+{
+    public class ShipSliderApiService : IShipSliderApiService
+    {
+    private readonly HttpClient _httpClient;
+
+    public ShipSliderApiService(HttpClient httpClient)
+    {
+        _httpClient = httpClient;
+    }
+
+    public async Task<List<ShipSliderGetVM>> GetAllAsync()
+    {
+        return await _httpClient.GetFromJsonAsync<List<ShipSliderGetVM>>("api/ShipSlider/GetAll");
+    }
+
+    public async Task<List<ShipSliderGetVM>> GetAllAdminAsync()
+    {
+        return await _httpClient.GetFromJsonAsync<List<ShipSliderGetVM>>("api/ShipSlider/GetAllAdmin");
+    }
+
+    public async Task<ShipSliderGetVM> GetByIdAsync(int id)
+    {
+        return await _httpClient.GetFromJsonAsync<ShipSliderGetVM>($"api/ShipSlider/Get/{id}");
+    }
+
+    public async Task<ShipSliderEditVM> GetByIdForEditAsync(int id)
+    {
+        var data = await _httpClient.GetFromJsonAsync<ShipSliderGetVM>($"api/ShipSlider/Get/{id}");
+
+        if (data == null)
+            throw new Exception($"ShipSlider tapilmadi. Id: {id}");
+
+        return new ShipSliderEditVM
+        {
+            Id = data.Id,
+            PreTitle = data.PreTitle,
+            Title = data.Title,
+            Description = data.Description,
+            CurrentImage = data.Image
+        };
+    }
+
+    public async Task CreateAsync(ShipSliderCreateVM dto)
+    {
+        using var content = new MultipartFormDataContent();
+
+        content.Add(new StringContent(dto.PreTitle ?? ""), "PreTitle");
+        content.Add(new StringContent(dto.Title ?? ""), "Title");
+        content.Add(new StringContent(dto.Description ?? ""), "Description");
+
+        if (dto.Image != null)
+        {
+            var fileContent = new StreamContent(dto.Image.OpenReadStream());
+            fileContent.Headers.ContentType = new MediaTypeHeaderValue(dto.Image.ContentType);
+            content.Add(fileContent, "Image", dto.Image.FileName);
+        }
+
+        var response = await _httpClient.PostAsync("api/ShipSlider/Create", content);
+
+        if (!response.IsSuccessStatusCode)
+        {
+            var error = await response.Content.ReadAsStringAsync();
+            throw new Exception(error);
+        }
+    }
+
+    public async Task UpdateAsync(int id, ShipSliderEditVM dto)
+    {
+        using var content = new MultipartFormDataContent();
+
+        content.Add(new StringContent(dto.PreTitle ?? ""), "PreTitle");
+        content.Add(new StringContent(dto.Title ?? ""), "Title");
+        content.Add(new StringContent(dto.Description ?? ""), "Description");
+        content.Add(new StringContent(dto.CurrentImage ?? ""), "CurrentImage");
+
+        if (dto.Image != null)
+        {
+            var fileContent = new StreamContent(dto.Image.OpenReadStream());
+            fileContent.Headers.ContentType = new MediaTypeHeaderValue(dto.Image.ContentType);
+            content.Add(fileContent, "Image", dto.Image.FileName);
+        }
+
+        var response = await _httpClient.PutAsync($"api/ShipSlider/Update/{id}", content);
+        response.EnsureSuccessStatusCode();
+    }
+
+    public async Task DeleteAsync(int id)
+    {
+        var response = await _httpClient.DeleteAsync($"api/ShipSlider/Delete/{id}");
+        response.EnsureSuccessStatusCode();
+    }
+}
+}

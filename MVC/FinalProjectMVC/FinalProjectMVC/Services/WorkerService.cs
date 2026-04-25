@@ -1,8 +1,8 @@
+using FinalProjectMVC.Services.Interfaces;
 using FinalProjectMVC.ViewModels.Worker;
 using System.Globalization;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
-using static IWorkerService;
 
 public class WorkerApiService : IWorkerApiService
 {

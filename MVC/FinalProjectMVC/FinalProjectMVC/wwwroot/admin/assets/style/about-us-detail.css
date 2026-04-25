@@ -1,0 +1,19 @@
+﻿.admin-content__header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 28px; flex-wrap: wrap; gap: 16px; }
+    .admin-content__subtitle { color: #bfa888; letter-spacing: 2px; font-size: 12px; margin-bottom: 8px; }
+
+    .detail-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(191,168,136,0.15); padding: 28px; display: flex; flex-direction: column; gap: 18px; }
+    .detail-row { display: flex; flex-direction: column; gap: 4px; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 14px; }
+    .detail-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .detail-label { color: #bfa888; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; }
+    .detail-value { color: rgba(255,255,255,0.85); font-size: 15px; line-height: 1.6; }
+
+    .workers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+    .worker-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(191,168,136,0.15); }
+    .worker-card__body { padding: 20px; }
+    .worker-card__name { font-family: 'Cormorant Garamond', serif; font-size: 20px; margin: 0 0 6px; color: #fff; }
+    .worker-card__position { color: rgba(255,255,255,0.55); font-size: 13px; margin: 0; line-height: 1.5; }
+
+    .admin-btn { display: inline-block; text-decoration: none; background: transparent; color: #fff; border: 1px solid rgba(191,168,136,0.5); padding: 10px 18px; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: all 0.3s ease; }
+    .admin-btn:hover { color: #bfa888; border-color: #bfa888; }
+    .admin-btn--primary { background: linear-gradient(135deg, #bfa888 0%, #a68b6a 100%); color: #021527; border-color: transparent; font-weight: 600; }
+    .admin-btn--primary:hover { color: #021527; }

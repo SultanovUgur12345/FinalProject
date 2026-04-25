@@ -1,0 +1,78 @@
+﻿.admin-workers { width: 100%; color: #fff; }
+
+    .admin-workers__container {
+        background: rgba(2, 21, 39, 0.86);
+        border: 1px solid rgba(191, 168, 136, 0.3);
+        padding: 30px;
+        backdrop-filter: blur(10px);
+        border-radius: 12px;
+    }
+
+    .admin-workers__container--form { max-width: 980px; margin: 0 auto; }
+
+    .admin-workers__head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 25px;
+    }
+
+    .admin-workers__subtitle {
+        color: #bfa888;
+        letter-spacing: 2px;
+        font-size: 12px;
+        margin-bottom: 6px;
+    }
+
+    .admin-workers__head h1 {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 38px;
+        margin: 0;
+    }
+
+    .worker-detail-grid {
+        display: grid;
+        grid-template-columns: 320px 1fr;
+        gap: 20px;
+        align-items: start;
+    }
+
+    .worker-detail-image img {
+        width: 100%;
+        height: 360px;
+        border: 1px solid rgba(191, 168, 136, 0.5);
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    .worker-detail-content h2 {
+        margin: 0 0 8px;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 34px;
+    }
+
+    .worker-detail-content p {
+        color: rgba(255,255,255,0.75);
+        line-height: 1.7;
+        margin-bottom: 16px;
+    }
+
+    .worker-meta {
+        margin-top: 16px;
+        display: grid;
+        gap: 8px;
+        color: rgba(255,255,255,0.8);
+        font-size: 14px;
+    }
+
+    .worker-meta strong { color: #bfa888; }
+
+    .admin-actions { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+
+    .admin-btn { display: inline-block; text-decoration: none; background: transparent; color: #fff; border: 1px solid rgba(191,168,136,0.5); padding: 10px 18px; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: all 0.3s ease; }
+    .admin-btn:hover { color: #bfa888; border-color: #bfa888; }
+    .admin-btn--primary { background: linear-gradient(135deg,#bfa888 0%,#a68b6a 100%); color: #021527; border-color: transparent; font-weight: 600; }
+    .admin-btn--primary:hover { color: #021527; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(191,168,136,0.35); }
+
+    @media (max-width: 768px) { .worker-detail-grid { grid-template-columns: 1fr; } }

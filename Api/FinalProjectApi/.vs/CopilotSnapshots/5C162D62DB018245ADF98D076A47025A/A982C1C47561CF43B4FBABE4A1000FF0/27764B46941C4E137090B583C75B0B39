@@ -1,0 +1,23 @@
+﻿using FinalProjectMVC.Services.Interfaces;
+using FinalProjectMVC.ViewModels.ShipHeroVideo;
+using Microsoft.AspNetCore.Mvc;
+
+namespace FinalProjectMVC.ViewComponents.Header
+{
+    public class ShipVideoViewComponent : ViewComponent
+    {
+        private readonly IShipHeroVideoApiService _service;
+
+        public ShipVideoViewComponent(IShipHeroVideoApiService service)
+        {
+            _service = service;
+        }
+
+        public async Task<IViewComponentResult> InvokeAsync()
+        {
+            var videos = await _service.GetAllAsync();
+            var video = videos?.FirstOrDefault();
+            return View(video);
+        }
+    }
+}

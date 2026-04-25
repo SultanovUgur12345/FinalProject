@@ -300,7 +300,7 @@ namespace FinalProjectApi.Services
             return new ResponceDto
             {
                 IsSuccess = true,
-                Message = $"Rol ugurla teyinlendi: {dto.Role}"
+                Message = $"Rol ugurla teyinlendi! FullName: {user.FullName} | Username: {user.UserName} | Email: {user.Email} | Yeni rol: {dto.Role}"
             };
         }
     }

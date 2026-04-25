@@ -1,0 +1,104 @@
+﻿@using FinalProjectMVC.ViewModels.Feature
+@model List<FeatureGetVM>
+
+@inject IConfiguration Configuration
+@{
+    ViewData["Title"] = "Feature - Index";
+    string apiBaseUrl = (Configuration["ApiSettings:BaseUrl"] ?? "http://localhost:5147/").TrimEnd('/');
+}
+
+<div class="admin-content__header">
+    <div>
+        <p class="admin-content__subtitle">FEATURE MANAGEMENT</p>
+        <h1>Features List</h1>
+        <div class="admin-topbar">
+            <span class="admin-stat">Total: <strong>@(Model?.Count ?? 0)</strong></span>
+        </div>
+    </div>
+    <a asp-area="Admin" asp-controller="Feature" asp-action="Create" class="admin-btn admin-btn--primary" style="margin-top: 30px;">+ Create Feature</a>
+</div>
+
+<div class="admin-table-container">
+    <table class="admin-table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Image</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>
+                            <img class="admin-avatar"
+                                 src="@(string.IsNullOrWhiteSpace(item.Image) ? "" : $"{apiBaseUrl}{item.Image}")"
+                                 alt="@item.Title" />
+                        </td>
+                        <td>@item.Title</td>
+                        <td>@(item.Description?.Length > 60 ? item.Description[..60] + "..." : item.Description)</td>
+                        <td>
+                            <div class="admin-actions">
+                                <a asp-area="Admin" asp-controller="Feature" asp-action="Detail" asp-route-id="@item.Id" class="admin-btn admin-btn--sm">Get</a>
+                                <a asp-area="Admin" asp-controller="Feature" asp-action="Edit"   asp-route-id="@item.Id" class="admin-btn admin-btn--sm">Edit</a>
+                                <button type="button"
+                                        class="admin-btn admin-btn--sm admin-btn--danger open-delete-modal"
+                                        data-id="@item.Id"
+                                        data-title="@item.Title"
+                                        data-image="@(string.IsNullOrWhiteSpace(item.Image) ? "" : $"{apiBaseUrl}{item.Image}")">
+                                    Delete
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="5" class="admin-table__empty">No features found</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="delete-modal" id="deleteModal">
+    <div class="delete-modal__overlay" id="deleteModalOverlay"></div>
+    <div class="delete-modal__content">
+        <button type="button" class="delete-modal__close" id="deleteModalClose">&times;</button>
+        <div class="delete-modal__top">
+            <p class="delete-modal__subtitle">DELETE CONFIRMATION</p>
+            <h2>Are you sure?</h2>
+            <p class="delete-modal__text">This feature will be permanently deleted.</p>
+        </div>
+        <div class="delete-modal__worker">
+            <img id="deleteFeatureImage" src="" alt="Feature Image" class="delete-modal__image" />
+            <div class="delete-modal__info">
+                <h3 id="deleteFeatureTitle"></h3>
+            </div>
+        </div>
+        <form method="post" asp-area="Admin" asp-controller="Feature" asp-action="Delete" id="deleteForm">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="id" id="deleteFeatureId" />
+            <div class="delete-modal__actions">
+                <button type="button" class="admin-btn" id="cancelDelete">Cancel</button>
+                <button type="submit" class="admin-btn admin-btn--danger-fill">Yes, Delete</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Styles {
+    <link rel="stylesheet" href="~/admin/assets/style/feature.css" />
+}
+
+@section Scripts {
+    <script src="~/admin/assets/js/feature-index.js"></script>
+}

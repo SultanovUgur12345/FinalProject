@@ -1,0 +1,20 @@
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace FinalProjectMVC.ViewComponents.Header
+{
+    public class HeroSwiperViewComponent : ViewComponent
+    {
+        private readonly IShipSliderApiService _service;
+
+        public HeroSwiperViewComponent(IShipSliderApiService service)
+        {
+            _service = service;
+        }
+
+        public async Task<IViewComponentResult> InvokeAsync()
+        {
+            var sliders = await _service.GetAllAsync();
+            return View(sliders);
+        }
+    }
+}

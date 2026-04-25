@@ -1,4 +1,4 @@
-@using FinalProjectMVC.ViewModels.Partner
+﻿@using FinalProjectMVC.ViewModels.Partner
 @model PartnerCreateVM
 
 @{
@@ -35,31 +35,6 @@
     </div>
 </form>
 
-<style>
-    .admin-content__header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 28px; flex-wrap: wrap; gap: 16px; }
-    .admin-content__subtitle { color: #bfa888; letter-spacing: 2px; font-size: 12px; margin-bottom: 8px; }
-    .admin-content h1 { font-family: 'Cormorant Garamond', serif; font-size: 40px; margin: 0; }
-
-    .admin-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
-    .admin-form-group { display: flex; flex-direction: column; gap: 8px; }
-    .admin-form-group--full { grid-column: 1 / -1; }
-    .admin-form-group label { color: #bfa888; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
-
-    .admin-input { width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(191,168,136,0.25); color: #fff; padding: 12px 14px; outline: none; transition: 0.3s ease; font-size: 14px; box-sizing: border-box; }
-    .admin-input:focus { border-color: #bfa888; background: rgba(255,255,255,0.09); }
-    .admin-input--file { padding: 10px; cursor: pointer; }
-    .admin-input--file::file-selector-button { background: linear-gradient(135deg, #bfa888 0%, #a68b6a 100%); color: #021527; border: none; padding: 8px 14px; margin-right: 12px; cursor: pointer; font-weight: 600; }
-
-    .admin-validation { color: #ff6b6b; font-size: 13px; }
-    .admin-form-actions { grid-column: 1 / -1; display: flex; gap: 10px; margin-top: 8px; }
-
-    .admin-btn { display: inline-block; text-decoration: none; background: transparent; color: #fff; border: 1px solid rgba(191,168,136,0.5); padding: 10px 18px; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: all 0.3s ease; }
-    .admin-btn:hover { color: #bfa888; border-color: #bfa888; }
-    .admin-btn--primary { background: linear-gradient(135deg, #bfa888 0%, #a68b6a 100%); color: #021527; border-color: transparent; font-weight: 600; }
-    .admin-btn--primary:hover { color: #021527; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(191,168,136,0.35); }
-
-    @@media (max-width: 900px) {
-        .admin-form { grid-template-columns: 1fr; }
-        .admin-form-group--full, .admin-form-actions { grid-column: 1; }
-    }
-</style>
+@section Styles {
+    <link rel="stylesheet" href="~/admin/assets/style/partner-create.css" />
+}
