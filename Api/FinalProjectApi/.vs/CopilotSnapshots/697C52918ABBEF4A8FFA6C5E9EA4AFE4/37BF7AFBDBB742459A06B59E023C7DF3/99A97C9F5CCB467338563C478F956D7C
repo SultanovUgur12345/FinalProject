@@ -1,0 +1,885 @@
+﻿@{
+    ViewData["Title"] = "Book Your Trip";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    /* ── PAGE ── */
+    .bk-page {
+        min-height: 100vh;
+        background-color: #021527;
+        background-image: url('https://seafarer.qodeinteractive.com/wp-content/uploads/2021/07/home-1-parallax-1.jpg');
+        background-size: cover;
+        background-attachment: fixed;
+        background-position: center;
+        padding-top: 170px;
+        padding-bottom: 100px;
+    }
+    .bk-wrap {
+        width: 80%;
+        max-width: 1160px;
+        margin: 0 auto;
+    }
+
+    /* ── TOP BAR ── */
+    .bk-topbar {
+        background: rgba(2,21,39,0.72);
+        backdrop-filter: blur(14px);
+        border: 1px solid rgba(191,168,136,0.18);
+        border-radius: 6px;
+        display: flex;
+        align-items: stretch;
+        margin-bottom: 10px;
+        overflow: visible;
+        position: relative;
+    }
+    .bk-fields {
+        display: flex;
+        align-items: stretch;
+        flex: 1;
+    }
+    .bk-field {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 20px 30px;
+        cursor: pointer;
+        position: relative;
+        border: 2px solid transparent;
+        border-radius: 6px;
+        transition: border-color 0.2s, background 0.2s;
+        min-width: 170px;
+    }
+    .bk-field:hover { background: rgba(191,168,136,0.06); }
+    .bk-field.is-active { border-color: #bfa888; background: rgba(191,168,136,0.10); }
+
+    .bk-field-label {
+        font-family: 'Roboto', sans-serif;
+        font-size: 11px;
+        color: rgba(191,168,136,0.75);
+        letter-spacing: 0.5px;
+        margin-bottom: 4px;
+    }
+    .bk-field-val {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 17px;
+        font-weight: 600;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .bk-field-val i { font-size: 11px; color: rgba(191,168,136,0.7); }
+
+    .bk-sep {
+        width: 1px;
+        background: rgba(191,168,136,0.18);
+        margin: 16px 0;
+        flex-shrink: 0;
+    }
+
+    /* price + btn */
+    .bk-right {
+        display: flex;
+        align-items: center;
+        gap: 22px;
+        padding: 16px 24px;
+        flex-shrink: 0;
+    }
+    .bk-price-block { text-align: right; }
+    .bk-price-from {
+        font-family: 'Roboto', sans-serif;
+        font-size: 11px;
+        color: rgba(255,255,255,0.55);
+        display: block;
+        margin-bottom: 2px;
+    }
+    .bk-price-usd {
+        font-family: 'Roboto', sans-serif;
+        font-size: 20px;
+        font-weight: 800;
+        color: #fff;
+        line-height: 1.1;
+    }
+    .bk-price-usd em { font-size: 13px; font-weight: 400; font-style: normal; }
+    .bk-price-total { font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 1px; }
+    .bk-price-note  { font-size: 11px; color: rgba(255,255,255,0.4); }
+    .bk-book-btn {
+        background: #d6c09b;
+        color: #021527;
+        border: none;
+        border-radius: 999px;
+        padding: 14px 30px;
+        font-family: 'Roboto', sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: background 0.2s, transform 0.2s;
+    }
+    .bk-book-btn:hover { background: #c4a86f; transform: translateY(-1px); }
+
+    /* ── PANELS ── */
+    .bk-panel {
+        background: rgba(2,21,39,0.88);
+        backdrop-filter: blur(18px);
+        border: 1px solid rgba(191,168,136,0.18);
+        border-radius: 6px;
+        display: none;
+        position: relative;
+        margin-bottom: 10px;
+    }
+    .bk-panel.is-open { display: block; }
+
+    .bk-panel-x {
+        position: absolute;
+        top: 16px; right: 18px;
+        width: 32px; height: 32px;
+        border-radius: 50%;
+        border: 1.5px solid rgba(191,168,136,0.35);
+        background: transparent;
+        color: rgba(255,255,255,0.7);
+        font-size: 14px;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: border-color 0.15s, color 0.15s;
+    }
+    .bk-panel-x:hover { border-color: #bfa888; color: #bfa888; }
+
+    /* GUESTS PANEL */
+    .bk-gp { padding: 38px 40px 30px; }
+    .bk-gp h2 {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 26px;
+        font-weight: 600;
+        color: #fff;
+        margin: 0 0 30px;
+    }
+    .bk-gp-row {
+        display: flex;
+        align-items: center;
+        gap: 40px;
+        flex-wrap: wrap;
+        margin-bottom: 28px;
+    }
+    .bk-gp-item { display: flex; align-items: center; gap: 20px; }
+    .bk-gp-info strong {
+        font-family: 'Roboto', sans-serif;
+        font-size: 15px;
+        font-weight: 600;
+        color: #fff;
+        display: block;
+    }
+    .bk-gp-info small { font-size: 12px; color: rgba(191,168,136,0.7); }
+    .bk-counter {
+        display: flex; align-items: center;
+        background: rgba(191,168,136,0.12);
+        border: 1px solid rgba(191,168,136,0.25);
+        border-radius: 8px; overflow: hidden;
+    }
+    .bk-cnt-btn {
+        width: 40px; height: 44px;
+        border: none; background: transparent;
+        font-size: 20px; font-weight: 300;
+        color: #bfa888;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.15s;
+    }
+    .bk-cnt-btn:hover { background: rgba(191,168,136,0.18); }
+    .bk-cnt-val {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 20px; font-weight: 600;
+        color: #fff;
+        min-width: 40px;
+        text-align: center;
+    }
+    .bk-gp-note {
+        font-family: 'Roboto', sans-serif;
+        font-size: 13px;
+        color: rgba(191,168,136,0.8);
+        font-style: italic;
+        border-top: 1px solid rgba(191,168,136,0.15);
+        padding-top: 16px;
+    }
+
+    /* DATE LIST PANEL */
+    .bk-dp { padding: 38px 40px 28px; }
+    .bk-dp-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 6px;
+    }
+    .bk-dp-head h2 {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 26px; font-weight: 600;
+        color: #fff; margin: 0 0 4px;
+    }
+    .bk-dp-head p { font-size: 13px; color: rgba(191,168,136,0.7); margin: 0; }
+
+    /* LIST VIEW tab only — calendar view hissəsi yoxdur */
+    .bk-tab-active {
+        font-family: 'Roboto', sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        color: #bfa888;
+        border-bottom: 2px solid #bfa888;
+        padding-bottom: 4px;
+        display: flex; align-items: center; gap: 7px;
+        margin-top: 6px;
+        padding-right: 4px;
+    }
+
+    .bk-date-list {
+        margin-top: 24px;
+        max-height: 360px;
+        overflow-y: auto;
+        padding-right: 4px;
+    }
+    .bk-date-list::-webkit-scrollbar { width: 4px; }
+    .bk-date-list::-webkit-scrollbar-track { background: rgba(191,168,136,0.07); border-radius: 2px; }
+    .bk-date-list::-webkit-scrollbar-thumb { background: rgba(191,168,136,0.35); border-radius: 2px; }
+
+    .bk-month-grp { margin-bottom: 24px; }
+    .bk-month-title {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 18px; font-weight: 600;
+        color: #fff;
+        margin: 0 0 10px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid rgba(191,168,136,0.15);
+    }
+
+    .bk-drow {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 18px;
+        border-radius: 4px;
+        margin-bottom: 4px;
+        cursor: pointer;
+        background: rgba(255,255,255,0.04);
+        border: 1.5px solid transparent;
+        transition: all 0.15s;
+    }
+    .bk-drow:hover { background: rgba(191,168,136,0.10); }
+    .bk-drow.is-sel {
+        background: rgba(191,168,136,0.15);
+        border-color: #bfa888;
+    }
+    .bk-drow.is-dis { cursor: default; opacity: 0.4; }
+    .bk-drow-range {
+        display: flex; align-items: center; gap: 12px;
+        font-family: 'Roboto', sans-serif;
+        font-size: 14px; font-weight: 500; color: #fff;
+    }
+    .bk-drow-arr { color: rgba(191,168,136,0.7); font-size: 15px; }
+    .bk-drow-price {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 18px; font-weight: 700; color: #d6c09b;
+    }
+    .bk-drow.is-dis .bk-drow-price { color: rgba(191,168,136,0.4); }
+
+    .bk-dp-note {
+        font-family: 'Roboto', sans-serif;
+        font-size: 13px;
+        color: rgba(191,168,136,0.7);
+        font-style: italic;
+        margin-top: 16px;
+        padding-top: 14px;
+        border-top: 1px solid rgba(191,168,136,0.15);
+    }
+
+    /* ROOM PANEL */
+    .bk-rp { padding: 36px 36px 24px; }
+    .bk-rp-head {
+        display: flex; align-items: center; justify-content: space-between;
+        margin-bottom: 28px;
+    }
+    .bk-rp-head h2 {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 26px; font-weight: 600;
+        color: #fff; margin: 0;
+    }
+    /* 3-column grid */
+    .bk-room-grid {
+        display: grid;
+        grid-template-columns: 220px 1fr 260px;
+        gap: 28px;
+        align-items: start;
+    }
+    /* LEFT — room list */
+    .bk-room-list { display: flex; flex-direction: column; gap: 8px; }
+    .bk-room-item {
+        padding: 16px 18px;
+        border-radius: 6px;
+        background: rgba(255,255,255,0.05);
+        border: 1.5px solid rgba(191,168,136,0.15);
+        cursor: pointer;
+        transition: all 0.15s;
+    }
+    .bk-room-item:hover { background: rgba(191,168,136,0.10); border-color: rgba(191,168,136,0.35); }
+    .bk-room-item.is-sel { background: rgba(191,168,136,0.18); border-color: #bfa888; }
+    .bk-room-item.is-sold { opacity: 0.65; cursor: pointer; }
+    .bk-room-item.is-sold:hover { background: rgba(255,255,255,0.05); border-color: rgba(191,168,136,0.15); }
+    .bk-room-item-top {
+        display: flex; align-items: center; justify-content: space-between;
+        margin-bottom: 2px;
+    }
+    .bk-room-name {
+        font-family: 'Roboto', sans-serif;
+        font-size: 14px; font-weight: 600; color: #fff;
+    }
+    .bk-room-item.is-sold .bk-room-name { color: rgba(255,255,255,0.45); }
+    .bk-room-usd {
+        font-family: 'Roboto', sans-serif;
+        font-size: 13px; font-weight: 700; color: #d6c09b;
+        text-align: right;
+    }
+    .bk-room-usd em { font-size: 11px; font-weight: 400; font-style: normal; color: rgba(214,192,155,0.8); }
+    .bk-room-total { font-size: 11px; color: rgba(214,192,155,0.65); text-align: right; }
+    .bk-room-soldout {
+        font-family: 'Roboto', sans-serif;
+        font-size: 13px; color: rgba(191,168,136,0.5);
+        text-align: right;
+    }
+    /* MIDDLE — slider */
+    .bk-room-slider {
+        position: relative;
+        border-radius: 6px;
+        overflow: hidden;
+        aspect-ratio: 4/3;
+        background: rgba(0,0,0,0.3);
+    }
+    .bk-rs-track { display: flex; height: 100%; transition: transform 0.4s ease; }
+    .bk-rs-slide {
+        min-width: 100%; height: 100%;
+        object-fit: cover;
+    }
+    .bk-rs-btn {
+        position: absolute; top: 50%; transform: translateY(-50%);
+        width: 32px; height: 32px;
+        background: rgba(2,21,39,0.65);
+        border: 1px solid rgba(191,168,136,0.35);
+        border-radius: 50%;
+        color: #d6c09b;
+        font-size: 12px;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.15s;
+        z-index: 2;
+    }
+    .bk-rs-btn:hover { background: rgba(191,168,136,0.25); }
+    .bk-rs-prev { left: 10px; }
+    .bk-rs-next { right: 10px; }
+    /* RIGHT — info */
+    .bk-room-info h3 {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 22px; font-weight: 600;
+        color: #fff; margin: 0 0 16px;
+    }
+    .bk-room-features { list-style: none; padding: 0; margin: 0 0 20px; display: flex; flex-direction: column; gap: 10px; }
+    .bk-room-features li {
+        font-family: 'Roboto', sans-serif;
+        font-size: 13px; color: rgba(255,255,255,0.8);
+        display: flex; align-items: flex-start; gap: 8px;
+    }
+    .bk-room-features li::before { content: '✓'; color: #bfa888; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .bk-room-view-link {
+        font-family: 'Roboto', sans-serif;
+        font-size: 13px; font-weight: 600;
+        color: #bfa888;
+        text-decoration: underline;
+        cursor: pointer;
+        background: none; border: none;
+        padding: 0;
+        transition: color 0.15s;
+    }
+    .bk-room-view-link:hover { color: #d6c09b; }
+    /* footer note */
+    .bk-rp-note {
+        font-family: 'Roboto', sans-serif;
+        font-size: 12px;
+        color: rgba(191,168,136,0.65);
+        font-style: italic;
+        margin-top: 24px;
+        padding-top: 16px;
+        border-top: 1px solid rgba(191,168,136,0.15);
+    }
+    /* SLIDER — şəkil kliklenebilir */
+    .bk-rs-slide { cursor: zoom-in; }
+    /* LIGHTBOX */
+    .bk-lb {
+        display: none;
+        position: fixed; inset: 0; z-index: 9999;
+        background: rgba(2,21,39,0.95);
+        align-items: center; justify-content: center;
+    }
+    .bk-lb.is-open { display: flex; }
+    .bk-lb-inner {
+        position: relative;
+        max-width: 88vw; max-height: 88vh;
+        display: flex; align-items: center; justify-content: center;
+    }
+    .bk-lb-img {
+        max-width: 88vw; max-height: 80vh;
+        border-radius: 6px;
+        object-fit: contain;
+        display: block;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+        transition: opacity 0.25s;
+    }
+    .bk-lb-close {
+        position: fixed; top: 22px; right: 26px;
+        width: 40px; height: 40px;
+        border-radius: 50%;
+        border: 1.5px solid rgba(191,168,136,0.45);
+        background: rgba(2,21,39,0.7);
+        color: #d6c09b; font-size: 17px;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        z-index: 10000;
+        transition: border-color 0.15s;
+    }
+    .bk-lb-close:hover { border-color: #bfa888; background: rgba(191,168,136,0.15); }
+    .bk-lb-nav {
+        position: fixed; top: 50%; transform: translateY(-50%);
+        width: 48px; height: 48px;
+        border-radius: 50%;
+        border: 1.5px solid rgba(191,168,136,0.4);
+        background: rgba(2,21,39,0.7);
+        color: #d6c09b; font-size: 16px;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        z-index: 10000;
+        transition: background 0.15s;
+    }
+    .bk-lb-nav:hover { background: rgba(191,168,136,0.2); border-color: #bfa888; }
+    .bk-lb-prev { left: 20px; }
+    .bk-lb-next { right: 20px; }
+    .bk-lb-counter {
+        position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+        font-family: 'Roboto', sans-serif;
+        font-size: 13px; color: rgba(191,168,136,0.8);
+        z-index: 10000;
+        background: rgba(2,21,39,0.6);
+        padding: 4px 14px; border-radius: 20px;
+    }
+    .bk-lb-dots {
+        position: fixed; bottom: 54px; left: 50%; transform: translateX(-50%);
+        display: flex; gap: 8px; z-index: 10000;
+    }
+    .bk-lb-dot {
+        width: 8px; height: 8px; border-radius: 50%;
+        background: rgba(191,168,136,0.35);
+        cursor: pointer; transition: background 0.15s;
+    }
+    .bk-lb-dot.is-active { background: #d6c09b; }
+    @@media (max-width: 900px) {
+        .bk-room-grid { grid-template-columns: 1fr; }
+        .bk-room-slider { aspect-ratio: 16/9; }
+    }
+
+    @@media (max-width: 900px) {
+        .bk-wrap { width: 94%; }
+        .bk-topbar { flex-direction: column; }
+        .bk-fields { flex-direction: column; }
+        .bk-sep { width: 100%; height: 1px; margin: 0; }
+        .bk-right { justify-content: space-between; }
+        .bk-gp, .bk-dp, .bk-rp { padding: 24px 18px; }
+    }
+</style>
+
+<div class="bk-page">
+    <div class="bk-wrap">
+
+        <!-- ═══ TOP BAR ═══ -->
+        <div class="bk-topbar">
+            <div class="bk-fields">
+
+                <div class="bk-field is-active" id="f-date" onclick="openPanel('p-date','f-date')">
+                    <div class="bk-field-label">Departure date</div>
+                    <div class="bk-field-val">
+                        <span id="disp-date">May 18, 2026</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+
+                <div class="bk-sep"></div>
+
+                <div class="bk-field" id="f-guests" onclick="openPanel('p-guests','f-guests')">
+                    <div class="bk-field-label">Number of guests</div>
+                    <div class="bk-field-val">
+                        <span id="disp-guests">1 Guest</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+
+                <div class="bk-sep"></div>
+
+                <div class="bk-field" id="f-room" onclick="openPanel('p-room','f-room')">
+                    <div class="bk-field-label">Room type</div>
+                    <div class="bk-field-val">
+                        <span id="disp-room">Interior</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+
+            </div>
+            <div class="bk-right">
+                <div class="bk-price-block">
+                    <span class="bk-price-from">Starting from:</span>
+                    <div class="bk-price-usd" id="top-price-per">$2,749 USD <em>/person*</em></div>
+                    <div class="bk-price-total" id="top-price-total">$2,749 Total/Room</div>
+                    <div class="bk-price-note">*Taxes &amp; fees included</div>
+                </div>
+                <button class="bk-book-btn">Book now</button>
+            </div>
+        </div>
+
+        <!-- ═══ DATE PANEL ═══ -->
+        <div class="bk-panel is-open" id="p-date">
+            <div class="bk-dp">
+                <button class="bk-panel-x" onclick="closePanel('p-date','f-date')"><i class="fas fa-times"></i></button>
+                <div class="bk-dp-head">
+                    <div>
+                        <h2>Select Departure Date</h2>
+                        <p>Pricing shown is per person.</p>
+                    </div>
+                    <div class="bk-tab-active"><i class="fas fa-list"></i> List View</div>
+                </div>
+                <div class="bk-date-list">
+                    <div class="bk-month-grp">
+                        <div class="bk-month-title">May 2026</div>
+                        <div class="bk-drow" onclick="selDate(this,'May 11, 2026','$1,608')">
+                            <div class="bk-drow-range"><span>Monday, May 11</span><span class="bk-drow-arr">→</span><span>Friday, May 15</span></div>
+                            <div class="bk-drow-price">$1,608</div>
+                        </div>
+                        <div class="bk-drow is-sel" onclick="selDate(this,'May 18, 2026','$2,749')">
+                            <div class="bk-drow-range"><span>Monday, May 18</span><span class="bk-drow-arr">→</span><span>Friday, May 22</span></div>
+                            <div class="bk-drow-price">$2,749</div>
+                        </div>
+                        <div class="bk-drow" onclick="selDate(this,'May 25, 2026','$2,073')">
+                            <div class="bk-drow-range"><span>Monday, May 25</span><span class="bk-drow-arr">→</span><span>Friday, May 29</span></div>
+                            <div class="bk-drow-price">$2,073</div>
+                        </div>
+                    </div>
+                    <div class="bk-month-grp">
+                        <div class="bk-month-title">June 2026</div>
+                        <div class="bk-drow" onclick="selDate(this,'June 1, 2026','$2,426')">
+                            <div class="bk-drow-range"><span>Monday, June 1</span><span class="bk-drow-arr">→</span><span>Friday, June 5</span></div>
+                            <div class="bk-drow-price">$2,426</div>
+                        </div>
+                        <div class="bk-drow is-dis">
+                            <div class="bk-drow-range"><span>Monday, June 8</span><span class="bk-drow-arr">→</span><span>Friday, June 12</span></div>
+                            <div class="bk-drow-price">$2,368</div>
+                        </div>
+                    </div>
+                </div>
+                <p class="bk-dp-note">Departure date may affect your destination sequence.</p>
+            </div>
+        </div>
+
+        <!-- ═══ GUESTS PANEL ═══ -->
+        <div class="bk-panel" id="p-guests">
+            <div class="bk-gp">
+                <button class="bk-panel-x" onclick="closePanel('p-guests','f-guests')"><i class="fas fa-times"></i></button>
+                <h2>Select Number of Guests</h2>
+                <div class="bk-gp-row">
+                    <div class="bk-gp-item">
+                        <div class="bk-gp-info"><strong>Adults</strong></div>
+                        <div class="bk-counter">
+                            <button class="bk-cnt-btn" onclick="chg('adults',-1)">−</button>
+                            <span class="bk-cnt-val" id="v-adults">1</span>
+                            <button class="bk-cnt-btn" onclick="chg('adults',1)">+</button>
+                        </div>
+                    </div>
+                    <div class="bk-gp-item">
+                        <div class="bk-gp-info"><strong>Children</strong><small>Ages 12 and under</small></div>
+                        <div class="bk-counter">
+                            <button class="bk-cnt-btn" onclick="chg('children',-1)">−</button>
+                            <span class="bk-cnt-val" id="v-children">0</span>
+                            <button class="bk-cnt-btn" onclick="chg('children',1)">+</button>
+                        </div>
+                    </div>
+                </div>
+                <p class="bk-gp-note">If you have more than 4 guests, you can book multiple staterooms during the booking process.</p>
+            </div>
+        </div>
+
+        <!-- ═══ ROOM PANEL ═══ -->
+        <div class="bk-panel" id="p-room">
+            <div class="bk-rp">
+                <div class="bk-rp-head">
+                    <h2>Select Room Type</h2>
+                    <button class="bk-panel-x" style="position:static;" onclick="closePanel('p-room','f-room')"><i class="fas fa-times"></i></button>
+                </div>
+
+                <div class="bk-room-grid">
+
+                    <!-- LEFT: room list -->
+                    <div class="bk-room-list">
+
+                        <div class="bk-room-item is-sel" onclick="selRoom(this,0)">
+                            <div class="bk-room-item-top">
+                                <span class="bk-room-name">Interior</span>
+                                <div>
+                                    <div class="bk-room-usd">$2,749 USD <em>/person*</em></div>
+                                    <div class="bk-room-total">$2,749 Total/Room</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bk-room-item" onclick="selRoom(this,1)">
+                            <div class="bk-room-item-top">
+                                <span class="bk-room-name">Balcony</span>
+                                <div>
+                                    <div class="bk-room-usd" style="color:#e05a7a;">$2,034 USD <em style="color:#e05a7a;">/person*</em></div>
+                                    <div class="bk-room-total">$2,034 Total/Room</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bk-room-item is-sold" onclick="selRoom(this,2)">
+                            <div class="bk-room-item-top">
+                                <span class="bk-room-name">Ocean View</span>
+                                <div>
+                                    <div class="bk-room-usd">$2,890 USD <em>/person*</em></div>
+                                    <span class="bk-room-soldout">Sold Out</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bk-room-item is-sold" onclick="selRoom(this,3)">
+                            <div class="bk-room-item-top">
+                                <span class="bk-room-name">Suite</span>
+                                <div>
+                                    <div class="bk-room-usd">$5,480 USD <em>/person*</em></div>
+                                    <span class="bk-room-soldout">Sold Out</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- MIDDLE: image slider -->
+                    <div class="bk-room-slider">
+                        <div class="bk-rs-track" id="rs-track">
+                            <img class="bk-rs-slide" src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=900&q=80" alt="Interior" onclick="lbOpen(0)" />
+                            <img class="bk-rs-slide" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=900&q=80" alt="Interior 2" onclick="lbOpen(1)" />
+                            <img class="bk-rs-slide" src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=900&q=80" alt="Interior 3" onclick="lbOpen(2)" />
+                        </div>
+                        <button class="bk-rs-btn bk-rs-prev" onclick="rsSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+                        <button class="bk-rs-btn bk-rs-next" onclick="rsSlide(1)"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+
+                    <!-- RIGHT: features -->
+                    <div class="bk-room-info" id="room-info">
+                        <h3>Interior</h3>
+                        <ul class="bk-room-features">
+                            <li>Our most budget-friendly option</li>
+                            <li>Cozy and comfortable retreat after an adventure filled day</li>
+                            <li>150 - 270 sq. ft. stateroom</li>
+                        </ul>
+                        <button class="bk-room-view-link">View available Interior rooms</button>
+                    </div>
+
+                </div>
+
+                <p class="bk-rp-note">Prices include taxes and fees (optional gratuities are not included). You can change your room selection during booking.</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- ═══ LIGHTBOX ═══ -->
+<div class="bk-lb" id="bk-lb" onclick="lbBgClose(event)">
+    <button class="bk-lb-close" onclick="lbClose()"><i class="fas fa-times"></i></button>
+    <button class="bk-lb-nav bk-lb-prev" onclick="lbNav(-1)"><i class="fas fa-chevron-left"></i></button>
+    <button class="bk-lb-nav bk-lb-next" onclick="lbNav(1)"><i class="fas fa-chevron-right"></i></button>
+    <div class="bk-lb-inner">
+        <img class="bk-lb-img" id="lb-img" src="" alt="" />
+    </div>
+    <div class="bk-lb-dots" id="lb-dots"></div>
+    <div class="bk-lb-counter" id="lb-counter">1 / 1</div>
+</div>
+
+<script>
+    var adults = 1, children = 0;
+
+    function openPanel(pid, fid) {
+        ['p-date','p-guests','p-room'].forEach(function(p){ document.getElementById(p).classList.remove('is-open'); });
+        ['f-date','f-guests','f-room'].forEach(function(f){ document.getElementById(f).classList.remove('is-active'); });
+        var panel = document.getElementById(pid);
+        var field = document.getElementById(fid);
+        panel.classList.add('is-open');
+        field.classList.add('is-active');
+    }
+
+    function closePanel(pid, fid) {
+        event.stopPropagation();
+        document.getElementById(pid).classList.remove('is-open');
+        document.getElementById(fid).classList.remove('is-active');
+    }
+
+    function selDate(row, d, priceStr) {
+        if (row.classList.contains('is-dis')) return;
+        document.querySelectorAll('.bk-drow').forEach(function(r){ r.classList.remove('is-sel'); });
+        row.classList.add('is-sel');
+        document.getElementById('disp-date').textContent = d;
+        basePersonPrice = parseInt(priceStr.replace(/[^0-9]/g, ''));
+        updatePriceDisplay();
+    }
+
+    function chg(type, delta) {
+        event.stopPropagation();
+        if (type === 'adults') { adults = Math.max(1, adults + delta); document.getElementById('v-adults').textContent = adults; }
+        else { children = Math.max(0, children + delta); document.getElementById('v-children').textContent = children; }
+        var t = adults + children;
+        document.getElementById('disp-guests').textContent = t === 1 ? '1 Guest' : t + ' Guests';
+        updatePriceDisplay();
+    }
+
+    var rsIndex = 0;
+    var currentRoomIdx = 0;
+    var basePersonPrice = 2749; // seçilmiş tarixin 1 nəfər qiyməti
+    var roomData = [
+        {
+            name: 'Interior',
+            basePrice: 2749,
+            features: ['Our most budget-friendly option','Cozy and comfortable retreat after an adventure filled day','150 - 270 sq. ft. stateroom'],
+            imgs: [
+                'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=900&q=80',
+                'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=900&q=80',
+                'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=900&q=80'
+            ]
+        },
+        {
+            name: 'Balcony',
+            basePrice: 2034,
+            features: ['Private balcony with stunning ocean views','Spacious layout with cozy sitting area','180 - 340 sq. ft. stateroom'],
+            imgs: [
+                'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=900&q=80',
+                'https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=900&q=80',
+                'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=900&q=80'
+            ]
+        },
+        {
+            name: 'Ocean View',
+            basePrice: 2890,
+            features: ['Floor-to-ceiling ocean view window','King-size bed with premium bedding','200 - 320 sq. ft. stateroom'],
+            imgs: [
+                'https://images.unsplash.com/photo-1548574505-5e239809ee19?w=900&q=80',
+                'https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=900&q=80',
+                'https://images.unsplash.com/photo-1540541338537-8563b8f73db1?w=900&q=80'
+            ]
+        },
+        {
+            name: 'Suite',
+            basePrice: 5480,
+            features: ['Expansive private suite with panoramic views','Separate living room and dining area','380 - 560 sq. ft. luxury suite'],
+            imgs: [
+                'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=900&q=80',
+                'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=900&q=80',
+                'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=900&q=80'
+            ]
+        }
+    ];
+
+    function fmtPrice(n) {
+        return '$' + n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
+
+    function updatePriceDisplay() {
+        var totalGuests = adults + children;
+        var perPerson   = basePersonPrice;
+        var totalRoom   = basePersonPrice * totalGuests;
+        // top bar
+        document.getElementById('top-price-per').innerHTML   = fmtPrice(perPerson) + ' USD <em>/person*</em>';
+        document.getElementById('top-price-total').textContent = fmtPrice(totalRoom) + ' Total/Room';
+    }
+
+    function buildSlider(rd) {
+        rsIndex = 0;
+        var track = document.getElementById('rs-track');
+        track.innerHTML = rd.imgs.map(function(src, i){
+            return '<img class="bk-rs-slide" src="'+src+'" alt="'+rd.name+'" onclick="lbOpen('+i+')" />';
+        }).join('');
+        track.style.transform = 'translateX(0)';
+    }
+
+    function selRoom(item, idx) {
+        document.querySelectorAll('.bk-room-item').forEach(function(i){ i.classList.remove('is-sel'); });
+        item.classList.add('is-sel');
+        currentRoomIdx = idx;
+        var rd = roomData[idx];
+        document.getElementById('disp-room').textContent = rd.name;
+        basePersonPrice = rd.basePrice;
+        buildSlider(rd);
+        var info = document.getElementById('room-info');
+        info.querySelector('h3').textContent = rd.name;
+        var ul = info.querySelector('.bk-room-features');
+        ul.innerHTML = rd.features.map(function(f){ return '<li>'+f+'</li>'; }).join('');
+        info.querySelector('.bk-room-view-link').textContent = 'View available ' + rd.name + ' rooms';
+        updatePriceDisplay();
+    }
+
+    function rsSlide(dir) {
+        var track = document.getElementById('rs-track');
+        var slides = track.querySelectorAll('.bk-rs-slide');
+        rsIndex = (rsIndex + dir + slides.length) % slides.length;
+        track.style.transform = 'translateX(-' + (rsIndex * 100) + '%)';
+    }
+
+    /* ── LIGHTBOX ── */
+    var lbIndex = 0;
+    var lbImgs  = [];
+
+    function lbOpen(startIdx) {
+        lbImgs  = roomData[currentRoomIdx].imgs;
+        lbIndex = startIdx;
+        lbRender();
+        document.getElementById('bk-lb').classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function lbClose() {
+        document.getElementById('bk-lb').classList.remove('is-open');
+        document.body.style.overflow = '';
+    }
+
+    function lbBgClose(e) {
+        if (e.target === document.getElementById('bk-lb')) lbClose();
+    }
+
+    function lbNav(dir) {
+        lbIndex = (lbIndex + dir + lbImgs.length) % lbImgs.length;
+        lbRender();
+    }
+
+    function lbRender() {
+        var img = document.getElementById('lb-img');
+        img.style.opacity = '0';
+        setTimeout(function(){
+            img.src = lbImgs[lbIndex];
+            img.style.opacity = '1';
+        }, 150);
+        document.getElementById('lb-counter').textContent = (lbIndex+1) + ' / ' + lbImgs.length;
+        var dots = document.getElementById('lb-dots');
+        dots.innerHTML = lbImgs.map(function(_,i){
+            return '<div class="bk-lb-dot'+(i===lbIndex?' is-active':'')+'" onclick="lbIndex='+i+';lbRender()"></div>';
+        }).join('');
+    }
+
+    /* keyboard nav */
+    document.addEventListener('keydown', function(e){
+        if (!document.getElementById('bk-lb').classList.contains('is-open')) return;
+        if (e.key === 'ArrowRight') lbNav(1);
+        if (e.key === 'ArrowLeft')  lbNav(-1);
+        if (e.key === 'Escape')     lbClose();
+    });
+</script>

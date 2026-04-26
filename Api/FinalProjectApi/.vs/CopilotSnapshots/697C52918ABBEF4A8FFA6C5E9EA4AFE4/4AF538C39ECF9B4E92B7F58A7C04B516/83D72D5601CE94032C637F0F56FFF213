@@ -1,0 +1,150 @@
+﻿@{
+    ViewData["Title"] = "Book Your Trip";
+}
+
+<link rel="stylesheet" href="~/client/assets/style/book.css" />
+
+<!-- BOOK HERO -->
+<section class="book-hero">
+    <div class="book-hero-overlay"></div>
+    <div class="book-hero-content">
+        <span class="book-hero-subtitle">PLAN YOUR VOYAGE</span>
+        <h1 class="book-hero-title">Book Your Trip</h1>
+        <p class="book-hero-desc">Pricing shown is per person. Select your departure date and package.</p>
+    </div>
+</section>
+
+<!-- BOOKING SECTION -->
+<section class="book-section">
+    <div class="book-container">
+
+        <!-- TOP BAR -->
+        <div class="book-topbar">
+            <div class="book-topbar-left">
+                <div class="book-select-box">
+                    <label>Departure date</label>
+                    <select id="departureDateSelect">
+                        <option value="may18">May 18, 2026</option>
+                        <option value="may25">May 25, 2026</option>
+                        <option value="jun1">June 1, 2026</option>
+                        <option value="jun8">June 8, 2026</option>
+                    </select>
+                    <i class="fas fa-chevron-up book-select-icon"></i>
+                </div>
+
+                <div class="book-divider-v"></div>
+
+                <div class="book-select-box">
+                    <label>Number of guests</label>
+                    <select id="guestSelect">
+                        <option>1 Guest</option>
+                        <option>2 Guests</option>
+                        <option>3 Guests</option>
+                        <option>4 Guests</option>
+                        <option>5+ Guests</option>
+                    </select>
+                    <i class="fas fa-chevron-down book-select-icon"></i>
+                </div>
+
+                <div class="book-divider-v"></div>
+
+                <div class="book-select-box">
+                    <label>Room type</label>
+                    <select id="roomSelect">
+                        <option>Interior</option>
+                        <option>Ocean View</option>
+                        <option>Balcony</option>
+                        <option>Suite</option>
+                    </select>
+                    <i class="fas fa-chevron-down book-select-icon"></i>
+                </div>
+            </div>
+
+            <div class="book-topbar-right">
+                <div class="book-price-info">
+                    <span class="book-starting-from">Starting from:</span>
+                    <div class="book-price-main">$2,749 USD <span class="book-per-person">/person*</span></div>
+                    <div class="book-price-total">$2,749 Total/Room</div>
+                    <div class="book-price-note">*Taxes &amp; fees included</div>
+                </div>
+                <button class="book-now-btn">Book now</button>
+            </div>
+        </div>
+
+        <!-- DATE LIST -->
+        <div class="book-list-wrapper">
+            <div class="book-list-header">
+                <h2 class="book-list-title">Select Departure Date</h2>
+                <p class="book-list-subtitle">Pricing shown is per person.</p>
+            </div>
+
+            <!-- MAY 2026 -->
+            <div class="book-month-group">
+                <h3 class="book-month-label">May 2026</h3>
+
+                <div class="book-date-row">
+                    <div class="book-date-range">
+                        <span>Monday, May 11</span>
+                        <span class="book-arrow">→</span>
+                        <span>Friday, May 15</span>
+                    </div>
+                    <div class="book-date-price">$1,608</div>
+                </div>
+
+                <div class="book-date-row book-date-row--selected" id="row-may18">
+                    <div class="book-date-range">
+                        <span>Monday, May 18</span>
+                        <span class="book-arrow">→</span>
+                        <span>Friday, May 22</span>
+                    </div>
+                    <div class="book-date-price">$2,749</div>
+                </div>
+
+                <div class="book-date-row">
+                    <div class="book-date-range">
+                        <span>Monday, May 25</span>
+                        <span class="book-arrow">→</span>
+                        <span>Friday, May 29</span>
+                    </div>
+                    <div class="book-date-price">$2,073</div>
+                </div>
+            </div>
+
+            <!-- JUNE 2026 -->
+            <div class="book-month-group">
+                <h3 class="book-month-label">June 2026</h3>
+
+                <div class="book-date-row">
+                    <div class="book-date-range">
+                        <span>Monday, June 1</span>
+                        <span class="book-arrow">→</span>
+                        <span>Friday, June 5</span>
+                    </div>
+                    <div class="book-date-price">$2,426</div>
+                </div>
+
+                <div class="book-date-row">
+                    <div class="book-date-range">
+                        <span>Monday, June 8</span>
+                        <span class="book-arrow">→</span>
+                        <span>Friday, June 12</span>
+                    </div>
+                    <div class="book-date-price">$2,368</div>
+                </div>
+            </div>
+
+            <p class="book-footer-note"><em>Departure date may affect your destination sequence.</em></p>
+        </div>
+
+    </div>
+</section>
+
+<script>
+    // Date row selection
+    document.querySelectorAll('.book-date-row').forEach(function (row) {
+        row.addEventListener('click', function () {
+            document.querySelectorAll('.book-date-row').forEach(r => r.classList.remove('book-date-row--selected'));
+            this.classList.add('book-date-row--selected');
+        });
+    });
+</script>

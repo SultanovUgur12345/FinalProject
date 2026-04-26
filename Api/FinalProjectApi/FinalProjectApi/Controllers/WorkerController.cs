@@ -11,11 +11,11 @@ namespace FinalProjectApi.Controllers
     [Route("api/[controller]/[action]")]
     public class WorkerController : ControllerBase
     {
-        private readonly IWorkerService _service;
+        private readonly IWorkerService _workerService;
 
-        public WorkerController(IWorkerService service)
+        public WorkerController(IWorkerService workerService)
         {
-            _service = service;
+            _workerService = workerService;
         }
 
 
@@ -23,7 +23,7 @@ namespace FinalProjectApi.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var result = await _service.GetAllAsync();
+            var result = await _workerService.GetAllAsync();
             return Ok(result);
         }
 
@@ -31,7 +31,7 @@ namespace FinalProjectApi.Controllers
         [HttpGet]
         public async Task<IActionResult> GetPaged([FromQuery] int page = 1, [FromQuery] int pageSize = 5)
         {
-            var result = await _service.GetPagedAsync(page, pageSize);
+            var result = await _workerService.GetPagedAsync(page, pageSize);
             return Ok(result);
         }
 
@@ -41,18 +41,18 @@ namespace FinalProjectApi.Controllers
         {
             if (string.IsNullOrWhiteSpace(name))
             {
-                var all = await _service.GetAllAsync();
+                var all = await _workerService.GetAllAsync();
                 return Ok(all);
             }
 
-            var result = await _service.SearchByNameAsync(name);
+            var result = await _workerService.SearchByNameAsync(name);
             return Ok(result);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var result = await _service.GetByIdAsync(id);
+            var result = await _workerService.GetByIdAsync(id);
             if (result == null) return NotFound();
 
             return Ok(result);
@@ -62,21 +62,21 @@ namespace FinalProjectApi.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromForm] WorkerCreateDto dto)
         {
-            await _service.CreateAsync(dto);
+            await _workerService.CreateAsync(dto);
             return Ok();
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, [FromForm] WorkerUpdateDto dto)
         {
-            await _service.UpdateAsync(id, dto);
+            await _workerService.UpdateAsync(id, dto);
             return Ok("Updated successfully");
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            await _service.DeleteAsync(id);
+            await _workerService.DeleteAsync(id);
             return Ok("Deleted successfully");
         }
     }

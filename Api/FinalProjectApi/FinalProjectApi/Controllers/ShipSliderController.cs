@@ -1,4 +1,4 @@
-using FinalProjectApi.DTOs.ShipSlider;
+﻿using FinalProjectApi.DTOs.ShipSlider;
 using FinalProjectApi.Helpers.Enums;
 using FinalProjectApi.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -10,18 +10,18 @@ namespace FinalProjectApi.Controllers
     [Route("api/[controller]/[action]")]
     public class ShipSliderController : ControllerBase
     {
-        private readonly IShipSliderService _service;
+        private readonly IShipSliderService _shipSliderService;
 
-        public ShipSliderController(IShipSliderService service)
+        public ShipSliderController(IShipSliderService shipSliderService)
         {
-            _service = service;
+            _shipSliderService = shipSliderService;
         }
 
         [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var result = await _service.GetAllAsync();
+            var result = await _shipSliderService.GetAllAsync();
             return Ok(result);
         }
 
@@ -29,14 +29,14 @@ namespace FinalProjectApi.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllAdmin()
         {
-            var result = await _service.GetAllAdminAsync();
+            var result = await _shipSliderService.GetAllAdminAsync();
             return Ok(result);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var result = await _service.GetByIdAsync(id);
+            var result = await _shipSliderService.GetByIdAsync(id);
             if (result == null) return NotFound();
 
             return Ok(result);
@@ -46,7 +46,7 @@ namespace FinalProjectApi.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromForm] ShipSliderCreateDto dto)
         {
-            await _service.CreateAsync(dto);
+            await _shipSliderService.CreateAsync(dto);
             return Ok();
         }
 
@@ -54,7 +54,7 @@ namespace FinalProjectApi.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, [FromForm] ShipSliderUpdateDto dto)
         {
-            await _service.UpdateAsync(id, dto);
+            await _shipSliderService.UpdateAsync(id, dto);
             return Ok("Updated successfully");
         }
 
@@ -62,7 +62,7 @@ namespace FinalProjectApi.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            await _service.DeleteAsync(id);
+            await _shipSliderService.DeleteAsync(id);
             return Ok("Deleted successfully");
         }
     }

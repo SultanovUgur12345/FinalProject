@@ -1,0 +1,385 @@
+﻿@{
+    ViewData["Title"] = "Cruises";
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+<style>
+    @@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&family=Inconsolata:wght@400;500&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    .tk-page {
+        min-height: 100vh;
+        background-color: #021527;
+        padding-top: 140px;
+        padding-bottom: 80px;
+        font-family: 'Roboto', sans-serif;
+        color: #fff;
+    }
+
+    /* Hero */
+    .tk-hero {
+        position: relative;
+        width: 100%; height: 320px;
+        margin-bottom: 60px; overflow: hidden;
+    }
+    .tk-hero img {
+        width: 100%; height: 100%;
+        object-fit: cover; opacity: 0.35;
+    }
+    .tk-hero-overlay {
+        position: absolute; inset: 0;
+        background: linear-gradient(to bottom, rgba(2,21,39,0.3) 0%, rgba(2,21,39,0.85) 100%);
+        display: flex; flex-direction: column;
+        align-items: center; justify-content: center;
+        text-align: center; padding: 20px;
+    }
+    .tk-hero-label {
+        font-family: 'Inconsolata', monospace;
+        font-size: 12px; letter-spacing: 4px;
+        text-transform: uppercase; color: #bfa888; margin-bottom: 14px;
+    }
+    .tk-hero-title {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: clamp(38px, 6vw, 64px);
+        font-weight: 300; color: #fff;
+        letter-spacing: 2px; line-height: 1.1;
+    }
+    .tk-hero-title span { color: #bfa888; font-style: italic; }
+
+    /* Grid */
+    .tk-grid {
+        max-width: 1160px; margin: 0 auto;
+        padding: 0 24px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+        gap: 32px;
+    }
+
+    /* Card */
+    .tk-card {
+        position: relative;
+        background: rgba(255,255,255,0.03);
+        border: 1px solid rgba(191,168,136,0.15);
+        overflow: hidden; cursor: pointer;
+        transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        text-decoration: none; display: block; color: inherit;
+    }
+    .tk-card:hover {
+        transform: translateY(-6px);
+        border-color: rgba(191,168,136,0.5);
+        box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        text-decoration: none; color: inherit;
+    }
+
+    /* Sold Out */
+    .tk-card.sold-out { opacity: 0.78; }
+    .tk-card.sold-out:hover {
+        transform: translateY(-5px);
+        border-color: rgba(255,100,100,0.4);
+        box-shadow: 0 16px 40px rgba(0,0,0,0.45);
+    }
+
+    .tk-card-img {
+        position: relative; width: 100%; height: 220px; overflow: hidden;
+    }
+    .tk-card-img img {
+        width: 100%; height: 100%;
+        object-fit: cover; transition: transform 0.6s ease;
+    }
+    .tk-card:hover .tk-card-img img { transform: scale(1.07); }
+
+    /* Sold out overlay on image */
+    .tk-sold-overlay {
+        position: absolute; inset: 0;
+        background: rgba(2,21,39,0.45);
+        display: flex; align-items: center; justify-content: center;
+    }
+    .tk-sold-stamp {
+        border: 2px solid rgba(255,100,100,0.75);
+        color: #ff8a8a;
+        font-family: 'Inconsolata', monospace;
+        font-size: 13px; letter-spacing: 4px;
+        text-transform: uppercase;
+        padding: 8px 22px;
+        backdrop-filter: blur(4px);
+        background: rgba(180,40,40,0.2);
+        transform: rotate(-12deg);
+    }
+
+    /* Badges */
+    .tk-card-badge {
+        position: absolute; top: 16px; left: 16px;
+        background: rgba(2,21,39,0.85);
+        border: 1px solid rgba(191,168,136,0.5);
+        padding: 4px 12px;
+        font-family: 'Inconsolata', monospace;
+        font-size: 10px; letter-spacing: 2px;
+        text-transform: uppercase; color: #bfa888;
+        backdrop-filter: blur(6px);
+    }
+
+    /* Card body */
+    .tk-card-body { padding: 24px 22px 20px; }
+    .tk-card-route {
+        font-family: 'Inconsolata', monospace;
+        font-size: 10px; letter-spacing: 3px;
+        text-transform: uppercase; color: #bfa888; margin-bottom: 10px;
+    }
+    .tk-card-name {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 24px; font-weight: 500;
+        color: #fff; line-height: 1.2; margin-bottom: 14px;
+    }
+    .tk-card-meta {
+        display: flex; gap: 20px; margin-bottom: 18px; flex-wrap: wrap;
+    }
+    .tk-card-meta-item {
+        display: flex; align-items: center; gap: 6px;
+        font-size: 12px; color: rgba(255,255,255,0.55);
+    }
+    .tk-card-meta-item i { color: #bfa888; font-size: 11px; }
+    .tk-card-divider {
+        width: 100%; height: 1px;
+        background: rgba(191,168,136,0.15); margin-bottom: 18px;
+    }
+    .tk-card-footer {
+        display: flex; align-items: flex-end; justify-content: space-between;
+    }
+    .tk-card-price-label {
+        font-family: 'Inconsolata', monospace;
+        font-size: 10px; letter-spacing: 2px;
+        text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 4px;
+    }
+    .tk-card-price {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 28px; font-weight: 600;
+        color: #d6c09b; line-height: 1;
+    }
+    .tk-card-price sup { font-size: 14px; font-weight: 400; vertical-align: super; }
+
+    /* Sold out price */
+    .tk-card-price.sold-price {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 14px; color: rgba(255,138,138,0.7);
+        letter-spacing: 1px; text-decoration: line-through;
+        font-weight: 400;
+    }
+    .tk-sold-note {
+        font-family: 'Inconsolata', monospace;
+        font-size: 10px; color: #ff8a8a;
+        letter-spacing: 2px; text-transform: uppercase;
+        margin-top: 3px;
+    }
+
+    .tk-card-btn {
+        padding: 10px 20px; background: transparent;
+        border: 1px solid rgba(191,168,136,0.45);
+        color: #bfa888;
+        font-family: 'Inconsolata', monospace;
+        font-size: 10px; letter-spacing: 2px;
+        text-transform: uppercase;
+        transition: all 0.25s ease;
+        display: flex; align-items: center; gap: 8px;
+        white-space: nowrap;
+    }
+    .tk-card:hover .tk-card-btn {
+        background: rgba(191,168,136,0.15);
+        border-color: #bfa888; color: #fff;
+    }
+    .tk-card-btn i { font-size: 10px; transition: transform 0.25s ease; }
+    .tk-card:hover .tk-card-btn i { transform: translateX(4px); }
+
+    .tk-card-btn.btn-soldout {
+        border-color: rgba(255,100,100,0.35);
+        color: rgba(255,138,138,0.8);
+    }
+    .tk-card.sold-out:hover .tk-card-btn.btn-soldout {
+        background: rgba(180,40,40,0.12);
+        border-color: rgba(255,100,100,0.6);
+        color: #ffb3b3;
+    }
+
+    @@media (max-width: 768px) {
+        .tk-grid { grid-template-columns: 1fr; }
+        .tk-hero { height: 240px; }
+    }
+</style>
+
+<div class="tk-page">
+
+    <!-- Hero -->
+    <div class="tk-hero">
+        <img src="https://images.unsplash.com/photo-1548438294-1ad5d5f4f063?w=1600&q=80" alt="Cruises" />
+        <div class="tk-hero-overlay">
+            <div class="tk-hero-label">Luxury at Sea</div>
+            <h1 class="tk-hero-title">Our <span>Cruise</span> Packages</h1>
+        </div>
+    </div>
+
+    <!-- Cards -->
+    <div class="tk-grid" id="tk-grid">
+
+        <!-- 1. Mediterranean Dream -->
+        <a asp-controller="Book" asp-action="Index" class="tk-card" data-region="mediterranean">
+            <div class="tk-card-img">
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=700&q=80" alt="Mediterranean Dream" />
+                <div class="tk-card-badge">7 Nights</div>
+            </div>
+            <div class="tk-card-body">
+                <div class="tk-card-route">Barcelona → Rome → Athens</div>
+                <div class="tk-card-name">Mediterranean Dream</div>
+                <div class="tk-card-meta">
+                    <div class="tk-card-meta-item"><i class="fa fa-anchor"></i> 4 Ports</div>
+                    <div class="tk-card-meta-item"><i class="fa fa-calendar"></i> Jun – Sep</div>
+                    <div class="tk-card-meta-item"><i class="fa fa-star"></i> 5-Star Ship</div>
+                </div>
+                <div class="tk-card-divider"></div>
+                <div class="tk-card-footer">
+                    <div>
+                        <div class="tk-card-price-label">From / per person</div>
+                        <div class="tk-card-price"><sup>$</sup>2,034</div>
+                    </div>
+                    <div class="tk-card-btn">View Details <i class="fa fa-arrow-right"></i></div>
+                </div>
+            </div>
+        </a>
+
+        <!-- 2. Caribbean Escape -->
+        <div class="tk-card" data-region="caribbean">
+            <div class="tk-card-img">
+                <img src="https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?w=700&q=80" alt="Caribbean Escape" />
+                <div class="tk-card-badge">10 Nights</div>
+            </div>
+            <div class="tk-card-body">
+                <div class="tk-card-route">Miami → Jamaica → Bahamas</div>
+                <div class="tk-card-name">Caribbean Escape</div>
+                <div class="tk-card-meta">
+                    <div class="tk-card-meta-item"><i class="fa fa-anchor"></i> 6 Ports</div>
+                    <div class="tk-card-meta-item"><i class="fa fa-calendar"></i> Nov – Mar</div>
+                    <div class="tk-card-meta-item"><i class="fa fa-star"></i> 5-Star Ship</div>
+                </div>
+                <div class="tk-card-divider"></div>
+                <div class="tk-card-footer">
+                    <div>
+                        <div class="tk-card-price-label">From / per person</div>
+                        <div class="tk-card-price"><sup>$</sup>2,749</div>
+                    </div>
+                    <div class="tk-card-btn">View Details <i class="fa fa-arrow-right"></i></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Atlantic Voyage -->
+        <div class="tk-card" data-region="atlantic">
+            <div class="tk-card-img">
+                <img src="https://images.unsplash.com/photo-1519659528534-7fd733a832a0?w=700&q=80" alt="Atlantic Voyage" />
+                <div class="tk-card-badge">14 Nights</div>
+            </div>
+            <div class="tk-card-body">
+                <div class="tk-card-route">Lisbon → Madeira → Canary Islands</div>
+                <div class="tk-card-name">Atlantic Voyage</div>
+                <div class="tk-card-meta">
+                    <div class="tk-card-meta-item"><i class="fa fa-anchor"></i> 5 Ports</div>
+                    <div class="tk-card-meta-item"><i class="fa fa-calendar"></i> Oct – Apr</div>
+                    <div class="tk-card-meta-item"><i class="fa fa-star"></i> 5-Star Ship</div>
+                </div>
+                <div class="tk-card-divider"></div>
+                <div class="tk-card-footer">
+                    <div>
+                        <div class="tk-card-price-label">From / per person</div>
+                        <div class="tk-card-price"><sup>$</sup>3,190</div>
+                    </div>
+                    <div class="tk-card-btn">View Details <i class="fa fa-arrow-right"></i></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Greek Isles Explorer -->
+        <div class="tk-card" data-region="mediterranean">
+            <div class="tk-card-img">
+                <img src="https://images.unsplash.com/photo-1534430480872-3498386e7856?w=700&q=80" alt="Greek Isles" />
+                <div class="tk-card-badge">8 Nights</div>
+            </div>
+            <div class="tk-card-body">
+                <div class="tk-card-route">Athens → Santorini → Mykonos → Rhodes</div>
+                <div class="tk-card-name">Greek Isles Explorer</div>
+                <div class="tk-card-meta">
+                    <div class="tk-card-meta-item"><i class="fa fa-anchor"></i> 5 Ports</div>
+                    <div class="tk-card-meta-item"><i class="fa fa-calendar"></i> May – Oct</div>
+                    <div class="tk-card-meta-item"><i class="fa fa-star"></i> 5-Star Ship</div>
+                </div>
+                <div class="tk-card-divider"></div>
+                <div class="tk-card-footer">
+                    <div>
+                        <div class="tk-card-price-label">From / per person</div>
+                        <div class="tk-card-price"><sup>$</sup>2,490</div>
+                    </div>
+                    <div class="tk-card-btn">View Details <i class="fa fa-arrow-right"></i></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Ocean View        <!-- 5. Ocean View — SOLD OUT -->
+        <div class="tk-card sold-out" data-region="mediterranean">
+            <div class="tk-card-img">
+                <img src="https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=700&q=80" alt="Ocean View" />
+                <div class="tk-card-badge">9 Nights</div>
+                <div class="tk-sold-overlay">
+                    <div class="tk-sold-stamp"><i class="fa fa-ban" style="margin-right:8px;"></i>Sold Out</div>
+                </div>
+            </div>
+            <div class="tk-card-body">
+                <div class="tk-card-route">Venice → Dubrovnik → Kotor → Split</div>
+                <div class="tk-card-name">Ocean View Adriatic</div>
+                <div class="tk-card-meta">
+                    <div class="tk-card-meta-item"><i class="fa fa-anchor"></i> 5 Ports</div>
+                    <div class="tk-card-meta-item"><i class="fa fa-calendar"></i> Jul – Aug</div>
+                    <div class="tk-card-meta-item"><i class="fa fa-eye"></i> Ocean View</div>
+                </div>
+                <div class="tk-card-divider"></div>
+                <div class="tk-card-footer">
+                    <div>
+                        <div class="tk-card-price-label">From / per person</div>
+                        <div class="tk-card-price sold-price"><sup>$</sup>2,890</div>
+                        <div class="tk-sold-note"><i class="fa fa-lock" style="margin-right:4px;"></i>No availability</div>
+                    </div>
+                    <div class="tk-card-btn btn-soldout">See Details <i class="fa fa-arrow-right"></i></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. Suite        <!-- 6. Suite — SOLD OUT -->
+        <div class="tk-card sold-out" data-region="atlantic">
+            <div class="tk-card-img">
+                <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?w=700&q=80" alt="Suite" />
+                <div class="tk-card-badge">16 Nights</div>
+                <div class="tk-sold-overlay">
+                    <div class="tk-sold-stamp"><i class="fa fa-ban" style="margin-right:8px;"></i>Sold Out</div>
+                </div>
+            </div>
+            <div class="tk-card-body">
+                <div class="tk-card-route">Southampton → New York → Boston → Halifax</div>
+                <div class="tk-card-name">Transatlantic Suite</div>
+                <div class="tk-card-meta">
+                    <div class="tk-card-meta-item"><i class="fa fa-anchor"></i> 4 Ports</div>
+                    <div class="tk-card-meta-item"><i class="fa fa-calendar"></i> Apr – May</div>
+                    <div class="tk-card-meta-item"><i class="fa fa-gem"></i> Suite Class</div>
+                </div>
+                <div class="tk-card-divider"></div>
+                <div class="tk-card-footer">
+                    <div>
+                        <div class="tk-card-price-label">From / per person</div>
+                        <div class="tk-card-price sold-price"><sup>$</sup>5,480</div>
+                        <div class="tk-sold-note"><i class="fa fa-lock" style="margin-right:4px;"></i>No availability</div>
+                    </div>
+                    <div class="tk-card-btn btn-soldout">See Details <i class="fa fa-arrow-right"></i></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+

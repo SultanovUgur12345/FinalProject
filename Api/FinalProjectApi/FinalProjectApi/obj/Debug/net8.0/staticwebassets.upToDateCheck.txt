@@ -23,7 +23,7 @@ wwwroot\uploads\workers\0b0d6828-fd5f-4753-9726-cc0b365ef3bd_Ekran görüntüsü
 wwwroot\uploads\workers\09c7fec5-0e54-41e4-959e-8cdc350ddbbb_Ekran görüntüsü 2025-05-21 081258.png
 wwwroot\uploads\users\f144ec24-07be-46b1-b7c5-886f87fed7aa.png
 wwwroot\uploads\users\73df6a29-2a1f-4f17-8bf8-5705c54b6714.png
-wwwroot\uploads\users\6bcb22a1-8774-489f-a4d9-ca18b22a87b4.png
+wwwroot\uploads\users\e59bd20b-8317-4802-960b-b4e82242711a.png
 wwwroot\uploads\users\5f56cae9-cae7-4377-b51a-c920db7e8636.png
 wwwroot\uploads\users\306256a4-f779-4d56-a50f-e8707f7ca9cc.png
 wwwroot\uploads\shipsliders\e5612adb-d5cf-4851-a9fe-97d045256f05_Ekran görüntüsü 2025-06-19 034052.png
@@ -51,3 +51,4 @@ wwwroot\uploads\features\bf812475-a538-4f1a-bab7-1e09ed3ae76d_Ekran görüntüs�
 wwwroot\uploads\aboutus\e8ffaaef-f2a4-484a-b613-fa5c88f42445_Ekran görüntüsü 2025-05-16 162506.png
 wwwroot\uploads\shipsliders\f993d72a-90d5-48ae-a46b-cf8289052d48_Ekran görüntüsü 2025-05-16 162506.png
 wwwroot\uploads\shipsliders\94b21d94-a2ad-464b-b5f9-be274b61d194_Ekran görüntüsü 2025-07-01 160600.png
+wwwroot\uploads\workers\d89ca10d-19fc-4c64-99ab-df282dfd69be_Ekran görüntüsü 2024-08-10 225420 - Copy.png

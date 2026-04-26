@@ -1,4 +1,4 @@
-using FinalProjectMVC.Services.Interfaces;
+﻿using FinalProjectMVC.Services.Interfaces;
 using FinalProjectMVC.ViewModels.Account;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -60,6 +60,8 @@ namespace FinalProjectMVC.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
             var result = await _accountService.LoginAsync(model);
 
             if (!result.success)
@@ -90,6 +92,14 @@ namespace FinalProjectMVC.Controllers
             var handler = new JwtSecurityTokenHandler();
             var jwtToken = handler.ReadJwtToken(result.token);
             var claims = jwtToken.Claims.Select(c => (c.Type == "role" || c.Type == ClaimTypes.Role) ? new Claim(ClaimTypes.Role, c.Value) : c).ToList();
+
+            if (!string.IsNullOrWhiteSpace(profileData?.ProfileImageUrl))
+            {
+                var imgUrl = profileData.ProfileImageUrl.StartsWith("http")
+                    ? profileData.ProfileImageUrl
+                    : $"{_apiBaseUrl}{profileData.ProfileImageUrl}";
+                claims.Add(new Claim("profileImage", imgUrl));
+            }
 
             var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             var principal = new ClaimsPrincipal(identity);

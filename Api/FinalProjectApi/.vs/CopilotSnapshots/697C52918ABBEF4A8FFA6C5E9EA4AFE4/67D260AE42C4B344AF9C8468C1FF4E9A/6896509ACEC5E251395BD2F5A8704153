@@ -1,0 +1,841 @@
+﻿@{
+    ViewData["Title"] = "Book Your Trip";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    /* ── PAGE WRAPPER ── */
+    .book-page {
+        min-height: 100vh;
+        background-color: #021527;
+        background-image: url('https://seafarer.qodeinteractive.com/wp-content/uploads/2021/07/home-1-parallax-1.jpg');
+        background-size: cover;
+        background-attachment: fixed;
+        background-position: center;
+        padding-top: 160px;
+        padding-bottom: 80px;
+    }
+
+    .book-page-inner {
+        width: 82%;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    /* ── TOP BAR ── */
+    .bk-bar {
+        background: #fff;
+        border-radius: 6px;
+        box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+        display: flex;
+        align-items: stretch;
+        justify-content: space-between;
+        padding: 0;
+        margin-bottom: 14px;
+        overflow: hidden;
+    }
+
+    .bk-bar-fields {
+        display: flex;
+        align-items: stretch;
+        flex: 1;
+    }
+
+    .bk-field {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 18px 28px;
+        cursor: pointer;
+        position: relative;
+        min-width: 160px;
+        transition: background 0.15s;
+        border: 2px solid transparent;
+        border-radius: 6px;
+    }
+
+    .bk-field:hover {
+        background: #f4f6fb;
+    }
+
+    .bk-field.bk-field--active {
+        border-color: #1a3a6b;
+        background: #f0f4fb;
+    }
+
+    .bk-field-label {
+        font-family: 'Roboto', sans-serif;
+        font-size: 11px;
+        color: #8a97a8;
+        text-transform: none;
+        letter-spacing: 0.2px;
+        margin-bottom: 3px;
+    }
+
+    .bk-field-value {
+        font-family: 'Roboto', sans-serif;
+        font-size: 15px;
+        font-weight: 600;
+        color: #0a1628;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .bk-field-value i {
+        font-size: 11px;
+        color: #8a97a8;
+    }
+
+    .bk-divider {
+        width: 1px;
+        background: #e2e8f0;
+        margin: 14px 0;
+        flex-shrink: 0;
+    }
+
+    /* ── PRICE + BUTTON ── */
+    .bk-bar-right {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 16px 24px;
+        flex-shrink: 0;
+    }
+
+    .bk-price-block {
+        text-align: right;
+    }
+
+    .bk-price-label {
+        font-family: 'Roboto', sans-serif;
+        font-size: 11px;
+        color: #8a97a8;
+        display: block;
+        margin-bottom: 2px;
+    }
+
+    .bk-price-main {
+        font-family: 'Roboto', sans-serif;
+        font-size: 20px;
+        font-weight: 800;
+        color: #0a1628;
+        line-height: 1.1;
+    }
+
+    .bk-price-main span {
+        font-size: 13px;
+        font-weight: 400;
+        color: #0a1628;
+    }
+
+    .bk-price-total {
+        font-size: 12px;
+        color: #0a1628;
+        margin-top: 1px;
+    }
+
+    .bk-price-note {
+        font-size: 11px;
+        color: #8a97a8;
+    }
+
+    .bk-btn {
+        background: #f5a623;
+        color: #fff;
+        border: none;
+        border-radius: 50px;
+        padding: 15px 30px;
+        font-family: 'Roboto', sans-serif;
+        font-size: 15px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: background 0.2s;
+        white-space: nowrap;
+        letter-spacing: 0.3px;
+    }
+
+    .bk-btn:hover { background: #d48a0e; }
+
+    /* ── DROPDOWN PANELS ── */
+    .bk-panel {
+        background: #fff;
+        border-radius: 6px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+        display: none;
+        position: relative;
+        margin-bottom: 14px;
+    }
+
+    .bk-panel.bk-panel--open { display: block; }
+
+    .bk-panel-close {
+        position: absolute;
+        top: 18px;
+        right: 20px;
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        border: 1.5px solid #c8d0dc;
+        background: transparent;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 15px;
+        color: #5a6a7a;
+        transition: all 0.15s;
+    }
+
+    .bk-panel-close:hover { background: #f0f4fb; }
+
+    /* GUESTS PANEL */
+    .bk-guests-panel { padding: 36px 40px 32px; }
+
+    .bk-guests-panel h2 {
+        font-family: 'Roboto', sans-serif;
+        font-size: 22px;
+        font-weight: 700;
+        color: #0a1628;
+        margin: 0 0 28px;
+    }
+
+    .bk-guests-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 32px;
+        flex-wrap: wrap;
+        margin-bottom: 24px;
+    }
+
+    .bk-guest-item { display: flex; align-items: center; gap: 0; }
+
+    .bk-guest-info { margin-right: 20px; }
+
+    .bk-guest-info strong {
+        font-family: 'Roboto', sans-serif;
+        font-size: 15px;
+        font-weight: 600;
+        color: #0a1628;
+        display: block;
+    }
+
+    .bk-guest-info small {
+        font-size: 12px;
+        color: #8a97a8;
+    }
+
+    .bk-counter {
+        display: flex;
+        align-items: center;
+        background: #f0f4fb;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .bk-counter-btn {
+        width: 40px;
+        height: 44px;
+        border: none;
+        background: transparent;
+        font-size: 18px;
+        font-weight: 400;
+        color: #4a6080;
+        cursor: pointer;
+        transition: background 0.15s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .bk-counter-btn:hover { background: #dde4f0; }
+
+    .bk-counter-val {
+        font-family: 'Roboto', sans-serif;
+        font-size: 17px;
+        font-weight: 600;
+        color: #0a1628;
+        min-width: 36px;
+        text-align: center;
+    }
+
+    .bk-guests-note {
+        font-family: 'Roboto', sans-serif;
+        font-size: 13px;
+        color: #4a80c4;
+        font-style: italic;
+        border-top: 1px solid #e8edf4;
+        padding-top: 18px;
+        margin-top: 8px;
+    }
+
+    /* DATE LIST PANEL */
+    .bk-date-panel { padding: 36px 40px 28px; }
+
+    .bk-date-panel-top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        margin-bottom: 4px;
+    }
+
+    .bk-date-panel-title-block h2 {
+        font-family: 'Roboto', sans-serif;
+        font-size: 24px;
+        font-weight: 700;
+        color: #0a1628;
+        margin: 0 0 4px;
+    }
+
+    .bk-date-panel-title-block p {
+        font-size: 13px;
+        color: #8a97a8;
+        margin: 0;
+    }
+
+    .bk-view-tabs {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+        margin-top: 4px;
+    }
+
+    .bk-view-tab {
+        font-family: 'Roboto', sans-serif;
+        font-size: 14px;
+        color: #8a97a8;
+        cursor: pointer;
+        padding-bottom: 6px;
+        border-bottom: 2px solid transparent;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        transition: color 0.15s;
+    }
+
+    .bk-view-tab.bk-view-tab--active {
+        color: #1a3a9e;
+        border-bottom-color: #1a3a9e;
+        font-weight: 600;
+    }
+
+    .bk-view-tab:hover { color: #1a3a9e; }
+
+    /* DATE ROWS */
+    .bk-date-list { margin-top: 28px; max-height: 360px; overflow-y: auto; }
+
+    .bk-month-label {
+        font-family: 'Roboto', sans-serif;
+        font-size: 16px;
+        font-weight: 700;
+        color: #0a1628;
+        margin: 0 0 8px;
+        padding-bottom: 6px;
+    }
+
+    .bk-date-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 18px;
+        border-radius: 5px;
+        margin-bottom: 4px;
+        cursor: pointer;
+        background: #f4f7fb;
+        border: 1.5px solid transparent;
+        transition: all 0.15s;
+    }
+
+    .bk-date-row:hover { background: #eaeff8; }
+
+    .bk-date-row--selected {
+        background: #dde6f5;
+        border-color: #1a3a9e;
+    }
+
+    .bk-date-range {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-family: 'Roboto', sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        color: #0a1628;
+    }
+
+    .bk-date-row--disabled .bk-date-range { color: #aab3c0; }
+    .bk-date-row--disabled { cursor: default; }
+
+    .bk-date-arrow { color: #8a97a8; font-size: 15px; }
+
+    .bk-date-price {
+        font-family: 'Roboto', sans-serif;
+        font-size: 15px;
+        font-weight: 700;
+        color: #0a1628;
+    }
+
+    .bk-date-row--disabled .bk-date-price { color: #aab3c0; }
+
+    .bk-month-sep { margin-bottom: 18px; }
+
+    .bk-date-footer-note {
+        font-family: 'Roboto', sans-serif;
+        font-size: 13px;
+        color: #4a80c4;
+        font-style: italic;
+        margin-top: 18px;
+        padding-top: 16px;
+        border-top: 1px solid #e8edf4;
+    }
+
+    /* SCROLLBAR */
+    .bk-date-list::-webkit-scrollbar { width: 6px; }
+    .bk-date-list::-webkit-scrollbar-track { background: #f0f4fb; border-radius: 3px; }
+    .bk-date-list::-webkit-scrollbar-thumb { background: #c0ccd8; border-radius: 3px; }
+
+    @@media (max-width: 900px) {
+        .book-page-inner { width: 94%; }
+        .bk-bar { flex-direction: column; }
+        .bk-bar-fields { flex-direction: column; }
+        .bk-divider { width: 100%; height: 1px; margin: 0; }
+        .bk-bar-right { justify-content: space-between; }
+        .bk-guests-panel, .bk-date-panel { padding: 24px 18px; }
+    }
+</style>
+    /* =============================================
+       BOOK PAGE STYLES
+       ============================================= */
+
+    .book-hero {
+        position: relative;
+        height: 420px;
+        background: url('https://seafarer.qodeinteractive.com/wp-content/uploads/2021/10/h1-rev-img-1.jpg') center center / cover no-repeat;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .book-hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(10, 20, 40, 0.55);
+    }
+
+    .book-hero-content {
+        position: relative;
+        z-index: 1;
+        color: #fff;
+    }
+
+    .book-hero-subtitle {
+        display: block;
+        font-family: 'Inconsolata', monospace;
+        font-size: 13px;
+        letter-spacing: 3px;
+        color: #bfa888;
+        margin-bottom: 14px;
+    }
+
+    .book-hero-title {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 58px;
+        font-weight: 600;
+        margin: 0 0 14px;
+        line-height: 1.1;
+    }
+
+    .book-hero-desc {
+        font-family: 'Roboto', sans-serif;
+        font-size: 15px;
+        color: rgba(255,255,255,0.75);
+        margin: 0;
+    }
+
+    .book-section {
+        background: #f7f5f2;
+        padding: 60px 0 80px;
+    }
+
+    .book-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 24px;
+    }
+
+    /* TOP BAR */
+    .book-topbar {
+        background: #fff;
+        border-radius: 4px;
+        box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 28px;
+        margin-bottom: 48px;
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
+    .book-topbar-left {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .book-select-box {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        padding: 0 28px;
+    }
+
+    .book-select-box:first-child {
+        padding-left: 0;
+    }
+
+    .book-select-box label {
+        font-family: 'Roboto', sans-serif;
+        font-size: 11px;
+        color: #888;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 4px;
+    }
+
+    .book-select-box select {
+        border: none;
+        outline: none;
+        background: transparent;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 17px;
+        font-weight: 600;
+        color: #1a2535;
+        cursor: pointer;
+        appearance: none;
+        padding-right: 24px;
+    }
+
+    .book-select-icon {
+        position: absolute;
+        right: 12px;
+        bottom: 4px;
+        font-size: 11px;
+        color: #888;
+        pointer-events: none;
+    }
+
+    .book-divider-v {
+        width: 1px;
+        height: 44px;
+        background: #e8e3db;
+        flex-shrink: 0;
+    }
+
+    .book-topbar-right {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+    }
+
+    .book-price-info {
+        text-align: right;
+    }
+
+    .book-starting-from {
+        font-family: 'Roboto', sans-serif;
+        font-size: 11px;
+        color: #888;
+        display: block;
+    }
+
+    .book-price-main {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 22px;
+        font-weight: 700;
+        color: #1a2535;
+        line-height: 1.2;
+    }
+
+    .book-per-person {
+        font-size: 14px;
+        font-weight: 400;
+    }
+
+    .book-price-total {
+        font-size: 13px;
+        color: #555;
+    }
+
+    .book-price-note {
+        font-size: 11px;
+        color: #999;
+    }
+
+    .book-now-btn {
+        background: #e8a020;
+        color: #fff;
+        border: none;
+        border-radius: 50px;
+        padding: 14px 32px;
+        font-family: 'Roboto', sans-serif;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s;
+        white-space: nowrap;
+    }
+
+    .book-now-btn:hover {
+        background: #cf8c10;
+    }
+
+    /* LIST */
+    .book-list-wrapper {
+        background: #fff;
+        border-radius: 4px;
+        box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+        padding: 36px 36px 28px;
+    }
+
+    .book-list-header {
+        margin-bottom: 28px;
+    }
+
+    .book-list-title {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 30px;
+        font-weight: 600;
+        color: #1a2535;
+        margin: 0 0 6px;
+    }
+
+    .book-list-subtitle {
+        font-family: 'Roboto', sans-serif;
+        font-size: 14px;
+        color: #888;
+        margin: 0;
+    }
+
+    .book-month-group {
+        margin-bottom: 32px;
+    }
+
+    .book-month-label {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 20px;
+        font-weight: 600;
+        color: #1a2535;
+        margin: 0 0 12px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .book-date-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px 20px;
+        border-radius: 4px;
+        margin-bottom: 6px;
+        cursor: pointer;
+        transition: background 0.15s;
+        border: 1.5px solid transparent;
+    }
+
+    .book-date-row:hover {
+        background: #f0ede8;
+    }
+
+    .book-date-row--selected {
+        background: #e8e4f0;
+        border-color: #7b6fa0;
+    }
+
+    .book-date-range {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-family: 'Roboto', sans-serif;
+        font-size: 15px;
+        color: #1a2535;
+        font-weight: 500;
+    }
+
+    .book-arrow {
+        color: #bfa888;
+        font-size: 18px;
+    }
+
+    .book-date-price {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 20px;
+        font-weight: 700;
+        color: #1a2535;
+    }
+
+    .book-footer-note {
+        font-family: 'Roboto', sans-serif;
+        font-size: 13px;
+        color: #7b9fc7;
+        margin-top: 24px;
+        padding-top: 16px;
+        border-top: 1px solid #eee;
+    }
+
+    @@media (max-width: 768px) {
+        .book-hero-title { font-size: 36px; }
+        .book-topbar { flex-direction: column; align-items: flex-start; }
+        .book-topbar-right { flex-direction: column; align-items: flex-start; gap: 12px; }
+        .book-price-info { text-align: left; }
+        .book-select-box { padding: 8px 0; }
+        .book-divider-v { display: none; }
+        .book-list-wrapper { padding: 20px 16px; }
+    }
+</style>
+
+<!-- BOOK HERO -->
+<section class="book-hero">
+    <div class="book-hero-overlay"></div>
+    <div class="book-hero-content">
+        <span class="book-hero-subtitle">PLAN YOUR VOYAGE</span>
+        <h1 class="book-hero-title">Book Your Trip</h1>
+        <p class="book-hero-desc">Pricing shown is per person. Select your departure date and package.</p>
+    </div>
+</section>
+
+<!-- BOOKING SECTION -->
+<section class="book-section">
+    <div class="book-container">
+
+        <!-- TOP BAR -->
+        <div class="book-topbar">
+            <div class="book-topbar-left">
+                <div class="book-select-box">
+                    <label>Departure date</label>
+                    <select id="departureDateSelect">
+                        <option value="may18">May 18, 2026</option>
+                        <option value="may25">May 25, 2026</option>
+                        <option value="jun1">June 1, 2026</option>
+                        <option value="jun8">June 8, 2026</option>
+                    </select>
+                    <i class="fas fa-chevron-up book-select-icon"></i>
+                </div>
+
+                <div class="book-divider-v"></div>
+
+                <div class="book-select-box">
+                    <label>Number of guests</label>
+                    <select id="guestSelect">
+                        <option>1 Guest</option>
+                        <option>2 Guests</option>
+                        <option>3 Guests</option>
+                        <option>4 Guests</option>
+                        <option>5+ Guests</option>
+                    </select>
+                    <i class="fas fa-chevron-down book-select-icon"></i>
+                </div>
+
+                <div class="book-divider-v"></div>
+
+                <div class="book-select-box">
+                    <label>Room type</label>
+                    <select id="roomSelect">
+                        <option>Interior</option>
+                        <option>Ocean View</option>
+                        <option>Balcony</option>
+                        <option>Suite</option>
+                    </select>
+                    <i class="fas fa-chevron-down book-select-icon"></i>
+                </div>
+            </div>
+
+            <div class="book-topbar-right">
+                <div class="book-price-info">
+                    <span class="book-starting-from">Starting from:</span>
+                    <div class="book-price-main">$2,749 USD <span class="book-per-person">/person*</span></div>
+                    <div class="book-price-total">$2,749 Total/Room</div>
+                    <div class="book-price-note">*Taxes &amp; fees included</div>
+                </div>
+                <button class="book-now-btn">Book now</button>
+            </div>
+        </div>
+
+        <!-- DATE LIST -->
+        <div class="book-list-wrapper">
+            <div class="book-list-header">
+                <h2 class="book-list-title">Select Departure Date</h2>
+                <p class="book-list-subtitle">Pricing shown is per person.</p>
+            </div>
+
+            <!-- MAY 2026 -->
+            <div class="book-month-group">
+                <h3 class="book-month-label">May 2026</h3>
+
+                <div class="book-date-row">
+                    <div class="book-date-range">
+                        <span>Monday, May 11</span>
+                        <span class="book-arrow">→</span>
+                        <span>Friday, May 15</span>
+                    </div>
+                    <div class="book-date-price">$1,608</div>
+                </div>
+
+                <div class="book-date-row book-date-row--selected" id="row-may18">
+                    <div class="book-date-range">
+                        <span>Monday, May 18</span>
+                        <span class="book-arrow">→</span>
+                        <span>Friday, May 22</span>
+                    </div>
+                    <div class="book-date-price">$2,749</div>
+                </div>
+
+                <div class="book-date-row">
+                    <div class="book-date-range">
+                        <span>Monday, May 25</span>
+                        <span class="book-arrow">→</span>
+                        <span>Friday, May 29</span>
+                    </div>
+                    <div class="book-date-price">$2,073</div>
+                </div>
+            </div>
+
+            <!-- JUNE 2026 -->
+            <div class="book-month-group">
+                <h3 class="book-month-label">June 2026</h3>
+
+                <div class="book-date-row">
+                    <div class="book-date-range">
+                        <span>Monday, June 1</span>
+                        <span class="book-arrow">→</span>
+                        <span>Friday, June 5</span>
+                    </div>
+                    <div class="book-date-price">$2,426</div>
+                </div>
+
+                <div class="book-date-row">
+                    <div class="book-date-range">
+                        <span>Monday, June 8</span>
+                        <span class="book-arrow">→</span>
+                        <span>Friday, June 12</span>
+                    </div>
+                    <div class="book-date-price">$2,368</div>
+                </div>
+            </div>
+
+            <p class="book-footer-note"><em>Departure date may affect your destination sequence.</em></p>
+        </div>
+
+    </div>
+</section>
+
+<script>
+    // Date row selection
+    document.querySelectorAll('.book-date-row').forEach(function (row) {
+        row.addEventListener('click', function () {
+            document.querySelectorAll('.book-date-row').forEach(r => r.classList.remove('book-date-row--selected'));
+            this.classList.add('book-date-row--selected');
+        });
+    });
+</script>

@@ -9,6 +9,7 @@ wwwroot\admin\assets\js\setting-index.js
 wwwroot\admin\assets\js\ship-hero-video-index.js
 wwwroot\admin\assets\js\ship-slider-index.js
 wwwroot\admin\assets\js\users-index.js
+wwwroot\admin\assets\js\workers-index.js
 wwwroot\admin\assets\style\about-us-create.css
 wwwroot\admin\assets\style\about-us-detail.css
 wwwroot\admin\assets\style\about-us-edit.css
@@ -59,4 +60,3 @@ wwwroot\client\assets\style\register.css
 wwwroot\client\assets\style\restorans.css
 wwwroot\client\assets\style\Türkiyə .css
 wwwroot\client\assets\style\workers.css
-wwwroot\admin\assets\js\workers-index.js

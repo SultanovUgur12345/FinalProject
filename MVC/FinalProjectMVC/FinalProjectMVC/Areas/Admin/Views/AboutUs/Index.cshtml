@@ -1,5 +1,4 @@
-@using FinalProjectMVC.ViewModels.AboutUs
-@model List<AboutUsGetVM>
+﻿@model List<AboutUsGetVM>
 
 @{
     ViewData["Title"] = "About Us Management";
@@ -40,11 +39,14 @@ else
                     <div class="admin-actions" style="margin-top:16px;">
                         <a asp-area="Admin" asp-controller="AboutUs" asp-action="Detail" asp-route-id="@item.Id" class="admin-btn admin-btn--sm">Detail</a>
                         <a asp-area="Admin" asp-controller="AboutUs" asp-action="Edit" asp-route-id="@item.Id" class="admin-btn admin-btn--sm">Edit</a>
-                        <form asp-area="Admin" asp-controller="AboutUs" asp-action="Delete" asp-route-id="@item.Id" method="post" style="display:inline;">
-                            @Html.AntiForgeryToken()
-                            <button type="submit" class="admin-btn admin-btn--sm admin-btn--danger"
-                                    onclick="return confirm('Delete this about us entry?')">Delete</button>
-                        </form>
+                        <button type="button"
+                                class="admin-btn admin-btn--sm admin-btn--danger open-delete-modal"
+                                data-id="@item.Id"
+                                data-name="@item.Title"
+                                data-subtitle="@item.SubTitle"
+                                data-image="@(string.IsNullOrWhiteSpace(item.Image) ? "" : "http://localhost:5147/" + item.Image)">
+                            Delete
+                        </button>
                     </div>
                 </div>
             </div>
@@ -52,6 +54,37 @@ else
     </div>
 }
 
+<div class="delete-modal" id="deleteModal">
+    <div class="delete-modal__overlay" id="deleteModalOverlay"></div>
+    <div class="delete-modal__content">
+        <button type="button" class="delete-modal__close" id="deleteModalClose">&times;</button>
+        <div class="delete-modal__top">
+            <p class="delete-modal__subtitle">DELETE CONFIRMATION</p>
+            <h2>Are you sure?</h2>
+            <p class="delete-modal__text">This entry will be permanently deleted.</p>
+        </div>
+        <div class="delete-modal__worker">
+            <img id="deleteItemImage" src="" alt="Image" class="delete-modal__image" style="display:none;" />
+            <div class="delete-modal__info">
+                <h3 id="deleteItemName"></h3>
+                <p><strong>Subtitle:</strong> <span id="deleteItemSubtitle"></span></p>
+            </div>
+        </div>
+        <form method="post" asp-area="Admin" asp-controller="AboutUs" asp-action="Delete" id="deleteForm">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="id" id="deleteItemId" />
+            <div class="delete-modal__actions">
+                <button type="button" class="admin-btn" id="cancelDelete">Cancel</button>
+                <button type="submit" class="admin-btn admin-btn--danger-fill">Yes, Delete</button>
+            </div>
+        </form>
+    </div>
+</div>
+
 @section Styles {
     <link rel="stylesheet" href="~/admin/assets/style/about-us.css" />
+}
+
+@section Scripts {
+    <script src="~/admin/assets/js/about-us-index.js"></script>
 }

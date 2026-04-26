@@ -1,0 +1,17 @@
+using Microsoft.AspNetCore.Mvc;
+
+namespace FinalProjectMVC.Controllers
+{
+    public class BookController : Controller
+    {
+        public IActionResult Tickets()
+        {
+            return View();
+        }
+
+        public IActionResult Index()
+        {
+            return View();
+        }
+    }
+}

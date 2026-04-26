@@ -1,6 +1,9 @@
 ﻿@using Microsoft.AspNetCore.Http
+@using System.Security.Claims
 @{
     var profileImage = Context.Session.GetString("ProfileImage");
+    if (string.IsNullOrEmpty(profileImage))
+        profileImage = User.FindFirst("profileImage")?.Value;
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -25,10 +28,10 @@
         .admin-sidebar__nav a.active { color: #bfa888; border-left-color: #bfa888; }
         .admin-sidebar__nav a.active i { color: #bfa888; }
         /* Profile top-right */
-        .admin-profile-bar { position: fixed; top: 16px; right: 24px; z-index: 1300; display: flex; align-items: center; gap: 12px; }
+        .admin-profile-bar { position: fixed; top: 16px; right: 24px; z-index: 1300; display: flex; flex-direction: column; align-items: center; gap: 6px; }
         .admin-profile-bar__avatar { width: 38px; height: 38px; border-radius: 50%; border: 2px solid rgba(191,168,136,0.6); display: flex; align-items: center; justify-content: center; font-size: 16px; color: #bfa888; overflow: hidden; flex-shrink: 0; }
         .admin-profile-bar__avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
-        .admin-profile-bar__name { font-size: 13px; color: rgba(255,255,255,0.85); letter-spacing: 0.4px; }
+        .admin-profile-bar__name { font-size: 13px; color: rgba(255,255,255,0.85); letter-spacing: 0.4px; text-align: center; }
         .admin-profile-bar__logout { display: inline-flex; align-items: center; gap: 6px; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(191,168,136,0.85); border: 1px solid rgba(191,168,136,0.3); padding: 5px 14px; text-decoration: none; transition: all 0.25s ease; }
         .admin-profile-bar__logout:hover { color: #fff; border-color: #bfa888; }
         .admin-main { margin-left: 240px; margin-top: 20px; padding: 40px 36px; min-height: 100vh; }
@@ -109,7 +112,7 @@
         </div>
         <span class="admin-profile-bar__name">@User.Identity?.Name</span>
         <a asp-area="" asp-controller="Account" asp-action="Logout" class="admin-profile-bar__logout">
-            <i class="fas fa-sign-out-alt"></i> Çıxış et
+            <i class="fas fa-sign-out-alt"></i> Logout
         </a>
     </div>
     <main class="admin-main">

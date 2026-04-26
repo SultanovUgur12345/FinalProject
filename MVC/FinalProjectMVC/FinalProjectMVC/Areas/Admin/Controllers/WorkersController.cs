@@ -1,4 +1,4 @@
-using FinalProjectMVC.Services.Interfaces;
+﻿using FinalProjectMVC.Services.Interfaces;
 using FinalProjectMVC.ViewModels.Worker;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -35,7 +35,13 @@ public class WorkersController : AdminBaseController
     public async Task<IActionResult> GetPage([FromQuery] int page = 1, [FromQuery] int pageSize = 5)
     {
         var data = await _service.GetPagedAsync(page, pageSize);
-        return Json(data);
+        return Json(new
+        {
+            items = data.Items,
+            page = data.Page,
+            totalPages = data.TotalPages,
+            totalCount = data.TotalCount
+        });
     }
 
     public async Task<IActionResult> Detail(int id)

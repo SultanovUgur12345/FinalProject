@@ -1,4 +1,4 @@
-using FinalProjectApi.DTOs.Partner;
+﻿using FinalProjectApi.DTOs.Partner;
 using FinalProjectApi.Helpers.Enums;
 using FinalProjectApi.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -11,25 +11,25 @@ namespace FinalProjectApi.Controllers
     [Route("api/[controller]/[action]")]
     public class PartnerController : ControllerBase
     {
-        private readonly IPartnerService _service;
+        private readonly IPartnerService _partnerService;
 
-        public PartnerController(IPartnerService service)
+        public PartnerController(IPartnerService partnerService)
         {
-            _service = service;
+            _partnerService = partnerService;
         }
 
         [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var result = await _service.GetAllAsync();
+            var result = await _partnerService.GetAllAsync();
             return Ok(result);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var result = await _service.GetByIdAsync(id);
+            var result = await _partnerService.GetByIdAsync(id);
             if (result == null) return NotFound();
             return Ok(result);
         }
@@ -37,21 +37,21 @@ namespace FinalProjectApi.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromForm] PartnerCreateDto dto)
         {
-            await _service.CreateAsync(dto);
+            await _partnerService.CreateAsync(dto);
             return Ok();
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, [FromForm] PartnerUpdateDto dto)
         {
-            await _service.UpdateAsync(id, dto);
+            await _partnerService.UpdateAsync(id, dto);
             return Ok("Updated successfully");
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            await _service.DeleteAsync(id);
+            await _partnerService.DeleteAsync(id);
             return Ok("Deleted successfully");
         }
     }

@@ -1,4 +1,4 @@
-using FinalProjectApi.DTOs.Feature;
+﻿using FinalProjectApi.DTOs.Feature;
 using FinalProjectApi.Helpers.Enums;
 using FinalProjectApi.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -10,25 +10,25 @@ namespace FinalProjectApi.Controllers
     [Route("api/[controller]/[action]")]
     public class FeatureController : ControllerBase
     {
-        private readonly IFeatureService _service;
+        private readonly IFeatureService _featureService;
 
-        public FeatureController(IFeatureService service)
+        public FeatureController(IFeatureService featureService)
         {
-            _service = service;
+            _featureService = featureService;
         }
 
         [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var result = await _service.GetAllAsync();
+            var result = await _featureService.GetAllAsync();
             return Ok(result);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var result = await _service.GetByIdAsync(id);
+            var result = await _featureService.GetByIdAsync(id);
             if (result == null) return NotFound();
             return Ok(result);
         }
@@ -37,7 +37,7 @@ namespace FinalProjectApi.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromForm] FeatureCreateDto dto)
         {
-            await _service.CreateAsync(dto);
+            await _featureService.CreateAsync(dto);
             return Ok();
         }
 
@@ -45,7 +45,7 @@ namespace FinalProjectApi.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, [FromForm] FeatureUpdateDto dto)
         {
-            await _service.UpdateAsync(id, dto);
+            await _featureService.UpdateAsync(id, dto);
             return Ok("Updated successfully");
         }
 
@@ -53,7 +53,7 @@ namespace FinalProjectApi.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            await _service.DeleteAsync(id);
+            await _featureService.DeleteAsync(id);
             return Ok("Deleted successfully");
         }
     }

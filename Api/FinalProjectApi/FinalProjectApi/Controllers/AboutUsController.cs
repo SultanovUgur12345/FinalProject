@@ -1,4 +1,4 @@
-using FinalProjectApi.DTOs.AboutUs;
+﻿using FinalProjectApi.DTOs.AboutUs;
 using FinalProjectApi.Helpers.Enums;
 using FinalProjectApi.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -10,18 +10,18 @@ namespace FinalProjectApi.Controllers
     [Route("api/[controller]/[action]")]
     public class AboutUsController : ControllerBase
     {
-        private readonly IAboutUsService _service;
+        private readonly IAboutUsService _aboutUsService;
 
-        public AboutUsController(IAboutUsService service)
+        public AboutUsController(IAboutUsService aboutUsService)
         {
-            _service = service;
+            _aboutUsService = aboutUsService;
         }
 
         [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var result = await _service.GetAllAsync();
+            var result = await _aboutUsService.GetAllAsync();
             return Ok(result);
         }
 
@@ -29,7 +29,7 @@ namespace FinalProjectApi.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllAdmin()
         {
-            var result = await _service.GetAllAdminAsync();
+            var result = await _aboutUsService.GetAllAdminAsync();
             return Ok(result);
         }
 
@@ -37,7 +37,7 @@ namespace FinalProjectApi.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var result = await _service.GetByIdAsync(id);
+            var result = await _aboutUsService.GetByIdAsync(id);
             if (result == null) return NotFound();
             return Ok(result);
         }
@@ -46,7 +46,7 @@ namespace FinalProjectApi.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromForm] AboutUsCreateDto dto)
         {
-            await _service.CreateAsync(dto);
+            await _aboutUsService.CreateAsync(dto);
             return Ok();
         }
 
@@ -54,7 +54,7 @@ namespace FinalProjectApi.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, [FromForm] AboutUsUpdateDto dto)
         {
-            await _service.UpdateAsync(id, dto);
+            await _aboutUsService.UpdateAsync(id, dto);
             return Ok("Updated successfully");
         }
 
@@ -62,7 +62,7 @@ namespace FinalProjectApi.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            await _service.DeleteAsync(id);
+            await _aboutUsService.DeleteAsync(id);
             return Ok("Deleted successfully");
         }
     }
